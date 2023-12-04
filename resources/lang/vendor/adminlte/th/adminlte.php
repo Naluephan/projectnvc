@@ -1,0 +1,33 @@
+<?php
+
+return [
+
+    'full_name'                   => 'Full name',
+    'first_name'                   => 'ชื่อ',
+    'last_name'                   => 'นามสกุล',
+    'email'                       => 'อีเมล',
+    'username'                    => 'ผู้ใช้งาน',
+    'tel'                         => 'เบอร์โทรศัพท์',
+    'password'                    => 'รหัสผ่าน',
+    'retype_password'             => 'ยืนยันรหัสผ่าน',
+    'remember_me'                 => 'จำฉันไว้ในระบบ',
+    'register'                    => 'ลงทะเบียน',
+    'register_a_new_membership'   => 'สมัครสมาชิกใหม่',
+    'i_forgot_my_password'        => 'ลืมรหัสผ่าน',
+    'i_already_have_a_membership' => 'เป็นสมาชิกอยู่แล้ว',
+    'first_time_login'            => 'เข้าใช้งานระบบครั้งแรก หรือ เปลี่ยนรหัสผ่าน',
+    'sign_in'                     => 'เข้าสู่ระบบ',
+    'log_out'                     => 'ออกจากระบบ',
+    'toggle_navigation'           => 'Toggle navigation',
+    'login_message'               => 'ลงชื่อเข้าใช้ระบบ',
+    'register_message'            => 'Register a new membership',
+    'password_reset_message'      => 'Reset Password',
+    'reset_password'              => 'Reset Password',
+    'send_password_reset_link'    => 'Send Password Reset Link',
+    'verify_message'              => 'Your account needs a verification',
+    'verify_email_sent'           => 'ลิงก์การยืนยันใหม่ถูกส่งไปยังที่อยู่อีเมลของคุณแล้ว',
+    'verify_check_your_email'     => 'ก่อนดำเนินการต่อ โปรดตรวจสอบอีเมลของคุณเพื่อนยืนยันตัวตน',
+    'verify_if_not_recieved'      => 'โดยการ',
+    'verify_request_another'      => 'คลิกที่นี่เพื่อส่ง',
+    'confirm_password_message'    => 'Please, confirm your password to continue.',
+];

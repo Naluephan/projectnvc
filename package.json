@@ -1,0 +1,48 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@babel/plugin-external-helpers": "^7.12.13",
+        "@popperjs/core": "^2.11.6",
+        "axios": "^1.1.2",
+        "bootstrap": "^5.2.3",
+        "jquery": "^3.7.0",
+        "laravel-mix": "^6.0.6",
+        "laravel-vite-plugin": "^0.7.8",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.56.1",
+        "sass-loader": "^11.0.1"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.5.0",
+        "@uvarov.frontend/vanilla-calendar": "^2.6.0",
+        "bs-custom-file-input": "^1.3.4",
+        "chart.js": "^2.9.3",
+        "chartjs-plugin-datalabels": "^0.7.0",
+        "chosen-js": "^1.8.7",
+        "datatables.net": "^1.10.25",
+        "datatables.net-bs5": "^1.10.25",
+        "datatables.net-buttons": "^1.7.1",
+        "datatables.net-buttons-bs5": "^1.7.1",
+        "datatables.net-responsive": "^2.2.9",
+        "datatables.net-responsive-bs5": "^2.2.9",
+        "dropify": "^0.2.2",
+        "icheck-bootstrap": "^3.0.1",
+        "jquery-validation": "^1.19.3",
+        "moment": "^2.29.4",
+        "overlayscrollbars": "^2.4.5",
+        "owl.carousel": "^2.3.4",
+        "select2": "~4.0",
+        "sweetalert2": "^10.13.0"
+    }
+}

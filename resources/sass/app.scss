@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.css';
+// OverlayScrollbars
+@import '~overlayscrollbars/styles/overlayscrollbars.css';
+// iCheck
+@import '~icheck-bootstrap/icheck-bootstrap.css';
+// AdminLTE
+//@import '../../vendor/almasaeed2010/adminlte/dist/css/adminlte.css';
+
+@import '~owl.carousel/dist/assets/owl.carousel.css';
+@import '~owl.carousel';
+@import "~dropify/dist/css/dropify.min.css";
+@import "~select2/dist/css/select2.css";
+@import "~datatables.net-bs5";
+@import "~datatables.net-buttons-bs5";
+@import "~datatables.net-responsive-bs5";
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+body {
+    font-family: 'Sarabun', sans-serif !important;
+    background-color: $hr-light !important;
+}
+
+.navbar-light {
+    background-color: $hr-light !important;
+}
+[class*=sidebar-light-] {
+    background-color: $hr-light !important;
+}
+.content-wrapper {
+    background-color: $hr-light !important;
+}
+[class*=sidebar-light] .brand-link {
+    background-color: $hr-light !important;
+    border-bottom: 1px solid $hr-light !important;
+}
+[class*=sidebar-light-] .nav-sidebar>.nav-item>.nav-link.active {
+    background: linear-gradient(270deg,#6a994e,#a7c957);
+    border-radius: 0 50rem 50rem 0;
+    margin-left: 0;
+}
+[class*=sidebar-light-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-light-] .nav-sidebar>.nav-item:hover>.nav-link {
+    border-radius: 0 50rem 50rem 0;
+    margin-left: 0;
+}
+[class*=sidebar-light-] .nav-flat .nav-item .nav-treeview>.nav-item>.nav-link, [class*=sidebar-light-] .nav-flat .nav-item .nav-treeview>.nav-item>.nav-link.active {
+    border-radius: 0 50rem 50rem 0;
+}
+.form-control-sidebar {
+    height: calc(2rem + 2px) !important;
+}
+.btn-sidebar {
+    border-radius: 0 50rem 50rem 0 !important;
+    line-height: 1 !important;
+}
+.nav-item>.nav-link {
+    margin: 5px 0 5px 0;
+}
+.nav-link>p>.badge {
+    top: 0.4rem !important;
+}
+.badge {
+    padding: 0.5em 0.7em !important;
+    font-size: .8em !important;
+    font-weight: 500;
+}
+.badge-hr-menu {
+    color: #fff;
+    background-color: #ff4c51 !important;
+    border-radius: 50rem !important;
+}
+.nav-header {
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    line-height: normal;
+    white-space: nowrap;
+    width: 100%;
+    color: #b4b2b7 !important;
+    font-size: .7rem !important;
+}
+.nav>.nav-header:before {
+    margin-left: -1.25rem;
+    margin-right: 0.5rem;
+    width: 8%;
+}
+.nav>.nav-header:after {
+    width: 90%;
+}
+
+.nav>.nav-header:after, .nav>.nav-header:before {
+    background-color: rgba(58,53,65,.12);
+    content: "";
+    display: block;
+    height: 1px;
+}
+[class*=sidebar-light] .btn-sidebar, [class*=sidebar-light] .form-control-sidebar {
+    background-color: #ffffff !important;
+}
+[class*=sidebar-light] .user-panel {
+    border-bottom: unset !important;
+    //border-top: 1px solid #dee2e6;
+}
+.user-panel img {
+    //width: 3.1rem !important;
+}
+
+.form-check-input {
+    position: unset !important;
+    margin-left: unset !important;
+}
+.page-link {
+    border: unset !important;
+    padding: 0.2rem 0.5rem !important;
+    border-radius: 50%;
+}
+
+
+.btn-hr-green {
+    color: #fff !important;
+    background-color: $hr-green !important;
+    border-color: $hr-green !important;
+    box-shadow: none;
+}
+.form-control:focus {
+    border-color: #146e68 !important;
+}
