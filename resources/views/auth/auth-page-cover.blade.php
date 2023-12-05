@@ -52,7 +52,7 @@
                             <div class=" {{ config('adminlte.classes_auth_card', '') }}">
 
                                 @hasSection('auth_header')
-                                    <div class="card-header {{ config('adminlte.classes_auth_header', '') }}">
+                                    <div class="card-header border-0 {{ config('adminlte.classes_auth_header', '') }}">
                                         <h3 class="card-title float-none text-center">
                                             @yield('auth_header')
                                         </h3>

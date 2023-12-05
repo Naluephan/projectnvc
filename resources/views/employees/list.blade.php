@@ -141,9 +141,9 @@
                     <th>รหัสบัตร</th>
                     <th>ชื่อ - สกุล</th>
                     <th>ตำแหน่ง</th>
-                    <th>บริษััท</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>บริษัท</th>
+                    <th>สถานะ</th>
+                    <th>จัดการ</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -194,7 +194,20 @@
                         if(row.mid_name==null){
                             row.mid_name = '';
                         }
-                        return row.f_name+' '+row.l_name;
+                        profile_img = `{{asset('uploads/images/employee/profilef.png')}}`;
+                        if (row.gender_id == 1){
+                            profile_img = `{{asset('uploads/images/employee/profile.png')}}`
+                        }
+                        if (row.image){
+                            profile_img = `{{asset('uploads/images/employee/')}}${row.image}`
+                        }
+                        return `<div class="d-flex justify-content-start align-items-center user-name">
+                            <img src="${profile_img}" alt="Profile" class="img-thumbnail img-size-50 rounded-circle">
+                                <div class="d-flex flex-column ml-2">
+                                    <a href="#" class="text-heading text-truncate">
+                                        <span class="fw-medium">${row.f_name}</span></a><small>${row.l_name}</small>
+                                </div>
+                        </div>`
                     } },
                     {data: 'position_id', render : function(data, type, row, meta){
                             let position = '';
@@ -211,13 +224,13 @@
                             return `${company}`;
                         } },
                     {data: 'id', render : function(data, type, row, meta) {
-                            let status_txt = 'ใช้งาน'
+                            let status_txt = 'พนักงาน'
                             let status_color = 'success';
                             if (row.record_status == 1){
-                                status_txt = 'ไม่ใช้งาน'
+                                status_txt = 'ลาออก'
                                 status_color = 'muted';
                             } if(row.company ==null){
-                                status_txt = 'รอทดลองงาน'
+                                status_txt = 'ทดลองงาน'
                                 status_color = 'warning';
 
                             }
