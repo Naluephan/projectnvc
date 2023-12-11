@@ -11,6 +11,7 @@ class Position extends Model
     protected $fillable = [
         'name_th',
         'name_en',
+        'icon',
     ];
 
     public function users(){

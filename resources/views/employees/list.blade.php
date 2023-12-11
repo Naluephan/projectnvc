@@ -40,10 +40,10 @@
                         <div class="me-1">
                             <p class="text-heading mb-2">พนักงานประจำ</p>
                             <div class="d-flex align-items-center">
-                                <h4 class="mb-2 me-1 display-6">4,567</h4>
+                                <h4 class="mb-2 me-1 display-6">180</h4>
                                 <p class="text-success mb-2">(+18%)</p>
                             </div>
-                            <p class="mb-0">Last week analytics</p>
+                            <p class="mb-0">ชาย (100) / หญิง (90)</p>
                         </div>
                         <div class="avatar">
                             <div class="avatar-initial bg-label-danger rounded text-lg">
@@ -62,10 +62,10 @@
                         <div class="me-1">
                             <p class="text-heading mb-2">ทดลองงาน</p>
                             <div class="d-flex align-items-center">
-                                <h4 class="mb-2 me-1 display-6">19,860</h4>
-                                <p class="text-danger mb-2">(-14%)</p>
+                                <h4 class="mb-2 me-1 display-6">19</h4>
+                                <p class="text-danger mb-2">(14%)</p>
                             </div>
-                            <p class="mb-0">Last week analytics</p>
+                            <p class="mb-0">ชาย (1) / หญิง (18)</p>
                         </div>
                         <div class="avatar">
                             <div class="avatar-initial bg-label-success rounded text-lg">
@@ -212,10 +212,12 @@
                     } },
                     {data: 'position_id', render : function(data, type, row, meta){
                             let position = '';
+                            let icon = 'fa-cog ';
                             if(row.position!=null){
                                 position = row.position.name_th;
+                                // icon = row.position.icon;
                             }
-                            return `<i class="fas fa-cog text-warning mr-1"></i>${position}`;
+                            return `<i class="fas ${icon} text-warning mr-1"></i>${position}`;
                         } },
                     {data: 'company_id', render : function(data, type, row, meta){
                             let company = 'ทดลองงาน';
