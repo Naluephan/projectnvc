@@ -22,12 +22,27 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
 
     public function getAll($param): Collection
     {
-        return $this->model->all();
+        return $this->model
+            ->where(function($q) use ($param){
+                if (isset($param['searchValue'])) {
+                    $q->where('f_name', "like", '%' . $param['searchValue'] . '%');
+                    $q->orWhere('l_name', "like", '%' . $param['searchValue'] . '%');
+                    $q->orWhere('employee_card_id', "like", '%' . $param['searchValue'] . '%');
+                }
+            })
+            ->get();
     }
 
     public function paginate($param): Collection
     {
         $data = $this->model->with('position','company')->orderBy($param['columnName'],$param['columnSortOrder'])
+            ->where(function($q) use ($param){
+                if (isset($param['searchValue'])) {
+                    $q->where('f_name', "like", '%' . $param['searchValue'] . '%');
+                    $q->orWhere('l_name', "like", '%' . $param['searchValue'] . '%');
+                    $q->orWhere('employee_card_id', "like", '%' . $param['searchValue'] . '%');
+                }
+            })
             ->skip($param['start'])
             ->take($param['rowperpage'])->get();
 

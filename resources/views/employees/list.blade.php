@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="me-1">
-                            <p class="text-heading mb-2">Session</p>
+                            <p class="text-heading mb-2">พนักงานทั้งหมด</p>
                             <div class="d-flex align-items-center">
                                 <h4 class="mb-2 me-1 display-6">21,459</h4>
                                 <p class="text-success mb-2">(+29%)</p>
@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="me-1">
-                            <p class="text-heading mb-2">Paid Users</p>
+                            <p class="text-heading mb-2">พนักงานประจำ</p>
                             <div class="d-flex align-items-center">
                                 <h4 class="mb-2 me-1 display-6">4,567</h4>
                                 <p class="text-success mb-2">(+18%)</p>
@@ -47,7 +47,8 @@
                         </div>
                         <div class="avatar">
                             <div class="avatar-initial bg-label-danger rounded text-lg">
-                                <i class="fa-solid fa-venus-mars p-2 rounded-2 bg-primary-subtle text-white"></i>
+                                <i class="fa-solid fa-users-line p-2 rounded-2 bg-primary-subtle text-white"></i>
+{{--                                <i class="fa-solid fa-venus-mars p-2 rounded-2 bg-primary-subtle text-white"></i>--}}
                             </div>
                         </div>
                     </div>
@@ -59,7 +60,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="me-1">
-                            <p class="text-heading mb-2">Active Users</p>
+                            <p class="text-heading mb-2">ทดลองงาน</p>
                             <div class="d-flex align-items-center">
                                 <h4 class="mb-2 me-1 display-6">19,860</h4>
                                 <p class="text-danger mb-2">(-14%)</p>
@@ -68,7 +69,7 @@
                         </div>
                         <div class="avatar">
                             <div class="avatar-initial bg-label-success rounded text-lg">
-                                <i class="fa-solid fa-user-injured p-2 rounded-2 bg-danger-subtle text-danger"></i>
+                                <i class="fa-solid fa-users-between-lines p-2 rounded-2 bg-danger-subtle text-danger"></i>
                             </div>
                         </div>
                     </div>
@@ -80,7 +81,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="me-1">
-                            <p class="text-heading mb-2">Pending Users</p>
+                            <p class="text-heading mb-2">ลาหยุด</p>
                             <div class="d-flex align-items-center">
                                 <h4 class="mb-2 me-1 display-6">237</h4>
                                 <p class="text-success mb-2">(+42%)</p>
@@ -106,7 +107,7 @@
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-4 user_role">
                     <select id="UserRole" class="form-select text-capitalize">
-                        <option value=""> Select Role </option>
+                        <option value=""> -- ดำแหน่ง --</option>
                         <option value="Admin">Admin</option>
                         <option value="Author">Author</option>
                         <option value="Editor">Editor</option>
@@ -115,7 +116,7 @@
                     </select></div>
                 <div class="col-md-4 user_plan">
                     <select id="UserPlan" class="form-select text-capitalize">
-                        <option value=""> Select Plan </option>
+                        <option value=""> -- บริษัท -- </option>
                         <option value="Basic">Basic</option>
                         <option value="Company">Company</option>
                         <option value="Enterprise">Enterprise</option>
@@ -124,7 +125,7 @@
                 </div>
                 <div class="col-md-4 user_status">
                     <select id="FilterTransaction" class="form-select text-capitalize">
-                        <option value=""> Select Status </option>
+                        <option value=""> -- สถานะ -- </option>
                         <option value="Pending" class="text-capitalize">Pending</option>
                         <option value="Active" class="text-capitalize">Active</option>
                         <option value="Inactive" class="text-capitalize">Inactive</option>
@@ -199,7 +200,7 @@
                             profile_img = `{{asset('uploads/images/employee/profile.png')}}`
                         }
                         if (row.image){
-                            profile_img = `{{asset('uploads/images/employee/')}}${row.image}`
+                            profile_img = `{{asset('uploads/images/employee/')}}/${row.image}`
                         }
                         return `<div class="d-flex justify-content-start align-items-center user-name">
                             <img src="${profile_img}" alt="Profile" class="img-thumbnail img-size-50 rounded-circle">
