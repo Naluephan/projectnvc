@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('category_rules', function (Blueprint $table) {
             $table->id();
-            $table->string('name_th', 100);
-            $table->string('name_en', 100);
-            $table->integer('department_id')->nullable();
-            $table->integer('company_id')->nullable();
+            $table->string('rules_category_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('positions');
+        Schema::dropIfExists('category_rules');
     }
 };

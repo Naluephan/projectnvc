@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_th', 100);
             $table->string('name_en', 100);
+            $table->integer('company_id')->nullable();
             $table->timestamps();
         });
     }

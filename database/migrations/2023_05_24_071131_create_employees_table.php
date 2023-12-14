@@ -35,6 +35,7 @@ return new class extends Migration
             $table->integer('y_experience')->nullable();
             $table->string('image',255)->nullable();
             $table->tinyInteger('record_status')->default(1);
+            $table->string('coins')->nullable();
             $table->timestamps();
         });
     }

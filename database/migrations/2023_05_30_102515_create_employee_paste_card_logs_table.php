@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('emp_id',20)->nullable();
             $table->dateTime('paste_date');
+            $table->string('status');
             $table->integer('year');
             $table->integer('month');
             $table->integer('days');
