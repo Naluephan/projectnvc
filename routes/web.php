@@ -54,3 +54,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/employees/list', [App\Http\Controllers\HomeController::class, 'empList'])->name('employees.list');
 Route::get('/emp/detail/{id}', [App\Http\Controllers\HomeController::class, 'empDetail'])->name('emp.detail');
+
+//companies
+Route::get('/companies/list', [App\Http\Controllers\CompanyController::class, 'list'])->name('companies.list');

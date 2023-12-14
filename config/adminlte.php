@@ -345,7 +345,8 @@ return [
             'submenu' => [
                 [
                     'text' => 'บริษัท',
-                    'url'  => '#',
+                    'url'  => '/companies/list',
+                    'active'   => ['regex:@^companies@'],
                 ],
                 [
                     'text' => 'หน่วยงาน',
