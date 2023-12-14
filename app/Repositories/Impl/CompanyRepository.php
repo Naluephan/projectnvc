@@ -22,4 +22,41 @@ class CompanyRepository extends MasterRepository implements CompanyInterface
             ->get();
     }
 
+    public function getAll($params = null) : Collection
+    {
+
+        return $this->model
+            ->where(function($q) use ($params){
+                if(isset($params['searchValue'])){
+                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
+                }
+                if(isset($params['id'])){
+                    $q->where('id','-',$params['id']);
+                }
+//                $q->whereHas('sdqDetails',function($q2) use ($params){
+//                    $q2->where();
+//                });
+            })  
+            ->get();
+        }
+        public function paginate($params): Collection
+    {
+        return $this->model
+            ->where(function($q) use ($params){
+                if(isset($params['searchValue'])){
+                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
+                }
+                if(isset($params['id'])){
+                    $q->where('id','-',$params['id']);
+                }
+//                $q->whereHas('sdqDetails',function($q2) use ($params){
+//                    $q2->where();
+//                });
+            })
+            ->select('*')
+            ->skip($params['start'])
+            ->take($params['rowperpage'])
+            ->get();
+    }
+
 }
