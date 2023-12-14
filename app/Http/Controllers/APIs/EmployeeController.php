@@ -5,6 +5,7 @@ namespace App\Http\Controllers\APIs;
 use App\Http\Controllers\Controller;
 use App\Repositories\EmployeeInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -51,5 +52,38 @@ class EmployeeController extends Controller
             "iTotalRecords" => $totalRecords,
             "iTotalDisplayRecords" => $totalRecordswithFilter,
         ];
+    }
+
+    public function employeeDelete(Request $request)
+    {
+        DB::beginTransaction();
+        $result = [];
+        $data = $request->all();
+        try {
+        $update = $this->employeeRepository->update($data['id'],$data);
+        $result['status'] = "success";
+            DB::commit();
+        } catch (\Exception $ex){
+            $result['status'] = "failed";
+            $result['message'] = $ex;
+            DB::rollBack();
+        }
+        return $result;
+    }
+
+    public function findEmpById(Request $request)
+    {
+        $data = $request->all();
+        try {
+            $data = $this->employeeRepository->findById($data['id']);
+            return $data;
+        } catch (\Exception $ex) {
+            $result['status'] = 'Failed';
+            // $result['message'] = $ex->getMessage();
+            return $result;
+        }
+
+        // dd($data->leadOrders[0]->orderDetails);
+
     }
 }

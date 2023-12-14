@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CompanyInterface;
+use App\Repositories\EmployeeInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,9 +13,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    private $companyRepository;
+    private $employeeRepository;
+    public function __construct(
+        CompanyInterface $companyRepository,
+        EmployeeInterface $employeeRepository
+    ) 
     {
         $this->middleware('auth');
+        $this->companyRepository = $companyRepository;
+        $this->employeeRepository = $employeeRepository;
     }
 
     /**
@@ -28,7 +37,13 @@ class HomeController extends Controller
 
     public function empList()
     {
-        return view('employees.list');
+        $companies = $this->companyRepository->all();
+        return view('employees.list', compact('companies'));
     }
 
+    function empDetail($id)
+    {
+        $emp = $this->employeeRepository->findById($id);
+        return view('employees.emp_detail', compact('emp'));
+    }
 }

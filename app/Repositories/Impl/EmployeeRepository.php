@@ -23,11 +23,19 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     public function getAll($param): Collection
     {
         return $this->model
+            ->where('record_status','=',1)
             ->where(function($q) use ($param){
                 if (isset($param['searchValue'])) {
                     $q->where('f_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('l_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('employee_card_id', "like", '%' . $param['searchValue'] . '%');
+                }
+            })
+            ->where(function($q1) use ($param){
+                if(isset($param['company_id']) && $param['company_id'] >= 1){
+                    $q1->Where('company_id', '=', $param['company_id']);
+                } elseif (isset($param['company_id']) && $param['company_id'] == 0){
+                    $q1->Where('company_id', '=', 6);
                 }
             })
             ->get();
@@ -36,11 +44,19 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     public function paginate($param): Collection
     {
         $data = $this->model->with('position','company')->orderBy($param['columnName'],$param['columnSortOrder'])
+            ->where('record_status','=',1)
             ->where(function($q) use ($param){
                 if (isset($param['searchValue'])) {
                     $q->where('f_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('l_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('employee_card_id', "like", '%' . $param['searchValue'] . '%');
+                }
+            })
+            ->where(function($q1) use ($param){
+                if(isset($param['company_id']) && $param['company_id'] >= 1){
+                    $q1->Where('company_id', '=', $param['company_id']);
+                } elseif (isset($param['company_id']) && $param['company_id'] == 0){
+                    $q1->Where('company_id', '=', 6);
                 }
             })
             ->skip($param['start'])
@@ -204,4 +220,14 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
 
         return $response;
     }
+
+
+    public function findById($id)
+    {
+        $lead =  $this->model->with('position','company')
+            ->select('*')
+            ->where('id','=',$id)->first();
+        return $lead;
+    }
+
 }

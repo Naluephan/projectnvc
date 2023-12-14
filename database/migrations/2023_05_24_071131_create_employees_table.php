@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('end_date', 50)->nullable();
             $table->integer('y_experience')->nullable();
             $table->string('image',255)->nullable();
+            $table->tinyInteger('record_status')->default(1);
             $table->timestamps();
         });
     }

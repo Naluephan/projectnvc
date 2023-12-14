@@ -1,0 +1,2 @@
+-- 11/12/2023
+ALTER TABLE `employees` ADD `record_status` INT NOT NULL DEFAULT '1' AFTER `image`;

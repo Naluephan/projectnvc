@@ -28,8 +28,7 @@ class Employee extends Model
         'image',
         'employee_card_id',
         'gender_id',
-        
-
+        'record_status',
     ];
 
     public function company(){

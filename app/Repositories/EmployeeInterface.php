@@ -12,5 +12,7 @@ interface EmployeeInterface extends BaseInterface
     public function saveExcelUpdate($excel);
     public function getAll($param): Collection;
     public function paginate($param): Collection;
+
+    public function findById($id);
 }
 
