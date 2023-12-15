@@ -57,3 +57,9 @@ Route::get('/emp/detail/{id}', [App\Http\Controllers\HomeController::class, 'emp
 
 //companies
 Route::get('/companies/list', [App\Http\Controllers\CompanyController::class, 'list'])->name('companies.list');
+//department
+Route::get('/department/list', [App\Http\Controllers\DepartmentController::class, 'list'])->name('department.list');
+//position
+Route::get('/position/list', [App\Http\Controllers\PositionController::class, 'list'])->name('position.list');
+//level
+Route::get('/level/list', [App\Http\Controllers\LevelController::class, 'list'])->name('level.list');

@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 
 interface PositionInterface extends BaseInterface
 {
-    
+    public function paginate($param):Collection;
+    public function getAll():Collection;
 }
 

@@ -346,19 +346,22 @@ return [
                 [
                     'text' => 'บริษัท',
                     'url'  => '/companies/list',
-                    'active'   => ['regex:@^companies@'],
+                    'active'   => ['regex:@^companies/list@'],
                 ],
                 [
                     'text' => 'หน่วยงาน',
-                    'url'  => '#',
+                    'url'  => '/department/list',
+                    'active'   => ['regex:@^department/list@'],
                 ],
                 [
                     'text'    => 'ตำแหน่ง',
-                    'url'     => '#',
+                    'url'  => '/position/list',
+                    'active'   => ['regex:@^position/list@'],
                 ],
                 [
                     'text' => 'ระดับพนักงาน',
-                    'url'  => '#',
+                    'url'  => '/level/list',
+                    'active'   => ['regex:@^level/list@'],
                 ],
             ],
         ],

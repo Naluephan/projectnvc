@@ -4,15 +4,15 @@
 namespace App\Repositories\Impl;
 
 
-use App\Models\Department;
-use App\Repositories\DepartmentInterface;
+use App\Models\Level;
+use App\Repositories\LevelInterface;
 use Illuminate\Support\Collection;
 
-class DepartmentRepository extends MasterRepository implements DepartmentInterface
+class LevelRepository extends MasterRepository implements LevelInterface
 {
     protected $model;
 
-    public function __construct(Department $model)
+    public function __construct(Level $model)
     {
         parent::__construct($model);
     }

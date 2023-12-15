@@ -1,11 +1,11 @@
 @extends("adminlte::page")
 
 @section('content_header_title')
-    บริษัท
+    ระดับพนักงาน
 @stop
 @section('content_header')
     <li class="breadcrumb-item"><a href="{{ url('/home') }}">หน้าแรก</a></li>
-    <li class="breadcrumb-item active"> บริษัท </li>
+    <li class="breadcrumb-item active"> ระดับพนักงาน </li>
 @stop
 @section('css')
     <style>
@@ -66,13 +66,12 @@
                 <tr>
                     {{--                    <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 1px; display: none;" aria-label=""></th> --}}
                     {{-- <th class="dt-checkboxes-cell dt-checkboxes-select-all" data-col="1" aria-label=""><input type="checkbox" class="form-check-input"></th> --}}
-                    <th>รหัสบัตร</th>
-                    <th>ชื่อบริษัท</th>
-                    <th>ชื่อย่อ</th>
-                    <th>เบอร์ติดต่อ</th>
-                    <th>เว็ปไซต์</th>
-                    <th>อีเมล</th>
-                    <th>โลโก้</th>
+                    <th>#</th>
+                    <th>ชื่อระดับ</th>
+                    <th>ภาษาอังกฤษ</th>
+                    <th>คำอธิบาย</th>
+                    <th>เงื่อนไข</th>
+                    <th>บริษัท</th>
                     <th>จัดการ</th>
                 </tr>
                 </thead>
@@ -82,73 +81,51 @@
             </table>
         </div>
 
-    <div class="modal fade" id="companyModal" tabindex="-1" aria-labelledby="companyModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="companyModalLabel">บริษัท</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="companyForm">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-3">
-                        <label for="name_th" class="col-form-label">ชื่อบริษัท :</label>
-                        <input type="text" class="form-control" id="name_th" name="name_th" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="name_en" class="col-form-label">ชื่อบริษัทภาษาอังกฤษ :</label>
-                        <input class="form-control" id="name_en" name="name_en" required></input>
-                    </div>
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="short_name" class="col-form-label">ชื่อย่อบริษัท :</label>
-                                <input class="form-control" id="short_name" name="short_name" required></input>
-                            </div>
-                            <div class="col-6">
-                                <label for="order_prefix" class="col-form-label">ตัวอักษรย่อบริษัท :</label>
-                                <input class="form-control" id="order_prefix" name="order_prefix" required></input>
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="mb-3">
-                        <label for="address_th" class="col-form-label">ที่อยู่ :</label>
-                        <textarea class="form-control" id="address_th" name="address_th" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address_en" class="col-form-label">ที่อยู่ภาษาอังกฤษ :</label>
-                        <textarea class="form-control" id="address_en" name="address_en" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="contact_number" class="col-form-label">เบอร์ติดต่อ :</label>
-                        <input class="form-control" id="contact_number" name="contact_number" required></input>
-                    </div>
-
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="website" class="col-form-label">เว็ปไซต์ :</label>
-                                <input class="form-control" id="website" name="website" required></input>
-                            </div>
-                            <div class="col-6">
-                            <label for="email" class="col-form-label">อีเมล :</label>
-                        <input class="form-control" id="email" name="email" required></input>
-                            </div>
-                        </div>  
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="logo" class="col-form-label">โลโก้ :</label>
-                        <input class="form-control" id="logo" name="logo" required></input>
-                    </div>
-                    
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary save-company">บันทึก</button>
-            </div>
+        <div class="modal fade" id="levelModal" tabindex="-1" aria-labelledby="levelModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="levelModalLabel">ระดับพนักงาน</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="levelForm">
+                        <input type="hidden" name="id" id="id">
+                        <div class="mb-3"> 
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="name_th" class="col-form-label">ระดับพนักงาน :</label>
+                                    <input type="text" class="form-control" id="name_th" name="name_th" required>
+                                </div>
+                                <div class="col-6">
+                                    <label for="name_en" class="col-form-label">ชื่อระดับพนักงานภาษาอังกฤษ :</label>
+                                    <input class="form-control" id="name_en" name="name_en" required></input>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="mb-3">
+                                <label for="description" class="col-form-label">คำอธิบบาย :</label>
+                                <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                                <label for="condition" class="col-form-label">เงื่อนไขการได้รับ :</label>
+                                <textarea class="form-control" id="condition" name="condition" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label">บริษัท :</label>
+                            <select class="form-select" id="company_id" name="company_id">
+                                <option selected>กรุณาเลือก</option>
+                                @foreach($companies as $company)
+                                <option value="{{ $company->id }}">{{ $company->name_th}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                    <button type="button" class="btn btn-primary save-level">บันทึก</button>
+                </div>
         </div>
     </div>
 </div>
@@ -158,14 +135,14 @@
 @section('js')
     <script>
     $(() => {
-            var list_table = $("#data_tables").DataTable({
+        var list_table = $("#data_tables").DataTable({
                 pageLength: 25,
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 serverMethod: 'post',
                 ajax: {
-                    url: '{{ route('api.v1.companies.list') }}',
+                    url: '{{ route('api.v1.level.list') }}',
                     type: 'POST'
                 },
                 columns: [
@@ -176,30 +153,22 @@
                         data: "name_th"
                     },
                     {
-                        data: "short_name"
+                        data: "name_en"
                     },
                     {
-                        data: "contact_number"
+                        data: "description"
                     },
                     {
-                        data: "website"
+                        data: "condition"
                     },
                     {
-                        data: "email"
-                    },
-                    {
-                        data: "id",
-                        render: function(data, type, row, meta) {
-                            info_button =
-                                `<img src="${row.logo}" class="img-thumbnail" alt="${row.id}">`;
-                            return info_button;
-                        }
+                        data: "company_id"
                     },
                     {
                         data: "id",
                         render: function(data, type, row, meta) {
                             info_button =
-                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#companyModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
+                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#departmentModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
                             info_button +=
                                 `<a data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
                             return info_button;
@@ -209,22 +178,22 @@
                 "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
             });
 
-            var company_modal = $("#companyModal");
+            var level_modal = $("#levelModal");
             $(document).on('click', '.btn-add', function() {
-                company_modal.modal('show')
+                level_modal.modal('show')
             })
-
-            $(document).on('click', '.save-company', function() {
+            
+            $(document).on('click', '.save-level', function() {
                 let id = $("#id").val();
-                let companyForm = $("#companyForm");
-                if (companyForm.valid()) {
-                    const formData = new FormData($("#companyForm")[0]);
+                let levelForm = $("#levelForm");
+                if (levelForm.valid()) {
+                    const formData = new FormData($("#levelForm")[0]);
                     const data = Object.fromEntries(formData.entries());
                     if (id.length == 0) {
 
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.companies.create') }}",
+                            url: "{{ route('api.v1.level.create') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -236,7 +205,7 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    company_modal.modal('hide');
+                                    level_modal.modal('hide');
                                     list_table.ajax.reload(null, false);
                                 } else {
                                     Swal.fire({
@@ -252,7 +221,7 @@
                     } else {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.companies.update') }}",
+                            url: "{{ route('api.v1.level.update') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -264,7 +233,7 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    company_modal.modal('hide');
+                                    level_modal.modal('hide');
                                     list_table.ajax.reload(null, false);
                                 } else {
                                     Swal.fire({
@@ -293,51 +262,43 @@
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.companies.by.id') }}",
+                    url: "{{ route('api.v1.level.by.id') }}",
                     data: {
                         'id': id
                     },
                     dataType: "json",
                     success: function(response) {
-                        setCompanyFormData(response);
+                        setDepartmentFormData(response);
                         $("#id").val(response.id);
-                        company_modal.modal('show')
+                        level_modal.modal('show')
                     }
                 });
             })
 
-            function setCompanyFormData(data) {
+            function setDepartmentFormData(data) {
                 $("#name_th").val(data.name_th);
                 $("#name_en").val(data.name_en);
-                $("#short_name").val(data.short_name);
-                $("#order_prefix").val(data.order_prefix);
-                $("#address_th").val(data.address_th);
-                $("#address_en").val(data.address_en);
-                $("#contact_number").val(data.contact_number);
-                $("#website").val(data.website);
-                $("#email").val(data.email);
-                $("#logo").val(data.logo);
+                $("#description").val(data.description);
+                $("#condition").val(data.condition);
+                $("#company_id").val(data.company_id);
             }
-            company_modal.on('show.bs.modal', function(event) {
+
+            level_modal.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
                 let title = btn.data('ac') === 'edit' ? "แก้ไขรายการ" : "สร้างรายการใหม่";
                 console.log(btn.data('ac'))
                 let obj = $(this);
                 obj.find('.modal-title').text(title)
             })
-            company_modal.on('hide.bs.modal', function() {
+            level_modal.on('hide.bs.modal', function() {
             let obj = $(this);
             obj.find('#name_th').val("");
             obj.find('#name_en').val("");
-            obj.find('#short_name').val("");
-            obj.find('#order_prefix').val("");
-            obj.find('#address_th').val("");
-            obj.find('#address_en').val("");
-            obj.find('#contact_number').val("");
-            obj.find('#website').val("");
-            obj.find('#email').val("");
-            obj.find('#logo').val("");
-            })
+            obj.find('#description').val("");
+            obj.find('#condition').val("");
+            obj.find('#company_id').val("");
+            
+        })
 
 
             $(document).on('click', '.btn-delete', function() {
@@ -356,7 +317,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.companies.delete') }}",
+                            url: "{{ route('api.v1.level.delete') }}",
                             data: {
                                 'id': id
                             },
@@ -386,7 +347,6 @@
                     }
                 })
             })
-
         }); 
     </script>
 @stop

@@ -15,4 +15,8 @@ class Level extends Model
         'condition',
         'company_id',
     ];
+
+    public function company(){
+        return $this->hasOne(Company::class,'id','company_id');
+    }
 }

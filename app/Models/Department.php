@@ -11,5 +11,10 @@ class Department extends Model
     protected $fillable = [
         'name_th',
         'name_en',
+        'company_id'
     ];
+
+    public function company(){
+        return $this->hasOne(Company::class,'id','company_id');
+    }
 }

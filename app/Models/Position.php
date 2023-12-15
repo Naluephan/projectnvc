@@ -11,10 +11,19 @@ class Position extends Model
     protected $fillable = [
         'name_th',
         'name_en',
-        'icon',
+        'department_id',
+        'company_id',
     ];
 
     public function users(){
         return $this->hasMany(Employee::class,'position_id');
+    }
+
+    public function department(){
+        return $this->hasOne(Department::class,'id','department_id');
+    }
+
+    public function company(){
+        return $this->hasOne(Company::class,'id','company_id');
     }
 }
