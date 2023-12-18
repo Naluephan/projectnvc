@@ -12,11 +12,13 @@ class Employee extends Model
         'company_id',
         'position_id',
         'department_id',
+        'employee_card_id',
         'employee_code',
         'pre_name',
         'f_name',
         'l_name',
         'n_name',
+        'gender_id',
         'birthday',
         'mobile',
         'card_add',
@@ -26,9 +28,10 @@ class Employee extends Model
         'end_date',
         'y_experience',
         'image',
-        'employee_card_id',
-        'gender_id',
         'record_status',
+        'coins',
+        'username',
+        'password',
     ];
 
     public function company(){

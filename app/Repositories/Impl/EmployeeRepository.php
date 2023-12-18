@@ -73,61 +73,73 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
         $rows = (new FastExcel)->import($excel);
         try {
             foreach ($rows as $row) {
-                $f_name = $row['ชื่อ'];
-                $l_name = $row['สกุล'];
-                $n_name = $row['ชื่อเล่น'];
+                $f_name = $row['f_name'];
+                $l_name = $row['l_name'];
+                $n_name = $row['n_name'];
 
                 // Check if the combination of first name, last name, and nickname already exists
                 $existingEmployee = $this->model->where('f_name', $f_name)
                     ->where('l_name', $l_name)
-                    ->where('n_name', $n_name)
+                    // ->where('n_name', $n_name)
                     ->exists();
 
                 if ($existingEmployee) {
                     continue; // Skip importing this row
                 }
 
-                $company_id = $row['company'];
-                $position_name = $row['ตำแหน่งงาน'];
-                $department_id = '';
-                $pre_name = $row['คำนำหน้า'];
-                $mobile = $row['เบอร์โทรศัพท์'];
-                $birthday = $row['วัน/เดือน/ปีเกิด'];
-                $employee_code = str_pad($row['รหัสพนักงาน'], 4, "0", STR_PAD_LEFT);
-                $card_add = '';
-                $current_add = $row['ที่อยู่ปัจจุบัน'];
-                $id_card = $row['เลขที่บัตรประชาชน'];
-                $start_date = $row['วันที่เริ่มจ้าง'];
-                $end_date = $row['วันสิ้นสุดการจ้าง'];
-                $y_experience = '';
+                $company_id = $row['company_id'];
+                $position_id = $row['position_id'];
+                $department_id = $row['department_id'];
+                $pre_name = $row['pre_name'];
+                $mobile = $row['mobile'];
+                $birthday = $row['birthday'];
+                //$employee_code = str_pad($row['รหัสพนักงาน'], 4, "0", STR_PAD_LEFT);
+                $employee_code = $row['employee_code'];
+                $card_add = $row['card_add'];
+                $current_add = $row['current_add'];
+                $id_card = $row['id_card'];
+                $start_date = $row['start_date'];
+                $end_date = $row['end_date'];
+                $y_experience = null;
+                $employee_card_id = $row['employee_card_id'];
+                //$position = Position::where('name_th', $position_name)->first();
+                //$position_id = $position ? $position->id : null;
 
-                $position = Position::where('name_th', $position_name)->first();
-                $position_id = $position ? $position->id : null;
+                $gender = $row['gender_id'];
 
-                $gender = $row['เพศ'];
-
-                if ($row['เพศ'] == 'ชาย') {
-                    $gender = 1;
-                } elseif ($row['เพศ'] == 'หญิง') {
-                    $gender = 2;
-                }
+                // if ($row['เพศ'] == 'ชาย') {
+                //     $gender = 1;
+                // } elseif ($row['เพศ'] == 'หญิง') {
+                //     $gender = 2;
+                // }
+                $image = $row['image'];
+                $record_status = $row['record_status'];
+                $username = $row['username'];
+                $password = $row['password'];
 
                 $data = [
                     'company_id' => $company_id,
                     'position_id' => $position_id,
+                    'department_id' => $department_id,
+                    'employee_card_id' => $employee_card_id,
+                    'employee_code' => $employee_code,
                     'pre_name' => $pre_name,
                     'f_name' => $f_name,
                     'l_name' => $l_name,
                     'n_name' => $n_name,
                     'gender_id' => $gender,
                     'birthday' => $birthday,
-                    'employee_code' => $employee_code,
                     'mobile' => $mobile,
                     'card_add' => $card_add,
                     'current_add' => $current_add,
                     'id_card' => $id_card,
                     'start_date' => $start_date,
                     'end_date' => $end_date,
+                    'y_experience' => $y_experience,
+                    'image' => $image,
+                    'record_status' => $record_status,
+                    'username' => $username,
+                    'password' => $password,
                 ];
 
                 $this->model->create($data);
