@@ -15,5 +15,7 @@ interface EmployeeInterface extends BaseInterface
 
     public function findById($id);
     public function empLogin($param);
+
+    public function getEmployeesByCompanyAndDepartment($param);
 }
 

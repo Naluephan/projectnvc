@@ -35,15 +35,9 @@ return new class extends Migration
             $table->dateTime('y_experience')->nullable();
             $table->string('image',255)->nullable();
             $table->tinyInteger('record_status')->default(1);
-<<<<<<< Updated upstream
             $table->string('coins')->default(0);
             $table->string('username')->nullable();
             $table->string('password')->nullable();
-=======
-            $table->string('coins')->nullable();
-            $table->string('username');
-            $table->string('password');
->>>>>>> Stashed changes
             $table->timestamps();
         });
     }

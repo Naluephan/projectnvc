@@ -25,7 +25,7 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
         $user =  $this->model->where([
             ['username', '=', $param['username']],
             ['password', '=', $param['password']],
-        ])->first();
+        ])->with('company','position','department')->first();
 
         if (isset($user)) {
             $user->tokens()->delete();
@@ -256,4 +256,11 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
         return $lead;
     }
 
+    public function getEmployeesByCompanyAndDepartment($param)
+    {
+        return $this->model
+        ->where('company_id','=',$param['company_id'])
+        ->where('department_id','=',$param['department_id'])
+        ->get();
+    }
 }

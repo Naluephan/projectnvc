@@ -250,30 +250,55 @@
                         data: "id"
                     },
                     {
-                        data: "id"
+                        data: "title"
                     },
                     {
-                        data: "id"
+                        data: "detail"
                     },
                     {
-                        data: "id"
+                        data: "id",
+                        render : function(data, type, row, meta){
+                        if(row.status==1){
+                            return "รอดำเนินการ";
+                        }else if(row.status==2){
+                            return "ดำเนินการเสร็จสิ้น";
+                        };
+                        }
                     },
                     {
-                        data: "id"
+                        data: "id",
+                        render : function(data, type, row, meta){
+                        if(row.cert==1){
+                            return "มีใบรับรอง";
+                        }else if(row.cert==2){
+                            return "ไม่มีใบรับรอง";
+                        };
+                        }
                     },
                     {
-                        data: "id"
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                            date_start =`${row.day_start}/${row.month_start}/${row.year_start}` ;
+                            return date_start;
+                        }
                     },
                     {
-                        data: "id"
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                            date_end =`${row.day_end}/${row.month_end}/${row.year_end}` ;
+                            return date_end;
+                        }
                     },
                     {
                         data: "id",
                         render: function(data, type, row, meta) {
                             info_button =
+                                `<a href="/tas/addemployees/${row.id}" data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red "><i class="fa-solid fa-user-plus"></i></a>`;
+                            info_button +=
                                 `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#tasModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
                             info_button +=
                                 `<a data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
+                            
                             return info_button;
                         }
                     },

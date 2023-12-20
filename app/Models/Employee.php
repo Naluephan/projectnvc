@@ -43,4 +43,8 @@ class Employee extends Model
     public function position(){
         return $this->belongsTo(Position::class,'position_id');
     }
+
+    public function department(){
+        return $this->belongsTo(Department::class,'department_id');
+    }
 }

@@ -9,5 +9,6 @@ interface DepartmentInterface extends BaseInterface
 {
     public function paginate($param):Collection;
     public function getAll():Collection;
+    public function getDepartmentInCompany($company_id);
 }
 

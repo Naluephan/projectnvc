@@ -17,10 +17,12 @@ use App\Repositories\Impl\HolidayRepository;
 use App\Repositories\Impl\LevelRepository;
 use App\Repositories\Impl\MasterRepository;
 use App\Repositories\Impl\PositionRepository;
+use App\Repositories\Impl\TasEmployeeRepository;
 use App\Repositories\Impl\TraningAndSeminarRepository;
 use App\Repositories\LevelInterface;
 use App\Repositories\MasterInterface;
 use App\Repositories\PositionInterface;
+use App\Repositories\TasEmployeeInterface;
 use App\Repositories\TraningAndSeminarInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -42,6 +44,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(EmployeeInterface::class, EmployeeRepository::class);
         $this->app->bind(HolidayInterface::class, HolidayRepository::class);
         $this->app->bind(TraningAndSeminarInterface::class, TraningAndSeminarRepository::class);
+        $this->app->bind(TasEmployeeInterface::class, TasEmployeeRepository::class);
         $this->app->bind(EmployeePasteCardLogInterface::class, EmployeePasteCardLogRepository::class);
 
     }

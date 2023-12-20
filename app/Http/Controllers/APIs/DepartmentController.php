@@ -107,4 +107,10 @@ class DepartmentController extends Controller
         $id = $request->id;
         return $this->departmentRepository->find($id);
     }
+
+    public function getDepartmentByCompny(Request $request)
+    {
+        $company_id = $request->company_id;
+        return $this->departmentRepository->getDepartmentInCompany($company_id);
+    }
 }

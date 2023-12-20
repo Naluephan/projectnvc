@@ -56,5 +56,10 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
             ->get();
     }
 
-
+    public function getDepartmentInCompany($company_id)
+    {
+        return $this->model
+        ->where('company_id','=',$company_id)
+        ->get();
+    }
 }
