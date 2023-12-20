@@ -42,11 +42,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0044',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             1 => 
             array (
@@ -71,11 +71,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0261',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             2 => 
             array (
@@ -100,11 +100,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0222',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             3 => 
             array (
@@ -129,11 +129,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0278',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             4 => 
             array (
@@ -158,11 +158,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0034',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             5 => 
             array (
@@ -187,11 +187,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0280',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             6 => 
             array (
@@ -216,11 +216,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0138',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             7 => 
             array (
@@ -245,11 +245,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0180',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             8 => 
             array (
@@ -274,11 +274,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0192',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             9 => 
             array (
@@ -303,11 +303,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0231',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             10 => 
             array (
@@ -332,11 +332,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0029',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             11 => 
             array (
@@ -361,11 +361,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0043',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             12 => 
             array (
@@ -390,11 +390,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0256',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             13 => 
             array (
@@ -419,11 +419,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0036',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             14 => 
             array (
@@ -448,11 +448,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0217',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             15 => 
             array (
@@ -477,11 +477,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0279',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             16 => 
             array (
@@ -506,11 +506,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0281',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             17 => 
             array (
@@ -535,11 +535,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0003',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             18 => 
             array (
@@ -564,11 +564,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0007',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             19 => 
             array (
@@ -593,11 +593,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0022',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             20 => 
             array (
@@ -622,11 +622,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0023',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             21 => 
             array (
@@ -651,11 +651,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0030',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             22 => 
             array (
@@ -680,11 +680,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0052',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             23 => 
             array (
@@ -709,11 +709,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0058',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             24 => 
             array (
@@ -738,11 +738,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0066',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             25 => 
             array (
@@ -767,11 +767,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0103',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             26 => 
             array (
@@ -796,11 +796,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0122',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             27 => 
             array (
@@ -825,11 +825,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0188',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             28 => 
             array (
@@ -854,11 +854,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0194',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             29 => 
             array (
@@ -883,11 +883,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0195',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             30 => 
             array (
@@ -912,11 +912,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0200',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             31 => 
             array (
@@ -941,11 +941,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0201',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             32 => 
             array (
@@ -970,11 +970,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0207',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             33 => 
             array (
@@ -999,11 +999,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0213',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             34 => 
             array (
@@ -1028,11 +1028,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0214',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             35 => 
             array (
@@ -1057,11 +1057,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0226',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             36 => 
             array (
@@ -1086,11 +1086,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0229',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             37 => 
             array (
@@ -1115,11 +1115,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0236',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             38 => 
             array (
@@ -1144,11 +1144,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0248',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             39 => 
             array (
@@ -1173,11 +1173,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0251',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             40 => 
             array (
@@ -1202,11 +1202,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0253',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             41 => 
             array (
@@ -1231,11 +1231,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0254',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             42 => 
             array (
@@ -1260,11 +1260,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0258',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             43 => 
             array (
@@ -1289,11 +1289,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0268',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             44 => 
             array (
@@ -1318,11 +1318,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0272',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             45 => 
             array (
@@ -1347,11 +1347,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0273',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             46 => 
             array (
@@ -1376,11 +1376,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0274',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             47 => 
             array (
@@ -1405,11 +1405,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0282',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             48 => 
             array (
@@ -1434,11 +1434,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0283',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             49 => 
             array (
@@ -1463,11 +1463,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0203',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             50 => 
             array (
@@ -1492,11 +1492,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0260',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             51 => 
             array (
@@ -1521,11 +1521,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0275',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             52 => 
             array (
@@ -1550,11 +1550,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0083',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             53 => 
             array (
@@ -1579,11 +1579,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0014',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             54 => 
             array (
@@ -1608,11 +1608,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0024',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             55 => 
             array (
@@ -1637,11 +1637,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0028',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             56 => 
             array (
@@ -1666,11 +1666,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0088',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             57 => 
             array (
@@ -1695,11 +1695,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0199',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             58 => 
             array (
@@ -1724,11 +1724,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0223',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             59 => 
             array (
@@ -1753,11 +1753,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0246',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             60 => 
             array (
@@ -1782,11 +1782,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0255',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             61 => 
             array (
@@ -1811,11 +1811,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0089',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             62 => 
             array (
@@ -1840,11 +1840,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0181',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             63 => 
             array (
@@ -1869,11 +1869,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0205',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             64 => 
             array (
@@ -1898,11 +1898,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0234',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             65 => 
             array (
@@ -1927,11 +1927,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0257',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             66 => 
             array (
@@ -1956,11 +1956,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0262',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             67 => 
             array (
@@ -1985,11 +1985,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0225',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             68 => 
             array (
@@ -2014,11 +2014,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0264',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             69 => 
             array (
@@ -2043,11 +2043,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0271',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             70 => 
             array (
@@ -2072,11 +2072,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0277',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             71 => 
             array (
@@ -2101,11 +2101,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0001',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             72 => 
             array (
@@ -2130,11 +2130,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0025',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             73 => 
             array (
@@ -2159,11 +2159,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0178',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             74 => 
             array (
@@ -2188,11 +2188,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'C_0276',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             75 => 
             array (
@@ -2217,11 +2217,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0003',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             76 => 
             array (
@@ -2246,11 +2246,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0029',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             77 => 
             array (
@@ -2275,11 +2275,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0010',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             78 => 
             array (
@@ -2304,11 +2304,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0070',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             79 => 
             array (
@@ -2333,11 +2333,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0015',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             80 => 
             array (
@@ -2362,11 +2362,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0001',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             81 => 
             array (
@@ -2391,11 +2391,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0071',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             82 => 
             array (
@@ -2420,11 +2420,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0114',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             83 => 
             array (
@@ -2449,11 +2449,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0116',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             84 => 
             array (
@@ -2478,11 +2478,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0124',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             85 => 
             array (
@@ -2507,11 +2507,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0125',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             86 => 
             array (
@@ -2536,11 +2536,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0132',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             87 => 
             array (
@@ -2565,11 +2565,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0014',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             88 => 
             array (
@@ -2594,11 +2594,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0009',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             89 => 
             array (
@@ -2623,11 +2623,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0082',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             90 => 
             array (
@@ -2652,11 +2652,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0113',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             91 => 
             array (
@@ -2681,11 +2681,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0130',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             92 => 
             array (
@@ -2710,11 +2710,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0131',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             93 => 
             array (
@@ -2739,11 +2739,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0079',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             94 => 
             array (
@@ -2768,11 +2768,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0087',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             95 => 
             array (
@@ -2797,11 +2797,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0090',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             96 => 
             array (
@@ -2826,11 +2826,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0110',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             97 => 
             array (
@@ -2855,11 +2855,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0117',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             98 => 
             array (
@@ -2884,11 +2884,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0127',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             99 => 
             array (
@@ -2913,11 +2913,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0023',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             100 => 
             array (
@@ -2942,11 +2942,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0031',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             101 => 
             array (
@@ -2971,11 +2971,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0045',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             102 => 
             array (
@@ -3000,11 +3000,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0047',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             103 => 
             array (
@@ -3029,11 +3029,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0064',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             104 => 
             array (
@@ -3058,11 +3058,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0072',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             105 => 
             array (
@@ -3087,11 +3087,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0074',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             106 => 
             array (
@@ -3116,11 +3116,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0077',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             107 => 
             array (
@@ -3145,11 +3145,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0091',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             108 => 
             array (
@@ -3174,11 +3174,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0098',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             109 => 
             array (
@@ -3203,11 +3203,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0099',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             110 => 
             array (
@@ -3232,11 +3232,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0100',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             111 => 
             array (
@@ -3261,11 +3261,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0101',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             112 => 
             array (
@@ -3290,11 +3290,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0102',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             113 => 
             array (
@@ -3319,11 +3319,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0103',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             114 => 
             array (
@@ -3348,11 +3348,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0106',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             115 => 
             array (
@@ -3377,11 +3377,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0111',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             116 => 
             array (
@@ -3406,11 +3406,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0135',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             117 => 
             array (
@@ -3435,11 +3435,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0136',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             118 => 
             array (
@@ -3464,11 +3464,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0137',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             119 => 
             array (
@@ -3493,11 +3493,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0138',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             120 => 
             array (
@@ -3522,11 +3522,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0139',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             121 => 
             array (
@@ -3551,11 +3551,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0053',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             122 => 
             array (
@@ -3580,11 +3580,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0118',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             123 => 
             array (
@@ -3609,11 +3609,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0133',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             124 => 
             array (
@@ -3638,11 +3638,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0016',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             125 => 
             array (
@@ -3667,11 +3667,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0033',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             126 => 
             array (
@@ -3696,11 +3696,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0039',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             127 => 
             array (
@@ -3725,11 +3725,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0055',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             128 => 
             array (
@@ -3754,11 +3754,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0104',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             129 => 
             array (
@@ -3783,11 +3783,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0107',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             130 => 
             array (
@@ -3812,11 +3812,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0115',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             131 => 
             array (
@@ -3841,11 +3841,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0120',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             132 => 
             array (
@@ -3870,11 +3870,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0128',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             133 => 
             array (
@@ -3899,11 +3899,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0006',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             134 => 
             array (
@@ -3928,11 +3928,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0052',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             135 => 
             array (
@@ -3957,11 +3957,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0084',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             136 => 
             array (
@@ -3986,11 +3986,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0069',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             137 => 
             array (
@@ -4015,11 +4015,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0126',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             138 => 
             array (
@@ -4044,11 +4044,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0140',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             139 => 
             array (
@@ -4073,11 +4073,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0134',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             140 => 
             array (
@@ -4102,11 +4102,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0002',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             141 => 
             array (
@@ -4131,11 +4131,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'I_0068',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             142 => 
             array (
@@ -4160,11 +4160,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0001',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             143 => 
             array (
@@ -4189,11 +4189,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0002',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             144 => 
             array (
@@ -4218,11 +4218,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0003',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             145 => 
             array (
@@ -4247,11 +4247,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0005',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             146 => 
             array (
@@ -4276,11 +4276,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0014',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             147 => 
             array (
@@ -4305,11 +4305,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0022',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             148 => 
             array (
@@ -4334,11 +4334,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0026',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             149 => 
             array (
@@ -4363,11 +4363,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0029',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             150 => 
             array (
@@ -4392,11 +4392,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0031',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             151 => 
             array (
@@ -4421,11 +4421,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0032',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             152 => 
             array (
@@ -4450,11 +4450,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0035',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             153 => 
             array (
@@ -4479,11 +4479,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0036',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             154 => 
             array (
@@ -4508,11 +4508,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0037',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             155 => 
             array (
@@ -4537,11 +4537,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0038',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             156 => 
             array (
@@ -4566,11 +4566,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0039',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             157 => 
             array (
@@ -4595,11 +4595,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0043',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             158 => 
             array (
@@ -4624,11 +4624,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0045',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             159 => 
             array (
@@ -4653,11 +4653,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0046',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             160 => 
             array (
@@ -4682,11 +4682,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0047',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             161 => 
             array (
@@ -4711,11 +4711,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'G_0048',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             162 => 
             array (
@@ -4740,11 +4740,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0002',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             163 => 
             array (
@@ -4769,11 +4769,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0003',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             164 => 
             array (
@@ -4798,11 +4798,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0004',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             165 => 
             array (
@@ -4827,11 +4827,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0005',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             166 => 
             array (
@@ -4856,11 +4856,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0007',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             167 => 
             array (
@@ -4885,11 +4885,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0009',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             168 => 
             array (
@@ -4914,11 +4914,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0010',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             169 => 
             array (
@@ -4943,11 +4943,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0011',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:45',
+                'updated_at' => '2023-12-20 08:42:45',
             ),
             170 => 
             array (
@@ -4972,11 +4972,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0012',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:46',
+                'updated_at' => '2023-12-20 08:42:46',
             ),
             171 => 
             array (
@@ -5001,11 +5001,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0013',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:46',
+                'updated_at' => '2023-12-20 08:42:46',
             ),
             172 => 
             array (
@@ -5030,11 +5030,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0014',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:46',
+                'updated_at' => '2023-12-20 08:42:46',
             ),
             173 => 
             array (
@@ -5059,11 +5059,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0016',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:46',
+                'updated_at' => '2023-12-20 08:42:46',
             ),
             174 => 
             array (
@@ -5088,11 +5088,11 @@ class EmployeesTableSeeder extends Seeder
                 'y_experience' => NULL,
                 'image' => '',
                 'record_status' => 1,
-                'coins' => NULL,
+                'coins' => '0',
                 'username' => 'D_0017',
                 'password' => '123456',
-                'created_at' => '2023-12-19 13:08:41',
-                'updated_at' => '2023-12-19 13:08:41',
+                'created_at' => '2023-12-20 08:42:46',
+                'updated_at' => '2023-12-20 08:42:46',
             ),
         ));
         
