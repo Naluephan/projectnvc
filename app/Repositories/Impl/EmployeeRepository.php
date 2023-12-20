@@ -19,6 +19,20 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     {
         parent::__construct($model);
     }
+    
+    // ---------- empLogin  -------------
+    public function empLogin($param){
+        $user =  $this->model->where([
+            ['username', '=', $param['username']],
+            ['password', '=', $param['password']],
+        ])->first();
+
+        if (isset($user)) {
+            $user->tokens()->delete();
+            $user->access_token = $user->createToken('newhr', ['employee'])->plainTextToken;
+        }
+        return $user;
+    }
 
     public function getAll($param): Collection
     {

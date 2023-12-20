@@ -14,5 +14,6 @@ interface EmployeeInterface extends BaseInterface
     public function paginate($param): Collection;
 
     public function findById($id);
+    public function empLogin($param);
 }
 

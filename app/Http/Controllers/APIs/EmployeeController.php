@@ -86,4 +86,35 @@ class EmployeeController extends Controller
         // dd($data->leadOrders[0]->orderDetails);
 
     }
+    public function empLogin (Request $request)
+    {
+       try{
+           $data = $request->all();
+           $result = $this->employeeRepository->empLogin($data);
+        //    $result = $userData['userData'];
+        
+        // if($result ['company_id'] == 1){
+            $result ['image'] = $result ['image']?"https://4923-58-136-47-149.ngrok-free.app/public/uploads/images/employee/inno/". $result ['image']:null;
+        // }
+        
+           if($result != null ){
+            $result['status'] = ApiStatus::status;
+            $result['statusCode'] = ApiStatus::statusCode;
+
+           }else{
+            $result['status'] = ApiStatus::user_error;
+            $result['statusCode'] = ApiStatus::user_status;
+            $result['errDesc'] = ApiStatus::errDesc;
+            $result['message'] = ApiStatus::message;
+            DB::rollBack();
+           }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::user_login_error;
+            $result['statusCode'] = ApiStatus::user_login_error_status;
+            $result['errDesc'] = ApiStatus::user_login_errDesc;
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
+    }
 }
