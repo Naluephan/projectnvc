@@ -1,11 +1,11 @@
 @extends("adminlte::page")
 
 @section('content_header_title')
-    หน่วยงาน
+    วันหยุด
 @stop
 @section('content_header')
     <li class="breadcrumb-item"><a href="{{ url('/home') }}">หน้าแรก</a></li>
-    <li class="breadcrumb-item active"> หน่วยงาน </li>
+    <li class="breadcrumb-item active"> วันหยุด </li>
 @stop
 @section('css')
     <style>
@@ -16,7 +16,7 @@
 @stop
 {{-- end header --}}
 @section('content')
-    <div class="card">
+<div class="card">
         <!-- <div class="card-header">
             <h6 class="">ตัวเลือกการค้นหา</h6>
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
@@ -67,9 +67,10 @@
                     {{--                    <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 1px; display: none;" aria-label=""></th> --}}
                     {{-- <th class="dt-checkboxes-cell dt-checkboxes-select-all" data-col="1" aria-label=""><input type="checkbox" class="form-check-input"></th> --}}
                     <th>#</th>
-                    <th>ชื่อหน่วยงาน</th>
-                    <th>ภาษาอังกฤษ</th>
-                    <th>บริษัท</th>
+                    <th>ชื่อวันหยุด</th>
+                    <th>วัน</th>
+                    <th>เดือน</th>
+                    <th>ปี</th>
                     <th>จัดการ</th>
                 </tr>
                 </thead>
@@ -79,47 +80,78 @@
             </table>
         </div>
 
-    <div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="departmentModalLabel" aria-hidden="true">
+        <div class="modal fade" id="holidayModal" tabindex="-1" aria-labelledby="holidayModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="departmentModalLabel">หน่วยงาน</h5>
+                <h5 class="modal-title" id="holidayModalLabel">วันหยุด</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="departmentForm">
+                <form id="holidayForm">
                     <input type="hidden" name="id" id="id">
                     <div class="mb-3">
+                        <label for="holiday_name" class="col-form-label">ชื่อวันหยุด :</label>
+                        <input type="text" class="form-control" id="holiday_name" name="holiday_name" required>
+                    </div>
+                    <div class="mb-3">
                         <div class="row">
-                            <div class="col-6">
-                                <label for="name_th" class="col-form-label">ชื่อแผนก :</label>
-                                <input type="text" class="form-control" id="name_th" name="name_th" required>
+                            <div class="col-4">
+                            <select class="form-select" name="day" id="day">
+                            <option value="">วันที่</option>
+                            @for($i = 1; $i<=31; $i++) @if ($i==date('j')) <option value="{{$i}}">{{$i}}</option>
+                                @else
+                                <option value="{{$i}}">{{$i}}</option>
+                                @endif
+                                @endfor
+                        </select>
                             </div>
-                            <div class="col-6">
-                                <label for="name_en" class="col-form-label">ชื่อแผนกภาษาอังกฤษ :</label>
-                                <input class="form-control" id="name_en" name="name_en" required></input>
+                            <div class="col-4">
+                            <select class="form-select" name="month" id="month">
+                            <option value="">เดือน</option>
+                            @for($i = 1; $i <= 12; $i++) @php $monthNames=[ 1=> 'มกราคม',
+                                2 => 'กุมภาพันธ์',
+                                3 => 'มีนาคม',
+                                4 => 'เมษายน',
+                                5 => 'พฤษภาคม',
+                                6 => 'มิถุนายน',
+                                7 => 'กรกฎาคม',
+                                8 => 'สิงหาคม',
+                                9 => 'กันยายน',
+                                10 => 'ตุลาคม',
+                                11 => 'พฤศจิกายน',
+                                12 => 'ธันวาคม',
+                                ];
+                                $monthName = $monthNames[$i];
+                                @endphp
+                                @if ($i == date('n'))
+                                <option value="{{$i}}">{{$monthName}}</option>
+                                @else
+                                <option value="{{$i}}">{{$monthName}}</option>
+                                @endif
+                                @endfor
+                        </select>
+                            </div>
+                            <div class="col-4">
+                            <select class="form-select" name="year" id="year">
+                                <option selected>ปี</option>
+                                <option value="2566">2566</option>
+                                <option value="2567">2567</option>
+                                <option value="2568">2568</option>
+                            </select> 
                             </div>
                         </div>  
                     </div>
-                    <div class="mb-3">
-                        <label class="col-form-label">บริษัท :</label>
-                        <select class="form-select" id="company_id" name="company_id">
-                            <option selected>กรุณาเลือก</option>
-                            @foreach($companies as $company)
-                            <option value="{{ $company->id }}">{{ $company->name_th}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary save-department">บันทึก</button>
+                <button type="button" class="btn btn-primary save-holiday">บันทึก</button>
             </div>
         </div>
     </div>
 </div>
+
 @stop
 
 
@@ -133,7 +165,7 @@
                 serverSide: true,
                 serverMethod: 'post',
                 ajax: {
-                    url: '{{ route('api.v1.department.list') }}',
+                    url: '{{ route('api.v1.holiday.list') }}',
                     type: 'POST'
                 },
                 columns: [
@@ -141,19 +173,22 @@
                         data: "id"
                     },
                     {
-                        data: "name_th"
+                        data: "holiday_name"
                     },
                     {
-                        data: "name_en"
+                        data: "day"
                     },
                     {
-                        data: "company.name_th"
+                        data: "month"
+                    },
+                    {
+                        data: "year"
                     },
                     {
                         data: "id",
                         render: function(data, type, row, meta) {
                             info_button =
-                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#departmentModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
+                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#holidayModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
                             info_button +=
                                 `<a data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
                             return info_button;
@@ -163,22 +198,22 @@
                 "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
             });
 
-            var department_modal = $("#departmentModal");
+            var holiday_modal = $("#holidayModal");
             $(document).on('click', '.btn-add', function() {
-                department_modal.modal('show')
+                holiday_modal.modal('show')
             })
 
-            $(document).on('click', '.save-department', function() {
+            $(document).on('click', '.save-holiday', function() {
                 let id = $("#id").val();
-                let departmentForm = $("#departmentForm");
-                if (departmentForm.valid()) {
-                    const formData = new FormData($("#departmentForm")[0]);
+                let holidayForm = $("#holidayForm");
+                if (holidayForm.valid()) {
+                    const formData = new FormData($("#holidayForm")[0]);
                     const data = Object.fromEntries(formData.entries());
                     if (id.length == 0) {
 
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.department.create') }}",
+                            url: "{{ route('api.v1.holiday.create') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -190,7 +225,7 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    department_modal.modal('hide');
+                                    holiday_modal.modal('hide');
                                     list_table.ajax.reload(null, false);
                                 } else {
                                     Swal.fire({
@@ -206,7 +241,7 @@
                     } else {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.department.update') }}",
+                            url: "{{ route('api.v1.holiday.update') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -218,7 +253,7 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    department_modal.modal('hide');
+                                    holiday_modal.modal('hide');
                                     list_table.ajax.reload(null, false);
                                 } else {
                                     Swal.fire({
@@ -247,38 +282,40 @@
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.department.by.id') }}",
+                    url: "{{ route('api.v1.holiday.by.id') }}",
                     data: {
                         'id': id
                     },
                     dataType: "json",
                     success: function(response) {
-                        setDepartmentFormData(response);
+                        setholidayFormData(response);
                         $("#id").val(response.id);
-                        department_modal.modal('show')
+                        holiday_modal.modal('show')
                     }
                 });
             })
 
-            function setDepartmentFormData(data) {
-                $("#name_th").val(data.name_th);
-                $("#name_en").val(data.name_en);
-                $("#company_id").val(data.company_id);
+            function setholidayFormData(data) {
+                $("#holiday_name").val(data.holiday_name);
+                $("#day").val(data.day);
+                $("#month").val(data.month);
+                $("#year").val(data.year);
             }
-            department_modal.on('show.bs.modal', function(event) {
+
+            holiday_modal.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
                 let title = btn.data('ac') === 'edit' ? "แก้ไขรายการ" : "สร้างรายการใหม่";
                 console.log(btn.data('ac'))
                 let obj = $(this);
                 obj.find('.modal-title').text(title)
             })
-            department_modal.on('hide.bs.modal', function() {
+            holiday_modal.on('hide.bs.modal', function() {
             let obj = $(this);
-            obj.find('#name_th').val("");
-            obj.find('#name_en').val("");
-            obj.find('#company_id').val("");
+            obj.find('#holiday_name').val("");
+            obj.find('#day').val("");
+            obj.find('#month').val("");
+            obj.find('#year').val("ปี");
             })
-
 
             $(document).on('click', '.btn-delete', function() {
                 let obj = $(this);
@@ -296,7 +333,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.department.delete') }}",
+                            url: "{{ route('api.v1.holiday.delete') }}",
                             data: {
                                 'id': id
                             },
@@ -326,7 +363,6 @@
                     }
                 })
             })
-
         }); 
     </script>
 @stop

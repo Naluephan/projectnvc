@@ -63,3 +63,7 @@ Route::get('/department/list', [App\Http\Controllers\DepartmentController::class
 Route::get('/position/list', [App\Http\Controllers\PositionController::class, 'list'])->name('position.list');
 //level
 Route::get('/level/list', [App\Http\Controllers\LevelController::class, 'list'])->name('level.list');
+//holiday
+Route::get('/holiday/list', [App\Http\Controllers\HolidayController::class, 'list'])->name('holiday.list');
+//traning and semanir
+Route::get('/tas/list', [App\Http\Controllers\TraningAndSemanirController::class, 'list'])->name('tas.list');
