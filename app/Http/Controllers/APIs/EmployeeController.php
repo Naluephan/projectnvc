@@ -167,27 +167,25 @@ class EmployeeController extends Controller
             'company_id' => $company_id,
             'department_id' => $department_id,
         ];
-        $data = $this->employeeRepository->getEmployeesByCompanyAndDepartment($param);
-        $createdData = [];
-        foreach ($data as $empData) {
-            $newData = [
-                'emp_id' => $empData['id'],
-                'tas_id' => $tas_id,
-            ];
+        return $this->employeeRepository->getEmployeesByCompanyAndDepartment($param);
+        // $createdData = [];
+        // foreach ($data as $empData) {
+        //     $newData = [
+        //         'emp_id' => $empData['id'],
+        //         'tas_id' => $tas_id,
+        //     ];
 
-            $createdData[] = $newData;
-            $check = TasEmployees::where('emp_id', $empData['id'])
-            ->where('tas_id', $tas_id)
-            ->get();
-            //return $check;
-            if ($check->isEmpty()) {
-                $result['status'] = "Success";
-                $create = $this->tasemployeeRepository->create($newData);
-            } else {
-                $result['status'] = "Failed";
-            }
+        //     $createdData[] = $newData;
+        //     $check = TasEmployees::where('emp_id', $empData['id'])
+        //     ->where('tas_id', $tas_id)
+        //     ->get();
+        //     //return $check;
+        //     if ($check->isEmpty()) {
+        //         $result['status'] = "Success";
+        //         $create = $this->tasemployeeRepository->create($newData);
+        //     } else {
+        //         $result['status'] = "Failed";
+        //     }
             
-        }
-        return json_encode($result);
-    }
+         }
 }

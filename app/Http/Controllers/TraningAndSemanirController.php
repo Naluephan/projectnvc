@@ -19,4 +19,9 @@ class TraningAndSemanirController extends Controller
         $departments = Department::select('id','name_th')->distinct()->get();
         return view('traing_and_seminar.add_employess', compact('companies','departments','param'));
     }
+
+    public function tasEmployeesDetail($param)
+    {
+        return view('traing_and_seminar.tas_detail', compact('param'));
+    }
 }

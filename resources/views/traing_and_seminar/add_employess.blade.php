@@ -5,6 +5,7 @@
 @stop
 @section('content_header')
 <li class="breadcrumb-item"><a href="{{ url('/home') }}">หน้าแรก</a></li>
+<li class="breadcrumb-item"><a href="{{ url('/tas/list') }}">การอบรมและสัมมนา</a></li>
 <li class="breadcrumb-item active"> เพิ่มพนักงานเข้าร่วมกิจกรรม </li>
 @stop
 @section('css')
@@ -61,35 +62,11 @@
             </div>
             <div class="col-8">
                 <h6>เลือก</h6>
-                <input class="form-check-input ml-2" type="checkbox">
+                <input class="form-check-input ml-2 checkAllCheckbox checkPresent checkAllPresent checkAllPresentLow" type="checkbox" id="checkAll">
             </div>
         </div>
-        <div class="row">
-            <hr class="mt-3"> 
-            <div class="col-4">
-                <p>นายรัชโรจน์ อ่างทอง</p>
-            </div>
-            <div class="col-8">
-                <div class="row">
-                    <div class="col-1">
-                        <input class="form-check-input ml-2" type="checkbox">
-                    </div>
-                    <div class="col-11">
-                        <div class="row">
-                            <div class="col-4">
-                                <input class="input-group-text" type="text" placeholder="remark">
-                            </div>
-                            <div class="col-4">
-                                <input class="input-group-text" type="text" placeholder="remark">
-                            </div>
-                            <div class="col-4">
-                                <input class="input-group-text" type="text" placeholder="remark">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="row employeeslist" id="employeeslist">
+            
         </div>
     </div>
 
@@ -107,6 +84,12 @@
                 // var data = e.params.data;
                 // console.log(data);
                 getDepartmentByCompany();
+            });
+
+            $('#department').on('select2:select', function(e) {
+                // var data = e.params.data;
+                // console.log(data);
+                getListEmployeesAndCreate();
 
             });
 
@@ -138,11 +121,6 @@
                 });
             }
 
-
-            $(document).on('click', '.btn-add', function() {
-                getListEmployeesAndCreate();
-            })
-
             function getListEmployeesAndCreate() {
                 var tas_id = "{{ $param }}";
                 var company = $('#company').select2('data')[0].id;
@@ -159,9 +137,87 @@
                     dataType: "json",
                     success: function(response) {
                         console.log(response);
+                        const employeesContainer = document.getElementById('employeeslist');
+                        employeesContainer.innerHTML = ''; // Use innerHTML to clear the container.
+
+                    response.forEach(function (employeesInfo, index) {
+                        var employeesFName = employeesInfo.f_name;
+                        var employeesLName = employeesInfo.l_name;
+                        var employeesCode = employeesInfo.employee_code;
+                        var employeesId = employeesInfo.id;
+                        
+                        var employeesItem = `
+                        <hr class="mt-3"> 
+                            <div class="col-4 list-1" id=emp-${index} data-emp_id=${employeesId}>
+                                <p > ${employeesId} ${employeesCode} ${employeesFName} ${employeesLName}</p>
+                            </div>
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <input class="form-check-input ml-2 checkBoxClass checkPresent checkRow " type="checkbox" id="check-${employeesId}" name="check-${employeesId}" value="1" >
+                                    </div>
+                                    <div class="col-11">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input class="input-group-text" type="text" placeholder="remark" name="remark1-${employeesId}" id="remark1-${employeesId}">
+                                            </div>
+                                            <div class="col-4">
+                                                <input class="input-group-text" type="text" placeholder="remark" name="remark2-${employeesId}" id="remark2-${employeesId}">
+                                            </div>
+                                            <div class="col-4">
+                                                <input class="input-group-text" type="text" placeholder="remark" name="remark3-${employeesId}" id="remark3-${employeesId}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        employeesContainer.innerHTML += employeesItem;
+                        });
+                    },
+
+                    
+                });
+
+            }
+
+            function constructData() {
+                var tas_id = "{{ $param }}";
+                var employees = [];
+                $(".list-1").each(function(key, obj) {
+                    var emp = $(obj);
+                    var empId = emp.data('emp_id');
+                    var isChecked = $('#check-' + empId).prop('checked'); // เช็กค่าของ checkbox
+                    var checkboxValue = $('#check-' + empId).val();
+                    var data = {
+                        tas_id: tas_id,
+                        emp_id: empId,
+                        check: isChecked ? checkboxValue : 0, 
+                        remark1: $('#remark1-' + empId).val(), 
+                        remark2: $('#remark2-' + empId).val(),
+                        remark3: $('#remark3-' + empId).val() 
+                    };
+                    console.log(data)
+                    employees.push(data);
+                });
+                return employees;
+            }
+
+            $(document).on('click', '.btn-add', function() {
+                var empdata = constructData();
+                var jsonData = JSON.stringify(empdata);
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('api.v1.tasemployees.create') }}",
+                    data: jsonData,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log(response);
                         if (response.status == 'Success') {
                             Swal.fire({
-                                title: 'สร้างรายชื่อเรียบร้อยแล้ว',
+                                title: 'ดำเนินการเรียบร้อยแล้ว',
                                 icon: 'success',
                                 showConfirmButton: false,
                                 timer: 2000,
@@ -169,18 +225,29 @@
                             });
                         } else {
                             Swal.fire({
-                                title: 'ไม่สามารถสร้างรายชื่อเพิ่มได้',
+                                title: 'เกิดข้อผิดพลาด',
                                 icon: 'warning',
                                 showConfirmButton: false,
                                 timer: 2000,
                                 toast: true
                             })
                         }
-                    },
-
+                    }
                 });
+            })
 
-            }
+
+            let clickCount = 0;
+            $(document).on('click', '.checkAllCheckbox', function() {
+                clickCount++;
+                if (clickCount % 2 === 0) {
+                    $(".checkBoxClass").prop("checked", false);
+                } else {
+                    $(".checkBoxClass").prop("checked", true);
+                }
+            });
+
+
         });
     </script>
     @stop

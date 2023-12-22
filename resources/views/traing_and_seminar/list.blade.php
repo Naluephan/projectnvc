@@ -250,7 +250,11 @@
                         data: "id"
                     },
                     {
-                        data: "title"
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                            date_end =`<a href="/tas/employees/detail/${row.id}" data-id="${row.id}" class="btn btn-xs rounded-pill text-primary ">${row.title}</a>`;
+                            return date_end;
+                        }
                     },
                     {
                         data: "detail"

@@ -17,4 +17,8 @@ class TasEmployees extends Model
         'remark2',
         'remark3',
     ];
+
+    public function employees(){
+        return $this->belongsTo(Employee::class,'emp_id');
+    }
 }

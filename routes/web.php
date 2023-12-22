@@ -68,3 +68,4 @@ Route::get('/holiday/list', [App\Http\Controllers\HolidayController::class, 'lis
 //traning and semanir
 Route::get('/tas/list', [App\Http\Controllers\TraningAndSemanirController::class, 'list'])->name('tas.list');
 Route::get('/tas/addemployees/{id}', [App\Http\Controllers\TraningAndSemanirController::class, 'addEmployees'])->name('tas.addemployees');
+Route::get('/tas/employees/detail/{id}', [App\Http\Controllers\TraningAndSemanirController::class, 'tasEmployeesDetail'])->name('tas.employees.detail');
