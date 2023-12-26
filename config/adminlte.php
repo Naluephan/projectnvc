@@ -460,7 +460,7 @@ return [
                 ],
                 [
                     'text' => 'เงินเดือน',
-                    'url'  => 'admin/settings',
+                    'url'  => '/saraly/list',
                     'icon' => 'fas fa-fw fa-money-bill-wave',
                 ],
                 [

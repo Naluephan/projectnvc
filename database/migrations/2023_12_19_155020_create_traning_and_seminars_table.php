@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("detail");
             $table->string("status")->default('1');
             $table->string("cert");
+            $table->string("count_emp");
             $table->string("day_start");
             $table->string("day_end");
             $table->string("month_start");

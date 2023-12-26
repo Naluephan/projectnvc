@@ -89,7 +89,7 @@
             $('#department').on('select2:select', function(e) {
                 // var data = e.params.data;
                 // console.log(data);
-                getListEmployeesAndCreate();
+                getListEmployees();
 
             });
 
@@ -121,7 +121,7 @@
                 });
             }
 
-            function getListEmployeesAndCreate() {
+            function getListEmployees() {
                 var tas_id = "{{ $param }}";
                 var company = $('#company').select2('data')[0].id;
                 var department = $('#department').select2('data')[0].id;

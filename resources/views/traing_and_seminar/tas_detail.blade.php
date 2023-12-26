@@ -85,7 +85,37 @@
             </table>
         </div>
 
-      
+        <div class="modal fade" id="editremarkModal" tabindex="-1" aria-labelledby="editremarkModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editremarkModalLabel">แก้ไข</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editremarkForm">
+                    <input type="hidden" name="id" id="id">
+                    <div class="mb-3">
+                            <label for="remark1" class="col-form-label">โน๊ต1 :</label>
+                            <input type="text" class="form-control" id="remark1" name="remark1" required>
+                    </div>
+                    <div class="mb-3">
+                            <label for="remark2" class="col-form-label">โน๊ต2 :</label>
+                            <input type="text" class="form-control" id="remark2" name="remark2" required></input>
+                    </div>
+                    <div class="mb-3">
+                            <label for="remark3" class="col-form-label">โน๊ต3 :</label>
+                            <input type="text" class="form-control" id="remark3" name="remark3" required></input>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary btn-save">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>    
 @stop
 
 
@@ -160,6 +190,8 @@
                         data: "id",
                         render: function(data, type, row, meta) {
                             info_button =
+                                `<a data-id="${row.id}" data-tas_id="${row.tas_id}" class="btn btn-xs rounded-pill text-es-red btn-edit"><i class="fas fa-edit"></i></a>`;
+                            info_button +=
                                 `<a data-id="${row.id}" data-tas_id="${row.tas_id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
                             
                             return info_button;
@@ -237,6 +269,77 @@
                 })
             })
 
+            var edit_modal = $("#editremarkModal");
+            $(document).on('click', '.btn-edit', function() {
+                let id = $(this).data('id');
+                $.ajax({
+                    type: 'post',
+                    url: "{{ route('api.v1.tasemployees.by.id') }}",
+                    data: {
+                        'id': id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        setEditFormData(response);
+                        $("#id").val(response.id);
+                        edit_modal.modal('show')
+                    }
+                });
+                
+            })
+
+            function setEditFormData(data) {
+                $("#id").val(data.id);
+                $("#remark1").val(data.remark1);
+                $("#remark2").val(data.remark2);
+                $("#remark3").val(data.remark3);
+                
+            }
+
+
+            $(document).on('click', '.btn-save', function() {
+                let id = $(this).data('id');
+                let editremarkForm = $("#editremarkForm");
+                if (editremarkForm.valid()) {
+                    const formData = new FormData($("#editremarkForm")[0]);
+                    const data = Object.fromEntries(formData.entries());
+                    $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.tasemployees.update') }}",
+                            data: data,
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.status == 'Success') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                    edit_modal.modal('hide');
+                                    list_table.ajax.reload(null, false);
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    })
+                                }
+                            }
+                        });
+                } else {
+                    Swal.fire({
+                        title: 'กรุณาตรวจสอบข้อมูล',
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        toast: true
+                    });
+                }
+            })
         }); 
     </script>
 @stop

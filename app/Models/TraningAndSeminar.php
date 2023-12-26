@@ -13,6 +13,7 @@ class TraningAndSeminar extends Model
         'detail',
         'status',
         'cert',
+        'count_emp',
         'day_start',
         'day_end',
         'month_start',
@@ -20,4 +21,15 @@ class TraningAndSeminar extends Model
         'year_start',
         'year_end',
     ];
+
+    public function tasEmps(){
+        return $this->hasMany(TasEmployees::class,'tas_id');
+    }
+    protected $appends = ['count_participate'];
+
+    public function getCountParticipateAttribute($key)
+    {
+        $count_participate = count($this->tasEmps);
+        return $count_participate;
+    }
 }

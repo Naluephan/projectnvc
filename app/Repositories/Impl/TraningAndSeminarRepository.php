@@ -21,6 +21,7 @@ class TraningAndSeminarRepository extends MasterRepository implements TraningAnd
     {
 
         return $this->model
+        ->with('tasEmps')
             ->where(function($q) use ($params){
                 if(isset($params['searchValue'])){
                     $q->where('new_detail','like','%'.$params['searchValue'].'%');

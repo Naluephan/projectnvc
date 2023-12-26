@@ -82,4 +82,30 @@ class TasEmployeeRepository extends MasterRepository implements TasEmployeeInter
             ->take($params['rowperpage'])
             ->get();
     }
+
+    public function getEmployeesByTas($tas_id)
+    {
+        return $this->model
+        ->where('tas_id','=',$tas_id)
+        ->with('employees')
+        ->get();
+    }
+
+    public function updateStatusParticipate($emp_id,$tas_id,$check_box)
+    {
+        $response = $this->model->where('emp_id','=', $emp_id)->where('tas_id','=',$tas_id)->first();
+        if($response){
+            $response->participate_status = $check_box;
+            $response->save();
+        }
+    }
+
+    public function updateStatusCert($emp_id,$tas_id,$check_box)
+    {
+        $response = $this->model->where('emp_id','=', $emp_id)->where('tas_id','=',$tas_id)->first();
+        if($response){
+            $response->cert_status = $check_box;
+            $response->save();
+        }
+    }
 }

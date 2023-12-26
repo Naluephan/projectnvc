@@ -17,11 +17,16 @@ class TraningAndSemanirController extends Controller
     {
         $companies = Company::all();
         $departments = Department::select('id','name_th')->distinct()->get();
-        return view('traing_and_seminar.add_employess', compact('companies','departments','param'));
+        return view('traing_and_seminar.add_employees', compact('companies','departments','param'));
     }
 
     public function tasEmployeesDetail($param)
     {
         return view('traing_and_seminar.tas_detail', compact('param'));
+    }
+
+    public function tasEmployeesCheckName($param)
+    {
+        return view('traing_and_seminar.check_employees', compact('param'));
     }
 }

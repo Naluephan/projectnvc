@@ -71,6 +71,8 @@
                     <th>รายละเอียด</th>
                     <th>สถานะ</th>
                     <th>ใบรับรอง</th>
+                    <th>รับผู้เข้าร่วม</th>
+                    <th>จำนวนผู้เข้าร่วม</th>
                     <th>วันเริ่มต้น</th>
                     <th>วันสิ้นสุด</th>
                     <th>จัดการ</th>
@@ -220,6 +222,10 @@
                             </div>
                         </div>  
                     </div>
+                    <div class="mb-3">
+                            <label for="count_emp" class="col-form-label">จำนวนผู้เข้าร่วม :</label>
+                            <input type="text" class="form-control" id="count_emp" name="count_emp" required>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -280,6 +286,12 @@
                         }
                     },
                     {
+                        data: "count_emp"
+                    },
+                    {
+                        data: "count_participate"
+                    },
+                    {
                         data: "id",
                         render: function(data, type, row, meta) {
                             date_start =`${row.day_start}/${row.month_start}/${row.year_start}` ;
@@ -294,17 +306,20 @@
                         }
                     },
                     {
-                        data: "id",
-                        render: function(data, type, row, meta) {
-                            info_button =
-                                `<a href="/tas/addemployees/${row.id}" data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red "><i class="fa-solid fa-user-plus"></i></a>`;
-                            info_button +=
-                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#tasModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
-                            info_button +=
-                                `<a data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
-                            
-                            return info_button;
-                        }
+                        data: 'id',
+                            render: function(data, type, row, meta) {
+                                let url = "{{ route('tas.employees.detail', "__id") }}".replaceAll("__id",row.id);
+                                return `<div class="d-inline-block text-nowrap">
+                                <button class="btn btn-sm btn-text-secondary rounded-pill" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <div class="dropdown-menu dropdown-menu-end m-0">
+                                    <a href="/tas/employees/check/name/${row.id}" data-id="${row.id}" class="dropdown-item"><i class="fas fa-check text-success mr-1"></i><span>เช็คชื่อ</span></a>
+                                    <a href="/tas/addemployees/${row.id}" data-id="${row.id}" class="dropdown-item"><i class="fa-solid fa-user-plus mr-1"></i><span>เพิ่มพนักงาน</span></a>
+                                    <a href="${url}" data-id="${row.id}" class="dropdown-item"><i class="fas fa-eye text-success mr-1"></i><span>ดู</span></a>
+                                    <a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#tasModal" class="dropdown-item btn-edit"><i class="fas fa-pencil text-warning mr-1"></i><span>แก้ไข</span></a>
+                                    <a data-id="${row.id}" class="dropdown-item btn-delete"><i class="fas fa-trash-alt text-red mr-1 "></i><span>ลบ</span></a>
+                                </div>
+                            </div>`
+                            }
                     },
                 ],
                 "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
@@ -410,6 +425,7 @@
                 $("#title").val(data.title);
                 $("#detail").val(data.detail);
                 $("#cert").val(data.cert);
+                $("#count_emp").val(data.count_emp);
                 $("#day_start").val(data.day_start);
                 $("#day_end").val(data.day_end);
                 $("#month_start").val(data.month_start);
