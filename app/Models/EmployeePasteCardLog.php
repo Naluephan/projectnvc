@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class EmployeePasteCardLog extends Model
 {
     use HasFactory;
@@ -14,6 +13,8 @@ class EmployeePasteCardLog extends Model
         'image_capture',
         'year',
         'month',
+        'status',
         'days',
     ];
+    
 }

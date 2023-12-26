@@ -6,11 +6,13 @@ use App\Repositories\BaseInterface;
 use App\Repositories\CompanyInterface;
 use App\Repositories\DepartmentInterface;
 use App\Repositories\EmployeeInterface;
+use App\Repositories\EmployeeLeaveInterface;
 use App\Repositories\EmployeePasteCardLogInterface;
 use App\Repositories\HolidayInterface;
 use App\Repositories\Impl\BaseRepository;
 use App\Repositories\Impl\CompanyRepository;
 use App\Repositories\Impl\DepartmentRepository;
+use App\Repositories\Impl\EmployeeLeaveRepository;
 use App\Repositories\Impl\EmployeePasteCardLogRepository;
 use App\Repositories\Impl\EmployeeRepository;
 use App\Repositories\Impl\HolidayRepository;
@@ -46,6 +48,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(TraningAndSeminarInterface::class, TraningAndSeminarRepository::class);
         $this->app->bind(TasEmployeeInterface::class, TasEmployeeRepository::class);
         $this->app->bind(EmployeePasteCardLogInterface::class, EmployeePasteCardLogRepository::class);
+        $this->app->bind(EmployeeLeaveInterface::class, EmployeeLeaveRepository::class);
 
     }
 

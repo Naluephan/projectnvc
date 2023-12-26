@@ -13,11 +13,17 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 class EmployeePasteCardLogRepository extends MasterRepository implements EmployeePasteCardLogInterface
 {
-    protected $model;
+      protected $model;
 
     public function __construct(EmployeePasteCardLog $model)
     {
         parent::__construct($model);
     }
-
+    // ---------- empLog  -------------
+    public function empPasteCardLogApi($param){
+        $data = $this->model->where([
+            ['emp_id' ,'=', $param['emp_id']],
+        ])->get();
+        return $data;
+    }
 }

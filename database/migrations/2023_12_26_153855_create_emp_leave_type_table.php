@@ -14,15 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee_paste_card_logs', function (Blueprint $table) {
+        Schema::create('emp_leave_type', function (Blueprint $table) {
             $table->id();
-            $table->string('emp_id',20)->nullable();
-            $table->dateTime('paste_date');
-            $table->string('status');
-            $table->integer('year');
-            $table->integer('month');
-            $table->integer('days');
-            $table->string('image_capture')->nullable();
+            $table->leave_type_name()->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_paste_card_logs');
+        Schema::dropIfExists('emp_leave_type');
     }
 };

@@ -17,5 +17,6 @@ interface EmployeeInterface extends BaseInterface
     public function empLogin($param);
 
     public function getEmployeesByCompanyAndDepartment($param);
+    public function savePinCode($param);
 }
 

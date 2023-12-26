@@ -7,6 +7,8 @@ use Illuminate\Support\Collection;
 
 interface EmployeePasteCardLogInterface extends BaseInterface
 {
+    // public function empPasteCardLog($param);
+    public function empPasteCardLogApi($param);
   
 }
 

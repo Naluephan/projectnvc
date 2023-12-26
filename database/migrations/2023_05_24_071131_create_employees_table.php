@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('coins')->default(0);
             $table->string('username')->nullable();
             $table->string('password')->nullable();
+            $table->integer('pin')->nullable();
             $table->timestamps();
         });
     }

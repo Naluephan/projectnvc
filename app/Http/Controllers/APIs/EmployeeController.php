@@ -8,6 +8,7 @@ use App\Repositories\EmployeeInterface;
 use App\Repositories\TasEmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class EmployeeController extends Controller
 {
@@ -98,7 +99,7 @@ class EmployeeController extends Controller
         //    $result = $userData['userData'];
         
         // if($result ['company_id'] == 1){
-            $query ['image'] = $query ['image']?"https://4923-58-136-47-149.ngrok-free.app/public/uploads/images/employee/inno/". $result ['image']:null;
+            $query ['image'] = $query ['image']?"https://4923-58-136-47-149.ngrok-free.app/public/uploads/images/employee/inno/". $query ['image']:null;
         // }
             $result =[
                 'id' => $query ['id'],
@@ -133,28 +134,51 @@ class EmployeeController extends Controller
                 'password' => $query ['password'],
                 'created_at' => $query ['created_at'],
                 'updated_at' => $query ['updated_at'],
+                'pin' => $query ['pin'],
                 'access_token' => $query ['access_token'],
 
             ];
         
            if($result != null ){
-            $result['status'] = ApiStatus::status;
-            $result['statusCode'] = ApiStatus::statusCode;
+            $result['status'] = ApiStatus::login_success_status;
+            $result['statusCode'] = ApiStatus::login_success_statusCode;
 
            }else{
-            $result['status'] = ApiStatus::user_error;
-            $result['statusCode'] = ApiStatus::user_status;
-            $result['errDesc'] = ApiStatus::errDesc;
-            $result['message'] = ApiStatus::message;
+            $result['status'] = ApiStatus::login_failed_found_status;
+            $result['statusCode'] = ApiStatus::login_failed_found_code;
+            $result['errDesc'] = ApiStatus::login_failed_found_Desc;
+            $result['message'] = ApiStatus::login_failed_found_Desc;
             DB::rollBack();
            }
         } catch (\Exception $ex) {
-            $result['status'] = ApiStatus::user_login_error;
-            $result['statusCode'] = ApiStatus::user_login_error_status;
-            $result['errDesc'] = ApiStatus::user_login_errDesc;
+            $result['status'] = ApiStatus::login_error_status;
+            $result['statusCode'] = ApiStatus::login_error_statusCod;
+            $result['errDesc'] = ApiStatus::login_errDesc;
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
+        return $result;
+    }
+
+    public function savePin (Request $request) {
+        $data = $request->all();
+        $query = $this->employeeRepository->savePinCode($data);
+        try {
+                if (isset($query)) {
+                    $result['status'] = ApiStatus::pin_success_status;
+                    $result['statusCode'] = ApiStatus::pin_success_statusCode;
+                
+                }else{
+                    $result['status'] = ApiStatus::pin_failed_status;
+                    $result['statusCode'] = ApiStatus::pin_failed_statusCode;
+                    $result['errDesc'] = ApiStatus::pin_failed_Desc;
+                }
+                } catch (\Exception $ex) {
+                    $result['status'] = ApiStatus::pin_error_status;
+                    $result['statusCode'] = ApiStatus::pin_error_statusCode;
+                    $result['errDesc'] = ApiStatus::pin_errDesc;
+                    $result['message'] = $ex->getMessage();
+            }
         return $result;
     }
 
@@ -167,7 +191,46 @@ class EmployeeController extends Controller
             'company_id' => $company_id,
             'department_id' => $department_id,
         ];
-        return $this->employeeRepository->getEmployeesByCompanyAndDepartment($param);
+        
+        $data = $this->employeeRepository->getEmployeesByCompanyAndDepartment($param);
+        $createdData = [];
+        foreach ($data as $empData) {
+            $newData = [
+                'emp_id' => $empData['id'],
+                'tas_id' => $tas_id,
+            ];
+
+            $createdData[] = $newData;
+            $check = TasEmployees::where('emp_id', $empData['id'])
+            ->where('tas_id', $tas_id)
+            ->get();
+            //return $check;
+            if ($check->isEmpty()) {
+                $result['status'] = "Success";
+                $create = $this->tasemployeeRepository->create($newData);
+            } else {
+                $result['status'] = "Failed";
+            }
+        }
+    }
             
-         }
+    // public function empLogout(Request $request)
+    // {
+    //     $logout = $request->user()->currentAccessToken()->delete();
+    //     try {
+    //         if (isset($logout)) {
+    //             $result['txnStatus'] = "LOGOUT";
+    //             $result['statusCode'] = "00";
+    //             $result['errorCode'] = null;
+    //             $result['errorDesc'] = null;
+    //         }
+    //     } catch (\Exception $ex) {
+    //         $result['txnStatus'] = "ERROR";
+    //         $result['statusCode'] = "10";
+    //         $result['errorCode'] = "ELO";
+    //         $result['errorDesc'] = "Error Logout";
+    //         // $result['errorDesc'] = $ex->getMessage();
+    //     }
+    //     return json_encode($result);
+    // }
     }

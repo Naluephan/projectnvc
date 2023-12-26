@@ -33,6 +33,16 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
         }
         return $user;
     }
+    // ---------- savePin  -------------
+    public function savePinCode ($param){
+        $codePin = $this->model->where('id','=',$param['id'])->first();
+
+        if (isset($codePin)) {
+            $codePin->pin = $param['pin'];
+            $codePin->save();
+        }
+        return $codePin;
+    }
 
     public function getAll($param): Collection
     {
