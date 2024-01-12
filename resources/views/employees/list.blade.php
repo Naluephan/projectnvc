@@ -191,7 +191,7 @@
                         //     return `<input type="checkbox" class="form-check-input">`
                         // }},
                         {
-                            data: 'employee_card_id'
+                            data: 'employee_code'
                         },
                         {
                             data: 'id',
