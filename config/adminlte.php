@@ -468,6 +468,16 @@ return [
                     'url'  => 'admin/settings',
                     'icon' => 'fas fa-fw fa-file-lines',
                 ],
+                [
+                    'text' => 'แม่แบบเงินเดือน',
+                    'url'  => '/saraly/template/list',
+                    'icon' => 'fas fa-fw fa-file-lines',
+                ],
+                [
+                    'text' => 'รายละเอียดแม่แบบเงินเดือน',
+                    'url'  => '/saraly/template/detail/list',
+                    'icon' => 'fas fa-fw fa-file-lines',
+                ],
             ],
         ],
         ['header' => 'ข้อมูลส่วนตัว'],

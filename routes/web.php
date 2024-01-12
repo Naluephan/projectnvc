@@ -73,3 +73,8 @@ Route::get('/tas/employees/check/name/{id}', [App\Http\Controllers\TraningAndSem
 
 //saraly
 Route::get('/saraly/list', [App\Http\Controllers\SaralyEmployeesController::class, 'list'])->name('saraly.list');
+//saraly template
+Route::get('/saraly/template/list', [App\Http\Controllers\SalaryTemplateController::class, 'list'])->name('saraly.template.list');
+//saraly template
+Route::get('/saraly/template/detail/list', [App\Http\Controllers\SalaryTemplateDetailController::class, 'list'])->name('saraly.template.detail.list');
+Route::get('/saraly/template/detail/add', [App\Http\Controllers\SalaryTemplateDetailController::class, 'add'])->name('saraly.template.detail.add');
