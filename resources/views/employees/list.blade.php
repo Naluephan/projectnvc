@@ -204,7 +204,7 @@
                                     profile_img = `{{ asset('uploads/images/employee/profile.png') }}`
                                 }
                                 if (row.image) {
-                                    profile_img = `{{ asset('uploads/images/employee/') }}/${row.image}`
+                                    profile_img = `{{ asset('uploads/images/employee/') }}/${row.company.order_prefix.toLowerCase()}/${row.image}`
                                 }
                                 return `<div class="d-flex justify-content-start align-items-center user-name">
                             <img src="${profile_img}" alt="Profile" class="img-thumbnail img-size-50 rounded-circle">
