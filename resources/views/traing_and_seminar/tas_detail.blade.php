@@ -72,7 +72,8 @@
                     <th>ชื่อ-นามสกุล</th>
                     <th>ชื่อเล่น</th>
                     <th>แผนก</th>
-                    <th>ตำแหน่ง</th>
+                    <th>สถานะการเข้าร่วม</th>
+                    <th>สถานะใบเซอร์</th>
                     <th>โน๊ต1</th>
                     <th>โน๊ต2</th>
                     <th>โน๊ต3</th>
@@ -163,7 +164,7 @@
                         data: "id",
                         render: function(data, type, row, meta) {
                             info_button =
-                                `<p>${row.employees.department.name_th}</p>`;
+                                `<p>${row.employees.position.name_th}</p>`;
                             
                             return info_button;
                         }
@@ -171,12 +172,24 @@
                     {
                         data: "id",
                         render: function(data, type, row, meta) {
-                            info_button =
-                                `<p>${row.employees.position.name_th}</p>`;
-                            
-                            return info_button;
+                        if(row.participate_status==0){
+                            return "ยังไม่เข้าร่วม";
+                        }else if(row.participate_status==1){
+                            return "เข้าร่วมแล้ว";
+                        };
                         }
                     },
+                    {
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                        if(row.cert_status==0){
+                            return "ยังไม่ได้รับ";
+                        }else if(row.cert_status==1){
+                            return "ได้รับแล้ว";
+                        };
+                        }
+                    },
+                    
                     {
                         data: "remark1"
                     },

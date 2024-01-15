@@ -212,6 +212,7 @@ class EmployeeController extends Controller
                 $result['status'] = "Failed";
             }
         }
+        return $data;
     }
             
     // public function empLogout(Request $request)

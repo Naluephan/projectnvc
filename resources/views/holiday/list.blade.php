@@ -195,7 +195,7 @@
                         }
                     },
                 ],
-                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
+                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex  w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
             });
 
             var holiday_modal = $("#holidayModal");

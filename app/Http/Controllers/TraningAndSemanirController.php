@@ -29,4 +29,6 @@ class TraningAndSemanirController extends Controller
     {
         return view('traing_and_seminar.check_employees', compact('param'));
     }
+
+    
 }

@@ -115,7 +115,7 @@
                             </div>
                             <div class="col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="cert" id="cert" value="2">
+                                <input class="form-check-input" type="radio" name="cert" id="cert1" value="2">
                                 <label class="form-check-label" for="cert">
                                     ไม่มี
                                 </label>
@@ -322,7 +322,7 @@
                             }
                     },
                 ],
-                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
+                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex  w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
             });
 
             var tas_modal = $("#tasModal");

@@ -11,7 +11,7 @@
 {{-- end header --}}
 @section('content')
 
-    <div class="row mb-2">
+    <!-- <div class="row mb-2">
         <div class="col-sm-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
@@ -98,11 +98,11 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
     <div class="card">
-        <div class="card-header">
+        <!-- <div class="card-header">
             <h6 class="">ตัวเลือกการค้นหา</h6>
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-3 user_plan">
@@ -143,7 +143,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="card-body ">
             <table class="table dt-responsive w-100 nowrap" id="data_tables" aria-describedby="data_tables">
                 <thead class="border-top table-light">

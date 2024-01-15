@@ -150,17 +150,19 @@
                         data: "company.name_th"
                     },
                     {
-                        data: "id",
-                        render: function(data, type, row, meta) {
-                            info_button =
-                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#departmentModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
-                            info_button +=
-                                `<a data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
-                            return info_button;
-                        }
+                        data: 'id',
+                            render: function(data, type, row, meta) {
+                                return `<div class="d-inline-block text-nowrap">
+                                <button class="btn btn-sm btn-text-secondary rounded-pill" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <div class="dropdown-menu dropdown-menu-end m-0">
+                                    <a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#tasModal" class="dropdown-item btn-edit"><i class="fas fa-pencil text-warning mr-1"></i><span>แก้ไข</span></a>
+                                    <a data-id="${row.id}" class="dropdown-item btn-delete"><i class="fas fa-trash-alt text-red mr-1 "></i><span>ลบ</span></a>
+                                </div>
+                            </div>`
+                            }
                     },
                 ],
-                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
+                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex  w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
             });
 
             var department_modal = $("#departmentModal");
