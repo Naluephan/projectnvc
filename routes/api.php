@@ -80,6 +80,7 @@ Route::group(
         Route::post('employee/empPin', [\App\Http\Controllers\APIs\EmployeeController::class, 'savePin'])->name('employee.empPin');
         Route::post('employee/empPasteCardLog', [\App\Http\Controllers\APIs\EmployeePasteCardLogController::class, 'empPasteCardLog'])->name('employee.empPasteCardLog');
         Route::post('employee/empLeave', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'EmployeeLeave'])->name('employee.empLeave');
+        Route::post('employee/saveEmpLeave', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'saveEmpLeave'])->name('employee.saveEmpLeave');
 
         //API For Web
         Route::post('employee/get/by/company/and/department', [\App\Http\Controllers\APIs\EmployeeController::class, 'getEmployeesByCompanyAndDepartment'])->name('employee.get.by.company.and.department');

@@ -22,11 +22,11 @@ return new class extends Migration
             $table->integer('status_manager_approve')->nullable();
             $table->integer('status_hr__approve')->nullable();
             $table->string('leave_detail')->nullable();
-            $table->string('leave_img1')->default(null);
-            $table->string('leave_img2')->default(null);
-            $table->string('leave_img3')->default(null);
-            $table->string('leave_img4')->default(null);
-            $table->string('leave_img5')->default(null);
+            $table->string('leave_img1')->nullable();
+            $table->string('leave_img2')->nullable();
+            $table->string('leave_img3')->nullable();
+            $table->string('leave_img4')->nullable();
+            $table->string('leave_img5')->nullable();
             $table->dateTime('leave_date_start')->nullable();
             $table->dateTime('leave_date_end')->nullable();
             $table->integer('sum_hours')->nullable();
@@ -50,3 +50,5 @@ return new class extends Migration
         Schema::dropIfExists('employee_leaves');
     }
 };
+
+

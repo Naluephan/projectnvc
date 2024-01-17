@@ -23,6 +23,7 @@ class EmployeePasteCardLogRepository extends MasterRepository implements Employe
     public function empPasteCardLogApi($param){
         $data = $this->model->where([
             ['emp_id' ,'=', $param['emp_id']],
+            ['month' ,'=', $param['month']],
         ])->get();
         return $data;
     }

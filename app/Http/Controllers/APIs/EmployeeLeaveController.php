@@ -72,4 +72,34 @@ class EmployeeLeaveController extends Controller
         }
         return $result;
     }
+
+    public function saveEmpLeave(Request $request) {
+        $data = $request->all();
+        try {
+            
+    
+            // foreach ($data['leave_imgs'] as $index => $image) {
+            //     $file = save_image($image, 2000, '/profile_upload/');
+            //     $data['leave_img' . $index + 1] = $file;
+            // }
+                 save_image($data['leave_img1'], 2000, '/images/leave_emp');
+
+            $empLeave = $this->employeeLeaveRepository->saveEmpLeave($data);
+            if (isset($empLeave)) {
+            $result['txnStatus'] = "UPDATED";
+            $result['statusCode'] = "00";
+            $result['errorCode'] = null;
+            $result['errorDesc'] = null;
+            }
+           
+        } catch (\Exception $ex) {
+            $result['txnStatus'] = "ERROR";
+            $result['statusCode'] = "10";
+            $result['errorCode'] = "EUP";
+            $result['errorDesc'] = $ex->getMessage();
+        }
+        return json_encode($result);
+    
+    }
+
 }
