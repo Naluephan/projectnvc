@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CompanyInterface;
+use App\Repositories\DepartmentInterface;
 use App\Repositories\EmployeeInterface;
+use App\Repositories\PositionInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,14 +17,20 @@ class HomeController extends Controller
      */
     private $companyRepository;
     private $employeeRepository;
+    private $departmentRepository;
+    private $positionRepository;
     public function __construct(
         CompanyInterface $companyRepository,
-        EmployeeInterface $employeeRepository
+        EmployeeInterface $employeeRepository,
+        DepartmentInterface $departmentRepository,
+        PositionInterface $positionRepository
     ) 
     {
         $this->middleware('auth');
         $this->companyRepository = $companyRepository;
         $this->employeeRepository = $employeeRepository;
+        $this->departmentRepository = $departmentRepository;
+        $this->positionRepository = $positionRepository;
     }
 
     /**
@@ -38,7 +46,9 @@ class HomeController extends Controller
     public function empList()
     {
         $companies = $this->companyRepository->all();
-        return view('employees.list', compact('companies'));
+        $departments = $this->departmentRepository->all();
+        $positions = $this->positionRepository->all();
+        return view('employees.list', compact('companies','departments','positions'));
     }
 
     function empDetail($id)

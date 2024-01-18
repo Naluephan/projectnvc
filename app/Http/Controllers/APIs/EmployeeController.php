@@ -43,6 +43,12 @@ class EmployeeController extends Controller
         if(isset($postData['company_id'])){
             $param['company_id'] = $postData['company_id'];
         }
+        if(isset($postData['position_id'])){
+            $param['position_id'] = $postData['position_id'];
+        }
+        if(isset($postData['department_id'])){
+            $param['department_id'] = $postData['department_id'];
+        }
 
 
         // Total records

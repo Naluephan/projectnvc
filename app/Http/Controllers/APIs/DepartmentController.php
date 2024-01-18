@@ -113,4 +113,27 @@ class DepartmentController extends Controller
         $company_id = $request->company_id;
         return $this->departmentRepository->getDepartmentInCompany($company_id);
     }
+
+
+    public function departmentFilter(Request $request)
+    {
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            if (isset($postData['company_id'])) {
+                $param['company_id'] = $postData['company_id'];
+            }
+         $departments =   $this->departmentRepository->getAll($param);
+           
+            $result['status'] = "success";
+            $result['data'] = $departments;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
+    }
+
 }

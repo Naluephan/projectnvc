@@ -9,5 +9,6 @@ interface PositionInterface extends BaseInterface
 {
     public function paginate($param):Collection;
     public function getAll():Collection;
+    public function all():Collection;
 }
 

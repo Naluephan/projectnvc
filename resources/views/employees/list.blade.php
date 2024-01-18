@@ -12,97 +12,97 @@
 @section('content')
 
     <!-- <div class="row mb-2">
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="me-1">
-                            <p class="text-heading mb-2">พนักงานทั้งหมด</p>
-                            <div class="d-flex align-items-center">
-                                <h4 class="mb-2 me-1 display-6">21,459</h4>
-                                <p class="text-success mb-2">(+29%)</p>
-                            </div>
-                            <p class="mb-0">Total Users</p>
-                        </div>
-                        <div class="avatar">
-                            <div class="avatar-initial bg-label-primary rounded text-lg">
-                                <i class="fa-solid fa-users p-2 rounded-2 bg-success-subtle text-dark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="me-1">
-                            <p class="text-heading mb-2">พนักงานประจำ</p>
-                            <div class="d-flex align-items-center">
-                                <h4 class="mb-2 me-1 display-6">180</h4>
-                                <p class="text-success mb-2">(+18%)</p>
-                            </div>
-                            <p class="mb-0">ชาย (100) / หญิง (90)</p>
-                        </div>
-                        <div class="avatar">
-                            <div class="avatar-initial bg-label-danger rounded text-lg">
-                                <i class="fa-solid fa-users-line p-2 rounded-2 bg-primary-subtle text-white"></i>
-                                {{--                                <i class="fa-solid fa-venus-mars p-2 rounded-2 bg-primary-subtle text-white"></i> --}}
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="me-1">
+                                    <p class="text-heading mb-2">พนักงานทั้งหมด</p>
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="mb-2 me-1 display-6">21,459</h4>
+                                        <p class="text-success mb-2">(+29%)</p>
+                                    </div>
+                                    <p class="mb-0">Total Users</p>
+                                </div>
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-label-primary rounded text-lg">
+                                        <i class="fa-solid fa-users p-2 rounded-2 bg-success-subtle text-dark"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="me-1">
-                            <p class="text-heading mb-2">ทดลองงาน</p>
-                            <div class="d-flex align-items-center">
-                                <h4 class="mb-2 me-1 display-6">19</h4>
-                                <p class="text-danger mb-2">(14%)</p>
-                            </div>
-                            <p class="mb-0">ชาย (1) / หญิง (18)</p>
-                        </div>
-                        <div class="avatar">
-                            <div class="avatar-initial bg-label-success rounded text-lg">
-                                <i class="fa-solid fa-users-between-lines p-2 rounded-2 bg-danger-subtle text-danger"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="me-1">
-                            <p class="text-heading mb-2">ลาหยุด</p>
-                            <div class="d-flex align-items-center">
-                                <h4 class="mb-2 me-1 display-6">237</h4>
-                                <p class="text-success mb-2">(+42%)</p>
-                            </div>
-                            <p class="mb-0">Last week analytics</p>
-                        </div>
-                        <div class="avatar">
-                            <div class="avatar-initial bg-label-warning rounded text-lg">
-                                <i class="fa-solid fa-user-clock p-2 rounded-2 bg-warning-subtle text-warning"></i>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="me-1">
+                                    <p class="text-heading mb-2">พนักงานประจำ</p>
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="mb-2 me-1 display-6">180</h4>
+                                        <p class="text-success mb-2">(+18%)</p>
+                                    </div>
+                                    <p class="mb-0">ชาย (100) / หญิง (90)</p>
+                                </div>
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-label-danger rounded text-lg">
+                                        <i class="fa-solid fa-users-line p-2 rounded-2 bg-primary-subtle text-white"></i>
+                                        {{--                                <i class="fa-solid fa-venus-mars p-2 rounded-2 bg-primary-subtle text-white"></i> --}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="me-1">
+                                    <p class="text-heading mb-2">ทดลองงาน</p>
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="mb-2 me-1 display-6">19</h4>
+                                        <p class="text-danger mb-2">(14%)</p>
+                                    </div>
+                                    <p class="mb-0">ชาย (1) / หญิง (18)</p>
+                                </div>
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-label-success rounded text-lg">
+                                        <i class="fa-solid fa-users-between-lines p-2 rounded-2 bg-danger-subtle text-danger"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="me-1">
+                                    <p class="text-heading mb-2">ลาหยุด</p>
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="mb-2 me-1 display-6">237</h4>
+                                        <p class="text-success mb-2">(+42%)</p>
+                                    </div>
+                                    <p class="mb-0">Last week analytics</p>
+                                </div>
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-label-warning rounded text-lg">
+                                        <i class="fa-solid fa-user-clock p-2 rounded-2 bg-warning-subtle text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    </div> -->
+            </div> -->
 
 
     <div class="card">
-        <!-- <div class="card-header">
+        <div class="card-header">
             <h6 class="">ตัวเลือกการค้นหา</h6>
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-3 user_plan">
@@ -115,23 +115,19 @@
                     </select>
                 </div>
                 <div class="col-md-3 user_role">
-                    <select id="department_id" class="form-select text-capitalize select2">
-                        <option value=""> -- แผนก --</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Author">Author</option>
-                        <option value="Editor">Editor</option>
-                        <option value="Maintainer">Maintainer</option>
-                        <option value="Subscriber">Subscriber</option>
+                    <select id="department_id" class="form-select text-capitalize select2 list-filter">
+                        <option value="-1"> -- แผนก --</option>
+                        @foreach ($departments as $department)
+                            <option value="{{ $department->id }}">{{ $department->name_th }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-3 user_role">
-                    <select id="position_id" class="form-select text-capitalize select2">
-                        <option value=""> -- ดำแหน่ง --</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Author">Author</option>
-                        <option value="Editor">Editor</option>
-                        <option value="Maintainer">Maintainer</option>
-                        <option value="Subscriber">Subscriber</option>
+                    <select id="position_id" class="form-select text-capitalize select2 list-filter">
+                        <option value="-1"> -- ดำแหน่ง --</option>
+                        @foreach ($positions as $position)
+                            <option value="{{ $position->id }}">{{ $position->name_th }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-3 user_status">
@@ -143,7 +139,7 @@
                     </select>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="card-body ">
             <table class="table dt-responsive w-100 nowrap" id="data_tables" aria-describedby="data_tables">
                 <thead class="border-top table-light">
@@ -183,6 +179,8 @@
                         data: function(d) {
                             d._token = "{{ csrf_token() }}";
                             d.company_id = $("#company_id").val();
+                            d.department_id = $("#department_id").val();
+                            d.position_id = $("#position_id").val();
                         },
 
                     },
@@ -204,7 +202,8 @@
                                     profile_img = `{{ asset('uploads/images/employee/profile.png') }}`
                                 }
                                 if (row.image) {
-                                    profile_img = `{{ asset('uploads/images/employee/') }}/${row.company.order_prefix.toLowerCase()}/${row.image}`
+                                    profile_img =
+                                        `{{ asset('uploads/images/employee/') }}/${row.company.order_prefix.toLowerCase()}/${row.image}`
                                 }
                                 return `<div class="d-flex justify-content-start align-items-center user-name">
                             <img src="${profile_img}" alt="Profile" class="img-thumbnail img-size-50 rounded-circle">
@@ -257,7 +256,8 @@
                         {
                             data: 'id',
                             render: function(data, type, row, meta) {
-                                let url = "{{ route('emp.detail', "__id") }}".replaceAll("__id",row.id);
+                                let url = "{{ route('emp.detail', '__id') }}".replaceAll("__id", row
+                                    .id);
                                 return `<div class="d-inline-block text-nowrap">
                                 <button class="btn btn-sm btn-text-secondary rounded-pill" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                 <div class="dropdown-menu dropdown-menu-end m-0">
@@ -325,68 +325,128 @@
                     });
                 })
 
-                $(document).on('click', '.view-detail', function() {
-                    let id = $(this).data('id');
-                    $('#emp-detail').modal('show');
-                    $.ajax({
-                        type: 'post',
-                        url: "{{ route('api.v1.find.employee.by.id') }}",
-                        data: {
-                            'id': id
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            console.log(data);
-                            full_name = data.pre_name + data.f_name + ' ' + data.l_name + ' (' +
-                                data.n_name + ')';
-                            full_name2 = data.pre_name + data.f_name + ' ' + data.l_name;
-                            position = 'ตำแหน่ง ' + data.position.name_th;
-                            formattedDate = convertDateFormat(data.birthday);
+                // $(document).on('click', '.view-detail', function() {
+                //     let id = $(this).data('id');
+                //     $('#emp-detail').modal('show');
+                //     $.ajax({
+                //         type: 'post',
+                //         url: "{{ route('api.v1.find.employee.by.id') }}",
+                //         data: {
+                //             'id': id
+                //         },
+                //         dataType: "json",
+                //         success: function(data) {
+                //             console.log(data);
+                //             full_name = data.pre_name + data.f_name + ' ' + data.l_name + ' (' +
+                //                 data.n_name + ')';
+                //             full_name2 = data.pre_name + data.f_name + ' ' + data.l_name;
+                //             position = 'ตำแหน่ง ' + data.position.name_th;
+                //             formattedDate = convertDateFormat(data.birthday);
 
-                            profile_img = `{{ asset('uploads/images/employee/profilef.png') }}`;
-                            if (data.gender_id == 1) {
-                                profile_img = `{{ asset('uploads/images/employee/profile.png') }}`
+                //             profile_img = `{{ asset('uploads/images/employee/profilef.png') }}`;
+                //             if (data.gender_id == 1) {
+                //                 profile_img = `{{ asset('uploads/images/employee/profile.png') }}`
+                //             }
+                //             if (data.image) {
+                //                 profile_img =
+                //                     `{{ asset('uploads/images/employee/') }}/${data.image}`
+                //             }
+
+                //             $('#full_name').text(full_name);
+                //             $('#full_name2').text(full_name2);
+                //             $('#company').text(data.company.name_th);
+                //             $('#position').text(position);
+                //             $('#phone').text(data.mobile);
+                //             $('#address').text(data.current_add);
+                //             $('#employee_card_id').text(data.employee_card_id);
+                //             $('#birthday').text(formattedDate);
+                //             $('#profile').attr('src', profile_img);
+
+                //         },
+                //     });
+                // });
+
+                // function convertDateFormat(inputDate) {
+                //     // แยกปี เดือน และวัน
+                //     var parts = inputDate.split('-');
+                //     var year = parts[0];
+                //     var month = parts[1];
+                //     var day = parts[2];
+
+                //     // แปลงเดือนเป็นชื่อเดือน
+                //     var monthNames = [
+                //         "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                //         "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+                //     ];
+                //     var monthName = monthNames[parseInt(month, 10) - 1];
+
+                //     // แสดงผลลัพธ์
+                //     var result = day + " " + monthName + " พ.ศ. " + year;
+
+                //     return result;
+                // }
+
+
+                $(document).ready(function() {
+                    function getDepartment() {
+                        let data = {
+                            "_token": "{{ csrf_token() }}",
+                            "company_id": $("#company_id").val(),
+                        };
+                        $.ajax({
+                            url: "{{ route('api.v1.department.filter') }}",
+                            data: data,
+                            type: "post",
+                            dataType: "json",
+                            success: function(response) {
+                                $("#department_id").empty();
+                                $("#department_id").append(
+                                    '<option value="-1"> -- แผนก --</option>'
+                                );
+                                response.data.forEach(function(item) {
+                                    $("#department_id").append(
+                                        `<option value="${item.id}">${item.name_th}</option>`
+                                    );
+                                });
                             }
-                            if (data.image) {
-                                profile_img =
-                                    `{{ asset('uploads/images/employee/') }}/${data.image}`
-                            }
-
-                            $('#full_name').text(full_name);
-                            $('#full_name2').text(full_name2);
-                            $('#company').text(data.company.name_th);
-                            $('#position').text(position);
-                            $('#phone').text(data.mobile);
-                            $('#address').text(data.current_add);
-                            $('#employee_card_id').text(data.employee_card_id);
-                            $('#birthday').text(formattedDate);
-                            $('#profile').attr('src', profile_img);
-
-                        },
+                        });
+                    }
+                    getDepartment();
+                    $(document).on('change', '#company_id', function() {
+                        getDepartment();
                     });
                 });
 
-                function convertDateFormat(inputDate) {
-                    // แยกปี เดือน และวัน
-                    var parts = inputDate.split('-');
-                    var year = parts[0];
-                    var month = parts[1];
-                    var day = parts[2];
-
-                    // แปลงเดือนเป็นชื่อเดือน
-                    var monthNames = [
-                        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-                        "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
-                    ];
-                    var monthName = monthNames[parseInt(month, 10) - 1];
-
-                    // แสดงผลลัพธ์
-                    var result = day + " " + monthName + " พ.ศ. " + year;
-
-                    return result;
-                }
-
-
+                $(document).ready(function() {
+                    function getPosition() {
+                        let data = {
+                            "_token": "{{ csrf_token() }}",
+                            "company_id": $("#company_id").val(),
+                            "department_id": $("#department_id").val(),
+                        };
+                        $.ajax({
+                            url: "{{ route('api.v1.position.filter') }}",
+                            data: data,
+                            type: "post",
+                            dataType: "json",
+                            success: function(response) {
+                                $("#position_id").empty();
+                                $("#position_id").append(
+                                    '<option value="-1"> -- ดำแหน่ง --</option>'
+                                );
+                                response.data.forEach(function(item) {
+                                    $("#position_id").append(
+                                        `<option value="${item.id}">${item.name_th}</option>`
+                                    );
+                                });
+                            }
+                        });
+                    }
+                    getPosition();
+                    $(document).on('change', '#company_id,#department_id', function() {
+                        getPosition();
+                    });
+                });
             })
         </script>
     @stop

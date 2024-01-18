@@ -19,13 +19,14 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     {
         parent::__construct($model);
     }
-    
+
     // ---------- empLogin  -------------
-    public function empLogin($param){
+    public function empLogin($param)
+    {
         $user =  $this->model->where([
             ['username', '=', $param['username']],
             ['password', '=', $param['password']],
-        ])->with('company','position','department')->first();
+        ])->with('company', 'position', 'department')->first();
 
         if (isset($user)) {
             $user->tokens()->delete();
@@ -34,8 +35,9 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
         return $user;
     }
     // ---------- savePin  -------------
-    public function savePinCode ($param){
-        $codePin = $this->model->where('id','=',$param['id'])->first();
+    public function savePinCode($param)
+    {
+        $codePin = $this->model->where('id', '=', $param['id'])->first();
 
         if (isset($codePin)) {
             $codePin->pin = $param['pin'];
@@ -47,19 +49,25 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     public function getAll($param): Collection
     {
         return $this->model
-            ->where('record_status','=',1)
-            ->where(function($q) use ($param){
+            ->where('record_status', '=', 1)
+            ->where(function ($q) use ($param) {
                 if (isset($param['searchValue'])) {
                     $q->where('f_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('l_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('employee_card_id', "like", '%' . $param['searchValue'] . '%');
                 }
             })
-            ->where(function($q1) use ($param){
-                if(isset($param['company_id']) && $param['company_id'] >= 1){
+            ->where(function ($q1) use ($param) {
+                if (isset($param['company_id']) && $param['company_id'] >= 1) {
                     $q1->Where('company_id', '=', $param['company_id']);
-                } elseif (isset($param['company_id']) && $param['company_id'] == 0){
+                } elseif (isset($param['company_id']) && $param['company_id'] == 0) {
                     $q1->Where('company_id', '=', 6);
+                }
+                if (isset($param['department_id']) && $param['department_id'] >= 1) {
+                    $q1->Where('department_id', '=', $param['department_id']);
+                }
+                if (isset($param['position_id']) && $param['position_id'] >= 1) {
+                    $q1->Where('position_id', '=', $param['position_id']);
                 }
             })
             ->get();
@@ -67,20 +75,26 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
 
     public function paginate($param): Collection
     {
-        $data = $this->model->with('position','company')->orderBy($param['columnName'],$param['columnSortOrder'])
-            ->where('record_status','=',1)
-            ->where(function($q) use ($param){
+        $data = $this->model->with('position', 'company')->orderBy($param['columnName'], $param['columnSortOrder'])
+            ->where('record_status', '=', 1)
+            ->where(function ($q) use ($param) {
                 if (isset($param['searchValue'])) {
                     $q->where('f_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('l_name', "like", '%' . $param['searchValue'] . '%');
                     $q->orWhere('employee_card_id', "like", '%' . $param['searchValue'] . '%');
                 }
             })
-            ->where(function($q1) use ($param){
-                if(isset($param['company_id']) && $param['company_id'] >= 1){
+            ->where(function ($q1) use ($param) {
+                if (isset($param['company_id']) && $param['company_id'] >= 1) {
                     $q1->Where('company_id', '=', $param['company_id']);
-                } elseif (isset($param['company_id']) && $param['company_id'] == 0){
+                } elseif (isset($param['company_id']) && $param['company_id'] == 0) {
                     $q1->Where('company_id', '=', 6);
+                }
+                if (isset($param['department_id']) && $param['department_id'] >= 1) {
+                    $q1->Where('department_id', '=', $param['department_id']);
+                }
+                if (isset($param['position_id']) && $param['position_id'] >= 1) {
+                    $q1->Where('position_id', '=', $param['position_id']);
                 }
             })
             ->skip($param['start'])
@@ -260,17 +274,17 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
 
     public function findById($id)
     {
-        $lead =  $this->model->with('position','company')
+        $lead =  $this->model->with('position', 'company')
             ->select('*')
-            ->where('id','=',$id)->first();
+            ->where('id', '=', $id)->first();
         return $lead;
     }
 
     public function getEmployeesByCompanyAndDepartment($param)
     {
         return $this->model
-        ->where('company_id','=',$param['company_id'])
-        ->where('department_id','=',$param['department_id'])
-        ->get();
+            ->where('company_id', '=', $param['company_id'])
+            ->where('department_id', '=', $param['department_id'])
+            ->get();
     }
 }

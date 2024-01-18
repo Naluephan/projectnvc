@@ -28,6 +28,9 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
                 if(isset($params['id'])){
                     $q->where('id','-',$params['id']);
                 }
+                if(isset($params['company_id']) && $params['company_id'] >= 1){
+                    $q->where('company_id','=',$params['company_id']);
+                }
 //                $q->whereHas('sdqDetails',function($q2) use ($params){
 //                    $q2->where();
 //                });
@@ -62,4 +65,12 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
         ->where('company_id','=',$company_id)
         ->get();
     }
+
+    public function all() : Collection 
+    {
+        return $this->model
+            ->get();
+    }
+
+
 }

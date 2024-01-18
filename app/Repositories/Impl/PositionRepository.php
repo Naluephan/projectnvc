@@ -28,6 +28,12 @@ class PositionRepository extends MasterRepository implements PositionInterface
                 if(isset($params['id'])){
                     $q->where('id','-',$params['id']);
                 }
+                if(isset($params['company_id']) && $params['company_id'] >= 1){
+                    $q->where('company_id','=',$params['company_id']);
+                }
+                if(isset($params['department_id']) && $params['department_id'] >= 1){
+                    $q->where('department_id','=',$params['department_id']);
+                }
 //                $q->whereHas('sdqDetails',function($q2) use ($params){
 //                    $q2->where();
 //                });
@@ -53,6 +59,12 @@ class PositionRepository extends MasterRepository implements PositionInterface
             ->select('*')
             ->skip($params['start'])
             ->take($params['rowperpage'])
+            ->get();
+    }
+
+    public function all() : Collection 
+    {
+        return $this->model
             ->get();
     }
    
