@@ -78,11 +78,11 @@ class EmployeeLeaveController extends Controller
         try {
             
     
-            // foreach ($data['leave_imgs'] as $index => $image) {
-            //     $file = save_image($image, 2000, '/profile_upload/');
-            //     $data['leave_img' . $index + 1] = $file;
-            // }
-                 save_image($data['leave_img1'], 2000, '/images/leave_emp');
+            foreach ($data['leave_imgs'] as $index => $image) {
+                $file = save_image($image, 2000, '/profile_upload/');
+                $data['leave_img' . $index + 1] = $file;
+            }
+                // save_image($data['leave_img1'], 2000, '/images/leave_emp');
 
             $empLeave = $this->employeeLeaveRepository->saveEmpLeave($data);
             if (isset($empLeave)) {
