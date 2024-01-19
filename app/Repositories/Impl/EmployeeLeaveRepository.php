@@ -4,10 +4,13 @@
 namespace App\Repositories\Impl;
 
 use App\Models\EmployeeLeave;
+use App\Models\EmployeesLeaveType;
 use App\Models\Position;
 use App\Repositories\EmployeeLeaveInterface;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveInterface
 {
       protected $model;
@@ -21,14 +24,21 @@ class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveI
         $data = $this->model->where([
             ['emp_id' ,'=', $param['emp_id']],
             ['month' ,'=', $param['month']],
+            ['year' ,'=', $param['year']],
         ])->get();
         return $data;
     }
+
     public function saveEmpLeave($param) {
+        $leave_type = DB::table('emp_leave_type')->where('id', '=', $param['leave_type_id'])->first();
             $empLeave = $this->model->updateOrCreate(
                 [
                     'leave_type_id' => $param['leave_type_id'],
-                    'leave_type_title' => $param['leave_type_title'],
+                    'leave_type_title' => $leave_type->leave_type_name,
+                    'emp_id' => $param['emp_id'],
+                    'status_hr__approve' => 0,
+                    'status_manager_approve' => 0,
+                    'leave_detail' => $param['leave_detail'],
                     'leave_date_start' => $param['leave_date_start'],
                     'leave_date_end' => $param['leave_date_end'],
                     'days' => $param['days'],

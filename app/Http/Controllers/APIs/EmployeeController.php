@@ -103,7 +103,23 @@ class EmployeeController extends Controller
            $data = $request->all();
            $query = $this->employeeRepository->empLogin($data);
         //    $result = $userData['userData'];
-        
+
+        switch($query ['company_id']){
+            case 1: 
+                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/drjel/". $query ['image']:null;
+                break;
+            case 2:
+                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/cosme/". $query ['image']:null;
+                break;
+            case 3:
+                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/inno/". $query ['image']:null;
+                break;
+            case 4:
+                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/gf/". $query ['image']:null;
+                break;
+            default:
+                $query ['image'] = null;
+        }
         
             $result =[
                 'id' => $query ['id'],
@@ -142,22 +158,7 @@ class EmployeeController extends Controller
                 'access_token' => $query ['access_token'],
 
             ];
-            switch($result ['company_id']){
-                case 1: 
-                    $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/drjel/". $query ['image']:null;
-                    break;
-                case 2:
-                    $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/cosme/". $query ['image']:null;
-                    break;
-                case 3:
-                    $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/inno/". $query ['image']:null;
-                    break;
-                case 4:
-                    $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/gf/". $query ['image']:null;
-                    break;
-                default:
-                    $query ['image'] = null;
-            }
+            
         
            if($result != null ){
             $result['status'] = ApiStatus::login_success_status;

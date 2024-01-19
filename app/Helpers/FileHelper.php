@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use Closure;
-use Illuminate\Support\Facades\File;
 use Image;
 use Intervention\Image\Constraint;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -25,9 +24,8 @@ class FileHelper
         $root_path = self::upload_path();
 
         if ($path) {
-            $path = $root_path.$path;
-        }
-        else{
+            $path = $root_path . $path;
+        } else {
             $path = $root_path;
         }
 
@@ -44,29 +42,10 @@ class FileHelper
         return $fileName;
     }
 
-    public static function saveBase64Image( $file, $maxWidth = 150,$file_name =null, $path = null)
+    public static function upload_path()
     {
-        $root_path = self::upload_path();
-
-        if ($path) {
-            $path = $root_path.$path;
-        }
-        else{
-            $path = $root_path;
-        }
-        if (!file_exists($path)) {
-            if (!mkdir($path, 0777, true) && !is_dir($path)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
-            }
-        }
-        file_put_contents( $path.$file_name , $file );
-
-        return $path.$file_name;
-    }
-
-    public static function upload_path(){
         $root_path = "";
-        if ( env('APP_ENV') === 'production') {
+        if (env('APP_ENV') === 'production') {
             $root_path = config('filesystems.uploads.production');
         } else {
             $root_path = config('filesystems.uploads.local');
@@ -84,8 +63,7 @@ class FileHelper
     protected static function getFileName(UploadedFile $file)
     {
         $filename = $file->getClientOriginalName();
-        $filename = "dja_".date('Ymd_His') . '.' . pathinfo($filename, PATHINFO_EXTENSION);
-        // $filename = "dja_" . date('Ymd_His') . "_" . rand(100000, 999999) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+        $filename = "dja_" . date('Ymd_His') . "_" . rand(100000, 999999) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
 
         return $filename;
     }
