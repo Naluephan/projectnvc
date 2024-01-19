@@ -84,8 +84,8 @@ class FileHelper
     protected static function getFileName(UploadedFile $file)
     {
         $filename = $file->getClientOriginalName();
-        // $filename = "dja_".date('Ymd_His') . '.' . pathinfo($filename, PATHINFO_EXTENSION);
-        $filename = "dja_" . date('Ymd_His') . "_" . rand(100000, 999999) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+        $filename = "dja_".date('Ymd_His') . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+        // $filename = "dja_" . date('Ymd_His') . "_" . rand(100000, 999999) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
 
         return $filename;
     }

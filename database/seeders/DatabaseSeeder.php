@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(employeeLeaveSeeder::class);
         $this->call(EmployeeLeaveTypeSeeder::class);
         $this->call(EmployeePasteCardLogsSeeder::class);
+        $this->call(RewardCoinTableSeeder::class);
     }
 }

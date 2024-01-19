@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->integer('emp_id')->nullable();
             $table->integer('leave_type_id')->nullable()->comment('ลาป่วย=1, ลากิจ=2, ลาพักร้อน=3, ลาคลอด=4, มาสาย=5, ลาอื่นๆ=6');
-            $table->integer('leave_type_title')->nullable();
+            $table->string('leave_type_title')->nullable();
             $table->integer('status_manager_approve')->nullable();
             $table->integer('status_hr__approve')->nullable();
             $table->string('leave_detail')->nullable();
