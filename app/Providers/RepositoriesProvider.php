@@ -19,12 +19,14 @@ use App\Repositories\Impl\HolidayRepository;
 use App\Repositories\Impl\LevelRepository;
 use App\Repositories\Impl\MasterRepository;
 use App\Repositories\Impl\PositionRepository;
+use App\Repositories\Impl\RewardCoinRepository;
 use App\Repositories\Impl\SalaryTemplateDetailRepository;
 use App\Repositories\Impl\TasEmployeeRepository;
 use App\Repositories\Impl\TraningAndSeminarRepository;
 use App\Repositories\LevelInterface;
 use App\Repositories\MasterInterface;
 use App\Repositories\PositionInterface;
+use App\Repositories\RewardCoinInterface;
 use App\Repositories\SalaryTemplateDetailInterface;
 use App\Repositories\TasEmployeeInterface;
 use App\Repositories\TraningAndSeminarInterface;
@@ -52,6 +54,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SalaryTemplateDetailInterface::class, SalaryTemplateDetailRepository::class);
         $this->app->bind(EmployeePasteCardLogInterface::class, EmployeePasteCardLogRepository::class);
         $this->app->bind(EmployeeLeaveInterface::class, EmployeeLeaveRepository::class);
+        $this->app->bind(RewardCoinInterface::class, RewardCoinRepository::class);
 
     }
 
