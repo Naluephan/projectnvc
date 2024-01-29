@@ -63,17 +63,29 @@ class ApiStatus
      public const pin_errDesc = "Error Pin";
 
 
-     /////////// Response Code and Description PinStatus ///////////
+     /////////// Response Code and Salary  ///////////
      public const salary_success_status = "Send data successfully";
      public const salary_success_statusCode = "00";
      // Unsuccessful
      public const salary_failed_status = "This information was not found in data.";
-     public const salary_failed_statusCode = "500";
+     public const salary_failed_statusCode = "200";
      public const salary_failed_Desc = "Please check the information again.";
      // Catch 
      public const salary_error_statusCode = "500";
      public const salary_error_status = "salary Error";
      public const salary_errDesc = "Error salary";
+
+     /////////// Response Code and  Attendance ///////////
+     public const timeAttendance_success_status = "Send data successfully";
+     public const timeAttendance_success_statusCode = "00";
+     // Unsuccessful
+     public const timeAttendance_failed_status = "This information was not found in data.";
+     public const timeAttendance_failed_statusCode = "200";
+     public const timeAttendance_failed_Desc = "Please check the information again.";
+     // Catch 
+     public const timeAttendance_error_statusCode = "500";
+     public const timeAttendance_error_status = "timeAttendance Error";
+     public const timeAttendance_errDesc = "Error TimeAttendance";
 
 };
 
