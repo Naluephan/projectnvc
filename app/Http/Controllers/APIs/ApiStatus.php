@@ -4,16 +4,12 @@ namespace App\Http\Controllers\APIs;
 
 class ApiStatus
 {
-    // public const SUCCESS_RESPONSE = [
-    //     'status' => 'SUCCESS',
-    //     'errCode' => null,
-    //     'errDesc' => null
-    // ];
+   
     /////////// Response Code and Description empLogStatus ///////////
     public const login_success_status = "Login Success Response";
     public const login_success_statusCode = "00";
 
-    // Not Found
+    // Unsuccessful
     public const login_failed_found_status = "Login failed Found";
     public const login_failed_found_code = "10";
     public const login_failed_found_Desc = "Please check your username and password.";
@@ -27,7 +23,7 @@ class ApiStatus
     /////////// Response Code and Description empLogStatus ///////////
     public const log_success_status = "Log Success Response";
     public const log_success_statusCode = "00";
-    // Not Found
+    // Unsuccessful
     public const log_failed_status = "Connect failed";
     public const log_failed_statusCode = "10";
     public const log_failed_Desc = "Connect failed";
@@ -43,7 +39,7 @@ class ApiStatus
     /////////// Response Code and Description empLeaveStatus ///////////
     public const leave_success_status = "Leave Success Response";
     public const leave_success_statusCode = "00";
-    // Not Found
+    // Unsuccessful
     public const leave_failed_status = "Connect failed";
     public const leave_failed_statusCode = "10";
     public const leave_failed_Desc = "No existing data found.Please check the employee ID again.";
@@ -57,7 +53,7 @@ class ApiStatus
      /////////// Response Code and Description PinStatus ///////////
      public const pin_success_status = "Record updated successfully";
      public const pin_success_statusCode = "00";
-     // Not Found
+     // Unsuccessful
      public const pin_failed_status = "Update failed";
      public const pin_failed_statusCode = "500";
      public const pin_failed_Desc = "The ID was not found or the password may be incorrect.";
@@ -65,6 +61,19 @@ class ApiStatus
      public const pin_error_statusCode = "500";
      public const pin_error_status = "Pin Error";
      public const pin_errDesc = "Error Pin";
+
+
+     /////////// Response Code and Description PinStatus ///////////
+     public const salary_success_status = "Send data successfully";
+     public const salary_success_statusCode = "00";
+     // Unsuccessful
+     public const salary_failed_status = "This information was not found in data.";
+     public const salary_failed_statusCode = "500";
+     public const salary_failed_Desc = "Please check the information again.";
+     // Catch 
+     public const salary_error_statusCode = "500";
+     public const salary_error_status = "salary Error";
+     public const salary_errDesc = "Error salary";
 
 };
 
