@@ -8,7 +8,7 @@ use App\Models\Position;
 use App\Repositories\EmployeeLeaveInterface;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
-class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveInterface
+class EmployeeLeaveRepository_old extends MasterRepository implements EmployeeLeaveInterface
 {
       protected $model;
 

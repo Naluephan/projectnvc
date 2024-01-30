@@ -19,9 +19,7 @@ class EmployeesTimeAttendanceController extends Controller
     {
         try {
             $data = $request->all();
-            $query = [
-                [1 => 2],[2 => 1],[3 => 1],[4 => 0],[5 => 0],[6 => 0],[7 => 0],[8 => 0],[9 => 0],[10 => 0],[11 => 0],[12 => 0],
-            ];
+           $query = [['m_1' => 2,'m_2' => 1,'m_3' => 1,'m_4' => 1,'m_5' => 0,'m_6' => 0,'m_7' => 0,'m_8' => 0,'m_9' => 0,'m_10' => 0,'m_11' => 0,'m_12' => 0]];
             // $query = $this->employeeSalaryRepository->employeeSalary($data);
 
            

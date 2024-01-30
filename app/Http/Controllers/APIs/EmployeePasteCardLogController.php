@@ -19,6 +19,7 @@ class EmployeePasteCardLogController extends Controller
 
     public function empPasteCardLog (Request $request)
     {
+        
        try{
            $data = $request->all();
            $empLog = $this->employeePasteCardLogRepository->empPasteCardLogApi($data);

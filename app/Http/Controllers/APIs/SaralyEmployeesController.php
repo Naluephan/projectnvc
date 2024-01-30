@@ -21,33 +21,11 @@ class SaralyEmployeesController extends Controller
             $data = $request->all();
             $query = $this->employeeSalaryRepository->employeeSalary($data);
 
-            $result = [
-                'emp_id' => $query ['emp_id'],
-                'salary' => $query ['salary'],
-                'diligence_allowance' => $query ['diligence_allowance'],
-                'overtime' => $query ['overtime'],
-                'fuel_cost' => $query ['fuel_cost'],
-                'bonus' => $query ['bonus'],
-                'interest' => $query ['interest'],
-                'commission' => $query ['commission'],
-                'get_orthers' => $query ['get_orthers'],
-                'total_earning' => $query ['total_earning'],
-                'social_security_fund' => $query ['social_security_fund'],
-                'withholding_tax' => $query ['withholding_tax'],
-                'deposit' => $query ['deposit'],
-                'absent_leave_late' => $query ['absent_leave_late'],
-                'company_loan' => $query ['company_loan'],
-                'deposit_fund' => $query ['deposit_fund'],
-                'deduc_others' => $query ['deduc_others'],
-                'total_deductions' => $query ['total_deductions'],
-                'net_pay' => $query ['net_pay'],
-                'day' => $query ['day'],
-                'month' => $query ['month'],
-                'year' => $query ['year'],
-            ];
-            if($query != null) {
+           
+            if(isset($query )) {
                 $result['status'] = ApiStatus::salary_success_status;
                 $result['statusCode'] = ApiStatus::salary_success_statusCode;
+                $result['emp_salary'] = $query;
     
                }else{
                 $result['status'] = ApiStatus::salary_failed_status;
