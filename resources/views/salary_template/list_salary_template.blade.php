@@ -68,11 +68,6 @@
                     {{-- <th class="dt-checkboxes-cell dt-checkboxes-select-all" data-col="1" aria-label=""><input type="checkbox" class="form-check-input"></th> --}}
                     <th>#</th>
                     <th>หัวข้อ</th>
-                    <th>รายละเอียด</th>
-                    <th>สถานะ</th>
-                    <th>ใบรับรอง</th>
-                    <th>วันเริ่มต้น</th>
-                    <th>วันสิ้นสุด</th>
                     <th>จัดการ</th>
                 </tr>
                 </thead>
@@ -89,7 +84,37 @@
 @section('js')
     <script>
     $(() => {
-        
+        var list_table = $("#data_tables").DataTable({
+                pageLength: 25,
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                serverMethod: 'post',
+                ajax: {
+                    url: '{{ route('api.v1.salary.template.list') }}',
+                    type: 'POST'
+                },
+                columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "template_name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data, type, row, meta) {
+                            info_button =
+                                `<a data-id="${row.id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#departmentModal" class="btn btn-xs rounded-pill text-es-pink btn-edit"><i class="fas fa-edit"></i></a>`;
+                            info_button +=
+                                `<a data-id="${row.id}" class="btn btn-xs rounded-pill text-es-red btn-delete"><i class="fas fa-trash-alt"></i></a>`;
+                            return info_button;
+                        }
+                    },
+                    
+                ],
+                "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex position-absolute w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
+            });
         }); 
     </script>
 @stop

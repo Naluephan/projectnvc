@@ -47,7 +47,11 @@ class EmployeeLeaveController extends Controller
                         $leave_title = 'ไม่ระบุประเภทการลา';
                     }
                     $item->leave_type = $leave_title;
+                
+            
                 }
+
+
                 if(count($empLeave) > 0 ) {
             // if ($empLeave)
                 $result['status'] = ApiStatus::leave_success_status;
@@ -77,12 +81,12 @@ class EmployeeLeaveController extends Controller
         $data = $request->all();
         try {
             
-            // if(isset($data['leave_imgs'])){
-            //     foreach ($data['leave_imgs'] as $index => $image) {
-            //         $file = save_image($image, 2000, '/images/');
-            //         $data['leave_img' . $index + 1] = $file;
-            //     }
-            // }
+            if(isset($data['leave_imgs'])){
+                foreach ($data['leave_imgs'] as $index => $image) {
+                    $file = save_image($image, 2000, '/images/leave_emp/');
+                    $data['leave_img' . $index + 1] = $file;
+                }
+            }
             
                 // save_image($data['leave_img1'], 2000, '/images/leave_emp');
 

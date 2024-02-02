@@ -97,6 +97,7 @@
                 success: function(response) {
                     arrayItem = response;
                     itemList();
+                    console.log(arrayItem);
                 }
             });
 
@@ -200,8 +201,8 @@
                     break;
                 }
             }
-            arrayItem.push(itemFormath(arrayItem.length + 1, '', latestLeftItem.position + 1, 'left'));
-            //console.log(arrayItem);
+            arrayItem.push(itemFormath(arrayItem.length + 1, '', parseInt(latestLeftItem.position) + 1, 'left'));
+            console.log(arrayItem);
             itemList();
         });
 
@@ -216,9 +217,9 @@
                     break;
                 }
             }
-            arrayItem.push(itemFormath(arrayItem.length + 1, '', latestLeftItem.position + 1, 'right'));
-            //console.log(arrayItem);
-            itemList();
+            arrayItem.push(itemFormath(arrayItem.length + 1, '', parseInt(latestLeftItem.position) + 1, 'right'));
+            console.log(arrayItem);
+            itemList();    
         });
 
         $(document).on('click', '.btn-delete-template', function() {
@@ -245,20 +246,20 @@
                 },
                 success: function(response) {
                 if (response.status == 'Success') {
-                    Swal.fire({
-                    title: 'ดำเนินการเรียบร้อยแล้ว',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    toast: true
+                        Swal.fire({
+                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        toast: true
                     });
                     } else {
-                    Swal.fire({
-                    title: 'เกิดข้อผิดพลาด',
-                    icon: 'warning',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    toast: true
+                        Swal.fire({
+                        title: 'เกิดข้อผิดพลาด',
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        toast: true
                         })
                     }
                 }

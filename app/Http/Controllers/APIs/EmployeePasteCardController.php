@@ -39,7 +39,7 @@ class EmployeePasteCardController extends Controller
             $emp = $this->employeeRepository->getUserProfile($empId);
             if (isset($emp)){
                 $data = [
-                    'emp_id' => $empId,
+                    'emp_id' => $emp->id,
                     'paste_date' => $currentDate,
                     'year' => $year,
                     'month' => $month,

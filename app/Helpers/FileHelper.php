@@ -109,4 +109,25 @@ class FileHelper
     {
         $img->save($path . $fileName);
     }
+
+    public static function saveBase64Image( $file, $maxWidth = 150,$file_name =null, $path = null)
+    {
+        $root_path = self::upload_path();
+
+        if ($path) {
+            $path = $root_path.$path;
+        }
+        else{
+            $path = $root_path;
+        }
+        if (!file_exists($path)) {
+            if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+            }
+        }
+        file_put_contents( $path.$file_name , $file );
+
+        return $path.$file_name;
+    }
+
 }

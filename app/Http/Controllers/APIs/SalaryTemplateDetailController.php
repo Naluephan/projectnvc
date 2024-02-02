@@ -61,6 +61,7 @@ class SalaryTemplateDetailController extends Controller
     {
         DB::beginTransaction();
         $templateLists = $request->all();
+        //return $templateLists;
         try {
             foreach($templateLists["data"] as $templateList){
                 $list = [
@@ -81,21 +82,22 @@ class SalaryTemplateDetailController extends Controller
                 if(isset($check)){
                     $update = $this->salarytemplatedetailRepository->updateListTemplateDetail($tmpId,$data_update);
                    if($update){
-                        $result['data'] = $update;
-                       return $result;
+                        $result['status'] = "Success";
                    }
                 }else{
                     $create = $this->salarytemplatedetailRepository->create($list);
+                    $result['status'] = "Success";
                 }
             }
-            $result['status'] = "Success";
             DB::commit();
+            return json_encode($result);
         } catch (\Exception $ex){
             $result['status'] = "Failed"; 
             $result['message'] = $ex->getMessage();
             DB::rollBack();
+            return json_encode($result);
         }
-        return json_encode($result);
+        
     }
 
     public function getByTemplateId(Request $request)

@@ -44,11 +44,11 @@ class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveI
                     'days' => $param['days'],
                     'month' => $param['month'],
                     'year' => $param['year'],
-                    'leave_img1' => !empty($param['leave_img1']) ? $param['leave_img1'] : null,
-                    'leave_img2' => !empty($param['leave_img2']) ? $param['leave_img2'] : null,
-                    'leave_img3' => !empty($param['leave_img3']) ? $param['leave_img3'] : null,
-                    'leave_img4' => !empty($param['leave_img4']) ? $param['leave_img4'] : null,
-                    'leave_img5' => !empty($param['leave_img5']) ? $param['leave_img5'] : null,
+                    'leave_img1' => isset($param['leave_img1']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img1'] : null,
+                    'leave_img2' => isset($param['leave_img2']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img2'] : null,
+                    'leave_img3' => isset($param['leave_img3']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img3'] : null,
+                    'leave_img4' => isset($param['leave_img4']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img4'] : null,
+                    'leave_img5' => isset($param['leave_img5']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img5'] : null,
                 ]
                
             );

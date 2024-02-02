@@ -108,7 +108,7 @@
                         }
                     },
                     {
-                        data: "template_name_detail"
+                        data: "detail"
                     },
                     {
                         data: "position"
