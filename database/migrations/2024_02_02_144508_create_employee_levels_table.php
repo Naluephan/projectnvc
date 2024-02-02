@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::create('employee_levels', function (Blueprint $table) {
             $table->id();
-            $table->string('name_th');
-            $table->string('name_en');
-            $table->string('description');
-            $table->string('condition');
+            $table->string("emp_id");
+            $table->integer('level_id');
+            $table->string('promote_description');
+            $table->date('promote_date');
             $table->integer('company_id');
             $table->timestamps();
         });
@@ -31,6 +31,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('employee_levels');
+        
     }
 };

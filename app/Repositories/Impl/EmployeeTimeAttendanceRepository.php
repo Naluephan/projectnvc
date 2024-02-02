@@ -3,7 +3,7 @@
 
 namespace App\Repositories\Impl;
 
-use App\Models\EmployeesTimeAttendance;
+use App\Models\EmployeeTimeAttendance;
 use App\Repositories\EmployeeTimeAttendanceInterface;
 use Illuminate\Support\Collection;
 
@@ -11,7 +11,7 @@ class EmployeeTimeAttendanceRepository extends MasterRepository implements Emplo
 {
       protected $model;
 
-    public function __construct(EmployeesTimeAttendance $model)
+    public function __construct(EmployeeTimeAttendance $model)
     {
         parent::__construct($model);
     }

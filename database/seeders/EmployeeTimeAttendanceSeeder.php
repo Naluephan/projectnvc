@@ -18,7 +18,7 @@ class EmployeeTimeAttendanceSeeder extends Seeder
     {
         foreach (range(1, 10) as $index) {
             $empId = rand(165, 170);
-            DB::table('employee_time_attendance')->insert([
+            DB::table('employee_time_attendances')->insert([
                 'emp_id' => $empId,
                 'month' => mt_rand(1, 12),
                 'year' => 2024,
