@@ -27,7 +27,7 @@ class EmployeeTimeAttendanceController extends Controller
             try {   
                 $attendanceStatus = $this->employeeTimeAttendanceRepository->empTimeAttendance($data);
                 foreach ($attendanceStatus as $key => $data) {
-                    $api["m_".$key + 1] = $data->status;
+                    $api["m_".$key + 1] = $data->status; 
                 }
                 if(count ($attendanceStatus ) > 0) {
                 $result['status'] = ApiStatus::timeAttendance_success_status;

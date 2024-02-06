@@ -15,20 +15,25 @@ class RewardCoinController extends Controller
     {
         $this->rewardCoinRepository = $rewardCoinRepository;
     }
-    public function rewardCoin (Request $request) 
+    public function rewardCoin (Request $request)
     {
         try {
             $data = $request->all();
             $query = $this->rewardCoinRepository->rewardCoin($data);
 
-            $result = [
-                'id' => $query ['id'],
-                'reward_name' => $query ['reward_name'],
-                'reward_image' => $query ['reward_image'],
-                'reward_description' => $query ['reward_description'],
-                'reward_coins_change' => $query ['reward_coins_change'],
-            ];
+            // $result = [
+            //     'id' => $query ['id'],
+            //     'reward_name' => $query ['reward_name'],
+            //     'reward_image' => $query ['reward_image'],
+            //     'reward_description' => $query ['reward_description'],
+            //     'reward_coins_change' => $query ['reward_coins_change'],
+            // ];
+
+            $result = $query;
         }catch(\Exception $ex) {
+            $result['status'] = ApiStatus::rewardCoin_error_statusCode;
+            $result['errCode'] = ApiStatus::rewardCoin_error_status;
+            $result['errDesc'] = ApiStatus::rewardCoin_errDesc;
             $result['message'] = $ex->getMessage();
         }
         return $result;

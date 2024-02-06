@@ -4,7 +4,7 @@ namespace App\Http\Controllers\APIs;
 
 class ApiStatus
 {
-   
+
     /////////// Response Code and Description empLogStatus ///////////
     public const login_success_status = "Login Success Response";
     public const login_success_statusCode = "00";
@@ -14,7 +14,7 @@ class ApiStatus
     public const login_failed_found_code = "10";
     public const login_failed_found_Desc = "Please check your username and password.";
     // public const login_message = "Login failed Found";
-    //  catch 
+    //  catch
     public const login_error_status = "User Login Error";
     public const login_error_statusCod  = "500";
     public const login_errDesc  = "Error login";
@@ -28,7 +28,7 @@ class ApiStatus
     public const log_failed_statusCode = "10";
     public const log_failed_Desc = "Connect failed";
     public const log_message = "Log Not Found";
-    // Catch 
+    // Catch
     public const log_error_statusCode  = "500";
     public const log_error_status = "Log Error";
     public const log_errDesc  = "Error log";
@@ -44,7 +44,7 @@ class ApiStatus
     public const leave_failed_statusCode = "10";
     public const leave_failed_Desc = "No existing data found.Please check the employee ID again.";
     public const leave_message = "No existing data found.Please check the employee ID again.";
-    // Catch 
+    // Catch
     public const leave_error_statusCode = "500";
     public const leave_error_status = "Leave Error";
     public const leave_errDesc = "Error leave";
@@ -57,7 +57,7 @@ class ApiStatus
      public const pin_failed_status = "Update failed";
      public const pin_failed_statusCode = "500";
      public const pin_failed_Desc = "The ID was not found or the password may be incorrect.";
-     // Catch 
+     // Catch
      public const pin_error_statusCode = "500";
      public const pin_error_status = "Pin Error";
      public const pin_errDesc = "Error Pin";
@@ -70,7 +70,7 @@ class ApiStatus
      public const salary_failed_status = "This information was not found in data.";
      public const salary_failed_statusCode = "200";
      public const salary_failed_Desc = "Please check the information again.";
-     // Catch 
+     // Catch
      public const salary_error_statusCode = "500";
      public const salary_error_status = "salary Error";
      public const salary_errDesc = "Error salary";
@@ -82,16 +82,20 @@ class ApiStatus
      public const timeAttendance_failed_status = "This information was not found in data.";
      public const timeAttendance_failed_statusCode = "200";
      public const timeAttendance_failed_Desc = "Please check the information again.";
-     // Catch 
+     // Catch
      public const timeAttendance_error_statusCode = "500";
      public const timeAttendance_error_status = "timeAttendance Error";
      public const timeAttendance_errDesc = "Error TimeAttendance";
 
+      // rewardCoin
+      public const rewardCoin_error_statusCode = "500";
+      public const rewardCoin_error_status = "rewardCoin Error";
+      public const rewardCoin_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus
 // class ApiLogStatus {
-    
+
 //     public const log_status = "Log Success";
 //     public const log_statusCode = "00";
 
@@ -101,12 +105,12 @@ class ApiStatus
 //      public const nfDesc = "Error not found";
 //      public const message = "invalid user";
 
-//     //  catch Error Code and Description 
+//     //  catch Error Code and Description
 //     public const log_error_status = "Error EmployeeLog";
 //     public const log_error_code= "10";
 //     public const errDesc = "Error EmployeeLog";
 //     public const errorCode = "500";
-    
+
 // };
 
 //Error Code and Description empLeaveStatus
@@ -125,12 +129,12 @@ class ApiStatus
 //     public const nfDesc = "Error not found";
 //     public const message = "invalid user";
 
-//     //  catch Error Code and Description 
+//     //  catch Error Code and Description
 //     public const leave_error = "Error EmployeeLeave";
 //     public const leave_status = "10";
 //     public const errDesc = "Error EmployeeLeave";
 //     public const errorCode = "500";
-    
+
 // }
 
    // Error Code and Description empLogoutStatus
@@ -143,11 +147,11 @@ class ApiStatus
 //     public const status = "User Logout";
 //     public const statusCode = "00";
 
-//     //  catch Error Code and Description 
+//     //  catch Error Code and Description
 //     public const user_error = "User Error";
 //     public const user_status = "10";
 //     public const errDesc = "Error Logout";
 //     public const errorCode = "ELO";
-    
+
 // }
 
