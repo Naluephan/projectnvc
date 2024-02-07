@@ -37,6 +37,8 @@ use App\Repositories\SalaryTemplateInterface;
 use App\Repositories\TasEmployeeInterface;
 use App\Repositories\TraningAndSeminarInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\EmployeeLeaveQuotasInterface;
+
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -64,6 +66,8 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(RewardCoinInterface::class, RewardCoinRepository::class);
         $this->app->bind(EmployeeSalaryInterface::class, EmployeeSalaryRepository::class);
         $this->app->bind(EmployeeTimeAttendanceInterface::class, EmployeeTimeAttendanceRepository::class);
+        $this->app->bind(EmployeeLeaveQuotasInterface::class, EmployeeLeaveQuotasRepository::class);
+
 
     }
 

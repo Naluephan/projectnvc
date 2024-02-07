@@ -45,6 +45,8 @@ class EmployeeLeaveSeeder extends Seeder
             $day = (int) $randomDay;
             $dateStart = sprintf('%s-%s-%02d', $currentYear, $randomMonth, $randomDayStart);
             $dateEnd = sprintf('%s-%s-%02d', $currentYear, $randomMonth, $randomDayEnd);
+            $leaveDay = rand(1, 10);
+            $leaveHours = rand(1, 24);
 
             DB::table('employee_leaves')->insert([
                 'emp_id' => $empId,
@@ -64,6 +66,8 @@ class EmployeeLeaveSeeder extends Seeder
                 'month' => $randomMonth,
                 'year' => $currentYear,
                 'days' => $day,
+                'leave_day' => $leaveDay,
+                'leave_hours' => $leaveHours,
             ]);
         }
     }

@@ -91,6 +91,11 @@ class ApiStatus
       public const rewardCoin_error_statusCode = "500";
       public const rewardCoin_error_status = "rewardCoin Error";
       public const rewardCoin_errDesc = "Please check the information again.";
+
+      // employeeLeaveQuotas
+     public const leaveQuotase_error_statusCode = "500";
+     public const leaveQuotase_error_status = "EmployeeLeaveQuotas Error";
+     public const leaveQuotase_errDesc = "Error EmployeeLeaveQuotas";
 };
 
 //Error Code and Description empLogStatus

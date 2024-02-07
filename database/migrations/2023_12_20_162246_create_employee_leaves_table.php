@@ -33,6 +33,8 @@ return new class extends Migration
             $table->integer('month')->nullable();
             $table->integer('year')->nullable();
             $table->integer('days')->nullable();
+            $table->integer('leave_day')->nullable();
+            $table->integer('leave_hours')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
