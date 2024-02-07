@@ -11,8 +11,8 @@ class SalaryTemplateDetailController extends Controller
         return view('salary_template.list_salary_template_detail');
     }
 
-    public function add()
+    public function add($param)
     {
-        return view('salary_template.add_salary_template_detail');
+        return view('salary_template.add_salary_template_detail', compact('param'));
     }
 }

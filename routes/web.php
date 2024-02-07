@@ -77,4 +77,7 @@ Route::get('/saraly/list', [App\Http\Controllers\SaralyEmployeesController::clas
 Route::get('/saraly/template/list', [App\Http\Controllers\SalaryTemplateController::class, 'list'])->name('saraly.template.list');
 //saraly template
 Route::get('/saraly/template/detail/list', [App\Http\Controllers\SalaryTemplateDetailController::class, 'list'])->name('saraly.template.detail.list');
-Route::get('/saraly/template/detail/add', [App\Http\Controllers\SalaryTemplateDetailController::class, 'add'])->name('saraly.template.detail.add');
+Route::get('/saraly/template/detail/add/{id}', [App\Http\Controllers\SalaryTemplateDetailController::class, 'add'])->name('saraly.template.detail.add');
+
+//reward coin
+Route::get('/rewardcoin/list', [App\Http\Controllers\RewardCoinController::class, 'list'])->name('rewardcoin.list');

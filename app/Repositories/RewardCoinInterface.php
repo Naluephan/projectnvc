@@ -8,5 +8,7 @@ use Illuminate\Support\Collection;
 interface RewardCoinInterface extends BaseInterface
 {
     public function rewardCoin($param);
+    public function paginate($param):Collection;
+    public function getAll():Collection;
 }
 

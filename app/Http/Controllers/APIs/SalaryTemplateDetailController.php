@@ -61,26 +61,27 @@ class SalaryTemplateDetailController extends Controller
     {
         DB::beginTransaction();
         $templateLists = $request->all();
-        //return $templateLists;
+        $template_id = $request->templateId;
+        //return $template;
         try {
             foreach($templateLists["data"] as $templateList){
                 $list = [
-                    'id'=>$templateList["id"],
-                    'template_id' => 1,
+                    'template_id' => $template_id,
                     'detail' => $templateList["detail"],
                     'position' => $templateList["position"],
                     'type' => $templateList["type"],
                 ];
-                $tmpId = $templateList["id"];
                 $data_update = [
-                    'template_id' => 1,
+                    'template_id' => $template_id,
                     'detail' => $templateList["detail"],
                     'position' => $templateList["position"],
                     'type' => $templateList["type"],
                 ];
-                $check = $this->salarytemplatedetailRepository->checkListTemplateDetail($tmpId);
+                // $create = $this->salarytemplatedetailRepository->create($list);
+                // $result['status'] = "Success";
+                 $check = $this->salarytemplatedetailRepository->checkListTemplateDetail($list);
                 if(isset($check)){
-                    $update = $this->salarytemplatedetailRepository->updateListTemplateDetail($tmpId,$data_update);
+                    $update = $this->salarytemplatedetailRepository->updateListTemplateDetail($data_update);
                    if($update){
                         $result['status'] = "Success";
                    }

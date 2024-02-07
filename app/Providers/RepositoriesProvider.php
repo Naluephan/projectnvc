@@ -38,7 +38,7 @@ use App\Repositories\TasEmployeeInterface;
 use App\Repositories\TraningAndSeminarInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\EmployeeLeaveQuotasInterface;
-
+use App\Repositories\Impl\EmployeeLeaveQuotasRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {

@@ -418,6 +418,10 @@ return [
                     'text' => 'จัดการฝึกอบรมและสัมมนา',
                     'url'  => '/tas/list',
                 ],
+                [
+                    'text' => 'RewardCoins',
+                    'url'  => '/rewardcoin/list',
+                ],
 //                [
 //                    'text' => 'กลุ่มงาน',
 //                    'url'  => '#',
@@ -473,11 +477,11 @@ return [
                     'url'  => '/saraly/template/list',
                     'icon' => 'fas fa-fw fa-file-lines',
                 ],
-                [
-                    'text' => 'รายละเอียดแม่แบบเงินเดือน',
-                    'url'  => '/saraly/template/detail/list',
-                    'icon' => 'fas fa-fw fa-file-lines',
-                ],
+                // [
+                //     'text' => 'รายละเอียดแม่แบบเงินเดือน',
+                //     'url'  => '/saraly/template/detail/list',
+                //     'icon' => 'fas fa-fw fa-file-lines',
+                // ],
             ],
         ],
         ['header' => 'ข้อมูลส่วนตัว'],

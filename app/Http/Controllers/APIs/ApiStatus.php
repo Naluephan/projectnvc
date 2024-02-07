@@ -87,7 +87,14 @@ class ApiStatus
      public const timeAttendance_error_status = "timeAttendance Error";
      public const timeAttendance_errDesc = "Error TimeAttendance";
 
-      // rewardCoin
+      /////////// Response Code and  rewardCoin ///////////
+      public const rewardCoin_success_status = "Send data successfully";
+      public const rewardCoin_success_statusCode = "00";
+      // Unsuccessful
+      public const rewardCoin_failed_status = "This information was not found in data.";
+      public const rewardCoin_failed_statusCode = "200";
+      public const rewardCoin_failed_Desc = "Please check the information again.";
+      //Catch
       public const rewardCoin_error_statusCode = "500";
       public const rewardCoin_error_status = "rewardCoin Error";
       public const rewardCoin_errDesc = "Please check the information again.";

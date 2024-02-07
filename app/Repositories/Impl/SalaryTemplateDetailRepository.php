@@ -56,16 +56,20 @@ class SalaryTemplateDetailRepository extends BaseRepository implements SalaryTem
             ->get();
     }
    
-    public function checkListTemplateDetail($id)
+    public function checkListTemplateDetail($lists)
     {
         return $this->model
-        ->where('id','=',$id )
+        ->where('template_id','=',$lists['template_id'] )
+        ->where('position','=',$lists['position'] )
+        ->where('type','=',$lists['type'] )
         ->first();
     }
 
-    public function updateListTemplateDetail($id,$data_update)
+    public function updateListTemplateDetail($data_update)
     {
-        $response = $this->model->where('id','=',$id )->first();
+        $response = $this->model->where('template_id','=',$data_update['template_id'] )
+        ->where('position','=',$data_update['position'] )
+        ->where('type','=',$data_update['type'] )->first();
         if($response){
             $response->template_id = $data_update['template_id'];
             $response->detail = $data_update['detail'];
@@ -78,7 +82,7 @@ class SalaryTemplateDetailRepository extends BaseRepository implements SalaryTem
     public function getByTemplateId($id)
     {
         return $this->model
-        ->where('template_id','=',$id )
+        ->where('template_id','=',$id ) 
         ->get();
     }
 }

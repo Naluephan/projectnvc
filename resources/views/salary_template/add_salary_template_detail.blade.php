@@ -5,6 +5,7 @@
 @stop
 @section('content_header')
 <li class="breadcrumb-item"><a href="{{ url('/home') }}">หน้าแรก</a></li>
+<li class="breadcrumb-item"><a href="{{ url('/saraly/template/list') }}">แม่แบบเงินเดือน</a></li>
 <li class="breadcrumb-item active"> รายละเอียดแม่แบบเงินเดือน </li>
 @stop
 @section('css')
@@ -87,12 +88,12 @@
             //     "type": "right"
             // }
         ];
-
+        var id = "{{ $param }}";
         $.ajax({
                 type: 'post',
                 url: "{{ route('api.v1.salary.template.detail.get.by.id.template') }}",
                 data: {
-                    'id': 1,
+                    'id': id,
                 },
                 success: function(response) {
                     arrayItem = response;
@@ -186,7 +187,6 @@
             //console.log(arrayItem); // ตรวจสอบ arrayItem หลังจากอัพเดท detail
             itemList();
 
-
         });
 
 
@@ -202,7 +202,14 @@
                 }
             }
             arrayItem.push(itemFormath(arrayItem.length + 1, '', parseInt(latestLeftItem.position) + 1, 'left'));
-            console.log(arrayItem);
+            //console.log(arrayItem);
+            var index_left = 1;
+                for (var i = 0; i < arrayItem.length; i++) {
+                    var data = arrayItem[i];
+                    if (arrayItem[i].type === 'left') {
+                        arrayItem[i].position = index_left++;
+                     }
+                }
             itemList();
         });
 
@@ -218,7 +225,14 @@
                 }
             }
             arrayItem.push(itemFormath(arrayItem.length + 1, '', parseInt(latestLeftItem.position) + 1, 'right'));
-            console.log(arrayItem);
+            //console.log(arrayItem);
+            var index_right = 1;
+                for (var i = 0; i < arrayItem.length; i++) {
+                    var data = arrayItem[i];
+                    if (arrayItem[i].type === 'right') {
+                        arrayItem[i].position = index_right++;
+                     }
+                }
             itemList();    
         });
 
@@ -242,7 +256,8 @@
                 type: 'post',
                 url: "{{ route('api.v1.salary.template.detail.create') }}",
                 data: {
-                    'data':templateData
+                    'data':templateData,
+                    'templateId':id
                 },
                 success: function(response) {
                 if (response.status == 'Success') {

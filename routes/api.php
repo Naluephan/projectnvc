@@ -103,8 +103,19 @@ Route::group(
 
         //API SalaryTemplate
         Route::post('salary/template/list', [\App\Http\Controllers\APIs\SalaryTemplateController::class, 'getAll'])->name('salary.template.list');
+        Route::post('salary/template/create', [\App\Http\Controllers\APIs\SalaryTemplateController::class, 'create'])->name('salary.template.create');
+        Route::post('salary/template/update', [\App\Http\Controllers\APIs\SalaryTemplateController::class, 'update'])->name('salary.template.update');
+        Route::post('salary/template/delete', [\App\Http\Controllers\APIs\SalaryTemplateController::class, 'delete'])->name('salary.template.delete');
+        Route::post('salary/template/get/by/id', [\App\Http\Controllers\APIs\SalaryTemplateController::class, 'getById'])->name('salary.template.get.by.id');
         Route::post('salary/template/detail/list', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'getAll'])->name('salary.template.detail.list');
         Route::post('salary/template/detail/create', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'create'])->name('salary.template.detail.create');
         Route::post('salary/template/detail/get/by/id/template', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'getByTemplateId'])->name('salary.template.detail.get.by.id.template');
+
+        //API Reward Coin
+        Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getAll'])->name('reward.list');
+        Route::post('reward/create', [\App\Http\Controllers\APIs\RewardCoinController::class, 'create'])->name('reward.create');
+        Route::post('reward/update', [\App\Http\Controllers\APIs\RewardCoinController::class, 'update'])->name('reward.update');
+        Route::post('reward/get/by/id', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getById'])->name('reward.get.by.id');
+        Route::post('reward/delete', [\App\Http\Controllers\APIs\RewardCoinController::class, 'delete'])->name('reward.delete');
     }
 );
