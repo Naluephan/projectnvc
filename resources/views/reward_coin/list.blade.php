@@ -95,6 +95,9 @@
                             <input type="text" class="form-control" id="reward_name" name="reward_name" required>
                         </div>
                         <div class="mb-3">
+                            <div class="picture text-center" id="picture">
+
+                            </div>
                         <div class="container image_img" id="image_img"> </div>
                             <label for="reward_image" >ภาพของรางวัล :</label>
                             <input type="file" class="form-control" id="reward_image" name="reward_image"></input>
@@ -104,7 +107,7 @@
                             <textarea type="text" class="form-control" id="reward_description" name="reward_description" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="reward_coins_change" class="col-form-label">จำนวนเรียญ :</label>
+                            <label for="reward_coins_change" class="col-form-label">จำนวนเหรียญ :</label>
                             <input type="text" class="form-control" id="reward_coins_change" name="reward_coins_change" required>
                         </div>  
                         
@@ -144,7 +147,7 @@ var list_table = $("#data_tables").DataTable({
                     {
                         data: 'id',
                             render: function(data, type, row, meta) {
-                                return `<img src="${row.reward_image}" alt="..." style="width: 300px; height: 200px;">`
+                                return `<img src="https://newhr.organicscosme.com/uploads/images/rewardcoin/${row.reward_image}" alt="..." style="width: 300px; height: 200px;">`
                             }
                     },
                     {
@@ -171,6 +174,8 @@ var list_table = $("#data_tables").DataTable({
 
         var reward_modal = $("#rewardModal");
         $(document).on('click', '.btn-add', function() {
+            const containerImage = document.getElementById('picture');
+                containerImage.textContent = '';
             reward_modal.modal('show')
         })
 
@@ -255,6 +260,8 @@ var list_table = $("#data_tables").DataTable({
 
             $(document).on('click', '.btn-edit', function() {
                 let id = $(this).data('id');
+                const containerImage = document.getElementById('picture');
+                containerImage.textContent = '';
                 $.ajax({
                     type: 'post',
                     url: "{{ route('api.v1.reward.get.by.id') }}",
@@ -263,6 +270,7 @@ var list_table = $("#data_tables").DataTable({
                     },
                     dataType: "json",
                     success: function(response) {
+                        
                         setFormData(response);
                         $("#id").val(response.id);
                         reward_modal.modal('show')
@@ -271,9 +279,16 @@ var list_table = $("#data_tables").DataTable({
             })
 
             function setFormData(data) {
+                
                 $("#reward_name").val(data.reward_name);
                 $("#reward_description").val(data.reward_description);
                 $("#reward_coins_change").val(data.reward_coins_change);
+                var image_img = $(".picture");
+                    var image = `
+                        <img src="https://newhr.organicscosme.com/uploads/images/rewardcoin/${data.reward_image}" alt="..." style="width: 300px; height: 200px;">
+
+                    `;
+                    image_img.append(image);
             }
 
             reward_modal.on('show.bs.modal', function(event) {
