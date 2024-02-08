@@ -482,6 +482,16 @@ return [
                 //     'url'  => '/saraly/template/detail/list',
                 //     'icon' => 'fas fa-fw fa-file-lines',
                 // ],
+                [
+                    'text' => 'รายละเอียดแม่แบบเงินเดือน',
+                    'url'  => '/saraly/template/detail/list',
+                    'icon' => 'fas fa-fw fa-file-lines',
+                ],
+                [
+                    'text' => 'แจ้งขอสลิปเงินเดือนย้อนหลัง',
+                    'url'  => '/request/saraly/slip',
+                    'icon' => 'fas fa-fw fa-file-lines',
+                ],
             ],
         ],
         ['header' => 'ข้อมูลส่วนตัว'],

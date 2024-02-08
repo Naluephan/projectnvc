@@ -28,6 +28,7 @@ use App\Repositories\Impl\SalaryTemplateDetailRepository;
 use App\Repositories\Impl\SalaryTemplateRepository;
 use App\Repositories\Impl\TasEmployeeRepository;
 use App\Repositories\Impl\TraningAndSeminarRepository;
+use App\Repositories\Impl\SalaryRequestSlipRepository;
 use App\Repositories\LevelInterface;
 use App\Repositories\MasterInterface;
 use App\Repositories\PositionInterface;
@@ -36,6 +37,7 @@ use App\Repositories\SalaryTemplateDetailInterface;
 use App\Repositories\SalaryTemplateInterface;
 use App\Repositories\TasEmployeeInterface;
 use App\Repositories\TraningAndSeminarInterface;
+use App\Repositories\SalaryRequestSlipInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\EmployeeLeaveQuotasInterface;
 use App\Repositories\Impl\EmployeeLeaveQuotasRepository;
@@ -67,7 +69,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(EmployeeSalaryInterface::class, EmployeeSalaryRepository::class);
         $this->app->bind(EmployeeTimeAttendanceInterface::class, EmployeeTimeAttendanceRepository::class);
         $this->app->bind(EmployeeLeaveQuotasInterface::class, EmployeeLeaveQuotasRepository::class);
-
+        $this->app->bind(SalaryRequestSlipInterface::class, SalaryRequestSlipRepository::class);
 
     }
 

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmployeeSalaryTableSeederCopy::class);
         $this->call(EmployeeTimeAttendanceSeeder::class);
         $this->call(EmployeeLeaveQuotasSeeder::class);
+        $this->call(SalaryRequestSlipSeeder::class);
 
     }
 }
