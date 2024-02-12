@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('promote_description');
             $table->date('promote_date');
             $table->integer('company_id');
+            $table->integer('leave_day');
+            $table->integer('leave_hours');
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('employee_levels');
-        
+
     }
 };
