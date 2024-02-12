@@ -13,6 +13,7 @@ class SalaryRequestSlip extends Model
         'month_request',
         'reason_request',
         'request_approve',
+        'use_date',
         'record_status'
     ];
 

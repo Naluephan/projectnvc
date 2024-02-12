@@ -69,4 +69,20 @@ class SalaryRequestSlipControlle extends Controller
         }
         return json_encode($result);
     }
+
+    public function salary_create_request_slip(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        $result['status'] = "Success";
+        try {
+            $this->salaryRequestSlipRepository->create($data);
+            DB::commit();
+        } catch (\Exception $ex){
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return json_encode($result);
+    }
 }

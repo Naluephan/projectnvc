@@ -24,6 +24,7 @@
                         <th scope="col">ชื่อผู้ร้องขอ</th>
                         <th scope="col">เดือนทั้งหมดที่ร้องขอ</th>
                         <th scope="col">เหตุผล</th>
+                        <th scope="col">วันที่ใช้</th>
                         <th scope="col">สถานะ</th>
                         <th scope="col">จัดการ</th>
                     </tr>
@@ -80,6 +81,9 @@
                         render: function(data, type, row, meta) {
                             return `<p class="pre-line">${data}</p>`;
                         }
+                    },
+                    {
+                        data: 'use_date'
                     },
                     {
                         data: 'request_approve',
