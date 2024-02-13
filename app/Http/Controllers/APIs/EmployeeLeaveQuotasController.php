@@ -17,8 +17,16 @@ class EmployeeLeaveQuotasController extends Controller
 
     public function employeeLeaveQuotas(Request $request)
     {
-        $data = $request->all();
-        $leaveQuotas = $this->employeeLeaveQuotasRepository->employeeLeaveQuotas($data);
-        return response()->json($leaveQuotas);
+        try {
+            $data = $request->all();
+            $leaveQuotas = $this->employeeLeaveQuotasRepository->employeeLeaveQuotas($data);
+            return response()->json($leaveQuotas);
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::leaveQuotase_error_statusCode;
+            $result['errCode'] = ApiStatus::leaveQuotase_error_status;
+            $result['errDesc'] = ApiStatus::leaveQuotase_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
     }
 }

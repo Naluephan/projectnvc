@@ -18,31 +18,73 @@ class EmployeeLeaveQuotasSeeder extends Seeder
         DB::table('employee_leave_quotas')->insert([
             [
                 'leave_type_id' => 1,
+                'emp_id' => 1,
                 'quota' => 30,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 2,
+                'emp_id' => 1,
                 'quota' => 3,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 3,
+                'emp_id' => 1,
                 'quota' => 12,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 4,
+                'emp_id' => 1,
                 'quota' => 15,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 5,
+                'emp_id' => 1,
                 'quota' => 5,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 6,
+                'emp_id' => 1,
+                'quota' => 6,
+                'year_quota' => 2024,
+            ],
+            [
+                'leave_type_id' => 1,
+                'emp_id' => 2,
+                'quota' => 30,
+                'year_quota' => 2024,
+            ],
+            [
+                'leave_type_id' => 2,
+                'emp_id' => 2,
+                'quota' => 3,
+                'year_quota' => 2024,
+            ],
+            [
+                'leave_type_id' => 3,
+                'emp_id' => 2,
+                'quota' => 6,
+                'year_quota' => 2024,
+            ],
+            [
+                'leave_type_id' => 4,
+                'emp_id' => 2,
+                'quota' => 15,
+                'year_quota' => 2024,
+            ],
+            [
+                'leave_type_id' => 5,
+                'emp_id' => 2,
+                'quota' => 5,
+                'year_quota' => 2024,
+            ],
+            [
+                'leave_type_id' => 6,
+                'emp_id' => 2,
                 'quota' => 6,
                 'year_quota' => 2024,
             ],
