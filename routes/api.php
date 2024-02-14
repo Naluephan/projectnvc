@@ -21,7 +21,7 @@ Route::group(
     ],
     function () {
 
-        Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::group(['middleware' => 'custom-sanctum'], function () {
             //test metohd
             Route::post('/test/numbers', function () {
                 return response()->json([1, 2, 3, 4, 5]);

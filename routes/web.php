@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,8 +37,21 @@ Route::group([
 
 Route::get('/tokens/create', function (Request $request) {
 //    $token = $request->user()->createToken('ehr-api');
-    $token = User::find(1)->createToken('ehr-api');
-    return ['token' => $token->plainTextToken];
+//    $token = User::find(1)->createToken('ehr-api');
+    $user = User::find(1);
+    $tokenPlain = 'ehr-api' . '|' . uniqid(); // Generate a unique part for the token to ensure it's unique
+    $encryptedToken = Crypt::encrypt($tokenPlain); // Encrypt the token or part of it as per your custom logic
+
+    // Save the encrypted token or its reference in the database
+    // This could be directly in your CustomPersonalAccessToken model or another way you've structured it
+    $tokenRecord = $user->tokens()->create([
+        'name' => 'ehr-api',
+        'token' => hash('sha256', $tokenPlain),
+        'abilities' => ['*'],
+    ]);
+
+    return ['token' => $encryptedToken];
+//    return ['token' => $token->plainTextToken];
 });
 
 Route::get('/import', [App\Http\Controllers\ImportExcelController::class, 'viewImport'])->name('import.view');
