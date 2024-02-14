@@ -31,25 +31,25 @@ class EmployeeLeaveQuotasSeeder extends Seeder
             [
                 'leave_type_id' => 3,
                 'emp_id' => 1,
-                'quota' => 12,
+                'quota' => 6,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 4,
                 'emp_id' => 1,
-                'quota' => 15,
+                'quota' => 98,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 5,
                 'emp_id' => 1,
-                'quota' => 5,
+                'quota' => 60,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 6,
                 'emp_id' => 1,
-                'quota' => 6,
+                'quota' => 30,
                 'year_quota' => 2024,
             ],
             [
@@ -67,25 +67,25 @@ class EmployeeLeaveQuotasSeeder extends Seeder
             [
                 'leave_type_id' => 3,
                 'emp_id' => 2,
-                'quota' => 6,
+                'quota' => 2,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 4,
                 'emp_id' => 2,
-                'quota' => 15,
+                'quota' => 98,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 5,
                 'emp_id' => 2,
-                'quota' => 5,
+                'quota' => 60,
                 'year_quota' => 2024,
             ],
             [
                 'leave_type_id' => 6,
                 'emp_id' => 2,
-                'quota' => 6,
+                'quota' => 30,
                 'year_quota' => 2024,
             ],
         ]);

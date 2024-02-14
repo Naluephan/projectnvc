@@ -99,10 +99,18 @@ class ApiStatus
       public const rewardCoin_error_status = "rewardCoin Error";
       public const rewardCoin_errDesc = "Please check the information again.";
 
-      // employeeLeaveQuotas
-     public const leaveQuotase_error_statusCode = "500";
-     public const leaveQuotase_error_status = "EmployeeLeaveQuotas Error";
-     public const leaveQuotase_errDesc = "Error EmployeeLeaveQuotas";
+
+      /////////// Employee Leave Quotas ///////////
+      public const leaveQuotase_success_status = "Send data successfully";
+      public const leaveQuotase_success_statusCode = "00";
+      // Unsuccessful
+      public const leaveQuotase_failed_status = "This information was not found in data.";
+      public const leaveQuotase_failed_statusCode = "200";
+      public const leaveQuotase_failed_Desc = "Please check the information again.";
+      //Catch
+      public const leaveQuotase_error_statusCode = "500";
+      public const leaveQuotase_error_status = "rewardCoin Error";
+      public const leaveQuotase_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus

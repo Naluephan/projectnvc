@@ -20,7 +20,17 @@ class EmployeeLeaveQuotasController extends Controller
         try {
             $data = $request->all();
             $leaveQuotas = $this->employeeLeaveQuotasRepository->employeeLeaveQuotas($data);
-            return response()->json($leaveQuotas);
+            if (count($leaveQuotas) > 0 ){
+                $result['status'] = ApiStatus::leaveQuotase_success_status;
+                $result['statusCode'] = ApiStatus::leaveQuotase_success_statusCode;
+                $result['data'] = $leaveQuotas;
+               }
+               else{
+                $result['status'] = ApiStatus::leaveQuotase_failed_status;
+                $result['errCode'] = ApiStatus::leaveQuotase_failed_statusCode;
+                $result['errDesc'] = ApiStatus::leaveQuotase_failed_Desc;
+                $result['message'] = $leaveQuotas;
+               }
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::leaveQuotase_error_statusCode;
             $result['errCode'] = ApiStatus::leaveQuotase_error_status;

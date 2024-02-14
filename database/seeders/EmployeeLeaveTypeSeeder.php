@@ -16,37 +16,37 @@ class EmployeeLeaveTypeSeeder extends Seeder
     public function run()
     {
         DB::table('emp_leave_type')->delete();
-        
+
         DB::table('emp_leave_type')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'leave_type_name' => 'ลาป่วย',
             ),
-            1 => 
-            array ( 
+            1 =>
+            array (
                 'id' => 2,
                 'leave_type_name' => 'ลากิจ',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'leave_type_name' => 'ลาพักร้อน',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'leave_type_name' => 'ลาคลอด',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
-                'leave_type_name' => 'มาสาย',
+                'leave_type_name' => 'ลาปฏิบัติหน้าที่เกณฑ์ทหาร',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
-                'leave_type_name' => 'ลาอื่นๆ',
+                'leave_type_name' => 'ลาบวช',
             ),
         ));
     }
