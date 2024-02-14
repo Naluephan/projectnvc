@@ -122,5 +122,8 @@ Route::group(
         Route::post('salary/request/slip/list', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'getAll'])->name('salary.request.slip.list');
         Route::post('salary/request/slip/approve', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'approve'])->name('salary.request.slip.approve');
         Route::post('salary/request/slip/create', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'salary_create_request_slip'])->name('salary.create.request.slip');
+
+        //API Check Token
+        Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
     }
 );

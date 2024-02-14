@@ -105,7 +105,7 @@ class EmployeeController extends Controller
         //    $result = $userData['userData'];
 
         switch($query ['company_id']){
-            case 1: 
+            case 1:
                 $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/drjel/". $query ['image']:null;
                 break;
             case 2:
@@ -120,7 +120,7 @@ class EmployeeController extends Controller
             default:
                 $query ['image'] = null;
         }
-        
+
             $result =[
                 'id' => $query ['id'],
                 'company_id' => $query ['company_id'],
@@ -158,8 +158,8 @@ class EmployeeController extends Controller
                 'access_token' => $query ['access_token'],
 
             ];
-            
-        
+
+
            if($result != null ){
             $result['status'] = ApiStatus::login_success_status;
             $result['statusCode'] = ApiStatus::login_success_statusCode;
@@ -188,7 +188,7 @@ class EmployeeController extends Controller
                 if (isset($query)) {
                     $result['status'] = ApiStatus::pin_success_status;
                     $result['statusCode'] = ApiStatus::pin_success_statusCode;
-                
+
                 }else{
                     $result['status'] = ApiStatus::pin_failed_status;
                     $result['statusCode'] = ApiStatus::pin_failed_statusCode;
@@ -212,7 +212,7 @@ class EmployeeController extends Controller
             'company_id' => $company_id,
             'department_id' => $department_id,
         ];
-        
+
         $data = $this->employeeRepository->getEmployeesByCompanyAndDepartment($param);
         $createdData = [];
         foreach ($data as $empData) {
@@ -235,7 +235,7 @@ class EmployeeController extends Controller
         }
         return $data;
     }
-            
+
     // public function empLogout(Request $request)
     // {
     //     $logout = $request->user()->currentAccessToken()->delete();
@@ -255,4 +255,27 @@ class EmployeeController extends Controller
     //     }
     //     return json_encode($result);
     // }
+        public function checkToken(Request $request)
+        {
+            try {
+                $checkToken = DB::table('personal_access_tokens')
+                    ->where('id', '=', $request->id)
+                    ->get();
+                if (count($checkToken) > 0) {
+                    $result['status'] = ApiStatus::checkToken_success_status;
+                    $result['statusCode'] = ApiStatus::checkToken_success_statusCode;
+                } else {
+                    $result['status'] = ApiStatus::checkToken_failed_status;
+                    $result['errCode'] = ApiStatus::checkToken_failed_statusCode;
+                    $result['errDesc'] = ApiStatus::checkToken_failed_Desc;
+                    $result['message'] = $checkToken;
+                }
+            } catch (\Exception $ex) {
+                $result['status'] = ApiStatus::checkToken_error_statusCode;
+                $result['errCode'] = ApiStatus::checkToken_error_status;
+                $result['errDesc'] = ApiStatus::checkToken_errDesc;
+                $result['message'] = $ex->getMessage();
+            }
+            return $result;
+        }
     }

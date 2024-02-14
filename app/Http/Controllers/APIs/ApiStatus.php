@@ -111,6 +111,18 @@ class ApiStatus
       public const leaveQuotase_error_statusCode = "500";
       public const leaveQuotase_error_status = "rewardCoin Error";
       public const leaveQuotase_errDesc = "Please check the information again.";
+
+      /////////// Check Token ///////////
+      public const checkToken_success_status = "Send data successfully";
+      public const checkToken_success_statusCode = "00";
+      // Unsuccessful
+      public const checkToken_failed_status = "This information was not found in data.";
+      public const checkToken_failed_statusCode = "200";
+      public const checkToken_failed_Desc = "Please check the information again.";
+      //Catch
+      public const checkToken_error_statusCode = "500";
+      public const checkToken_error_status = "rewardCoin Error";
+      public const checkToken_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus
