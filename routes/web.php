@@ -101,3 +101,6 @@ Route::get('/saraly/template/detail/add', [App\Http\Controllers\SalaryTemplateDe
 //salary request slip
 Route::get('/request/saraly/slip', [App\Http\Controllers\SalaryRequestSlipControlle::class, 'list'])->name('request.saraly.slip');
 
+//Emp Leave
+Route::get('/empleave/list', [App\Http\Controllers\EmployeeLeaveController::class, 'list'])->name('empleave.list');
+

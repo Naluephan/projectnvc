@@ -17,29 +17,24 @@
 {{-- end header --}}
 @section('content')
     <div class="card">
-        <!-- <div class="card-header">
+        <div class="card-header">
             <h6 class="">ตัวเลือกการค้นหา</h6>
-            <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
-                <div class="col-md-3 user_plan">
+            <div class="d-flex justify-content align-items-center row py-3 gap-3 gap-md-0">
+                <div class="col-sm-3 user_plan">
                     <select id="company_id" class="form-select text-capitalize select2 list-filter">
                         <option value="-1"> -- บริษัท -- </option>
-{{--                        @foreach ($companies as $company)--}}
-{{--                            <option value="{{ $company->id }}">{{ $company->name_th }}</option>--}}
-{{--                        @endforeach--}}
-                        <option value="0">ทดลองงาน</option>
+                        @foreach ($companies as $company)
+                           <option value="{{ $company->id }}">{{ $company->name_th }}</option>
+                        @endforeach
                     </select>
                 </div>
-                <div class="col-md-3 user_role">
-                    <select id="department_id" class="form-select text-capitalize select2">
-                        <option value=""> -- แผนก --</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Author">Author</option>
-                        <option value="Editor">Editor</option>
-                        <option value="Maintainer">Maintainer</option>
-                        <option value="Subscriber">Subscriber</option>
+                <div class="col-sm-3">
+                    <select id="department_id" class="form-select text-capitalize select2 list-filter">
+                        <option value="-1"> -- แผนก --</option>
+                        
                     </select>
                 </div>
-                <div class="col-md-3 user_role">
+                <!-- <div class="col-md-3 user_role">
                     <select id="position_id" class="form-select text-capitalize select2">
                         <option value=""> -- ดำแหน่ง --</option>
                         <option value="Admin">Admin</option>
@@ -56,9 +51,9 @@
                         <option value="Active" class="text-capitalize">Active</option>
                         <option value="Inactive" class="text-capitalize">Inactive</option>
                     </select>
-                </div>
+                </div> -->
             </div>
-        </div> -->
+        </div>
         <div class="card-body ">
         <button class="btn btn-sm rounded-pill btn-add btn-danger" data-ac="add"><em class="fas fa-plus"></em></button>
             <table class="table dt-responsive w-100 nowrap" id="data_tables" aria-describedby="data_tables">
@@ -124,7 +119,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary save-position">บันทึก</button>
+                <button type="button" class="btn btn-success save-position">บันทึก</button>
             </div>
         </div>
     </div>
@@ -143,7 +138,12 @@
                 serverMethod: 'post',
                 ajax: {
                     url: '{{ route('api.v1.position.list') }}',
-                    type: 'POST'
+                    type: 'POST',
+                    data: function(d) {
+                            d._token = "{{ csrf_token() }}";
+                            d.company_id = $("#company_id").val();
+                            d.department_id = $("#department_id").val();
+                        },
                 },
                 columns: [
                     {
@@ -342,6 +342,41 @@
                     }
                 })
             })
+
+            $(document).on('change', '.list-filter', function() {
+                    list_table.ajax.reload();
+                })
+
+            $(document).ready(function() {
+                    function getDepartment() {
+                        let data = {
+                            "_token": "{{ csrf_token() }}",
+                            "company_id": $("#company_id").val(),
+                        };
+                        $.ajax({
+                            url: "{{ route('api.v1.department.filter') }}",
+                            data: data,
+                            type: "post",
+                            dataType: "json",
+                            success: function(response) {
+                                $("#department_id").empty();
+                                $("#department_id").append(
+                                    '<option value="-1"> -- แผนก --</option>'
+                                );
+                                response.data.forEach(function(item) {
+                                    $("#department_id").append(
+                                        `<option value="${item.id}">${item.name_th}</option>`
+                                    );
+                                });
+                            }
+                        });
+                    }
+                    getDepartment();
+                    $(document).on('change', '#company_id', function() {
+                        getDepartment();
+                    });
+                });
+
 
         }); 
     </script>

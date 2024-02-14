@@ -17,19 +17,18 @@
 {{-- end header --}}
 @section('content')
     <div class="card">
-        <!-- <div class="card-header">
+        <div class="card-header">
             <h6 class="">ตัวเลือกการค้นหา</h6>
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-3 user_plan">
                     <select id="company_id" class="form-select text-capitalize select2 list-filter">
                         <option value="-1"> -- บริษัท -- </option>
-{{--                        @foreach ($companies as $company)--}}
-{{--                            <option value="{{ $company->id }}">{{ $company->name_th }}</option>--}}
-{{--                        @endforeach--}}
-                        <option value="0">ทดลองงาน</option>
+                        @foreach ($companies as $company)
+                            <option value="{{ $company->id }}">{{ $company->name_th }}</option>
+                        @endforeach
                     </select>
                 </div>
-                <div class="col-md-3 user_role">
+                <!-- <div class="col-md-3 user_role">
                     <select id="department_id" class="form-select text-capitalize select2">
                         <option value=""> -- แผนก --</option>
                         <option value="Admin">Admin</option>
@@ -56,9 +55,9 @@
                         <option value="Active" class="text-capitalize">Active</option>
                         <option value="Inactive" class="text-capitalize">Inactive</option>
                     </select>
-                </div>
+                </div> -->
             </div>
-        </div> -->
+        </div>
         <div class="card-body ">
         <button class="btn btn-sm rounded-pill btn-add btn-danger" data-ac="add"><em class="fas fa-plus"></em></button>
             <table class="table dt-responsive w-100 nowrap" id="data_tables" aria-describedby="data_tables">
@@ -115,7 +114,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary save-department">บันทึก</button>
+                <button type="button" class="btn btn-success save-department">บันทึก</button>
             </div>
         </div>
     </div>
@@ -126,6 +125,8 @@
 @section('js')
     <script>
     $(() => {
+       
+                
         var list_table = $("#data_tables").DataTable({
                 pageLength: 25,
                 responsive: true,
@@ -134,7 +135,11 @@
                 serverMethod: 'post',
                 ajax: {
                     url: '{{ route('api.v1.department.list') }}',
-                    type: 'POST'
+                    type: 'POST',
+                    data: function(d) {
+                            d._token = "{{ csrf_token() }}";
+                            d.company_id = $("#company_id").val();
+                        },
                 },
                 columns: [
                     {
@@ -165,6 +170,10 @@
                 "dom": '<"top my-1 mr-1"lf>rt<"bottom d-flex  w-100 justify-content-between px-1 mt-3" ip  ><"clear">'
             });
 
+            $(document).on('change', '.list-filter', function() {
+                    list_table.ajax.reload();
+                })
+                
             var department_modal = $("#departmentModal");
             $(document).on('click', '.btn-add', function() {
                 department_modal.modal('show')
@@ -244,6 +253,8 @@
                     });
                 }
             })
+
+         
 
             $(document).on('click', '.btn-edit', function() {
                 let id = $(this).data('id');

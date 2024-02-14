@@ -230,7 +230,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary save-tas">บันทึก</button>
+                <button type="button" class="btn btn-success save-tas">บันทึก</button>
             </div>
         </div>
     </div>

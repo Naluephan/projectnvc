@@ -58,9 +58,9 @@ class SalaryRequestSlipControlle extends Controller
         DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
             $this->salaryRequestSlipRepository->update($id, $data);
+            $result['status'] = "Success";
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
@@ -74,15 +74,24 @@ class SalaryRequestSlipControlle extends Controller
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
         try {
-            $this->salaryRequestSlipRepository->create($data);
-            DB::commit();
+            $query = $this->salaryRequestSlipRepository->create($data);
+            if(isset($query)) {
+                $result['status'] = ApiStatus::requestSlip_success_status;
+                $result['statusCode'] = ApiStatus::requestSlip_success_statusCode;
+                DB::commit();
+               }else{
+                $result['status'] = ApiStatus::requestSlip_failed_status;
+                $result['errCode'] = ApiStatus::requestSlip_failed_statusCode;
+                $result['errDesc'] = ApiStatus::requestSlip_failed_Desc;
+                DB::rollBack(); 
+               }
         } catch (\Exception $ex){
-            $result['status'] = "Failed";
+            $result['status'] = ApiStatus::requestSlip_error_statusCode;
+            $result['errCode'] = ApiStatus::requestSlip_error_status;
+            $result['errDesc'] = ApiStatus::requestSlip_errDesc;
             $result['message'] = $ex->getMessage();
-            DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 }

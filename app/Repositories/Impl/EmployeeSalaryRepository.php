@@ -20,7 +20,7 @@ class EmployeeSalaryRepository extends MasterRepository implements EmployeeSalar
             ['emp_id' ,'=', $param['emp_id']],
             ['month' ,'=', $param['month']],
             ['year' ,'=', $param['year']],
-        ])->first();
+        ])->get();
         return $data;
     }
     

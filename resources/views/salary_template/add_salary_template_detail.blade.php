@@ -98,7 +98,7 @@
                 success: function(response) {
                     arrayItem = response;
                     itemList();
-                    console.log(arrayItem);
+                    //console.log(arrayItem);
                 }
             });
 
@@ -260,23 +260,24 @@
                     'templateId':id
                 },
                 success: function(response) {
-                if (response.status == 'Success') {
-                        Swal.fire({
-                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        toast: true
-                    });
-                    } else {
-                        Swal.fire({
-                        title: 'เกิดข้อผิดพลาด',
-                        icon: 'warning',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        toast: true
-                        })
-                    }
+                    //console.log(response.status);
+                    if (response.status == 'Success') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    })
+                                }
                 }
             });       
 

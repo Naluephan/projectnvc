@@ -108,4 +108,83 @@ class EmployeeLeaveController extends Controller
     
     }
 
+    ///For Web
+    public function getAll(Request $request){
+        $postData = $request->all();
+        ## Read value
+        $draw = $postData['draw'];
+        $start = $postData['start'];
+        $rowperpage = $postData['length']; // Rows display per page
+
+        $columnIndex = $postData['order'][0]['column']; // Column index
+        $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+        $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+        $searchValue = $postData['search']['value']; // Search value
+        $param = [
+            "columnName" => $columnName,
+            "columnSortOrder" => $columnSortOrder,
+            "searchValue" => $searchValue,
+            "start" => $start,
+            "rowperpage" => $rowperpage,
+        ];
+
+
+        // Total records
+        $totalRecordswithFilter = $totalRecords = $this->employeeLeaveRepository->getAll($param)->count();
+
+        if (strlen($searchValue) > 0) {
+            $totalRecordswithFilter = $this->employeeLeaveRepository->getAll($param)->count();
+        }
+
+        // Fetch records
+        $records = $this->employeeLeaveRepository->paginate($param);
+
+        return [
+            "aaData" => $records,
+            "draw" => $draw,
+            "iTotalRecords" => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecordswithFilter,
+        ];
+    }
+
+    public function delete(Request $request)
+    {
+        DB::beginTransaction();
+        $id = $request->id;
+        $result['status'] = "Success";
+        try {
+            $this->employeeLeaveRepository->delete($id);
+            DB::commit();
+        } catch (\Exception $ex){
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return json_encode($result);
+    }
+
+    public function getById(Request $request)
+    {
+        $id = $request->id;
+        return $this->employeeLeaveRepository->getLeaveById($id);
+    }
+
+    public function approveStatusLeave(Request $request)
+    {
+        DB::beginTransaction();
+        $id = $request->id;
+        $data = [
+            'status_hr__approve' => 1,
+        ];
+        try {
+            $this->employeeLeaveRepository->update($id,$data);
+            $result['status'] = "Success";
+            DB::commit();
+        } catch (\Exception $ex){
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return json_encode($result);
+    }
 }

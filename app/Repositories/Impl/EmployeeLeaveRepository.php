@@ -44,16 +44,72 @@ class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveI
                     'days' => $param['days'],
                     'month' => $param['month'],
                     'year' => $param['year'],
-                    'leave_img1' => isset($param['leave_img1']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img1'] : null,
-                    'leave_img2' => isset($param['leave_img2']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img2'] : null,
-                    'leave_img3' => isset($param['leave_img3']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img3'] : null,
-                    'leave_img4' => isset($param['leave_img4']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img4'] : null,
-                    'leave_img5' => isset($param['leave_img5']) ? "https://newhr.organicscosme.com/uploads/images/leave_emp/".$param['leave_img5'] : null,
+                    'leave_img1' => isset($param['leave_img1']) ? $param['leave_img1'] : null,
+                    'leave_img2' => isset($param['leave_img2']) ? $param['leave_img2'] : null,
+                    'leave_img3' => isset($param['leave_img3']) ? $param['leave_img3'] : null,
+                    'leave_img4' => isset($param['leave_img4']) ? $param['leave_img4'] : null,
+                    'leave_img5' => isset($param['leave_img5']) ? $param['leave_img5'] : null,
                 ]
                
             );
 
         return $empLeave;
+    }
+
+    public function getAll($params = null) : Collection
+    {
+
+        return $this->model
+            ->join('employees', 'employees.id', '=', 'employee_leaves.emp_id')
+            ->where(function($q) use ($params){
+                if(isset($params['searchValue'])){
+                    $q->where('employees.employee_code','like','%'.$params['searchValue'].'%');
+                    $q->orWhere('employees.f_name','like','%'.$params['searchValue'].'%');
+                    $q->orWhere('employees.l_name','like','%'.$params['searchValue'].'%');
+                }
+            })
+            // ->where(function($q) use ($params){
+            //     if (isset($param['searchValue'])) {
+            //         $q->whereHas('emp', function ($ql) use ($params) {
+            //             $ql->where('employees.employee_code','like','%'.$params['searchValue'].'%');
+            //         });
+            //     }
+            // })
+            ->with('emp','leaveType')  
+            ->get();
+        }
+        public function paginate($params): Collection
+    {
+        return $this->model
+        ->join('employees', 'employees.id', '=', 'employee_leaves.emp_id')
+        ->where(function($q) use ($params){
+            if(isset($params['searchValue'])){
+                $q->where('employees.employee_code','like','%'.$params['searchValue'].'%');
+                $q->orWhere('employees.f_name','like','%'.$params['searchValue'].'%');
+                $q->orWhere('employees.l_name','like','%'.$params['searchValue'].'%');
+            }
+        })
+        // ->where(function($q) use ($params){
+        //     if (isset($param['searchValue'])) {
+        //         $q->whereHas('emp', function ($ql) use ($params) {
+        //             $ql->where('employees.employee_code','like','%'.$params['searchValue'].'%');
+        //         });
+        //     }
+        // })
+            ->select('*')
+            ->skip($params['start'])
+            ->take($params['rowperpage'])
+            ->with('emp','leaveType')  
+            ->get();
+    }
+
+    public function getLeaveById($id)
+    {
+        $data = $this->model
+        ->where('id' ,'=', $id)
+        ->with('emp','leaveType')
+        ->first();
+        return $data;
     }
 }
 

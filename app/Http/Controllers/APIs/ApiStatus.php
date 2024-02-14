@@ -99,6 +99,17 @@ class ApiStatus
       public const rewardCoin_error_status = "rewardCoin Error";
       public const rewardCoin_errDesc = "Please check the information again.";
 
+      /////////// Response Code and  requestSlipSalary ///////////
+      public const requestSlip_success_status = "Send data successfully";
+      public const requestSlip_success_statusCode = "00";
+      // Unsuccessful
+      public const requestSlip_failed_status = "This information was not found in data.";
+      public const requestSlip_failed_statusCode = "200";
+      public const requestSlip_failed_Desc = "Please check the information again.";
+      //Catch
+      public const requestSlip_error_statusCode = "500";
+      public const requestSlip_error_status = "requestSlip Error";
+      public const requestSlip_errDesc = "Please check the information again.";
 
       /////////// Employee Leave Quotas ///////////
       public const leaveQuotase_success_status = "Send data successfully";
@@ -109,8 +120,8 @@ class ApiStatus
       public const leaveQuotase_failed_Desc = "Please check the information again.";
       //Catch
       public const leaveQuotase_error_statusCode = "500";
-      public const leaveQuotase_error_status = "rewardCoin Error";
-      public const leaveQuotase_errDesc = "Please check the information again.";
+      public const leaveQuotase_error_status = "EmployeeLeaveQuotas Error";
+      public const leaveQuotase_errDesc = "Error EmployeeLeaveQuotas";
 
       /////////// Check Token ///////////
       public const checkToken_success_status = "Send data successfully";

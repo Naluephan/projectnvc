@@ -27,4 +27,12 @@ class EmployeeLeave extends Model
         'year',
         'days',
     ];
+
+    public function emp(){
+        return $this->belongsTo(Employee::class,'emp_id','id');
+    }
+
+    public function leaveType(){
+        return $this->belongsTo(EmployeeLeaveType::class,'leave_type_id','id');
+    }
 }

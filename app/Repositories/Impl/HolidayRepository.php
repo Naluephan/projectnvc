@@ -23,31 +23,21 @@ class HolidayRepository extends MasterRepository implements HolidayInterface
         return $this->model
             ->where(function($q) use ($params){
                 if(isset($params['searchValue'])){
-                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
+                    $q->where('holiday_name','like','%'.$params['searchValue'].'%');
                 }
-                if(isset($params['id'])){
-                    $q->where('id','-',$params['id']);
-                }
-//                $q->whereHas('sdqDetails',function($q2) use ($params){
-//                    $q2->where();
-//                });
+                
             })
             ->get();
         }
         public function paginate($params): Collection
     {
         return $this->model
-            ->where(function($q) use ($params){
-                if(isset($params['searchValue'])){
-                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
-                }
-                if(isset($params['id'])){
-                    $q->where('id','-',$params['id']);
-                }
-//                $q->whereHas('sdqDetails',function($q2) use ($params){
-//                    $q2->where();
-//                });
-            })
+        ->where(function($q) use ($params){
+            if(isset($params['searchValue'])){
+                $q->where('holiday_name','like','%'.$params['searchValue'].'%');
+            }
+            
+        })
             ->select('*')
             ->skip($params['start'])
             ->take($params['rowperpage'])

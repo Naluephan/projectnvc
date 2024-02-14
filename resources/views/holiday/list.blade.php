@@ -146,7 +146,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary save-holiday">บันทึก</button>
+                <button type="button" class="btn btn-success save-holiday">บันทึก</button>
             </div>
         </div>
     </div>

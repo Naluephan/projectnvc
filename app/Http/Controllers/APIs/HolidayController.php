@@ -57,9 +57,9 @@ class HolidayController extends Controller
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
         try {
             $this->holidayRepository->create($data);
+            $result['status'] = "Success";
             DB::commit();
         } catch (\Exception $ex){
             $result['status'] = "Failed";

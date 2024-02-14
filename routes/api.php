@@ -125,5 +125,11 @@ Route::group(
 
         //API Check Token
         Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
+
+        //API emp leave
+        Route::post('emp/leave/list', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'getAll'])->name('emp.leave.list');
+        Route::post('emp/leave/delete', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'delete'])->name('emp.leave.delete');
+        Route::post('emp/leave/by/id', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'getById'])->name('emp.leave.by.id');
+        Route::post('emp/approve/status', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'approveStatusLeave'])->name('emp.approve.status');
     }
 );

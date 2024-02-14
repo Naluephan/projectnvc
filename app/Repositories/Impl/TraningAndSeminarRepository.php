@@ -21,17 +21,10 @@ class TraningAndSeminarRepository extends MasterRepository implements TraningAnd
     {
 
         return $this->model
-        ->with('tasEmps')
             ->where(function($q) use ($params){
                 if(isset($params['searchValue'])){
-                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
+                    $q->where('title','like','%'.$params['searchValue'].'%');
                 }
-                if(isset($params['id'])){
-                    $q->where('id','-',$params['id']);
-                }
-//                $q->whereHas('sdqDetails',function($q2) use ($params){
-//                    $q2->where();
-//                });
             })
             ->get();
         }
@@ -40,14 +33,8 @@ class TraningAndSeminarRepository extends MasterRepository implements TraningAnd
         return $this->model
             ->where(function($q) use ($params){
                 if(isset($params['searchValue'])){
-                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
+                    $q->where('title','like','%'.$params['searchValue'].'%');
                 }
-                if(isset($params['id'])){
-                    $q->where('id','-',$params['id']);
-                }
-//                $q->whereHas('sdqDetails',function($q2) use ($params){
-//                    $q2->where();
-//                });
             })
             ->select('*')
             ->skip($params['start'])

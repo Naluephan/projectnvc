@@ -438,12 +438,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'การลงเวลาทำงาน',
-                    'url'  => 'admin/settings',
+                    'url'  => '/pastecard/list',
                     'icon' => 'fas fa-fw fa-business-time',
                 ],
                 [
                     'text' => 'การลางาน',
-                    'url'  => 'admin/settings',
+                    'url'  => '/empleave/list',
                     'icon' => 'fas fa-fw fa-person-walking-arrow-right',
                     'label'       => 3,
                     'label_color' => 'hr-menu',
@@ -482,11 +482,6 @@ return [
                 //     'url'  => '/saraly/template/detail/list',
                 //     'icon' => 'fas fa-fw fa-file-lines',
                 // ],
-                [
-                    'text' => 'รายละเอียดแม่แบบเงินเดือน',
-                    'url'  => '/saraly/template/detail/list',
-                    'icon' => 'fas fa-fw fa-file-lines',
-                ],
                 [
                     'text' => 'แจ้งขอสลิปเงินเดือนย้อนหลัง',
                     'url'  => '/request/saraly/slip',

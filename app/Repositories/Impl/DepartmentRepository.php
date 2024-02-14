@@ -23,17 +23,14 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
         return $this->model
             ->where(function($q) use ($params){
                 if(isset($params['searchValue'])){
-                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
+                    $q->where('name_th','like','%'.$params['searchValue'].'%');
+                    $q->orWhere('name_en','like','%'.$params['searchValue'].'%');
                 }
-                if(isset($params['id'])){
-                    $q->where('id','-',$params['id']);
-                }
+            })
+            ->where(function ($q1) use ($params) {
                 if(isset($params['company_id']) && $params['company_id'] >= 1){
-                    $q->where('company_id','=',$params['company_id']);
+                    $q1->where('company_id','=',$params['company_id']);
                 }
-//                $q->whereHas('sdqDetails',function($q2) use ($params){
-//                    $q2->where();
-//                });
             })
             ->with('company') 
             ->get();
@@ -41,17 +38,17 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
         public function paginate($params): Collection
     {
         return $this->model
-            ->where(function($q) use ($params){
-                if(isset($params['searchValue'])){
-                    $q->where('new_detail','like','%'.$params['searchValue'].'%');
-                }
-                if(isset($params['id'])){
-                    $q->where('id','-',$params['id']);
-                }
-//                $q->whereHas('sdqDetails',function($q2) use ($params){
-//                    $q2->where();
-//                });
-            })
+        ->where(function($q) use ($params){
+            if(isset($params['searchValue'])){
+                $q->where('name_th','like','%'.$params['searchValue'].'%');
+                $q->orWhere('name_en','like','%'.$params['searchValue'].'%');
+            }
+        })
+        ->where(function ($q1) use ($params) {
+            if(isset($params['company_id']) && $params['company_id'] >= 1){
+                $q1->where('company_id','=',$params['company_id']);
+            }
+        })
             ->with('company')
             ->select('*')
             ->skip($params['start'])

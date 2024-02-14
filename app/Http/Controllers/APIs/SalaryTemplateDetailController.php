@@ -91,7 +91,7 @@ class SalaryTemplateDetailController extends Controller
                 }
             }
             DB::commit();
-            return json_encode($result);
+            return $result;
         } catch (\Exception $ex){
             $result['status'] = "Failed"; 
             $result['message'] = $ex->getMessage();

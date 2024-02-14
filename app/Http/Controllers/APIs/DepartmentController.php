@@ -33,6 +33,9 @@ class DepartmentController extends Controller
             "start" => $start,
             "rowperpage" => $rowperpage,
         ];
+        if(isset($postData['company_id'])){
+            $param['company_id'] = $postData['company_id'];
+        }
 
 
         // Total records
