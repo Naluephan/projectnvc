@@ -266,7 +266,7 @@ class EmployeeController extends Controller
                     $result['statusCode'] = ApiStatus::checkToken_success_statusCode;
                 } else {
                     $result['status'] = ApiStatus::checkToken_failed_status;
-                    $result['errCode'] = ApiStatus::checkToken_failed_statusCode;
+                    $result['statusCode'] = ApiStatus::checkToken_failed_statusCode;
                     $result['errDesc'] = ApiStatus::checkToken_failed_Desc;
                     $result['message'] = $checkToken;
                 }
