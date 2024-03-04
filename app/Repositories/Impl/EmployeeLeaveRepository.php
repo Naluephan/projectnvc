@@ -21,11 +21,15 @@ class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveI
     }
     // ---------- empLeave  -------------
     public function empLeave($param){
-        $data = $this->model->where([
-            ['emp_id' ,'=', $param['emp_id']],
-            ['month' ,'=', $param['month']],
-            ['year' ,'=', $param['year']],
-        ])->get();
+        // $data = $this->model->where([
+        //     ['emp_id' ,'=', $param['emp_id']],
+        //     ['month' ,'=', $param['month']],
+        //     ['year' ,'=', $param['year']],
+        // ])->get();
+        $data = $this->model->whereRaw("DATE_FORMAT(leave_date_start, '%Y-%m') BETWEEN ? AND ?", [$param['startDate'], $param['endDate']])
+                        ->where('emp_id', $param['emp_id'])
+                        ->get();
+
         return $data;
     }
 
