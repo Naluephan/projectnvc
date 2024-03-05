@@ -24,6 +24,7 @@ class EmployeeSalaryRepository extends MasterRepository implements EmployeeSalar
         $data = $this->model->whereRaw("CONCAT(YEAR, '-', LPAD(`month`, 2, '0')) BETWEEN ? AND ?", [$param['startMonth'], $param['endMonth']])
         ->orderBy('YEAR')
         ->orderBy('month')
+        ->where('emp_id', $param['emp_id'])
         ->get();
         return $data;
     }
