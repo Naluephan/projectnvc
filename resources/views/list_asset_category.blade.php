@@ -12,6 +12,14 @@
     .dataTables_length {
         position: absolute;
     }
+
+    .position {
+    position: absolute;
+    top: 50%;
+    right: 100px; /* ปรับตำแหน่งตามที่ต้องการ */
+    transform: translateY(-50%);
+    z-index: 1; /* ให้ข้อความอยู่ด้านบนของ input */
+}
 </style>
 @stop
 {{-- end header --}}
@@ -69,9 +77,26 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
-    <div class="col-5">col-7</div>
+    <div class="col-5">
+        <h6>หมวดหมู่ทรัพย์สิน</h6>
+        <div class="row">
+            <div class="col-10">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control rounded-pill" disabled>
+                    <label class="position">#</label>
+                </div>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-sm rounded-pill btn-add btn-success"><em class="fas fa-edit"></em></button>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-sm rounded-pill btn-add btn-danger"><em class="fas fa-trash-alt"></em></button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-outline-success rounded-pill" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มหมวดหมู่</button>
+    </div>
 </div>
 
 
