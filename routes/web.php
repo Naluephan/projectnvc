@@ -104,3 +104,6 @@ Route::get('/request/saraly/slip', [App\Http\Controllers\SalaryRequestSlipContro
 //Emp Leave
 Route::get('/empleave/list', [App\Http\Controllers\EmployeeLeaveController::class, 'list'])->name('empleave.list');
 
+//Config
+Route::get('/config/list', [App\Http\Controllers\ConfigController::class, 'listAsset'])->name('config.list');
+

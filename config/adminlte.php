@@ -491,6 +491,12 @@ return [
         ],
         ['header' => 'ข้อมูลส่วนตัว'],
         [
+            'text' => 'การตั้งค่า',
+            'url'  => '/config/list',
+            'icon' => 'fas fa-fw fa-user',
+
+        ],
+        [
             'text' => 'ข้อมูลส่วนตัว',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
