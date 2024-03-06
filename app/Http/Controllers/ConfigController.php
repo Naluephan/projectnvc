@@ -10,4 +10,8 @@ class ConfigController extends Controller
     {
         return view('list_asset_category');
     }
+    public function listSupply()
+    {
+        return view('list_supply_category');
+    }
 }

@@ -131,5 +131,13 @@ Route::group(
         Route::post('emp/leave/delete', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'delete'])->name('emp.leave.delete');
         Route::post('emp/leave/by/id', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'getById'])->name('emp.leave.by.id');
         Route::post('emp/approve/status', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'approveStatusLeave'])->name('emp.approve.status');
+
+         //API Supply Category
+         Route::post('/category/list', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getSupplyCategory'])->name('category.list');
+         Route::post('/category/create', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'create'])->name('category.create');
+        Route::post('/category/update', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'update'])->name('category.update');
+        Route::post('/category/delete', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'delete'])->name('category.delete');
+        Route::post('/category/by/id', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getById'])->name('category.by.id');
+
     }
 );

@@ -41,6 +41,8 @@ use App\Repositories\SalaryRequestSlipInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\EmployeeLeaveQuotasInterface;
 use App\Repositories\Impl\EmployeeLeaveQuotasRepository;
+use App\Repositories\Impl\SupplyCategoryRepository;
+use App\Repositories\SupplyCategoryInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -70,6 +72,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(EmployeeTimeAttendanceInterface::class, EmployeeTimeAttendanceRepository::class);
         $this->app->bind(EmployeeLeaveQuotasInterface::class, EmployeeLeaveQuotasRepository::class);
         $this->app->bind(SalaryRequestSlipInterface::class, SalaryRequestSlipRepository::class);
+        $this->app->bind(SupplyCategoryInterface::class, SupplyCategoryRepository::class);
 
     }
 
