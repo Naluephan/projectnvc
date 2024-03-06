@@ -108,4 +108,6 @@ Route::get('/empleave/list', [App\Http\Controllers\EmployeeLeaveController::clas
 Route::get('/config/list', [App\Http\Controllers\ConfigController::class, 'listAsset'])->name('config.list');
 
 Route::get('/supply/list', [App\Http\Controllers\ConfigController::class, 'listSupply'])->name('supply.list');
+//Activity and News Update  
+Route::get('/news/list', [App\Http\Controllers\NewsController::class, 'listNews'])->name('news.list');
 
