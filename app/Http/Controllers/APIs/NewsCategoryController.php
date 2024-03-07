@@ -69,4 +69,5 @@ class NewsCategoryController extends Controller
         return $this->newscategoryRepository->find($id);
     }
 
+
 }

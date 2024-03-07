@@ -6,7 +6,7 @@ return [
     'first_name'                   => 'ชื่อ',
     'last_name'                   => 'นามสกุล',
     'email'                       => 'อีเมล',
-    'username'                    => 'ผู้ใช้งาน',
+    'username'                    => 'รหัสผู้ใช้งาน',
     'tel'                         => 'เบอร์โทรศัพท์',
     'password'                    => 'รหัสผ่าน',
     'retype_password'             => 'ยืนยันรหัสผ่าน',

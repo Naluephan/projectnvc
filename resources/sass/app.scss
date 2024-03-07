@@ -134,3 +134,18 @@ body {
 .form-control:focus {
     border-color: #146e68 !important;
 }
+
+.btn-hr-orange {
+    color: #fff !important;
+    background-color: $hr-orange !important;
+    border-color: $hr-orange !important;
+    box-shadow: none;
+}
+
+.text-hr-orange {
+    color: $hr-orange !important;
+}
+
+.text-hr-green {
+    color: $hr-green !important;
+}

@@ -10,6 +10,8 @@ use App\Repositories\EmployeeInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Facades\Hash;
+
 
 class EmployeeRepository extends MasterRepository implements EmployeeInterface
 {
@@ -286,5 +288,25 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
             ->where('company_id', '=', $param['company_id'])
             ->where('department_id', '=', $param['department_id'])
             ->get();
+    }
+
+    public function profile_check_password($param)
+    {
+        $employee = $this->model
+            ->where('id', '=', $param['emp_id'])
+            ->first();
+
+        if ($employee) {
+            if (Hash::check($param['password'], $employee->password)) {
+                return $employee;
+            } else {
+                return $this->model
+                    ->where('id', '=', $param['emp_id'])
+                    ->where('password', '=', $param['password'])
+                    ->first();
+            }
+        }
+
+        return null;
     }
 }

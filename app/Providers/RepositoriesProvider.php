@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\NewsCategory;
+use App\Repositories\AssetCategoryInterface;
 use App\Repositories\BaseInterface;
 use App\Repositories\CompanyInterface;
 use App\Repositories\DepartmentInterface;
@@ -41,11 +42,17 @@ use App\Repositories\TraningAndSeminarInterface;
 use App\Repositories\SalaryRequestSlipInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\EmployeeLeaveQuotasInterface;
+use App\Repositories\Impl\AssetCategoryRepository;
 use App\Repositories\Impl\EmployeeLeaveQuotasRepository;
 use App\Repositories\Impl\SupplyCategoryRepository;
 use App\Repositories\Impl\NewsCategoryRepository;
 use App\Repositories\SupplyCategoryInterface;
 use App\Repositories\NewsCategoryInterface;
+use App\Repositories\Impl\NewsCategoryRepository;
+use App\Repositories\NewsInterface;
+use App\Repositories\Impl\NewsRepository;
+use App\Repositories\RewardCoinHistoryInterface;
+use App\Repositories\Impl\RewardCoinHistoryRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -77,6 +84,11 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SalaryRequestSlipInterface::class, SalaryRequestSlipRepository::class);
         $this->app->bind(SupplyCategoryInterface::class, SupplyCategoryRepository::class);
         $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
+        $this->app->bind(AssetCategoryInterface::class, AssetCategoryRepository::class);
+        $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
+        $this->app->bind(NewsInterface::class, NewsRepository::class);
+        $this->app->bind(RewardCoinHistoryInterface::class, RewardCoinHistoryRepository::class);
+
 
     }
 

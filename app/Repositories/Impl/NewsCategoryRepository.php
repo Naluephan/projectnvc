@@ -9,6 +9,7 @@ use App\Repositories\NewsCategoryInterface;
 use Illuminate\Support\Collection;
 
 class NewsCategoryRepository extends MasterRepository implements NewsCategoryInterface
+// class NewsCategoryRepository extends BaseRepository implements NewsCategoryInterface
 {
     protected $model;
 
@@ -19,4 +20,5 @@ class NewsCategoryRepository extends MasterRepository implements NewsCategoryInt
     public function getAll(){
         return $this->model->get();
     }
+
 }

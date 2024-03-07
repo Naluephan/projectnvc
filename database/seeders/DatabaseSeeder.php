@@ -36,5 +36,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(EmployeeLeaveQuotasTableSeeder::class);
         $this->call(RewardCoinsTableSeeder::class);
         $this->call(NewsCategoriesSeeder::class);
+        $this->call(NewsCategorySeeder::class);
+        $this->call(NewsSeeder::class);
+        $this->call(RewardCoinHistorySeeder::class);
     }
 }
