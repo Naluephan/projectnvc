@@ -25,6 +25,7 @@ class EmployeePasteCardLogRepository extends MasterRepository implements Employe
             ['emp_id' ,'=', $param['emp_id']],
             ['month' ,'=', $param['month']],
             ['year' ,'=', $param['year']],
+            ['image_capture' ,'=', $param['image_capture']],
         ])->orderBy('id', 'DESC')->get();
         return $data;
     }

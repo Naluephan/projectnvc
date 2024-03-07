@@ -24,7 +24,7 @@
         border-color: var(--color1);
         color: white;
     }
-    .btn-delete {
+    .btn-color-delete {
         background-color: var(--color2);
         border-color: var(--color2);
         color: white;
@@ -148,24 +148,24 @@
                 <h6><i class="fa-solid fa-layer-group"></i> หมวดหมู่ข่าวสาร</h6>
                 <div class="col-10">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control rounded-pill btn-border bg-white" disabled>
-                        <label class="position text-teal">#</label>
+                        <input type="text" value="${news_name}" class="form-control rounded-pill btn-border bg-white" disabled>
+                        <label class="position text-teal list_news" id="list_news" ></label>
                     </div>
                 </div>
-                <div class="col-1">
-                    <button class="btn btn-md rounded-pill btn-add btn-edit"><em class="fas fa-edit"></em></button>
+                <div class="col-1 list_news">
+                    <button class="btn btn-md rounded-pill btn-add btn-edit" data-id="${news_id}"><em class="fas fa-edit"></em></button>
                 </div>
-                <div class="col-1">
-                    <button class="btn btn-md rounded-pill btn-add btn-delete"><em class="fas fa-trash-alt"></em></button>
+                <div class="col-1 list_news">
+                    <button class="btn btn-md rounded-pill btn-add btn-delete" data-id="${news_id}"><em class="fas fa-trash-alt"></em></button>
                 </div>
             </div>
-            <button type="button" class="btn btn-border rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มหมวดหมู่</button>
+            <button type="button" class="btn btn-border rounded-pill addNews" id="addNews" data-bs-toggle="modal" data-bs-target="#newsModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มหมวดหมู่</button>
         </div>
     </div>
 </div>
 {{-- modal --}}
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+<div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true" data-bs-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content modal-radius">
       <div class="modal-header background2 modal-header-radius">
@@ -173,20 +173,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id ="news_FromModal">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อข่าวสาร</label>
-            <input type="text" class="form-control rounded-pill" id="recipient-name">
+            <input type="text" class="form-control rounded-pill" id="news_category" name="news_category" required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label"><i class="fa-regular fa-newspaper"></i> รายละเอียด</label>
-            <textarea class="form-control rounded-pill" id="message-text"></textarea>
+            <textarea class="form-control rounded-pill" id="details_news" name="detail_news"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn text-color" data-bs-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-delete rounded-pill">ยืนยัน</button>
+        <button type="button" class="btn btn-color-delete rounded-pill save-new">ยืนยัน</button>
       </div>
     </div>
   </div>
@@ -199,6 +199,208 @@
 @section('js')
 <script>
     $(() => {
+        getNewsCategory();
+        function getNewsCategory() {
+            let id = "{{ Auth::user()->id }}";
+            const listNews = document.getElementById('list_news');
+            listNews.innerHTML = '';
+            $.ajax({
+                type: "POST",
+                url: "{{ route('api.v1.category.list') }}",
+                data: {'id': id},
+                datatype: "JSON",
+                success: function (response) {
+                    var newsContainer = $('.list_news');
+                    response.forEach(function(newsCategory) {
+                        var news_id = newsCategory.news_id;
+                        var news_name = newsCategory.news_name;
+                        var news_details = newsCategory.news_details;
+
+                        // var Item =`
+                        // <div class="col-10">
+                        //     <div class="input-group mb-3">
+                        //     <input type="text" class="form-control rounded-pill text-center" value="${news_name}" disabled >
+                        //     <label class="position">#${news_name}</label>
+                        //     </div>
+                        // </div>
+                        // <div class="col-1">
+                        //     <button class="btn btn-sm rounded-pill  btn-success btn-edit" data-id="${news_id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#assetModal"><em class="fas fa-edit"></em></button>
+                        // </div>
+                        // <div class="col-1">
+                        //     <button class="btn btn-sm rounded-pill btn-danger btn-delete" data-id="${news_id}"><em class="fas fa-trash-alt"></em></button>
+                        // </div>
+                        // `;
+                        // newsContainer.append(Item);
+                    });
+                },
+            });
+        }
+
+        var news_model = $('#newsModal');
+        $(document).on('click', '.addNews', function() {
+            news_model.modal('show')
+        })
+
+         ////// save news //////
+        $(document).on('click', '.save-new', function() {
+            let id = $('#id').val();
+            let news_FromModal = $('#news_FromModal');
+            if (news_FromModal.valid()) {
+                const formData = new FormData($('#news_FromModal')[0]);
+                const data = Object.fromEntries(formData.entries());
+                if (id.length == 0) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('api.v1.news.category.create') }}",
+                        data: data,
+                        datatype: "JSON",
+                        success: function(response) {
+                                if (response.status == 'Save Successfully') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                    news_model.modal('hide');
+                                    getNewsCategory();
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    })
+                                }
+                            }
+                    });
+
+                    ////// update news //////
+                }else {
+                    $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.news.category.update') }}",
+                            data: data,
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.status == 'Update Successfully') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                    news_model.modal('hide');
+                                    getNewsCategory();
+
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    })
+                                }
+                            }
+                        });
+                }
+            }else {
+                    Swal.fire({
+                        title: 'กรุณาตรวจสอบข้อมูล',
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        toast: true
+                    });
+            }
+        })
+
+        ////// edit news //////
+        $(document).on('click', '.btn-edit', function() {
+                let id = $(this).data('id');
+                $.ajax({
+                    type: 'post',
+                    url: "{{ route('api.v1.news.category.by.id') }}",
+                    data: {
+                        'id': id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        setcategoryFormData(response);
+                        $("#id").val(response.id);
+                        news_model.modal('show')
+                    }
+                });
+            })
+            function setcategoryFormData(data) {
+                $("#news_name").val(data.news_name);
+                $("#details_news").val(data.news_details);
+            }
+            news_model.on('show.bs.modal', function(event) {
+                let btn = $(event.relatedTarget);
+                let title = btn.data('ac') === 'edit' ? "แก้ไขหัวข้อข่าว" : "เพิ่มหัวข้อข่าว";
+                console.log(btn.data('ac'))
+                let obj = $(this);
+                obj.find('.modal-title').text(title)
+            })
+            news_model.on('hide.bs.modal', function() {
+            let obj = $(this);
+            obj.find('#news_name').val("");
+            obj.find('#details_news').val("");
+            })
+
+        ////// delete news //////
+        $(document).on('click', '.btn-delete', function() {
+                let obj = $(this);
+                let id = obj.data('id');
+                Swal.fire({
+                    title: 'ยืนยัน!! ลบข้อมูล',
+                    text: "ต้องการดำเนินการใช่หรือไม่!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e83e3e',
+                    cancelButtonColor: '#bb93ab',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ปิด'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.news.category.delete') }}",
+                            data: {
+                                'id': id
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.status == 'Delete Successfully') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                    getNewsCategory();
+
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    })
+                                }
+                            }
+                        });
+
+                    }
+                })
+            })
 
     });
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\NewsCategory;
 use App\Repositories\BaseInterface;
 use App\Repositories\CompanyInterface;
 use App\Repositories\DepartmentInterface;
@@ -42,7 +43,9 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\EmployeeLeaveQuotasInterface;
 use App\Repositories\Impl\EmployeeLeaveQuotasRepository;
 use App\Repositories\Impl\SupplyCategoryRepository;
+use App\Repositories\Impl\NewsCategoryRepository;
 use App\Repositories\SupplyCategoryInterface;
+use App\Repositories\NewsCategoryInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -73,6 +76,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(EmployeeLeaveQuotasInterface::class, EmployeeLeaveQuotasRepository::class);
         $this->app->bind(SalaryRequestSlipInterface::class, SalaryRequestSlipRepository::class);
         $this->app->bind(SupplyCategoryInterface::class, SupplyCategoryRepository::class);
+        $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
 
     }
 

@@ -30,8 +30,8 @@ Route::group(
 
 
             Route::post('/companies', [\App\Http\Controllers\APIs\CompanyController::class, 'getCompanies'])->name('companies');
-            Route::post('/employee/paste/card', [\App\Http\Controllers\APIs\EmployeePasteCardController::class, 'pasteCard'])->name('employee.paste.card');
         });
+        Route::post('/employee/paste/card', [\App\Http\Controllers\APIs\EmployeePasteCardController::class, 'pasteCard'])->name('employee.paste.card');
         Route::post('create/employee/paste/card', [\App\Http\Controllers\APIs\EmployeePasteCardLogController::class, 'pasteCardLogCreate'])->name('create.paste.card.log');
 //      Company
         Route::post('/companies/list', [\App\Http\Controllers\APIs\CompanyController::class, 'getAll'])->name('companies.list');
@@ -138,6 +138,14 @@ Route::group(
         Route::post('/category/update', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'update'])->name('category.update');
         Route::post('/category/delete', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'delete'])->name('category.delete');
         Route::post('/category/by/id', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getById'])->name('category.by.id');
+
+
+        //API NewsCategory
+        Route::post('/news/category/list', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getNewsCategory'])->name('news.category.list');
+        Route::post('/news/category/create', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'create'])->name('news.category.create');
+        Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'update'])->name('news.category.update');
+        Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'delete'])->name('news.category.delete');
+        Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getById'])->name('news.category.by.id');
 
     }
 );
