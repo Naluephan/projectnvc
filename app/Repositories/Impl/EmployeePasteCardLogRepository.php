@@ -3,29 +3,55 @@
 
 namespace App\Repositories\Impl;
 
-
 use App\Models\EmployeePasteCardLog;
-use App\Models\Position;
 use App\Repositories\EmployeePasteCardLogInterface;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Rap2hpoutre\FastExcel\FastExcel;
 
 class EmployeePasteCardLogRepository extends MasterRepository implements EmployeePasteCardLogInterface
 {
-      protected $model;
+    protected $model;
 
     public function __construct(EmployeePasteCardLog $model)
     {
         parent::__construct($model);
     }
     // ---------- empLog  -------------
-    public function empPasteCardLogApi($param){
-        $data = $this->model->where([
-            ['emp_id' ,'=', $param['emp_id']],
-            ['month' ,'=', $param['month']],
-            ['year' ,'=', $param['year']],
-        ])->orderBy('id', 'DESC')->get();
+    // public function empPasteCardLogApi($param)
+    // {
+    //     $conditions = [];
+
+    //     if (empty($param['emp_id'])) {
+    //         return [];
+    //     }
+
+    //     if (!empty($param['startDate']) && !empty($param['endDate'])) {
+    //         $conditions[] = "STR_TO_DATE(CONCAT(year, '-', month, '-', days), '%Y-%m-%d') BETWEEN '{$param['startDate']}' AND '{$param['endDate']}'";
+    //     }
+
+    //     if (!empty($param['emp_id'])) {
+    //         $conditions[] = "emp_id = '{$param['emp_id']}'";
+    //     }
+
+    //     $whereClause = "";
+    //     if (!empty($conditions)) {
+    //         $whereClause = " WHERE " . implode(' AND ', $conditions);
+    //     }
+
+    //     $query = "SELECT * FROM employee_paste_card_logs" . $whereClause;
+
+    //     $data = DB::select($query);
+    //     return $data;
+    // }
+
+    public function empPasteCardLogApi($param)
+    {
+        $data = $this->model
+            ->whereRaw("CONCAT(YEAR, '-', LPAD(`month`, 2, '0'), '-', LPAD(`days`, 2, '0')) BETWEEN ? AND ?", [$param['startDays'], $param['endDays']])
+            ->orderBy('YEAR')
+            ->orderBy('month')
+            ->orderBy('days')
+            ->where('emp_id', $param['emp_id'])
+            ->get();
         return $data;
     }
 }

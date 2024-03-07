@@ -132,17 +132,32 @@ Route::group(
         Route::post('emp/leave/by/id', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'getById'])->name('emp.leave.by.id');
         Route::post('emp/approve/status', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'approveStatusLeave'])->name('emp.approve.status');
 
-         //API Supply Category
+        //API Supply Category
          Route::post('/category/list', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getSupplyCategory'])->name('category.list');
          Route::post('/category/create', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'create'])->name('category.create');
         Route::post('/category/update', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'update'])->name('category.update');
         Route::post('/category/delete', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'delete'])->name('category.delete');
         Route::post('/category/by/id', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getById'])->name('category.by.id');
+        
         //API AssetCategory
         Route::post('asset/category/list', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'getAssetCategory'])->name('asset.category.list');
         Route::post('asset/category/create', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'create'])->name('asset.category.create');
         Route::post('asset/category/update', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'update'])->name('asset.category.update');
         Route::post('asset/category/delete', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'delete'])->name('asset.category.delete');
         Route::post('asset/category/by/id', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'getById'])->name('asset.category.by.id');
+
+        //API News
+        Route::post('news/list', [\App\Http\Controllers\APIs\NewsController::class, 'news_list'])->name('news.list');
+
+        //API Reward Coin History
+        Route::post('reward/history/list', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'reward_history'])->name('reward.history');
+
+        //API Check Password
+        Route::post('login/check/password', [\App\Http\Controllers\APIs\EmployeeController::class, 'login_check_password'])->name('login.check.password');
+        Route::post('profile/check/password', [\App\Http\Controllers\APIs\EmployeeController::class, 'profile_check_password'])->name('profile.check.password');
+
+        //API Update Password
+        Route::post('update/password', [\App\Http\Controllers\APIs\EmployeeController::class, 'update_password'])->name('update.password');
+
     }
 );

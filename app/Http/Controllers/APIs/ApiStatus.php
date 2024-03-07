@@ -132,8 +132,44 @@ class ApiStatus
       public const checkToken_failed_Desc = "Please check the information again.";
       //Catch
       public const checkToken_error_statusCode = "500";
-      public const checkToken_error_status = "rewardCoin Error";
+      public const checkToken_error_status = "Check Token Error";
       public const checkToken_errDesc = "Please check the information again.";
+
+      /////////// Login Check Password ///////////
+      public const login_check_password_success_status = "Send data successfully";
+      public const login_check_password_success_statusCode = "00";
+      // Unsuccessful
+      public const login_check_password_failed_status = "This information was not found in data.";
+      public const login_check_password_failed_statusCode = "200";
+      public const login_check_password_failed_Desc = "Please check the information again.";
+      //Catch
+      public const login_check_password_error_statusCode = "500";
+      public const login_check_password_error_status = "Login Check Password Error";
+      public const login_check_password_errDesc = "Please check the information again.";
+
+      /////////// Profile Check Password ///////////
+      public const profile_check_password_success_status = "Send data successfully";
+      public const profile_check_password_success_statusCode = "00";
+      // Unsuccessful
+      public const profile_check_password_failed_status = "This information was not found in data.";
+      public const profile_check_password_failed_statusCode = "200";
+      public const profile_check_password_failed_Desc = "Please check the information again.";
+      //Catch
+      public const profile_check_password_error_statusCode = "500";
+      public const profile_check_password_error_status = "Profile Check Password Error";
+      public const profile_check_password_errDesc = "Please check the information again.";
+
+      /////////// Update Password ///////////
+      public const update_password_success_status = "Send data successfully";
+      public const update_password_success_statusCode = "00";
+      // Unsuccessful
+      public const update_password_failed_status = "This information was not found in data.";
+      public const update_password_failed_statusCode = "200";
+      public const update_password_failed_Desc = "Please check the information again.";
+      //Catch
+      public const update_password_error_statusCode = "500";
+      public const update_password_error_status = "Update Password Error";
+      public const update_password_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus

@@ -14,13 +14,14 @@ class EmployeeController extends Controller
 {
     private $employeeRepository;
     private $tasemployeeRepository;
-    public function __construct(EmployeeInterface $employeeRepository,TasEmployeeInterface $tasemployeeRepository)
+    public function __construct(EmployeeInterface $employeeRepository, TasEmployeeInterface $tasemployeeRepository)
     {
         $this->employeeRepository = $employeeRepository;
         $this->tasemployeeRepository = $tasemployeeRepository;
     }
 
-    public function empList(Request $request){
+    public function empList(Request $request)
+    {
 
         $postData = $request->all();
         ## Read value
@@ -40,19 +41,19 @@ class EmployeeController extends Controller
             "rowperpage" => $rowperpage,
         ];
 
-        if(isset($postData['company_id'])){
+        if (isset($postData['company_id'])) {
             $param['company_id'] = $postData['company_id'];
         }
-        if(isset($postData['position_id'])){
+        if (isset($postData['position_id'])) {
             $param['position_id'] = $postData['position_id'];
         }
-        if(isset($postData['department_id'])){
+        if (isset($postData['department_id'])) {
             $param['department_id'] = $postData['department_id'];
         }
 
 
         // Total records
-        $totalRecordswithFilter = $totalRecords =$this->employeeRepository->getAll($param)->count();
+        $totalRecordswithFilter = $totalRecords = $this->employeeRepository->getAll($param)->count();
 
         // Fetch records
         $records = $this->employeeRepository->paginate($param);
@@ -71,10 +72,10 @@ class EmployeeController extends Controller
         $result = [];
         $data = $request->all();
         try {
-        $update = $this->employeeRepository->update($data['id'],$data);
-        $result['status'] = "success";
+            $update = $this->employeeRepository->update($data['id'], $data);
+            $result['status'] = "success";
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "failed";
             $result['message'] = $ex;
             DB::rollBack();
@@ -97,80 +98,79 @@ class EmployeeController extends Controller
         // dd($data->leadOrders[0]->orderDetails);
 
     }
-    public function empLogin (Request $request)
+    public function empLogin(Request $request)
     {
-       try{
-           $data = $request->all();
-           $query = $this->employeeRepository->empLogin($data);
-        //    $result = $userData['userData'];
+        try {
+            $data = $request->all();
+            $query = $this->employeeRepository->empLogin($data);
+            //    $result = $userData['userData'];
 
-        switch($query ['company_id']){
-            case 1:
-                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/drjel/". $query ['image']:null;
-                break;
-            case 2:
-                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/cosme/". $query ['image']:null;
-                break;
-            case 3:
-                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/inno/". $query ['image']:null;
-                break;
-            case 4:
-                $query ['image'] = $query ['image']?"https://newhr.organicscosme.com/uploads/images/employee/gf/". $query ['image']:null;
-                break;
-            default:
-                $query ['image'] = null;
-        }
+            switch ($query['company_id']) {
+                case 1:
+                    $query['image'] = $query['image'] ? "https://newhr.organicscosme.com/uploads/images/employee/drjel/" . $query['image'] : null;
+                    break;
+                case 2:
+                    $query['image'] = $query['image'] ? "https://newhr.organicscosme.com/uploads/images/employee/cosme/" . $query['image'] : null;
+                    break;
+                case 3:
+                    $query['image'] = $query['image'] ? "https://newhr.organicscosme.com/uploads/images/employee/inno/" . $query['image'] : null;
+                    break;
+                case 4:
+                    $query['image'] = $query['image'] ? "https://newhr.organicscosme.com/uploads/images/employee/gf/" . $query['image'] : null;
+                    break;
+                default:
+                    $query['image'] = null;
+            }
 
-            $result =[
-                'id' => $query ['id'],
-                'company_id' => $query ['company_id'],
-                'company_name_th' => $query ['company']['name_th'],
-                'company_name_en' => $query ['company']['name_en'],
-                'position_id' => $query ['position_id'],
-                'position_name_th' => $query ['position']['name_th'],
-                'position_name_en' => $query ['position']['name_en'],
-                'department_id' => $query ['department_id'],
-                'department_name_th' => $query ['department']['name_th'],
-                'department_name_en' => $query ['department']['name_en'],
-                'employee_card_id' => $query ['employee_card_id'],
-                'employee_code' => $query ['employee_code'],
-                'pre_name' => $query ['pre_name'],
-                'f_name' => $query ['f_name'],
-                'l_name' => $query ['l_name'],
-                'n_name' => $query ['n_name'],
-                'gender_id' => $query ['gender_id'],
-                'birthday' => $query ['birthday'],
-                'mobile' => $query ['mobile'],
-                'card_add' => $query ['card_add'],
-                'current_add' => $query ['current_add'],
-                'id_card' => $query ['id_card'],
-                'start_date' => $query ['start_date'],
-                'end_date' => $query ['end_date'],
-                'y_experience' => $query ['y_experience'],
-                'image' => $query ['image'],
-                'record_status' => $query ['record_status'],
-                'coins' => $query ['coins'],
-                'username' => $query ['username'],
-                'password' => $query ['password'],
-                'created_at' => $query ['created_at'],
-                'updated_at' => $query ['updated_at'],
-                'pin' => $query ['pin'],
-                'access_token' => $query ['access_token'],
+            $result = [
+                'id' => $query['id'],
+                'company_id' => $query['company_id'],
+                'company_name_th' => $query['company']['name_th'],
+                'company_name_en' => $query['company']['name_en'],
+                'position_id' => $query['position_id'],
+                'position_name_th' => $query['position']['name_th'],
+                'position_name_en' => $query['position']['name_en'],
+                'department_id' => $query['department_id'],
+                'department_name_th' => $query['department']['name_th'],
+                'department_name_en' => $query['department']['name_en'],
+                'employee_card_id' => $query['employee_card_id'],
+                'employee_code' => $query['employee_code'],
+                'pre_name' => $query['pre_name'],
+                'f_name' => $query['f_name'],
+                'l_name' => $query['l_name'],
+                'n_name' => $query['n_name'],
+                'gender_id' => $query['gender_id'],
+                'birthday' => $query['birthday'],
+                'mobile' => $query['mobile'],
+                'card_add' => $query['card_add'],
+                'current_add' => $query['current_add'],
+                'id_card' => $query['id_card'],
+                'start_date' => $query['start_date'],
+                'end_date' => $query['end_date'],
+                'y_experience' => $query['y_experience'],
+                'image' => $query['image'],
+                'record_status' => $query['record_status'],
+                'coins' => $query['coins'],
+                'username' => $query['username'],
+                'password' => $query['password'],
+                'created_at' => $query['created_at'],
+                'updated_at' => $query['updated_at'],
+                'pin' => $query['pin'],
+                'access_token' => $query['access_token'],
 
             ];
 
 
-           if($result != null ){
-            $result['status'] = ApiStatus::login_success_status;
-            $result['statusCode'] = ApiStatus::login_success_statusCode;
-
-           }else{
-            $result['status'] = ApiStatus::login_failed_found_status;
-            $result['statusCode'] = ApiStatus::login_failed_found_code;
-            $result['errDesc'] = ApiStatus::login_failed_found_Desc;
-            $result['message'] = ApiStatus::login_failed_found_Desc;
-            DB::rollBack();
-           }
+            if ($result != null) {
+                $result['status'] = ApiStatus::login_success_status;
+                $result['statusCode'] = ApiStatus::login_success_statusCode;
+            } else {
+                $result['status'] = ApiStatus::login_failed_found_status;
+                $result['statusCode'] = ApiStatus::login_failed_found_code;
+                $result['errDesc'] = ApiStatus::login_failed_found_Desc;
+                $result['message'] = ApiStatus::login_failed_found_Desc;
+                DB::rollBack();
+            }
         } catch (\Exception $ex) {
             $result['status'] = ApiStatus::login_error_status;
             $result['statusCode'] = ApiStatus::login_error_statusCod;
@@ -181,25 +181,25 @@ class EmployeeController extends Controller
         return $result;
     }
 
-    public function savePin (Request $request) {
+    public function savePin(Request $request)
+    {
         $data = $request->all();
         $query = $this->employeeRepository->savePinCode($data);
         try {
-                if (isset($query)) {
-                    $result['status'] = ApiStatus::pin_success_status;
-                    $result['statusCode'] = ApiStatus::pin_success_statusCode;
-
-                }else{
-                    $result['status'] = ApiStatus::pin_failed_status;
-                    $result['statusCode'] = ApiStatus::pin_failed_statusCode;
-                    $result['errDesc'] = ApiStatus::pin_failed_Desc;
-                }
-                } catch (\Exception $ex) {
-                    $result['status'] = ApiStatus::pin_error_status;
-                    $result['statusCode'] = ApiStatus::pin_error_statusCode;
-                    $result['errDesc'] = ApiStatus::pin_errDesc;
-                    $result['message'] = $ex->getMessage();
+            if (isset($query)) {
+                $result['status'] = ApiStatus::pin_success_status;
+                $result['statusCode'] = ApiStatus::pin_success_statusCode;
+            } else {
+                $result['status'] = ApiStatus::pin_failed_status;
+                $result['statusCode'] = ApiStatus::pin_failed_statusCode;
+                $result['errDesc'] = ApiStatus::pin_failed_Desc;
             }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::pin_error_status;
+            $result['statusCode'] = ApiStatus::pin_error_statusCode;
+            $result['errDesc'] = ApiStatus::pin_errDesc;
+            $result['message'] = $ex->getMessage();
+        }
         return $result;
     }
 
@@ -223,8 +223,8 @@ class EmployeeController extends Controller
 
             $createdData[] = $newData;
             $check = TasEmployees::where('emp_id', $empData['id'])
-            ->where('tas_id', $tas_id)
-            ->get();
+                ->where('tas_id', $tas_id)
+                ->get();
             //return $check;
             if ($check->isEmpty()) {
                 $result['status'] = "Success";
@@ -255,27 +255,116 @@ class EmployeeController extends Controller
     //     }
     //     return json_encode($result);
     // }
-        public function checkToken(Request $request)
-        {
-            try {
-                $checkToken = DB::table('personal_access_tokens')
-                    ->where('id', '=', $request->id)
-                    ->get();
-                if (count($checkToken) > 0) {
-                    $result['status'] = ApiStatus::checkToken_success_status;
-                    $result['statusCode'] = ApiStatus::checkToken_success_statusCode;
-                } else {
-                    $result['status'] = ApiStatus::checkToken_failed_status;
-                    $result['statusCode'] = ApiStatus::checkToken_failed_statusCode;
-                    $result['errDesc'] = ApiStatus::checkToken_failed_Desc;
-                    $result['message'] = $checkToken;
-                }
-            } catch (\Exception $ex) {
-                $result['status'] = ApiStatus::checkToken_error_statusCode;
-                $result['errCode'] = ApiStatus::checkToken_error_status;
-                $result['errDesc'] = ApiStatus::checkToken_errDesc;
-                $result['message'] = $ex->getMessage();
+    public function checkToken(Request $request)
+    {
+        try {
+            $checkToken = DB::table('personal_access_tokens')
+                ->where('id', '=', $request->id)
+                ->get();
+            if (count($checkToken) > 0) {
+                $result['status'] = ApiStatus::checkToken_success_status;
+                $result['statusCode'] = ApiStatus::checkToken_success_statusCode;
+            } else {
+                $result['status'] = ApiStatus::checkToken_failed_status;
+                $result['statusCode'] = ApiStatus::checkToken_failed_statusCode;
+                $result['errDesc'] = ApiStatus::checkToken_failed_Desc;
+                $result['message'] = $checkToken;
             }
-            return $result;
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::checkToken_error_statusCode;
+            $result['errCode'] = ApiStatus::checkToken_error_status;
+            $result['errDesc'] = ApiStatus::checkToken_errDesc;
+            $result['message'] = $ex->getMessage();
         }
+        return $result;
     }
+
+    public function login_check_password(Request $request)
+    {
+        try {
+            $employee = DB::table('employees')
+                ->where('employee_card_id', '=', $request->employee_card_id)
+                ->where('employee_code', '=', $request->employee_code)
+                ->where('birthday', '=', $request->birthday)
+                ->first();
+
+            if ($employee) {
+
+                $result['status'] = ApiStatus::login_check_password_success_status;
+                $result['statusCode'] = ApiStatus::login_check_password_success_statusCode;
+                $result['message'] = "Login Check Password successfully.";
+            } else {
+                $result['status'] = ApiStatus::login_check_password_failed_status;
+                $result['statusCode'] = ApiStatus::login_check_password_failed_statusCode;
+                $result['errDesc'] = ApiStatus::login_check_password_failed_Desc;
+                $result['message'] = "Login Check Password not found or information is incorrect.";
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::login_check_password_error_statusCode;
+            $result['errCode'] = ApiStatus::login_check_password_error_status;
+            $result['errDesc'] = ApiStatus::login_check_password_errDesc;
+            $result['message'] = $ex->getMessage();
+        }
+        return $result;
+    }
+
+    public function profile_check_password(Request $request)
+    {
+        try {
+
+            $emp_id = $request->emp_id;
+            $password = $request->password;
+            $param = [
+                'emp_id' => $emp_id,
+                'password' => $password,
+            ];
+
+            $data = $this->employeeRepository->profile_check_password($param);
+
+            if ($data) {
+                $result['status'] = ApiStatus::profile_check_password_success_status;
+                $result['statusCode'] = ApiStatus::profile_check_password_success_statusCode;
+                $result['message'] = "Profile Check Password successfully.";
+            } else {
+                $result['status'] = ApiStatus::profile_check_password_failed_status;
+                $result['statusCode'] = ApiStatus::profile_check_password_failed_statusCode;
+                $result['errDesc'] = ApiStatus::profile_check_password_failed_Desc;
+                $result['message'] = "Profile Check Password not found or information is incorrect.";
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::profile_check_password_error_statusCode;
+            $result['errCode'] = ApiStatus::profile_check_password_error_status;
+            $result['errDesc'] = ApiStatus::profile_check_password_errDesc;
+            $result['message'] = $ex->getMessage();
+        }
+        return $result;
+    }
+
+    public function update_password(Request $request)
+    {
+        try {
+            if ($request->has('password') && $request->has('emp_id')) {
+
+                $emp_id = $request->emp_id;
+                $password = bcrypt($request->password);
+
+                $this->employeeRepository->update($emp_id, ['password' => $password]);
+
+                $result['status'] = ApiStatus::update_password_success_status;
+                $result['statusCode'] = ApiStatus::update_password_success_statusCode;
+                $result['message'] = "Update Password successfully.";
+            } else {
+                $result['status'] = ApiStatus::update_password_failed_status;
+                $result['statusCode'] = ApiStatus::update_password_failed_statusCode;
+                $result['errDesc'] = ApiStatus::update_password_failed_Desc;
+                $result['message'] = "Update Password not found or information is incorrect.";
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::update_password_error_statusCode;
+            $result['errCode'] = ApiStatus::update_password_error_status;
+            $result['errDesc'] = ApiStatus::update_password_errDesc;
+            $result['message'] = $ex->getMessage();
+        }
+        return $result;
+    }
+}
