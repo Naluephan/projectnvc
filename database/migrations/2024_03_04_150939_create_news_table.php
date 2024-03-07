@@ -28,7 +28,7 @@ return new class extends Migration
             $table->date('published_at')->nullable();
             $table->date('cancelled_at')->nullable();
 
-            $table->date('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }

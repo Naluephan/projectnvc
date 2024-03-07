@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Organics</b> HR',
-    'logo_img' => 'images/logo/organics-logo.png',
+    'logo_img' => 'images/logo/hrplust.jpg',
     'logo_img_class' => 'brand-image elevation-0',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -170,9 +170,9 @@ return [
     'classes_auth_card' => 'card-outline accent-gray',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
-    'classes_auth_footer' => '',
+    'classes_auth_footer' => 'rounded-4',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-hr-green rounded',
+    'classes_auth_btn' => 'btn-flat btn-hr-orange rounded-5',
 
     /*
     |--------------------------------------------------------------------------
