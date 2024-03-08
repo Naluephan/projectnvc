@@ -9,6 +9,7 @@ use App\Repositories\TasEmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -346,14 +347,18 @@ class EmployeeController extends Controller
         return $result;
     }
 
+    private function encode64($data)
+    {
+        return base64_encode(base64_encode(base64_encode($data)));
+    }
+
     public function update_password(Request $request)
     {
         try {
             if ($request->has('password') && $request->has('emp_id')) {
 
                 $emp_id = $request->emp_id;
-                $password = bcrypt($request->password);
-
+                $password = $this->encode64($request->password);
                 $this->employeeRepository->update($emp_id, ['password' => $password]);
 
                 $result['status'] = ApiStatus::update_password_success_status;

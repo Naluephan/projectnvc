@@ -27,7 +27,7 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     {
         $user =  $this->model->where([
             ['username', '=', $param['username']],
-            ['password', '=', $param['password']],
+            ['password', '=',$this->encode64($param['password'])],
         ])->with('company', 'position', 'department')->first();
 
         if (isset($user)) {
@@ -306,7 +306,6 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
                     ->first();
             }
         }
-
         return null;
     }
 
@@ -317,5 +316,10 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
             ->where('employee_code', '=', $param['employee_code'])
             ->where('birthday', '=', $param['birthday'])
             ->first();
+    }
+
+    private function encode64($data)
+    {
+        return base64_encode(base64_encode(base64_encode($data)));
     }
 }
