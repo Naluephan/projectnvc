@@ -282,17 +282,23 @@ class EmployeeController extends Controller
     public function login_check_password(Request $request)
     {
         try {
-            $employee = DB::table('employees')
-                ->where('employee_card_id', '=', $request->employee_card_id)
-                ->where('employee_code', '=', $request->employee_code)
-                ->where('birthday', '=', $request->birthday)
-                ->first();
+            $id_card = $request->id_card;
+            $employee_code = $request->employee_code;
+            $birthday = $request->birthday;
+            $param = [
+                'id_card' => $id_card,
+                'employee_code' => $employee_code,
+                'birthday' => $birthday,
+            ];
+
+            $employee = $this->employeeRepository->login_check_password($param);
 
             if ($employee) {
 
                 $result['status'] = ApiStatus::login_check_password_success_status;
                 $result['statusCode'] = ApiStatus::login_check_password_success_statusCode;
                 $result['message'] = "Login Check Password successfully.";
+                $result['emp_id'] = $employee->id;
             } else {
                 $result['status'] = ApiStatus::login_check_password_failed_status;
                 $result['statusCode'] = ApiStatus::login_check_password_failed_statusCode;

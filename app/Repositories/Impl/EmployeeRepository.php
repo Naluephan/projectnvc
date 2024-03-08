@@ -309,4 +309,13 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
 
         return null;
     }
+
+    public function login_check_password($param)
+    {
+        return $this->model
+            ->where('id_card', '=', $param['id_card'])
+            ->where('employee_code', '=', $param['employee_code'])
+            ->where('birthday', '=', $param['birthday'])
+            ->first();
+    }
 }

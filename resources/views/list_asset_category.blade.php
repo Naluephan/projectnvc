@@ -9,6 +9,47 @@
 @stop
 @section('css')
 <style>
+    :root {
+    --color1: #77c6c5;
+    --color2: #fa9583;
+    --color3: #1b8f8d;
+    --color4: #edf5f5;
+    }
+    div {
+        color: var(--color3);
+    }
+    .btn-edit {
+        background-color: var(--color1);
+        border-color: var(--color1);
+        color: white;
+    }
+    .btn-delete {
+        background-color: var(--color2);
+        border-color: var(--color2);
+        color: white;
+    }
+    .btn-border {
+        border-color: var(--color1);
+        color: var(--color1);
+    }
+    .background{
+        background-color: var(--color4);
+    }
+    .background2{
+        background-color: var(--color3);
+        color: white
+    }
+    .text-color {
+        color: var(--color3);
+    }
+    .modal-radius {
+        border-radius: 1.5rem;
+        border-color: none;
+    }
+    .modal-header-radius {
+        border-radius: 1.5rem 1.5rem 0rem 0rem;
+    }
+
     .dataTables_length {
         position: absolute;
     }
@@ -121,7 +162,7 @@
 </div>
 
 
-<div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -147,6 +188,34 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content modal-radius">
+      <div class="modal-header background2 modal-header-radius">
+        <h5 class="modal-title" id="assetModalLabel"><i class="fa-solid fa-file-circle-plus"></i> เพิ่มข่าวสาร</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                    <form id="assetForm">
+                    <input type="hidden" name="id" id="id">
+                    <div class="mb-3">
+                        <label for="cetegory_name" class="col-form-label">ชื่อหมวดหมู่ :</label>
+                        <input type="text" class="form-control rounded-pill" id="cetegory_name" name="cetegory_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cetegory_code" class="col-form-label">รหัสหมวดหมู่ : (กำหนดตัวอักษรภาษาอังกฤษ 3 อักษร)</label>
+                        <input type="text" class="form-control rounded-pill" id="cetegory_code" name="cetegory_code" required>
+                    </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn text-color" data-bs-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-success rounded-pill save-asset">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @stop
@@ -306,6 +375,7 @@
 
             asset_modal.on('hide.bs.modal', function() {
             let obj = $(this);
+            obj.find('#id').val("");
             obj.find('#cetegory_name').val("");
             obj.find('#cetegory_code').val("");
             })

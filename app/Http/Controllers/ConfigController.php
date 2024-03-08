@@ -14,4 +14,9 @@ class ConfigController extends Controller
     {
         return view('list_supply_category');
     }
+
+    public function listPositionCleanline()
+    {
+        return view('list_position_cleanline');
+    }
 }

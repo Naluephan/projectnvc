@@ -170,6 +170,18 @@ class ApiStatus
       public const update_password_error_statusCode = "500";
       public const update_password_error_status = "Update Password Error";
       public const update_password_errDesc = "Please check the information again.";
+
+      /////////// News List ///////////
+      public const news_list_success_status = "Send data successfully";
+      public const news_list_success_statusCode = "00";
+      // Unsuccessful
+      public const news_list_failed_status = "This information was not found in data.";
+      public const news_list_failed_statusCode = "200";
+      public const news_list_failed_Desc = "Please check the information again.";
+      //Catch
+      public const news_list_error_statusCode = "500";
+      public const news_list_error_status = "News List Error";
+      public const news_list_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus

@@ -166,6 +166,13 @@ Route::group(
         Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'update'])->name('news.category.update');
         Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'delete'])->name('news.category.delete');
         Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getById'])->name('news.category.by.id');
+        //API PositionCleanLine
+        Route::post('position/clean/line/list', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'getPositionCleanLine'])->name('position.clean.line.list');
+        Route::post('position/clean/line/create', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'create'])->name('position.clean.line.create');
+        Route::post('position/clean/line/update', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'update'])->name('position.clean.line.update');
+        Route::post('position/clean/line/delete', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'delete'])->name('position.clean.line.delete');
+        Route::post('position/clean/line/by/id', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'getById'])->name('position.clean.line.by.id');
+
 
     }
 );

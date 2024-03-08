@@ -20,5 +20,6 @@ interface EmployeeInterface extends BaseInterface
     public function savePinCode($param);
 
     public function profile_check_password($param);
+    public function login_check_password($param);
 }
 
