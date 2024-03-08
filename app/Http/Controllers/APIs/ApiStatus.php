@@ -182,6 +182,31 @@ class ApiStatus
       public const news_list_error_statusCode = "500";
       public const news_list_error_status = "News List Error";
       public const news_list_errDesc = "Please check the information again.";
+
+      /////////// News Notice List ///////////
+      public const news_notice_list_success_status = "Send data successfully";
+      public const news_notice_list_success_statusCode = "00";
+      // Unsuccessful
+      public const news_notice_list_failed_status = "This information was not found in data.";
+      public const news_notice_list_failed_statusCode = "200";
+      public const news_notice_list_failed_Desc = "Please check the information again.";
+      //Catch
+      public const news_notice_list_error_statusCode = "500";
+      public const news_notice_list_error_status = "News Notice List Error";
+      public const news_notice_list_errDesc = "Please check the information again.";
+
+      /////////// News Notice Employee ///////////
+      public const news_notice_employee_success_status = "Send data successfully";
+      public const news_notice_employee_success_statusCode = "00";
+      // Unsuccessful
+      public const news_notice_employee_failed_status = "This information was not found in data.";
+      public const news_notice_employee_failed_statusCode = "200";
+      public const news_notice_employee_failed_Desc = "Please check the information again.";
+      //Catch
+      public const news_notice_employee_error_statusCode = "500";
+      public const news_notice_employee_error_status = "News Notice Employee Error";
+      public const news_notice_employee_errDesc = "Please check the information again.";
+
 };
 
 //Error Code and Description empLogStatus

@@ -48,13 +48,16 @@ use App\Repositories\Impl\SupplyCategoryRepository;
 use App\Repositories\Impl\NewsCategoryRepository;
 use App\Repositories\SupplyCategoryInterface;
 use App\Repositories\NewsCategoryInterface;
-use App\Repositories\Impl\NewsCategoryRepository;
 use App\Repositories\NewsInterface;
 use App\Repositories\Impl\NewsRepository;
 use App\Repositories\Impl\PositionCleanlineRepository;
 use App\Repositories\RewardCoinHistoryInterface;
 use App\Repositories\Impl\RewardCoinHistoryRepository;
 use App\Repositories\PositionCleanlineInterface;
+use App\Repositories\NewsNoticeInterface;
+use App\Repositories\Impl\NewsNoticeRepository;
+use App\Repositories\NewsNoticeEmployeeInterface;
+use App\Repositories\Impl\NewsNoticeEmployeeRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -91,6 +94,9 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(NewsInterface::class, NewsRepository::class);
         $this->app->bind(RewardCoinHistoryInterface::class, RewardCoinHistoryRepository::class);
         $this->app->bind(PositionCleanlineInterface::class, PositionCleanlineRepository::class);
+        $this->app->bind(NewsNoticeInterface::class, NewsNoticeRepository::class);
+        $this->app->bind(NewsNoticeEmployeeInterface::class, NewsNoticeEmployeeRepository::class);
+
 
     }
 

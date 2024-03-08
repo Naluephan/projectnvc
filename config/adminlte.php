@@ -384,7 +384,7 @@ return [
                 ],
                 [
                     'text'    => 'แจ้งเตือนพนักงาน',
-                    'url'     => '#',
+                    'url'     => '/news/notice/employee',
                 ],
             ],
         ],

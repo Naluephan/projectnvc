@@ -138,7 +138,7 @@ Route::group(
         Route::post('/category/update', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'update'])->name('category.update');
         Route::post('/category/delete', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'delete'])->name('category.delete');
         Route::post('/category/by/id', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getById'])->name('category.by.id');
-        
+
         //API AssetCategory
         Route::post('asset/category/list', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'getAssetCategory'])->name('asset.category.list');
         Route::post('asset/category/create', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'create'])->name('asset.category.create');
@@ -159,7 +159,6 @@ Route::group(
         //API Update Password
         Route::post('update/password', [\App\Http\Controllers\APIs\EmployeeController::class, 'update_password'])->name('update.password');
 
-
         //API NewsCategory
         Route::post('/news/category/list', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getNewsCategory'])->name('news.category.list');
         Route::post('/news/category/create', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'create'])->name('news.category.create');
@@ -172,6 +171,15 @@ Route::group(
         Route::post('position/clean/line/update', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'update'])->name('position.clean.line.update');
         Route::post('position/clean/line/delete', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'delete'])->name('position.clean.line.delete');
         Route::post('position/clean/line/by/id', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'getById'])->name('position.clean.line.by.id');
+
+        //API News Notice
+        Route::post('news/notice/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_list'])->name('news.notice.list');
+        Route::post('news/notice/employee', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
+        Route::post('news/notice/employee/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_employee_lists'])->name('news.notice.employee.lists');
+        Route::post('news/notice/employee/create', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'create'])->name('news.notice.employee.create');
+        Route::post('news/notice/employee/delete', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'delete'])->name('news.notice.employee.delete');
+        Route::post('news/notice/employee/update', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'update'])->name('news.notice.employee.update');
+        Route::post('news/notice/employee/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'getById'])->name('news.notice.employee.by.id');
 
 
     }
