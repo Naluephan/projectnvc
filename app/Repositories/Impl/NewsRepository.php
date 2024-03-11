@@ -21,7 +21,7 @@ class NewsRepository extends BaseRepository implements NewsInterface
     public function getAll()
     {
         $leaveQuotas = DB::table('news AS n')
-            ->join('news_categories AS nc', 'nc.id', '=', 'n.newsCate_id')
+            ->join('news_types AS nc', 'nc.id', '=', 'n.newsCate_id')
             ->join('employees AS e', 'e.id', '=', 'n.announcer_id')
             ->select(
                 'n.id',

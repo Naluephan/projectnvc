@@ -8,4 +8,5 @@ use Illuminate\Support\Collection;
 interface NewsNoticeEmployeeInterface extends BaseInterface
 {
     public function getAll($params);
+    public function deleteAll($id);
 }

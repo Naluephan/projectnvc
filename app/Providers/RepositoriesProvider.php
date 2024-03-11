@@ -58,6 +58,8 @@ use App\Repositories\NewsNoticeInterface;
 use App\Repositories\Impl\NewsNoticeRepository;
 use App\Repositories\NewsNoticeEmployeeInterface;
 use App\Repositories\Impl\NewsNoticeEmployeeRepository;
+use App\Repositories\NewsTypeInterface;
+use App\Repositories\Impl\NewsTypeRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -90,7 +92,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SupplyCategoryInterface::class, SupplyCategoryRepository::class);
         $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
         $this->app->bind(AssetCategoryInterface::class, AssetCategoryRepository::class);
-        $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
+        $this->app->bind(NewsTypeInterface::class, NewsTypeRepository::class);
         $this->app->bind(NewsInterface::class, NewsRepository::class);
         $this->app->bind(RewardCoinHistoryInterface::class, RewardCoinHistoryRepository::class);
         $this->app->bind(PositionCleanlineInterface::class, PositionCleanlineRepository::class);

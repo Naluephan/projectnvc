@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
-class NewsCategorySeeder extends Seeder
+class NewsTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class NewsCategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('news_categories')->insert([
+        DB::table('news_types')->insert([
             [
                 'name_category' => 'กิจกรรม',
                 'record_status' => 1,

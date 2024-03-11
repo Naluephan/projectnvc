@@ -30,6 +30,7 @@
                         <th scope="col">หัวข้อข่าว</th>
                         <th scope="col">รายละเอียดข่าว</th>
                         <th scope="col">วันที่ประกาศ</th>
+                        <th scope="col">สถานะ</th>
                         <th scope="col">จัดการ</th>
                     </tr>
                 </thead>
@@ -129,7 +130,7 @@
                     {
                         data: 'notice_category_id',
                         render: function(data, type, row, meta) {
-                            return row.news_category.name_category;
+                            return row.news_type.name_category;
                         }
                     },
                     {
@@ -188,6 +189,16 @@
                     },
                     {
                         data: 'record_status',
+                        render: function(data, type, row, meta) {
+                            if (data === 1) {
+                                return "กำลังประกาศ";
+                            } else {
+                                return "เลิกประกาศ";
+                            }
+                        }
+                    },
+                    {
+                        data: 'record_status',
                         className: "text-center ",
                         render: function(data, type, row, meta) {
                             let icons = 'fa-edit'
@@ -214,11 +225,19 @@
 
             $(document).on('click', '.btn-add', function() {
                 $('.btn-update').hide();
+                $('.btn-save').show();
+            });
+
+            $(document).on('click', '.btn-reset', function() {
+                $('#validForm')[0].reset();
             });
 
             $(document).on('click', '.btn-save', function() {
                 let form = $('#validForm');
-                if (form.valid()) {
+                let noticeCategory = $('#notice_category_id').val();
+                let newsPriority = $('#news_priority').val();
+
+                if (noticeCategory !== "กรุณาเลือก" && newsPriority !== "กรุณาเลือก" && form.valid()) {
                     let id = $(this).data('id');
                     Swal.fire({
                         title: 'บันทึกข้อมูลประชาสัมพันธ์ ?',
@@ -244,7 +263,6 @@
                                 },
                                 dataType: "json",
                                 success: function(response) {
-                                    console.log(id);
                                     Swal.fire({
                                         position: 'center-center',
                                         icon: 'success',
@@ -252,17 +270,26 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     }).then(() => {
-                                        location.reload();
+                                        document_list.ajax.reload();
                                     });
                                     $('#myModal').modal('hide');
+                                    document.getElementById('validForm').reset();
                                 }
                             });
                         }
-                    })
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                        icon: 'error',
+                        confirmButtonColor: '#588157',
+                    });
                 }
             });
 
+
             var myModal = $("#myModal");
+
             function setNoticFormData(data) {
                 $("#news_notice_name").val(data.news_notice_name);
                 $("#notice_category_id").val(data.notice_category_id);
@@ -272,6 +299,7 @@
 
             $(document).on('click', '.btn-edit', function() {
                 $('.btn-save').hide();
+                $('.btn-update').show();
                 let id = $(this).data('id');
                 $('.btn-update').data('id', id); // กำหนดค่า id ให้กับปุ่ม .btn-update
                 $.ajax({
@@ -325,7 +353,8 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     }).then(() => {
-                                        location.reload();
+                                        // location.reload();
+                                        document_list.ajax.reload();
                                     });
                                     $('#myModal').modal('hide');
                                 }
@@ -362,7 +391,8 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 }).then(() => {
-                                    location.reload();
+                                    // location.reload();
+                                    document_list.ajax.reload();
                                 });
                             }
                         });

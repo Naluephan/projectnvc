@@ -25,7 +25,7 @@ class NewsNoticeEmployeeRepository extends BaseRepository implements NewsNoticeE
         $listNewsNotice = DB::table('news_notice_employees AS nne')
             ->join('employees AS e', 'e.id', '=', 'nne.emp_id')
             ->join('news_notices AS nn', 'nn.id', '=', 'nne.news_notice_id')
-            ->join('news_categories AS nc', 'nc.id', '=', 'nn.notice_category_id')
+            ->join('news_types AS nc', 'nc.id', '=', 'nn.notice_category_id')
             ->select(
                 'nne.id',
                 'e.id AS emp_id',
@@ -34,6 +34,7 @@ class NewsNoticeEmployeeRepository extends BaseRepository implements NewsNoticeE
                 'nn.news_notice_name',
                 'nn.news_notice_description',
                 'nn.news_priority',
+                'nn.read_or_not',
                 'nn.record_status',
                 'nn.created_at',
                 'nn.updated_at',
@@ -44,5 +45,10 @@ class NewsNoticeEmployeeRepository extends BaseRepository implements NewsNoticeE
             ->get();
 
         return $listNewsNotice;
+    }
+
+    public function deleteAll($id)
+    {
+        return $this->model->where('news_notice_id', '=', $id)->delete();
     }
 }

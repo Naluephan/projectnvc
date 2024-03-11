@@ -15,9 +15,10 @@ class NewsNotice extends Model
         'notice_category_id',
         'news_priority',
         'record_status',
+        'read_or_not'
     ];
 
-    public function newsCategory(){
-        return $this->belongsTo(NewsCategory::class,'notice_category_id');
+    public function newsType(){
+        return $this->belongsTo(NewsType::class,'notice_category_id');
     }
 }

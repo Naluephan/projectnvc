@@ -4,42 +4,21 @@ namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\NewsNoticeInterface;
+use App\Repositories\EmployeeInterface;
+use App\Repositories\NewsNoticeEmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class NewsNoticeController extends Controller
 {
     private $newsNoticeRepository;
-    public function __construct(NewsNoticeInterface $newsNoticeRepository )
+    private $employeeRepository;
+    private $newsNoticeEmployeeRepository;
+    public function __construct(NewsNoticeInterface $newsNoticeRepository, EmployeeInterface $employeeRepository, NewsNoticeEmployeeInterface $newsNoticeEmployeeRepository)
     {
         $this->newsNoticeRepository = $newsNoticeRepository;
-    }
-
-    public function news_notice_list(Request $request)
-    {
-        try{
-            $data = $request->all();
-            $news_notice_list = $this->newsNoticeRepository->getAll($data);
-            if($news_notice_list != null ){
-             $result['status'] = ApiStatus::news_notice_list_success_status;
-             $result['statusCode'] = ApiStatus::news_notice_list_success_statusCode;
-             $result['news_notice_list'] = $news_notice_list;
-
-            }else{
-             $result['status'] = ApiStatus::news_notice_list_failed_status;
-             $result['errCode'] = ApiStatus::news_notice_list_failed_statusCode;
-             $result['errDesc'] = ApiStatus::news_notice_list_failed_Desc;
-             $result['message'] = $news_notice_list;
-             DB::rollBack();
-            }
-         } catch (\Exception $ex) {
-             $result['status'] = ApiStatus::news_notice_list_error_statusCode;
-             $result['errCode'] = ApiStatus::news_notice_list_error_status;
-             $result['errDesc'] = ApiStatus::news_notice_list_errDesc;
-             $result['message'] = $ex->getMessage();
-             DB::rollBack();
-         }
-         return $result;
+        $this->employeeRepository = $employeeRepository;
+        $this->newsNoticeEmployeeRepository = $newsNoticeEmployeeRepository;
     }
 
     public function news_notice_employee_lists(Request $request)
@@ -81,28 +60,57 @@ class NewsNoticeController extends Controller
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
+        $result['status'] = "Create Success";
+
+        if ($data['news_notice_description'] === null) {
+            $data['news_notice_description'] = '-';
+        }
+
         try {
-            $this->newsNoticeRepository->create($data);
+            $newsNoticeId = $this->newsNoticeRepository->create($data);
+
+            if ($newsNoticeId) {
+
+                $employees = $this->employeeRepository->getAll($data);
+                if ($employees) {
+                    foreach ($employees as $employee) {
+
+                        $employeeData = [
+                            'news_notice_id' => $newsNoticeId->id,
+                            'emp_id' => $employee->id,
+                        ];
+
+                        $this->newsNoticeEmployeeRepository->create($employeeData);
+                    }
+                }
+            }
+
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+        } catch (\Exception $ex) {
+            $result['status'] = "Create Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+
+        return $result;
     }
 
     public function delete(Request $request)
     {
         DB::beginTransaction();
-        $id = $request->id;
-        $result['status'] = "Success";
+        $data = $request->all();
+        $id = $data['id'];
+        $result['status'] = "Delete Success";
+
         try {
-            $this->newsNoticeRepository->delete($id);
+
+            $this->newsNoticeRepository->update($id, ['record_status' => 0]);
+
+            $this->newsNoticeEmployeeRepository->deleteAll($id);
+
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+        } catch (\Exception $ex) {
+            $result['status'] = "Delete Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
@@ -120,12 +128,12 @@ class NewsNoticeController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
+        $result['status'] = "Update Success";
         try {
-            $this->newsNoticeRepository->update($id,$data);
+            $this->newsNoticeRepository->update($id, $data);
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+        } catch (\Exception $ex) {
+            $result['status'] = "Update Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
