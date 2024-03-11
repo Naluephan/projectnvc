@@ -302,7 +302,7 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
             } else {
                 return $this->model
                     ->where('id', '=', $param['emp_id'])
-                    ->where('password', '=', $param['password'])
+                    ->where('password', '=', $this->encode64($param['password']))
                     ->first();
             }
         }
