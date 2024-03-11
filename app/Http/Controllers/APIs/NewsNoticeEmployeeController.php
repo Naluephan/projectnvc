@@ -20,7 +20,8 @@ class NewsNoticeEmployeeController extends Controller
         try{
             $data = $request->all();
             $news_notice_employee = $this->newsNoticeEmployeeRepository->getAll($data);
-            if($news_notice_employee != null ){
+
+            if(count($news_notice_employee) > 0 ){
              $result['status'] = ApiStatus::news_notice_employee_success_status;
              $result['statusCode'] = ApiStatus::news_notice_employee_success_statusCode;
              $result['news_notice_employee'] = $news_notice_employee;
