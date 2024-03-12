@@ -65,7 +65,7 @@ return [
 
     'logo' => '<b>Organics</b> HR',
     'logo_img' => 'images/logo/hrplust.jpg',
-    'logo_img_class' => 'brand-image elevation-0',
+    'logo_img_class' => 'brand-image rounded-circle elevation-0',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Organics HR',
@@ -187,14 +187,14 @@ return [
     */
 
     'classes_body' => 'accent-olive text-sm',
-    'classes_brand' => '',
+    'classes_brand' => 'border-0',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-olive elevation-0',
+    'classes_sidebar' => 'sidebar-dark-olive border-0 elevation-0',
     'classes_sidebar_nav' => 'nav-flat nav-compact',
-    'classes_topnav' => 'navbar-whites navbar-light border-0 navbar-badge',
+    'classes_topnav' => 'navbar-dark bg-hr-green-app border-0 navbar-badge',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -302,10 +302,10 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'ค้นหา',
-        ],
+//        [
+//            'type' => 'sidebar-menu-search',
+//            'text' => 'ค้นหา',
+//        ],
         [
             'text'    => 'แดชบอร์ด',
             'icon'    => 'fas fa-fw fa-home',

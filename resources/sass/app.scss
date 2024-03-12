@@ -35,8 +35,9 @@ body {
     background-color: $hr-light !important;
 }
 [class*=sidebar-light] .brand-link {
-    background-color: $hr-light !important;
-    border-bottom: 1px solid $hr-light !important;
+    color: $hr-light !important;
+    background-color: $hr-green-app !important;
+    border-bottom: 1px solid $hr-green-app !important;
 }
 [class*=sidebar-light-] .nav-sidebar>.nav-item>.nav-link.active {
     background: linear-gradient(270deg,#6a994e,#a7c957);
@@ -85,7 +86,8 @@ body {
     line-height: normal;
     white-space: nowrap;
     width: 100%;
-    color: #b4b2b7 !important;
+    //color: #b4b2b7 !important;
+    color: white !important;
     font-size: .7rem !important;
 }
 .nav>.nav-header:before {
@@ -105,6 +107,21 @@ body {
 }
 [class*=sidebar-light] .btn-sidebar, [class*=sidebar-light] .form-control-sidebar {
     background-color: #ffffff !important;
+}
+.layout-navbar-fixed .wrapper .sidebar-dark-olive .brand-link:not([class*=navbar]) {
+    background-color: $hr-green-app !important;
+}
+[class*=sidebar-dark-] .sidebar a {
+    color: #ffffff !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: $hr-green-app !important;
+}
+.sidebar-dark-olive .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-olive .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: transparent !important;
+    color: #fff !important;
+    border : none;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 [class*=sidebar-light] .user-panel {
     border-bottom: unset !important;
@@ -131,8 +148,18 @@ body {
     border-color: $hr-green !important;
     box-shadow: none;
 }
+.btn-hr-green-app {
+    color: #fff !important;
+    background-color: $hr-green-app !important;
+    border-color: $hr-green-app !important;
+    box-shadow: none;
+}
+//.form-control:focus {
+//    border-color: #146e68 !important;
+//}
+
 .form-control:focus {
-    border-color: #146e68 !important;
+    border-color: $hr-green-app !important;
 }
 
 .btn-hr-orange {
@@ -148,4 +175,12 @@ body {
 
 .text-hr-green {
     color: $hr-green !important;
+}
+
+.text-hr-green-app {
+    color: $hr-green-app !important;
+}
+
+.bg-hr-green-app {
+    background-color: $hr-green-app !important;
 }

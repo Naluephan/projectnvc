@@ -54,7 +54,7 @@
                 <div class="card-header border-0 {{ config('adminlte.classes_auth_header', '') }}">
                     <h3 class="card-title float-none text-center text-lg">
 {{--                        @yield('auth_header')--}}
-                        <span class="text-hr-green">เข้าสู่ระบบOrganics</span> <span class="text-hr-orange">Plus+</span>
+                        <span class="text-hr-green">เข้าสู่ระบบ Organics</span> <span class="text-hr-orange">Plus+</span>
                     </h3>
                 </div>
 {{--            @endif--}}

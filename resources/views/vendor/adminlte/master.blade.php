@@ -51,7 +51,13 @@
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
-
+    <style>
+        .main-sidebar {
+            background-image: url({{asset('images/sb.svg')}});
+            background-size: cover; /* Cover the entire sidebar */
+            background-position: center; /* Center the background image */
+        }
+    </style>
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
