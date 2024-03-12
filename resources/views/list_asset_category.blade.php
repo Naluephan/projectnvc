@@ -1,273 +1,541 @@
-@extends("adminlte::page")
-
-@section('content_header_title')
-การตั้งค่า
-@stop
-@section('content_header')
-<li class="breadcrumb-item"><a href="{{ url('/home') }}">หน้าแรก</a></li>
-<li class="breadcrumb-item active"> การตั้งค่า </li>
-@stop
+@extends('adminlte::page')
 @section('css')
-<style>
-    :root {
-    --color1: #77c6c5;
-    --color2: #fa9583;
-    --color3: #1b8f8d;
-    --color4: #edf5f5;
-    }
-    div {
-        color: var(--color3);
-    }
-    .btn-edit {
-        background-color: var(--color1);
-        border-color: var(--color1);
-        color: white;
-    }
-    .btn-delete {
-        background-color: var(--color2);
-        border-color: var(--color2);
-        color: white;
-    }
-    .btn-border {
-        border-color: var(--color1);
-        color: var(--color1);
-    }
-    .background{
-        background-color: var(--color4);
-    }
-    .background2{
-        background-color: var(--color3);
-        color: white
-    }
-    .text-color {
-        color: var(--color3);
-    }
-    .modal-radius {
-        border-radius: 1.5rem;
-        border-color: none;
-    }
-    .modal-header-radius {
-        border-radius: 1.5rem 1.5rem 0rem 0rem;
-    }
-
-    .dataTables_length {
-        position: absolute;
-    }
-
-    .position {
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        /* ปรับตำแหน่งตามที่ต้องการ */
-        transform: translateY(-50%);
-        z-index: 1;
-        /* ให้ข้อความอยู่ด้านบนของ input */
-    }
-</style>
-@stop
-{{-- end header --}}
-@section('content')
-<div class="row">
-    <div class="col-7 border border-3">
-        <h6>คลังเก็บอุปกรณ์ และทรัพย์สินบริษัท</h6>
-        <div class="row">
-            <div class="col-4 ">
-                <div class="card border border-2 p-0 rounded-4">
-                    <div class="row">
-                        <div class="col-5">
-                            <div style="width: 100%; ">
-                                <img src="https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662" class="border border-0 rounded-start-4 " alt="..." style="position: absolute; width: 100%; height: 100%; object-fit: cover; ">
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="card-body">
-                                <p class="card-text asset">หมวดหมู่ทรัพย์สิน</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card border border-2 p-0 rounded-4">
-                    <div class="row">
-                        <div class="col-5">
-                            <div style="width: 100%; ">
-                                <img src="https://media.discordapp.net/attachments/1068009652882772048/1214529412264103936/IMG_1986.jpg?ex=65f971a8&is=65e6fca8&hm=e0ea36feaf9aeeff5707233e3e5b7e6a3d61046097461e9d777cb08641e133f2&=&format=webp&width=328&height=437" class="border border-0 rounded-start-4 " alt="..." style="position: absolute; width: 100%; height: 100%; object-fit: cover; ">
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="card-body">
-                                <p class="card-text">หมวดหมู่อุปกรณ์</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card border border-2 p-0 rounded-4">
-                    <div class="row">
-                        <div class="col-5">
-                            <div style="width: 100%; ">
-                                <img src="https://media.discordapp.net/attachments/1068009652882772048/1214529412264103936/IMG_1986.jpg?ex=65f971a8&is=65e6fca8&hm=e0ea36feaf9aeeff5707233e3e5b7e6a3d61046097461e9d777cb08641e133f2&=&format=webp&width=328&height=437" class="border border-0 rounded-start-4 " alt="..." style="position: absolute; width: 100%; height: 100%; object-fit: cover; ">
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="card-body">
-                                <p class="card-text">หมวดหมู่อุปกรณ์</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card border border-2 p-0 rounded-4">
-                    <div class="row">
-                        <div class="col-5">
-                            <div style="width: 100%; ">
-                                <img src="https://media.discordapp.net/attachments/1068009652882772048/1214529412264103936/IMG_1986.jpg?ex=65f971a8&is=65e6fca8&hm=e0ea36feaf9aeeff5707233e3e5b7e6a3d61046097461e9d777cb08641e133f2&=&format=webp&width=328&height=437" class="border border-0 rounded-start-4 " alt="..." style="position: absolute; width: 100%; height: 100%; object-fit: cover; ">
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="card-body">
-                                <p class="card-text">หมวดหมู่ข่าวสาร</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-5">
-        <div class="modalshow">
-            <h6><i class="fa-solid fa-bars"></i> หมวดหมู่ทรัพย์สิน</h6>
-            <div class="row list_asset" id="list_asset">
-                <!-- <div class="col-10">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control rounded-pill" disabled>
-                        <label class="position">#</label>
-                    </div>
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-sm rounded-pill  btn-success"><em class="fas fa-edit"></em></button>
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-sm rounded-pill  btn-danger"><em class="fas fa-trash-alt"></em></button>
-                </div> -->
-            </div>
-        </div>
-
-        <button type="button" class="btn btn-outline-success rounded-pill btn-add" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มหมวดหมู่</button>
-    </div>
-</div>
-
-
-<!-- <div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="assetModalLabel">หมวดหมู่ทรัพย์สิน</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="assetForm">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-3">
-                        <label for="cetegory_name" class="col-form-label">ชื่อหมวดหมู่ :</label>
-                        <input type="text" class="form-control rounded-pill" id="cetegory_name" name="cetegory_name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cetegory_code" class="col-form-label">รหัสหมวดหมู่ : (กำหนดตัวอักษรภาษาอังกฤษ 3 อักษร)</label>
-                        <input type="text" class="form-control rounded-pill" id="cetegory_code" name="cetegory_code" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-success save-asset">บันทึก</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModalLabel" aria-hidden="true" data-bs-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content modal-radius">
-      <div class="modal-header background2 modal-header-radius">
-        <h5 class="modal-title" id="assetModalLabel"><i class="fa-solid fa-file-circle-plus"></i> เพิ่มข่าวสาร</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-                    <form id="assetForm">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-3">
-                        <label for="cetegory_name" class="col-form-label">ชื่อหมวดหมู่ :</label>
-                        <input type="text" class="form-control rounded-pill" id="cetegory_name" name="cetegory_name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cetegory_code" class="col-form-label">รหัสหมวดหมู่ : (กำหนดตัวอักษรภาษาอังกฤษ 3 อักษร)</label>
-                        <input type="text" class="form-control rounded-pill" id="cetegory_code" name="cetegory_code" required>
-                    </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn text-color" data-bs-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-success rounded-pill save-asset">ยืนยัน</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-@stop
-
-
-@section('js')
-<script>
-    $(() => {
-        getAssetCategory();
-        function getAssetCategory() {
-            let id = "{{ Auth::user()->id }}";
-            const listAsset = document.getElementById('list_asset');
-            listAsset.innerHTML = '';
-            $.ajax({
-                type: 'post',
-                url: "{{ route('api.v1.asset.category.list') }}",
-                data: {
-                    'id': id,
-                },
-                dataType: "json",
-                success: function(response) {
-                    //console.log(response);
-                    var assetContainer = $(".list_asset");
-                    response.forEach(function(assetInfo) {
-                        var cetegoryId = assetInfo.id;
-                        var cetegoryName = assetInfo.cetegory_name;
-                        var cetegoryCode = assetInfo.cetegory_code;
-                        var Item = `
-                        <div class="col-10">
-                            <div class="input-group mb-3">
-                            <input type="text" class="form-control rounded-pill text-center" value="${cetegoryName}" disabled >
-                            <label class="position">#${cetegoryCode}</label>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <button class="btn btn-sm rounded-pill  btn-success btn-edit" data-id="${cetegoryId}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#assetModal"><em class="fas fa-edit"></em></button>
-                        </div>
-                        <div class="col-1">
-                            <button class="btn btn-sm rounded-pill btn-danger btn-delete" data-id="${cetegoryId}"><em class="fas fa-trash-alt"></em></button>
-                        </div>
-                            `;
-                        assetContainer.append(Item);
-                    });
-                },
-            });
+    <style>
+        :root {
+            --color1: #77c6c5;
+            --color2: #fa9583;
+            --color3: #449e9d;
+            --color4: #edf5f5;
+            --color2-hover: #e48170;
+            --color3-hover: #398786;
+            --color5-head-modal: #048482;
         }
 
-        var asset_modal = $("#assetModal");
+        .modal-dialog {
+            margin: 0;
+            position: absolute;
+            top: 30%;
+            left: 42%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+        }
+
+        .modal-radius {
+            border-radius: 1.5rem;
+            border-color: none;
+        }
+
+        .modal-header-radius {
+            border-radius: 1.5rem 1.5rem 0rem 0rem;
+        }
+
+        .background2 {
+            background-color: var(--color5-head-modal);
+            color: white
+        }
+
+        .button-footer {
+            padding-left: 35px;
+            padding-right: 35px;
+            padding-top: 10px;
+            padding-bottom: 35px;
+        }
+
+        .button-footer .btn {
+            width: 100%;
+            height: 45px;
+        }
+
+        .input-modal {
+            height: 45px;
+            border: 1px solid #dddddd;
+            font-size: 13px;
+            color: var(--color3);
+            font-weight: 500;
+        }
+
+        .position {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1;
+            color: #a5d8d8;
+        }
+
+        .position-main {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            z-index: 1;
+            color: var(--color3);
+        }
+
+        .text-end .btn-edit {
+            height: 50px;
+            width: 50px;
+            background-color: #77c6c5;
+            border-color: #77c6c5;
+        }
+
+        .text-end .btn-delete {
+            height: 50px;
+            width: 50px;
+            background-color: #fa9583;
+            border-color: #fa9583;
+        }
+
+        .subject,
+        .card-text,
+        label {
+            color: var(--color3);
+        }
+
+        .background {
+            background-color: #fafafa;
+            border-right: 2px solid #e8e8e8;
+            min-height: 100vh;
+
+        }
+
+        .modalshow {
+            background-color: var(--color4);
+            border-right: 2px solid #e8e8e8;
+            border-left: 2px solid #e8e8e8;
+            border-bottom: 4px solid #dcdbdb;
+            border-top: 1px solid #e8e8e8;
+            border-radius: 4%;
+            min-height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        .card,
+        .col-5,
+        .col-7 {
+            height: 90px;
+        }
+
+        .card {
+            margin-top: 0.5rem;
+        }
+
+        h6,
+        .card-text,
+        .btn-add {
+            font-weight: 1000;
+        }
+
+        h6 {
+            display: flex;
+            align-items: center;
+        }
+
+        i {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        .img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-save,
+        .save-asset {
+            width: 100%;
+            height: 50px;
+            background-color: var(--color2);
+            border-color: var(--color2);
+        }
+
+        .btn-add {
+            width: 100%;
+            height: 50px;
+            background-color: var(--color4);
+            border-color: var(--color3);
+            color: var(--color3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .btn-save,
+        .save-asset:hover {
+            background-color: var(--color2-hover);
+            border-color: var(--color2-hover);
+        }
+
+        .btn-add:hover {
+            background-color: var(--color3-hover);
+            border-color: var(--color3-hover);
+        }
+
+        .modal-body .fa-newspaper,
+        .fa-th-list {
+            color: #fa9583;
+        }
+
+        .use-url {
+            background-color: #a1dcdb;
+            border: 10px solid #048482;
+            border-width: 2px;
+        }
+    </style>
+@stop
+@section('content')
+    <div class="row">
+        <div class="col-8 background">
+            <div class="category ml-3 pr-3">
+                <div class="subject mt-5">
+                    <h6><i class="fas fa-warehouse"></i>&nbsp;คลังเก็บอุปกรณ์ และทรัพย์สินบริษัท</h6>
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-4">
+                        <a href="{{ route('supply.list') }}">
+                            <div class="card border border-1 rounded-4">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div>
+                                            <img src="https://img2.pic.in.th/pic/image6770fa0315b4f236.png"
+                                                class="img border border-0 rounded-start-4" alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">
+                                                หมวดหมู่<br />ทรัพย์สิน</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4 ">
+                        <a href="{{ route('config.list') }}">
+                            {{-- class "use-url" ใช้สำหรับ action หน้าที่กำลังเปิด ถ้าไม่ต้องการ action ที่หน้านี้ก็แค่เอาออก --}}
+                            <div class="card border border-2 p-0 rounded-4 use-url">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div>
+                                            <img src="https://img5.pic.in.th/file/secure-sv1/image7b5f4378e096ae19.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text text-md">หมวดหมู่<br />อุปกรณ์</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="subject mt-3">
+                    <h6><i class="fas fa-users"></i>&nbsp;บุคลากร</h6>
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img5.pic.in.th/file/secure-sv1/image5f0854f04d753aa9.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">แผนก<br />และตำแหน่ง</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="subject mt-3">
+                    <h6><i class="fas fa-chalkboard-teacher"></i>&nbsp;งานอำนวยการ</h6>
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img2.pic.in.th/pic/imageb4cb7bea4858d6f2.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">อาคาร<br />สถานที่</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img2.pic.in.th/pic/image53c53a821f149850.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">รักษาความ<br />ปลอดภัย</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img5.pic.in.th/file/secure-sv1/imagec9935e47feb7b813.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">รักษา<br />ความสะอาด</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img5.pic.in.th/file/secure-sv1/image5661b92d7a8b5f0c.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body mt-2">
+                                            <p class="card-text asset text-md">ซ่อมบำรุง</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img5.pic.in.th/file/secure-sv1/image45363540426699d0.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body mt-2">
+                                            <p class="card-text asset text-md">เบิกอุปกรณ์</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="subject mt-3">
+                    <h6><i class="fas fa-calendar-alt"></i>&nbsp;วันและเวลาทำงาน</h6>
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img2.pic.in.th/pic/imagec5a1265e197a94a7.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">เวลาเข้า-ออก<br />การทำงาน</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4 ">
+                        <a href="#">
+                            <div class="card border border-2 p-0 rounded-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <img src="https://img5.pic.in.th/file/secure-sv1/image91511f872f7efdb4.png"
+                                                class="img border border-0 rounded-start-4 " alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text asset text-md">วันหยุด<br />ประจำปี</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4 pr-4 pl-4 pb-5 pt-3">
+            <div class="modalshow p-4">
+                <div class="subject">
+                    <h6><i class="fas fa-th-large"></i>&nbsp;หมวดหมู่อุปกรณ์</h6>
+                </div>
+                <div class="property-category my-2">
+                    <div class="row mt-1 list_asset" id="list_asset"></div>
+                    <button type="button" class="btn btn-secondary rounded-pill mt-3 btn-add"><i
+                            class="fa-solid fa-plus"></i>
+                        เพิ่มหมวดหมู่</button>
+                </div>
+                <div class="button">
+                    <button type="button" class="btn btn-secondary rounded-pill btn-save">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="assetModal" tabindex="-1" aria-labelledby="assetModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content modal-radius">
+                <div class="modal-header background2 modal-header-radius">
+                    <h6 class="modal-title" id="assetModalLabel"><i class="fa-solid fa-file-circle-plus"></i></h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="assetForm">
+                        <input type="hidden" name="id" id="id">
+                        <div class="mb-3 pr-3 pl-3">
+                            <label for="cetegory_name" class="col-form-label"><i
+                                    class="fas fa-th-list text-sm"></i>ชื่อหมวดหมู่</label>
+                            <input type="text" class="form-control input-modal rounded-pill" id="cetegory_name"
+                                name="cetegory_name" required>
+                        </div>
+                        <div class="pr-3 pl-3">
+                            <label for="cetegory_code" class="col-form-label"><i
+                                    class="fas fa-newspaper text-sm"></i>รหัสหมวดหมู่ (กำหนดตัวอักษรภาษาอังกฤษ 3
+                                อักษร)</label>
+                            <input type="text" class="form-control input-modal rounded-pill" id="cetegory_code"
+                                name="cetegory_code" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="button-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn card-text" data-bs-dismiss="modal">ยกเลิก</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary rounded-pill save-asset">ยืนยัน</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+@stop
+
+@section('js')
+    <script>
+        $(() => {
+            getAssetCategory();
+
+            function getAssetCategory() {
+                let id = "{{ Auth::user()->id }}";
+                const listAsset = document.getElementById('list_asset');
+                listAsset.innerHTML = '';
+                $.ajax({
+                    type: 'post',
+                    url: "{{ route('api.v1.asset.category.list') }}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        //console.log(response);
+                        var assetContainer = $(".list_asset");
+                        response.forEach(function(assetInfo) {
+                            var cetegoryId = assetInfo.id;
+                            var cetegoryName = assetInfo.cetegory_name;
+                            var cetegoryCode = assetInfo.cetegory_code;
+                            var Item = `
+                            <div class="test">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="input-group pt-2">
+                                            <input type="text" class="form-control rounded-pill bg-white text-sm"
+                                                style="border-color: #c0e7e7; height: 45px;" disabled>
+                                            <label class="position-main pt-2">${cetegoryName}</label>
+                                            <label class="position pt-2">#${cetegoryCode}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-end pl-0 pr-0 p-1">
+                                        <button class="btn btn-sm rounded-pill btn-success btn-edit" data-id="${cetegoryId}"
+                                            data-ac="edit" data-bs-toggle="modal" data-bs-target="#assetModal"><em
+                                                class="fas fa-edit" style="font-size: 20px;"></em></button>
+                                        <button class="btn btn-sm rounded-pill btn-danger btn-delete" data-id="${cetegoryId}"><em
+                                                class="fas fa-trash-alt" style="font-size: 20px;"></em></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            assetContainer.append(Item);
+                        });
+
+                    },
+                });
+            }
+
+            var asset_modal = $("#assetModal");
             $(document).on('click', '.btn-add', function() {
                 asset_modal.modal('show')
             })
-
 
             $(document).on('click', '.save-asset', function() {
                 let id = $("#id").val();
@@ -360,6 +628,7 @@
                     }
                 });
             })
+
             function setAssetFormData(data) {
                 $("#cetegory_name").val(data.cetegory_name);
                 $("#cetegory_code").val(data.cetegory_code);
@@ -367,17 +636,18 @@
 
             asset_modal.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
-                let title = btn.data('ac') === 'edit' ? '<em class="fas fa-edit"></em> แก้ไขรายการ' : '<i class="fas fa-file-circle-plus"></i> สร้างรายการใหม่';
+                let title = btn.data('ac') === 'edit' ? '<em class="fas fa-edit"></em>&nbsp;แก้ไขรายการ' :
+                    '<i class="fas fa-file-circle-plus"></i>&nbsp;สร้างรายการใหม่';
                 //console.log(btn.data('ac'));
                 let obj = $(this);
                 obj.find('.modal-title').html(title);
             });
 
             asset_modal.on('hide.bs.modal', function() {
-            let obj = $(this);
-            obj.find('#id').val("");
-            obj.find('#cetegory_name').val("");
-            obj.find('#cetegory_code').val("");
+                let obj = $(this);
+                obj.find('#id').val("");
+                obj.find('#cetegory_name').val("");
+                obj.find('#cetegory_code').val("");
             })
 
             $(document).on('click', '.btn-delete', function() {
@@ -426,6 +696,7 @@
                     }
                 })
             })
-    });
-</script>
+
+        });
+    </script>
 @stop

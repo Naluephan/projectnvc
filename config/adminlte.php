@@ -493,7 +493,7 @@ return [
         [
             'text' => 'การตั้งค่า',
             'url'  => '/config/list',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-cog',
 
         ],
         [
