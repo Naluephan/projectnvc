@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'images/logo/organics-logo.png',
             'alt' => 'Preloader Image',
@@ -492,9 +492,8 @@ return [
         ['header' => 'ข้อมูลส่วนตัว'],
         [
             'text' => 'การตั้งค่า',
-            'url'  => '/config/list',
-            'icon' => 'fas fa-cog',
-
+            'url'  => '/config',
+            'icon' => 'fas fa-fw fa-cog',
         ],
         [
             'text' => 'ข้อมูลส่วนตัว',

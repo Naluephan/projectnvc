@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {
-    public function listAsset()
+    public function configMenu()
     {
-        return view('list_asset_category');
+        return view('setting_list');
+    }
+    public function configTools()
+    {
+        return view('setting.tools');
+    }
+    public function configAsset()
+    {
+        return view('setting.asset');
     }
     public function listSupply()
     {

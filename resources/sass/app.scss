@@ -118,8 +118,8 @@ body {
     color: $hr-green-app !important;
 }
 .sidebar-dark-olive .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-olive .nav-sidebar>.nav-item>.nav-link.active {
-    background-color: transparent !important;
-    color: #fff !important;
+    background-color: white !important;
+    color: $hr-green-app !important;
     border : none;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
@@ -169,6 +169,13 @@ body {
     box-shadow: none;
 }
 
+.btn-hr-confirm {
+    color: #fff !important;
+    background-color: $hr-confirm !important;
+    border-color: $hr-confirm !important;
+    box-shadow: none;
+}
+
 .text-hr-orange {
     color: $hr-orange !important;
 }
@@ -183,4 +190,59 @@ body {
 
 .bg-hr-green-app {
     background-color: $hr-green-app !important;
+}
+
+.bg-hr-card {
+    background-color: $hr-card !important;
+    color: $hr-green-app !important;
+}
+
+.h-100vh {
+    min-height: calc(100vh - 50px);
+}
+.w-40 {
+    width: 40% !important;
+}
+.w-60 {
+    width: 60% !important;
+}
+
+
+.menu-button {
+    display: inline-flex;
+    align-items: stretch;
+    border: none;
+    min-height:80px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s;
+}
+
+.menu-button:hover {
+    border: 1px solid #60cac9;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+}
+
+.button-image {
+    width: 5rem;
+    background-size: cover;
+    background-position: center;
+}
+
+.button-text {
+    align-items: center;
+    background-color: white;
+    color: #4aa2a1;
+    padding:  0.75rem;
+    white-space: nowrap;
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover .button-text {
+    background-color: #A1DDDB;
+}
+
+.menu-button.active .button-text {
+    background-color: #A1DDDB;
 }

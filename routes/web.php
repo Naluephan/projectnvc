@@ -29,6 +29,20 @@ Route::group([
 
     //make function after auth here
 
+    //Config
+    Route::get('/config', [App\Http\Controllers\ConfigController::class, 'configMenu'])->name('config');
+    Route::get('/config/tools', [App\Http\Controllers\ConfigController::class, 'configTools'])->name('config.tools');
+    Route::get('/config/asset', [App\Http\Controllers\ConfigController::class, 'configAsset'])->name('config.asset');
+    Route::get('/config/department', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.department');
+    Route::get('/config/building', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.building');
+    Route::get('/config/security', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.security');
+    Route::get('/config/cleanness', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.cleanness');
+    Route::get('/config/maintenance', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.maintenance');
+    Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.pickuptools');
+    Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.worktime');
+    Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.holiday');
+
+
 
 
 
@@ -104,8 +118,7 @@ Route::get('/request/saraly/slip', [App\Http\Controllers\SalaryRequestSlipContro
 //Emp Leave
 Route::get('/empleave/list', [App\Http\Controllers\EmployeeLeaveController::class, 'list'])->name('empleave.list');
 
-//Config
-Route::get('/config/list', [App\Http\Controllers\ConfigController::class, 'listAsset'])->name('config.list');
+
 Route::get('/position/cleanline', [App\Http\Controllers\ConfigController::class, 'listPositionCleanline'])->name('position.cleanline');
 
 Route::get('/supply/list', [App\Http\Controllers\ConfigController::class, 'listSupply'])->name('supply.list');
