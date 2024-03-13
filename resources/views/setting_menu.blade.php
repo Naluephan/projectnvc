@@ -26,15 +26,15 @@
         <div class="col-12 col-sm-7 bg-light border-right p-4">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h4 class="text-hr-green-app"><em class="fas fa-warehouse"></em> <span class="h6">คลังเก็บอุปกรณ์และทรัพย์สินบริษัท</span> </h4>
+                    <h4 class="text-hr-green-app"><em class="fas fa-warehouse"></em> <span class="h6 text-bold">คลังเก็บอุปกรณ์และทรัพย์สินบริษัท</span> </h4>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.tools')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.tools*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
-                                <h6>หมวดหมู่</h6>
-                                <h6>อุปกรณ์</h6>
+                                <h6 class="text-bold">หมวดหมู่</h6>
+                                <h6 class="text-bold">อุปกรณ์</h6>
                             </span>
                         </a>
                     </div>
@@ -43,8 +43,8 @@
                         <a href="{{route('config.asset')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.asset*')) active @endif">
                             <span class="button-image setting-image-2 w-40"></span>
                             <span class="button-text w-60">
-                                <h6>หมวดหมู่</h6>
-                                <h6>ทรัพย์สิน</h6>
+                                <h6 class="text-bold">หมวดหมู่</h6>
+                                <h6 class="text-bold">ทรัพย์สิน</h6>
                             </span>
                         </a>
                     </div>
@@ -55,15 +55,15 @@
 {{--     end row       --}}
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h4 class="text-hr-green-app"><em class="fas fa-users"></em> <span class="h6">บุคลากร</span> </h4>
+                    <h4 class="text-hr-green-app"><em class="fas fa-users"></em> <span class="h6 text-bold">บุคลากร</span> </h4>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.department')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.department*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
-                                <h6>แผนก</h6>
-                                <h6>และตำแหน่ง</h6>
+                                <h6 class="text-bold">แผนก</h6>
+                                <h6 class="text-bold">และตำแหน่ง</h6>
                             </span>
                         </a>
                     </div>
@@ -73,15 +73,15 @@
             {{--     end row       --}}
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h4 class="text-hr-green-app"><em class="fas fa-chalkboard-teacher"></em> <span class="h6">งานอำนวยการ</span> </h4>
+                    <h4 class="text-hr-green-app"><em class="fas fa-chalkboard-teacher"></em> <span class="h6 text-bold">งานอำนวยการ</span> </h4>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.building')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.building*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
-                                <h6>อาคาร</h6>
-                                <h6>สถานที่</h6>
+                                <h6 class="text-bold">อาคาร</h6>
+                                <h6 class="text-bold">สถานที่</h6>
                             </span>
                         </a>
                     </div>
@@ -89,8 +89,8 @@
                         <a href="{{route('config.security')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.security*')) active @endif">
                             <span class="button-image setting-image w-40"></span>
                             <span class="button-text w-60">
-                                <h6>รักษาความ</h6>
-                                <h6>ปลอดภัย</h6>
+                                <h6 class="text-bold">รักษาความ</h6>
+                                <h6 class="text-bold">ปลอดภัย</h6>
                             </span>
                         </a>
                     </div>
@@ -98,8 +98,8 @@
                         <a href="{{route('config.cleanness')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.cleanness*')) active @endif">
                             <span class="button-image setting-image w-40"></span>
                             <span class="button-text w-60">
-                                <h6>รักษา</h6>
-                                <h6>ความสะอาด</h6>
+                                <h6 class="text-bold">รักษา</h6>
+                                <h6 class="text-bold">ความสะอาด</h6>
                             </span>
                         </a>
                     </div>
@@ -109,7 +109,7 @@
                         <a href="{{route('config.maintenance')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.maintenance*')) active @endif">
                             <span class="button-image setting-image w-40"></span>
                             <span class="button-text w-60 d-flex">
-                                <h6 class="my-auto">ซ่อมบำรุง</h6>
+                                <h6 class="my-auto text-bold">ซ่อมบำรุง</h6>
                             </span>
                         </a>
                     </div>
@@ -117,7 +117,7 @@
                         <a href="{{route('config.pickuptools')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.pickuptools*')) active @endif">
                             <span class="button-image setting-image w-40"></span>
                             <span class="button-text w-60 d-flex">
-                                <h6 class="my-auto">เบิกอุปกรณ์</h6>
+                                <h6 class="my-auto text-bold">เบิกอุปกรณ์</h6>
                             </span>
                         </a>
                     </div>
@@ -127,15 +127,15 @@
             {{--     end row       --}}
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h4 class="text-hr-green-app"><em class="fas fa-business-time"></em> <span class="h6">วันและเวลาทำงาน</span> </h4>
+                    <h4 class="text-hr-green-app"><em class="fas fa-business-time"></em> <span class="h6 text-bold">วันและเวลาทำงาน</span> </h4>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.worktime')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.worktime*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
-                                <h6>เวลาเข้า-ออก</h6>
-                                <h6>การทำงาน</h6>
+                                <h6 class="text-bold">เวลาเข้า-ออก</h6>
+                                <h6 class="text-bold">การทำงาน</h6>
                             </span>
                         </a>
                     </div>
@@ -143,8 +143,8 @@
                         <a href="{{route('config.holiday')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.holiday*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
-                                <h6>วันหยุด</h6>
-                                <h6>ประจำปี</h6>
+                                <h6 class="text-bold">วันหยุด</h6>
+                                <h6 class="text-bold">ประจำปี</h6>
                             </span>
                         </a>
                     </div>
