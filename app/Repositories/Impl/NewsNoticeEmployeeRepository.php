@@ -37,12 +37,12 @@ class NewsNoticeEmployeeRepository extends BaseRepository implements NewsNoticeE
                 'nn.news_priority',
                 'nne.read_or_not',
                 'nn.record_status',
-                'nn.created_at',
-                'nn.updated_at',
+                'nne.created_at',
+                'nne.updated_at',
             )
             ->where('e.id', '=', $empId)
             ->whereDate('nn.created_at', '>=', Carbon::now()->subDays(7))
-            ->orderBy('nn.news_priority', 'ASC')
+            ->orderBy('nne.id', 'desc')
             ->get();
 
         return $listNewsNotice;
