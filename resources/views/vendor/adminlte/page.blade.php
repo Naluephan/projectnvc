@@ -1,6 +1,7 @@
 @extends('adminlte::master')
 
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
+@inject('preloadHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 @php
     $hideSearchCard = isset($hideSearchCard) ? $hideSearchCard : true;
 @endphp
@@ -17,7 +18,8 @@
     <div class="wrapper">
 
         {{-- Preloader Animation --}}
-        @if($layoutHelper->isPreloaderEnabled())
+{{--        @if($layoutHelper->isPreloaderEnabled())--}}
+        @if ($preloadHelper->isPreloaderEnabled())
             @include('adminlte::partials.common.preloader')
         @endif
 
