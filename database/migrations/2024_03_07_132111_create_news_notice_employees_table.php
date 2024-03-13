@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->integer("news_notice_id")->nullable();
             $table->integer("emp_id")->nullable();
+            $table->tinyInteger('read_or_not')->comment('0=not 1=read')->default(0);
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

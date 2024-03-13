@@ -12,5 +12,6 @@ class NewsNoticeEmployee extends Model
     protected $fillable = [
         'news_notice_id',
         'emp_id',
+        'read_or_not',
     ];
 }

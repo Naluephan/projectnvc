@@ -174,6 +174,7 @@ Route::group(
 
         //API News Notice Employee
         Route::post('news/notice/employee', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
+        Route::post('news/notice/employee/update/read/status', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'updateReadStatus'])->name('news.notice.employee.update.read.status');
 
         //API News Notice
         Route::post('news/notice/employee/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_employee_lists'])->name('news.notice.employee.lists');
@@ -182,6 +183,8 @@ Route::group(
         Route::post('news/notice/employee/update', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'update'])->name('news.notice.employee.update');
         Route::post('news/notice/employee/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'getById'])->name('news.notice.employee.by.id');
 
+        //API Pickup Tools
+        Route::post('pickup/tools/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'getAll'])->name('pickup.tools.list');
 
     }
 );
