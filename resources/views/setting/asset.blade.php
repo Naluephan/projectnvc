@@ -29,24 +29,27 @@
                     <form id="assetForm">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3 pr-3 pl-3">
-                            <label for="cetegory_name" class="col-form-label text-color"><i class="fas fa-th-list text-sm"></i>
+                            <label for="cetegory_name" class="col-form-label text-color"><i
+                                    class="fas fa-th-list text-sm"></i>
                                 ชื่อหมวดหมู่</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color" id="cetegory_name"
-                                name="cetegory_name" required>
+                            <input type="text" class="form-control input-modal rounded-pill text-color"
+                                id="cetegory_name" name="cetegory_name" required>
                         </div>
                         <div class="pr-3 pl-3">
-                            <label for="cetegory_code" class="col-form-label text-color"><i class="fas fa-newspaper text-sm"></i>
+                            <label for="cetegory_code" class="col-form-label text-color"><i
+                                    class="fas fa-newspaper text-sm"></i>
                                 รหัสหมวดหมู่ (กำหนดตัวอักษรภาษาอังกฤษ 3
                                 อักษร)</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color" id="cetegory_code"
-                                name="cetegory_code" required>
+                            <input type="text" class="form-control input-modal rounded-pill text-color"
+                                id="cetegory_code" name="cetegory_code" required>
                         </div>
                     </form>
                 </div>
                 <div class="button-footer">
                     <div class="row">
                         <div class="col-6">
-                            <button type="button" class="btn card-text text-bold text-color" data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn card-text text-bold text-color"
+                                data-bs-dismiss="modal">ยกเลิก</button>
                         </div>
                         <div class="col-6">
                             <button class="btn btn-hr-confirm form-control rounded-pill save-asset">บันทึก</button>
@@ -126,25 +129,8 @@
                             data: data,
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    asset_modal.modal('hide');
-                                    getAssetCategory();
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                                asset_modal.modal('hide');
+                                getAssetCategory();
                             }
                         });
                     } else {
@@ -154,25 +140,8 @@
                             data: data,
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    asset_modal.modal('hide');
-                                    getAssetCategory();
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                                asset_modal.modal('hide');
+                                getAssetCategory();
                             }
                         });
                     }
@@ -225,10 +194,14 @@
                     text: "ต้องการดำเนินการใช่หรือไม่!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#e83e3e',
-                    cancelButtonColor: '#bb93ab',
+                    confirmButtonColor: '#FA9583',
+                    cancelButtonColor: 'transparent',
                     confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ปิด'
+                    cancelButtonText: 'ปิด',
+                    customClass: {
+                        confirmButton: 'rounded-pill',
+                        cancelButton: 'text-hr-green rounded-pill'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -239,24 +212,7 @@
                             },
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    getAssetCategory();
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                                getAssetCategory();
                             }
                         });
 

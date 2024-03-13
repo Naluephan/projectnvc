@@ -129,25 +129,8 @@
                             data: data,
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    category_modal.modal('hide');
-                                    getSupplyCategory();
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                                category_modal.modal('hide');
+                                getSupplyCategory();
                             }
                         });
                     } else {
@@ -157,26 +140,8 @@
                             data: data,
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    category_modal.modal('hide');
-                                    getSupplyCategory();
-
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                                category_modal.modal('hide');
+                                getSupplyCategory();
                             }
                         });
                     }
@@ -229,10 +194,14 @@
                     text: "ต้องการดำเนินการใช่หรือไม่!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#e83e3e',
-                    cancelButtonColor: '#bb93ab',
+                    confirmButtonColor: '#FA9583',
+                    cancelButtonColor: 'transparent',
                     confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ปิด'
+                    cancelButtonText: 'ปิด',
+                    customClass: {
+                        confirmButton: 'rounded-pill',
+                        cancelButton: 'text-hr-green rounded-pill'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -243,25 +212,7 @@
                             },
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    getSupplyCategory();
-
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                                getSupplyCategory();
                             }
                         });
 
