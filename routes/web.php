@@ -21,19 +21,44 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Auth::routes();
+
 Route::group([
     'middleware' => [
         'auth',
     ],
 ], function () {
 
-    //make function after auth here
+    Route::get('/tokens/create', function (Request $request) {
+//    $token = $request->user()->createToken('ehr-api');
+//    $token = User::find(1)->createToken('ehr-api');
+        $user = User::find(1);
+        $tokenPlain = 'ehr-api' . '|' . uniqid(); // Generate a unique part for the token to ensure it's unique
+        $encryptedToken = Crypt::encrypt($tokenPlain); // Encrypt the token or part of it as per your custom logic
+
+        // Save the encrypted token or its reference in the database
+        // This could be directly in your CustomPersonalAccessToken model or another way you've structured it
+        $tokenRecord = $user->tokens()->create([
+            'name' => 'ehr-api',
+            'token' => hash('sha256', $tokenPlain),
+            'abilities' => ['*'],
+        ]);
+
+        return ['token' => $encryptedToken];
+//    return ['token' => $token->plainTextToken];
+    });
+
+
+
+
+
+    //============================> make function after auth here
 
     //Config
     Route::get('/config', [App\Http\Controllers\ConfigController::class, 'configMenu'])->name('config');
     Route::get('/config/tools', [App\Http\Controllers\ConfigController::class, 'configTools'])->name('config.tools');
     Route::get('/config/asset', [App\Http\Controllers\ConfigController::class, 'configAsset'])->name('config.asset');
-    Route::get('/config/department', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.department');
+    Route::get('/config/department', [App\Http\Controllers\ConfigController::class, 'configDepartment'])->name('config.department');
     Route::get('/config/building', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.building');
     Route::get('/config/security', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.security');
     Route::get('/config/cleanness', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.cleanness');
@@ -43,30 +68,16 @@ Route::group([
     Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.holiday');
 
 
+    //Profile
+//    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profileMenu'])->name('profile');
+
 
 
 
 });
 
 
-Route::get('/tokens/create', function (Request $request) {
-//    $token = $request->user()->createToken('ehr-api');
-//    $token = User::find(1)->createToken('ehr-api');
-    $user = User::find(1);
-    $tokenPlain = 'ehr-api' . '|' . uniqid(); // Generate a unique part for the token to ensure it's unique
-    $encryptedToken = Crypt::encrypt($tokenPlain); // Encrypt the token or part of it as per your custom logic
 
-    // Save the encrypted token or its reference in the database
-    // This could be directly in your CustomPersonalAccessToken model or another way you've structured it
-    $tokenRecord = $user->tokens()->create([
-        'name' => 'ehr-api',
-        'token' => hash('sha256', $tokenPlain),
-        'abilities' => ['*'],
-    ]);
-
-    return ['token' => $encryptedToken];
-//    return ['token' => $token->plainTextToken];
-});
 
 Route::get('/import', [App\Http\Controllers\ImportExcelController::class, 'viewImport'])->name('import.view');
 Route::post('/import/excel', [App\Http\Controllers\ImportExcelController::class, 'importExcel'])->name('excel_import');
@@ -76,8 +87,7 @@ Route::post('/import/update/excel', [App\Http\Controllers\ImportExcelController:
 
 
 
-// Route::get('/business_card1', [App\Http\Controllers\BusinessCardController::class, 'index'])->name('business_card.index');
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/employees/list', [App\Http\Controllers\HomeController::class, 'empList'])->name('employees.list');

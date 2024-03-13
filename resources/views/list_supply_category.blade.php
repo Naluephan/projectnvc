@@ -218,7 +218,7 @@
                     </div>
 
                     <div class="col-4 ">
-                        <a href="{{ route('config.list') }}">
+                        <a href="">
                             <div class="card border border-2 p-0 rounded-4">
                                 <div class="row">
                                     <div class="col-4">

@@ -15,7 +15,7 @@
             background-image: url('https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662'); /* replace with your image URL */
         }
         .setting-image{
-            background-image: url('https://media.discordapp.net/attachments/1068009652882772048/1214529412264103936/IMG_1986.jpg?ex=65f971a8&is=65e6fca8&hm=e0ea36feaf9aeeff5707233e3e5b7e6a3d61046097461e9d777cb08641e133f2&=&format=webp&width=328&height=437'); /* replace with your image URL */
+            background-image: url({{asset('images/menu/building.png')}}); /* replace with your image URL */
         }
 
 
@@ -23,7 +23,7 @@
 @stop
 @section('content')
     <div class="row h-100vh">
-        <div class="col-12 col-sm-6 bg-light border-right p-4">
+        <div class="col-12 col-sm-7 bg-light border-right p-4">
             <div class="row">
                 <div class="col-12 mb-3">
                     <h4 class="text-hr-green-app"><em class="fas fa-warehouse"></em> <span class="h6">คลังเก็บอุปกรณ์และทรัพย์สินบริษัท</span> </h4>
@@ -78,7 +78,7 @@
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.building')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.building*')) active @endif">
-                            <span class="button-image setting-image w-40"></span>
+                            <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
                                 <h6>อาคาร</h6>
                                 <h6>สถานที่</h6>
@@ -109,7 +109,7 @@
                         <a href="{{route('config.maintenance')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.maintenance*')) active @endif">
                             <span class="button-image setting-image w-40"></span>
                             <span class="button-text w-60 d-flex">
-                                <h6 class="m-auto">ซ่อมบำรุง</h6>
+                                <h6 class="my-auto">ซ่อมบำรุง</h6>
                             </span>
                         </a>
                     </div>
@@ -117,7 +117,7 @@
                         <a href="{{route('config.pickuptools')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.pickuptools*')) active @endif">
                             <span class="button-image setting-image w-40"></span>
                             <span class="button-text w-60 d-flex">
-                                <h6 class="m-auto">เบิกอุปกรณ์</h6>
+                                <h6 class="my-auto">เบิกอุปกรณ์</h6>
                             </span>
                         </a>
                     </div>
@@ -152,8 +152,9 @@
             </div>
             {{--     end row       --}}
         </div>
-        <div class="col-12 col-sm-6 bg-white p-4">
+        <div class="col-12 col-sm-5 bg-white p-4">
             @yield('side-card')
+            @yield('js')
         </div>
     </div>
 

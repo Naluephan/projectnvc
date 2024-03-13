@@ -246,3 +246,17 @@ body {
 .menu-button.active .button-text {
     background-color: #A1DDDB;
 }
+
+.btn-outline-success  {
+    color: $hr-green-app !important;
+    border-color: $hr-green-app !important;
+}
+.btn-outline-success:hover {
+    color: #fff !important;
+    background-color: $hr-green-app !important;
+    border-color: $hr-green-app !important;
+}
+
+.error {
+    color: $hr-confirm !important;
+}

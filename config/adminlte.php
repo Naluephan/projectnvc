@@ -452,60 +452,97 @@ return [
         ],
 
 //        ['header' => 'เงินเดือน'],
+//        [
+//            'text'    => 'เงินเดือน',
+//            'icon'    => 'fas fa-fw fa-money-bill-wave',
+//            'submenu' => [
+//                [
+//                    'text' => 'ค่าล่วงเวลา',
+//                    'url'  => 'admin/settings',
+//                    'icon' => 'far fa-fw fa-clock',
+//
+//                ],
+//                [
+//                    'text' => 'เงินเดือน',
+//                    'url'  => '/saraly/list',
+//                    'icon' => 'fas fa-fw fa-money-bill-wave',
+//                ],
+//                [
+//                    'text' => 'สลิปเงินเดือน',
+//                    'url'  => 'admin/settings',
+//                    'icon' => 'fas fa-fw fa-file-lines',
+//                ],
+//                [
+//                    'text' => 'แม่แบบเงินเดือน',
+//                    'url'  => '/saraly/template/list',
+//                    'icon' => 'fas fa-fw fa-file-lines',
+//                ],
+//
+//                [
+//                    'text' => 'แจ้งขอสลิปเงินเดือนย้อนหลัง',
+//                    'url'  => '/request/saraly/slip',
+//                    'icon' => 'fas fa-fw fa-file-lines',
+//                ],
+//            ],
+//        ],
         [
-            'text'    => 'เงินเดือน',
-            'icon'    => 'fas fa-fw fa-money-bill-wave',
+            'text'    => 'คลัง (เก็บอุปกรณ์)',
+            'icon'    => 'fas fa-fw fa-warehouse',
             'submenu' => [
                 [
-                    'text' => 'ค่าล่วงเวลา',
-                    'url'  => 'admin/settings',
-                    'icon' => 'far fa-fw fa-clock',
+                    'text' => 'เพิ่มรายการอุปกรณ์',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-plus-circle',
 
                 ],
                 [
-                    'text' => 'เงินเดือน',
-                    'url'  => '/saraly/list',
-                    'icon' => 'fas fa-fw fa-money-bill-wave',
+                    'text' => 'รายการอุปกรณ์',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-list',
                 ],
-                [
-                    'text' => 'สลิปเงินเดือน',
-                    'url'  => 'admin/settings',
-                    'icon' => 'fas fa-fw fa-file-lines',
-                ],
-                [
-                    'text' => 'แม่แบบเงินเดือน',
-                    'url'  => '/saraly/template/list',
-                    'icon' => 'fas fa-fw fa-file-lines',
-                ],
-                // [
-                //     'text' => 'รายละเอียดแม่แบบเงินเดือน',
-                //     'url'  => '/saraly/template/detail/list',
-                //     'icon' => 'fas fa-fw fa-file-lines',
-                // ],
-                [
-                    'text' => 'แจ้งขอสลิปเงินเดือนย้อนหลัง',
-                    'url'  => '/request/saraly/slip',
-                    'icon' => 'fas fa-fw fa-file-lines',
-                ],
+
             ],
         ],
-        ['header' => 'ข้อมูลส่วนตัว'],
+        [
+            'text'    => 'บัญชีทรัพย์สินบริษัท',
+            'icon'    => 'fas fa-fw fa-chair',
+            'submenu' => [
+                [
+                    'text' => 'เพิ่มรายการทรัพย์สิน',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-plus-circle',
+
+                ],
+                [
+                    'text' => 'รายการทรัพย์สิน',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+
+            ],
+        ],
+        [
+            'text' => 'รายงานสถานการณ์',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+//        ['header' => 'ข้อมูลส่วนตัว'],
         [
             'text' => 'การตั้งค่า',
             'url'  => '/config',
             'icon' => 'fas fa-fw fa-cog',
         ],
         [
-            'text' => 'ข้อมูลส่วนตัว',
+            'text' => 'โปรไฟล์',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
 
         ],
-        [
-            'text' => 'เปลี่ยนรหัสผ่าน',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+//        [
+//            'text' => 'เปลี่ยนรหัสผ่าน',
+//            'url'  => 'admin/settings',
+//            'icon' => 'fas fa-fw fa-lock',
+//        ],
     ],
 
     /*

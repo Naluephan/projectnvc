@@ -197,7 +197,7 @@
                 <div class="row mt-3">
 
                     <div class="col-4">
-                        <a href="{{ route('supply.list') }}">
+                        <a href="">
                             <div class="card border border-1 rounded-4">
                                 <div class="row">
                                     <div class="col-4">
@@ -218,7 +218,7 @@
                     </div>
 
                     <div class="col-4 ">
-                        <a href="{{ route('config.list') }}">
+                        <a href="">
                             {{-- class "use-url" ใช้สำหรับ action หน้าที่กำลังเปิด ถ้าไม่ต้องการ action ที่หน้านี้ก็แค่เอาออก --}}
                             <div class="card border border-2 p-0 rounded-4 use-url">
                                 <div class="row">

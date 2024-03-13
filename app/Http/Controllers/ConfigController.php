@@ -8,7 +8,7 @@ class ConfigController extends Controller
 {
     public function configMenu()
     {
-        return view('setting_list');
+        return view('setting_menu');
     }
     public function configTools()
     {
@@ -17,6 +17,11 @@ class ConfigController extends Controller
     public function configAsset()
     {
         return view('setting.asset');
+    }
+
+    public function configDepartment()
+    {
+        return view('setting.department');
     }
     public function listSupply()
     {
