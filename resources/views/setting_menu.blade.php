@@ -6,16 +6,40 @@
         }
 
         .setting-image-1 {
-            background-image: url('https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662'); /* replace with your image URL */
+            background-image: url({{asset('images/menu/1.png')}}); /* replace with your image URL */
         }
         .setting-image-2 {
-            background-image: url('https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662'); /* replace with your image URL */
+            background-image: url({{asset('images/menu/2.png')}}); /* replace with your image URL */
         }
         .setting-image-3 {
-            background-image: url('https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662'); /* replace with your image URL */
+            background-image: url({{asset('images/menu/3.png')}}); /* replace with your image URL */
         }
-        .setting-image{
-            background-image: url({{asset('images/menu/building.png')}}); /* replace with your image URL */
+        .setting-image-4{
+            background-image: url({{asset('images/menu/4.png')}}); /* replace with your image URL */
+        }
+
+        .setting-image-5{
+            background-image: url({{asset('images/menu/5.png')}}); /* replace with your image URL */
+        }
+
+        .setting-image-6{
+            background-image: url({{asset('images/menu/6.png')}}); /* replace with your image URL */
+        }
+
+        .setting-image-7{
+            background-image: url({{asset('images/menu/7.png')}}); /* replace with your image URL */
+        }
+
+        .setting-image-8{
+            background-image: url({{asset('images/menu/8.png')}}); /* replace with your image URL */
+        }
+
+        .setting-image-9{
+            background-image: url({{asset('images/menu/9.png')}}); /* replace with your image URL */
+        }
+
+        .setting-image-10{
+            background-image: url({{asset('images/menu/10.png')}}); /* replace with your image URL */
         }
 
 
@@ -60,7 +84,7 @@
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.department')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.department*')) active @endif">
-                            <span class="button-image setting-image-1 w-40"></span>
+                            <span class="button-image setting-image-3 w-40"></span>
                             <span class="button-text w-60">
                                 <h6 class="text-bold">แผนก</h6>
                                 <h6 class="text-bold">และตำแหน่ง</h6>
@@ -78,7 +102,7 @@
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.building')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.building*')) active @endif">
-                            <span class="button-image setting-image-1 w-40"></span>
+                            <span class="button-image setting-image-4 w-40"></span>
                             <span class="button-text w-60">
                                 <h6 class="text-bold">อาคาร</h6>
                                 <h6 class="text-bold">สถานที่</h6>
@@ -87,7 +111,7 @@
                     </div>
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.security')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.security*')) active @endif">
-                            <span class="button-image setting-image w-40"></span>
+                            <span class="button-image setting-image-5 w-40"></span>
                             <span class="button-text w-60">
                                 <h6 class="text-bold">รักษาความ</h6>
                                 <h6 class="text-bold">ปลอดภัย</h6>
@@ -96,7 +120,7 @@
                     </div>
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.cleanness')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.cleanness*')) active @endif">
-                            <span class="button-image setting-image w-40"></span>
+                            <span class="button-image setting-image-6 w-40"></span>
                             <span class="button-text w-60">
                                 <h6 class="text-bold">รักษา</h6>
                                 <h6 class="text-bold">ความสะอาด</h6>
@@ -107,7 +131,7 @@
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.maintenance')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.maintenance*')) active @endif">
-                            <span class="button-image setting-image w-40"></span>
+                            <span class="button-image setting-image-7 w-40"></span>
                             <span class="button-text w-60 d-flex">
                                 <h6 class="my-auto text-bold">ซ่อมบำรุง</h6>
                             </span>
@@ -115,7 +139,7 @@
                     </div>
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.pickuptools')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.pickuptools*')) active @endif">
-                            <span class="button-image setting-image w-40"></span>
+                            <span class="button-image setting-image-8 w-40"></span>
                             <span class="button-text w-60 d-flex">
                                 <h6 class="my-auto text-bold">เบิกอุปกรณ์</h6>
                             </span>
@@ -132,7 +156,7 @@
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.worktime')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.worktime*')) active @endif">
-                            <span class="button-image setting-image-1 w-40"></span>
+                            <span class="button-image setting-image-9 w-40"></span>
                             <span class="button-text w-60">
                                 <h6 class="text-bold">เวลาเข้า-ออก</h6>
                                 <h6 class="text-bold">การทำงาน</h6>
@@ -141,7 +165,7 @@
                     </div>
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.holiday')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.holiday*')) active @endif">
-                            <span class="button-image setting-image-1 w-40"></span>
+                            <span class="button-image setting-image-10 w-40"></span>
                             <span class="button-text w-60">
                                 <h6 class="text-bold">วันหยุด</h6>
                                 <h6 class="text-bold">ประจำปี</h6>

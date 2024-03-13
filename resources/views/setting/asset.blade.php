@@ -1,98 +1,6 @@
 @extends('setting_menu')
 @section('side-card')
 
-    <style>
-        .modal-dialog {
-            margin: 0;
-            position: absolute;
-            top: 30%;
-            left: 42%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-        }
-
-        .modal-radius {
-            border-radius: 1.5rem;
-            border-color: none;
-        }
-
-        .modal-header-radius {
-            border-radius: 1.5rem 1.5rem 0rem 0rem;
-        }
-
-        .background2 {
-            background-color: #048482;
-            color: white
-        }
-
-        .button-footer {
-            padding-left: 35px;
-            padding-right: 35px;
-            padding-top: 10px;
-            padding-bottom: 35px;
-        }
-
-        .button-footer .btn {
-            width: 100%;
-            height: 45px;
-        }
-
-        .modal-dialog .text-color {
-            color: #048482;
-        }
-
-        .input-modal {
-            height: 45px;
-            border: 1px solid #dddddd;
-            font-size: 13px;
-            color: var(--color3);
-            font-weight: 500;
-        }
-
-        .position {
-            position: absolute;
-            top: 40%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 1;
-            color: #a5d8d8;
-        }
-
-        .position-main {
-            position: absolute;
-            top: 40%;
-            left: 20px;
-            transform: translateY(-50%);
-            z-index: 1;
-            color: var(--color3);
-        }
-
-        .hhh .btn-edit {
-            height: 40px;
-            width: 40px;
-            background-color: #77c6c5;
-            border-color: #77c6c5;
-        }
-
-        .hhh .btn-delete {
-            height: 40px;
-            width: 40px;
-            background-color: #fa9583;
-            border-color: #fa9583;
-        }
-
-        .save-asset,
-        .save-category,
-        .btn-hr-confirm {
-            border: none
-        }
-
-        .modal-body .fa-newspaper,
-        .fa-th-list {
-            color: #fa9583;
-        }
-    </style>
-
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
             <h6 class="text-bold"><i class="fas fa-th-large"></i> หมวดหมู่ทรัพย์สิน</h6>
@@ -181,12 +89,12 @@
                                             <input type="text" class="form-control rounded-pill bg-white text-sm"
                                                 style="border-color: #c0e7e7; height: 45px;" disabled>
                                             <label class="position-main pt-2">${cetegoryName}</label>
-                                            <label class="position pt-2">#${cetegoryCode}</label>
+                                            <label class="position-main2 pt-2">#${cetegoryCode}</label>
                                         </div>&nbsp;&nbsp;
-                                        <button class="btn btn-sm rounded-pill btn-success btn-edit" data-id="${cetegoryId}"
+                                        <button class="btn btn-sm rounded-pill btn-edit" style="color: #ffff;" data-id="${cetegoryId}"
                                             data-ac="edit" data-bs-toggle="modal" data-bs-target="#assetModal"><em
                                                 class="fas fa-edit" style="font-size: 20px;"></em></button>&nbsp;&nbsp;
-                                        <button class="btn btn-sm rounded-pill btn-danger btn-delete" data-id="${cetegoryId}"><em
+                                        <button class="btn btn-sm rounded-pill btn-delete" style="color: #ffff;" data-id="${cetegoryId}"><em
                                                 class="fas fa-trash-alt" style="font-size: 20px;"></em></button>
                                     </div>
                                 </div>
