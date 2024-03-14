@@ -2,13 +2,13 @@
 <style>
     .btn-danger  {
         color: #fff !important;
-        border-color: #e6896a !important;
-        background-color: #e6896a !important;
+        border-color: #FA9583 !important;
+        background-color: #FA9583 !important;
     }
     .btn-danger:hover {
-        color: #e6896a !important;
+        color: #FA9583 !important;
         background-color: #fff !important;
-        border-color: #e6896a !important;
+        border-color: #FA9583 !important;
     }
     .btn-success  {
         color: #fff !important;
@@ -32,6 +32,15 @@
         background-color: #fff !important;
         color: #77c6c5 !important;
         border-color: #77c6c5 !important;
+    }
+    .btn-outline-successful {
+        border-color: none !important;
+        color: #136E68 !important;
+    }
+    .btn-outline-successful:hover {
+        border-color: #136E68 !important;
+        color: #fff !important;
+        background-color: #136E68 !important;
     }
 
 </style>
@@ -60,10 +69,7 @@
         </div>
         <div class="modal-body">
             <form id ="news_FromModal">
-                {{-- <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> รหัสข่าว</label>
-                    <input type="text" class="form-control rounded-pill" id="id" name="id" required>
-                </div> --}}
+                <input type="hidden" name="id" id="id">
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อข่าวสาร</label>
                     <input type="text" class="form-control rounded-pill" id="news_name" name="news_name" required>
@@ -76,8 +82,8 @@
         </div>
         <div class="row p-4 ">
             <div class="row">
-                <button type="button" class="btn btn-outline-success rounded-pill col-5 mx-auto p-3" data-bs-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-danger rounded-pill save-new col-5 mx-auto p-3" id="save-new">ยืนยัน</button>
+                <button type="button" class="btn btn-outline-successful rounded-pill col-5 mx-auto p-2" data-bs-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-danger rounded-pill save-new col-5 mx-auto p-2" id="save-new">ยืนยัน</button>
             </div>
         </div>
         </div>
@@ -107,18 +113,27 @@
                         var newsName = newsCategory.news_name;
                         var newsDetails = newsCategory.news_details;
                         var Item =`
-                                <div class="col-10">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control rounded-pill" value="${newsName}" disabled readonly>
-                                        <label class="left rounded-pill "></label>
+                            <div class="test pt-2 mb-3">
+                                <div class="row">
+                                    <div class="col-12 d-flex">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control rounded-pill text-sm" disabled>
+                                            <label class="position-main pt-2">${newsName}</label>
+                                        </div>
+
+                                        <button class="btn btn-sm btn-success rounded-pill btn-edit mx-2" 
+                                             data-id="${id}"
+                                            data-ac="edit" data-bs-toggle="modal" data-bs-target="#newsModal">
+                                            <em class="fas fa-edit fs-5"></em>
+                                        </button>
+
+                                        <button class="btn btn-danger btn-sm rounded-pill btn-delete" 
+                                             data-id="${id}">
+                                            <em class="fas fa-trash-alt fs-5"></em>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <button class="btn btn-success btn-md rounded-pill btn-edit" data-id="${id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#newsModal"><em class="fas fa-edit"></em></button>
-                                </div>
-                                <div class="col-1">
-                                    <button class="btn btn-danger btn-md rounded-pill btn-delete btn-color-delete" data-id="${id}"><em class="fas fa-trash-alt"></em></button>
-                                </div>
+                            </div>
                         `;
                         newsContainer.append(Item);
                     });
@@ -132,65 +147,71 @@
         })
 
          ////// save news //////
-        $(document).on('click', '#save-new', function() {
+        $(document).on('click', '.save-new', function() {
+                let id = $('#id').val();
                 let news_FromModal = $('#news_FromModal');
+
                 if (news_FromModal.valid()) {
-                    // let id = $('#id').val();
-                    let news_name = $('#news_name').val();
-                    let news_details = $('#news_details').val();
-                    
-                    let data = {
-                        // id: id,
-                        news_name: news_name,
-                        news_details: news_details
-                    };
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ route('api.v1.news.category.create') }}",
-                        data: data,
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.data.status == 'Success') {
-                                Swal.fire({
-                                    title: 'ดำเนินการเรียบร้อยแล้ว',
-                                    icon: 'success',
-                                    showConfirmButton: false,
-                                    timer: 2000,
-                                    toast: true
-                                });
-                                news_model.modal('hide');
-                                getNewsCategory();
-                            } else {
-                                    $.ajax({
-                                    type: 'post',
-                                    url: "{{ route('api.v1.news.category.update') }}",
-                                    data: data,
-                                    dataType: "json",
-                                    success: function(response) {
-                                        if (response.status == 'Success') {
-                                            Swal.fire({
-                                                title: 'ดำเนินการเรียบร้อยแล้ว',
-                                                icon: 'success',
-                                                showConfirmButton: false,
-                                                timer: 2000,
-                                                toast: true
-                                            });
-                                            asset_modal.modal('hide');
-                                            getNewsCategory();
-                                        } else {
-                                            Swal.fire({
-                                                title: 'เกิดข้อผิดพลาด',
-                                                icon: 'warning',
-                                                showConfirmButton: false,
-                                                timer: 2000,
-                                                toast: true
-                                            })
-                                        }
-                                    }
-                                });
+                    const formData = new FormData($('#news_FromModal')[0]);
+                    const data = Object.fromEntries(formData.entries());
+                    if (!id) {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.news.category.create') }}",
+                            data: data,
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.data.status == 'Success') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                    news_model.modal('hide');
+                                    getNewsCategory();
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                } 
                             }
-                        }
-                    });
+                        });
+                    }else {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.news.category.update') }}",
+                            data: data,
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.data.status == 'Success') {
+                                    Swal.fire({
+                                        title: 'ดำเนินการเรียบร้อยแล้ว',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                    news_model.modal('hide');
+                                    getNewsCategory();
+
+                                } else {
+                                    Swal.fire({
+                                        title: 'เกิดข้อผิดพลาด',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    })
+                                }
+                            }
+                        });
+                    }
                 }else {
                     Swal.fire({
                         title: 'กรุณาตรวจสอบข้อมูล',
@@ -203,29 +224,6 @@
             });
 
 
-
-        ////// update news //////
-        // $(document).on('click', '.btn-edit', function() {
-        //     let id = $(this).data('id');
-            
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: "{{ route('api.v1.news.category.by.id') }}",
-        //         data: { id: id },
-        //         dataType: 'json',
-        //         success: function(response) {
-        //             $('#id').val(response.data.id);
-        //             $('#news_name').val(response.data.news_name);
-        //             $('#news_details').val(response.data.news_details);
-
-        //             news_model.modal('show');
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.error(xhr.responseText);
-        //         }
-        //     });
-        // });
-
         ////// edit news //////
         $(document).on('click', '.btn-edit', function() {
                 let id = $(this).data('id');
@@ -237,32 +235,25 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        // setNewsCategoryFormData(response);
-                        // $("#id").val(response.id);
-                        // $("#id").val(response.id);
-                        $("#news_name").val(response.news_name);
-                        $("#news_details").val(response.news_details);
+                        setNewsCategoryFormData(response);
+                        $("#id").val(response.id);
                         news_model.modal('show')
                         console.log(response);
                     }
-                    // console.log(response);
                 });
             })
             function setNewsCategoryFormData(data) {
-                // $("#id").val(data.id);
                 $("#news_name").val(data.news_name);
                 $("#news_details").val(data.news_details);
             }
             news_model.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
-                let title = btn.data('ac') === 'edit' ? 'แก้ไขหัวข้อข่าว' : 'เพิ่มหัวข้อข่าว';
-                // console.log(btn.data('ac'))
+                let title = btn.data('ac') === 'edit' ? 'แก้ไขหัวข้อข่าว':'เพิ่มหัวข้อข่าว';
                 let obj = $(this);
                 obj.find('.modal-title').text(title)
             })
             news_model.on('hide.bs.modal', function() {
             let obj = $(this);
-            // obj.find('#id').val("");
             obj.find('#news_name').val("");
             obj.find('#news_details').val("");
             })
@@ -276,10 +267,15 @@
                     text: "ต้องการดำเนินการใช่หรือไม่!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#e83e3e',
-                    cancelButtonColor: '#bb93ab',
+                    confirmButtonColor: '#FA9583',
+                    cancelButtonColor: 'transparent',
                     confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ปิด'
+                    cancelButtonText: 'ปิด',
+                    customClass: {
+                        confirmButton: 'rounded-pill',
+                        cancelButton: 'text-hr-green rounded-pill',
+                        popup: 'modal-radius'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({

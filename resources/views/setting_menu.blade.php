@@ -101,7 +101,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
-                        <a href="{{route('news.list')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*news.list*')) active @endif">
+                        <a href="{{route('news.topic.category')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*news.topic.category*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
                                 <h6>ข่าวสาร</h6>

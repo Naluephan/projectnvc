@@ -9,7 +9,7 @@ class NewsTopicCategory extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'news_id',
+        // 'news_id',
         'news_name',
         'news_details',
     ];

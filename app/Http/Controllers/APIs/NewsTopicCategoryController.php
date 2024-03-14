@@ -52,24 +52,25 @@ class NewsTopicCategoryController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Update Success";
         try {
             $this->newsTopicCategoryRepository->update($id,$data);
+            $result['status'] = "Success";
             DB::commit();
         } catch (\Exception $ex){
             $result['status'] = "Update Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+
     }
     public function updateCategory(Request $request)
     {
-        $id = $request->news_id;
+        $id = $request->id;
         $name = $request->news_name;
         $details = $request->news_details;
         
-        $where = ['news_id' => $id];
+        $where = ['id' => $id];
         $update = ['news_name' => $name];
         $update = ['news_details' => $details];
         // $whereRaw = 'news_id = '.$id;

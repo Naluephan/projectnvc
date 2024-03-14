@@ -32,4 +32,8 @@ class ConfigController extends Controller
     {
         return view('list_position_cleanline');
     }
+    public function newsTopicCategory()
+    {
+        return view('setting.news_topic_category');
+    }
 }

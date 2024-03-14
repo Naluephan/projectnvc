@@ -132,8 +132,9 @@ Route::get('/empleave/list', [App\Http\Controllers\EmployeeLeaveController::clas
 Route::get('/position/cleanline', [App\Http\Controllers\ConfigController::class, 'listPositionCleanline'])->name('position.cleanline');
 
 Route::get('/supply/list', [App\Http\Controllers\ConfigController::class, 'listSupply'])->name('supply.list');
+
 //Activity and News Update
-Route::get('/news/list', [App\Http\Controllers\NewsController::class, 'listNews'])->name('news.list');
+Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class, 'newsTopicCategory'])->name('news.topic.category');
 
 //News Notice Employee
 Route::get('/news/notice/employee', [App\Http\Controllers\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
