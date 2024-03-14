@@ -94,6 +94,25 @@
 
                 </div>
             </div>
+             {{-- start row News Category --}}
+             <div class="row">
+                <div class="col-12 mb-3">
+                    <h4 class="text-hr-green-app"><i class="fa-regular fa-newspaper"></i> <span class="h6">ข่าวสาร</span> </h4>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-4">
+                        <a href="{{route('news.list')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*news.list*')) active @endif">
+                            <span class="button-image setting-image-1 w-40"></span>
+                            <span class="button-text w-60">
+                                <h6>ข่าวสาร</h6>
+                                <h6>กิจกรรม</h6>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{-- End row News Category --}}
+
             {{--     end row       --}}
             <div class="row">
                 <div class="col-12 mb-3">
