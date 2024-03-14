@@ -147,7 +147,7 @@ Route::group(
         Route::post('asset/category/by/id', [\App\Http\Controllers\APIs\AssetCategoryController::class, 'getById'])->name('asset.category.by.id');
 
         //API News
-        Route::post('news/list', [\App\Http\Controllers\APIs\NewsController::class, 'news_list'])->name('news.list');
+        Route::post('news/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_list'])->name('news.list');
 
         //API Reward Coin History
         Route::post('reward/history/list', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'reward_history'])->name('reward.history');
@@ -177,7 +177,6 @@ Route::group(
         Route::post('news/notice/employee/update/read/status', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'updateReadStatus'])->name('news.notice.employee.update.read.status');
 
         //API News Notice
-        Route::post('news/notice/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_list'])->name('news.notice.list');
         Route::post('news/notice/employee', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
         Route::post('news/notice/employee/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_employee_lists'])->name('news.notice.employee.lists');
         Route::post('news/notice/employee/create', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'create'])->name('news.notice.employee.create');

@@ -1,7 +1,6 @@
 @extends('setting_menu')
 
 @section('side-card')
-
     <style>
         .header img {
             width: 100px;
@@ -19,20 +18,23 @@
         }
     </style>
 
-    <div class="card rounded-4 bg-hr-card">
+    <div class="card p-3 rounded-4 bg-hr-card">
         <div class="card-header border-0 pb-0">
             <h6 class="text-bold"><i class="fas fa-cubes"></i> การเบิกอุปกรณ์</h6>
             <p class="text-bold">กำหนดสิทธิ์สำหรับการเบิกอุปกรณ์ในแต่ละแผนกก</p>
         </div>
         <div class="card-body pt-0">
-            <div class="row mt-1 list_pickuptools" id="list_pickuptools"></div>
-            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
-                    class="fa-solid fa-plus"></i>
-                เพิ่มข้อมูล</button>
+            <div class="row mt-1 list_pickuptools p-2" id="list_pickuptools"></div>
+            <div class="button px-0">
+                <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                        class="fa-solid fa-plus"></i>
+                    เพิ่มข้อมูล</button>
+            </div>
+            {{-- <div class="card-footer bg-transparent px-0 mt-4">
+                <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
+            </div> --}}
         </div>
-        <div class="card-footer bg-transparent">
-            <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
-        </div>
+
     </div>
 
     <div class="modal fade" id="pickuptoolsModal" tabindex="-1" aria-labelledby="pickuptoolsModalLabel" aria-hidden="true"
@@ -188,13 +190,15 @@
                             var imageDepartments = pickuptoolsInfo.image_departments;
                             var departmentCount = pickuptoolsInfo.department_count;
                             var Item = `
-                                <div class="button-details p-0 w-100 mb-3 cursor-pointer" style="height: 120px;" data-department_id="${department_id}">
-                                    <span class="button-image w-40"
-                                        style="background-image: url(${imageDepartments});"></span>
-                                    <span class="button-text w-100 pt-3">
-                                        <h6 class="text-bold mb-0 mr-2">${departmentName}</h6>
-                                        <p class="text-bold mb-0" style="color: #d4d4d4;">สิทธิ์การเบิก ${departmentCount} รายการ</p>
-                                    </span>
+                                <div class="content p-2">
+                                    <div class="button-details p-0 w-100 mb-3 cursor-pointer" style="height: 120px;"
+                                        data-department_id="${department_id}">
+                                        <span class="button-image w-40" style="background-image: url(${imageDepartments});"></span>
+                                        <span class="button-text w-100 pt-3">
+                                            <h6 class="text-bold mb-0 mr-2">${departmentName}</h6>
+                                            <p class="text-bold mb-0" style="color: #d4d4d4;">สิทธิ์การเบิก ${departmentCount} รายการ</p>
+                                        </span>
+                                    </div>
                                 </div>
                             `;
                             pickuptoolsContainer.append(Item);
@@ -209,7 +213,8 @@
 
                 pickuptoolsDetailCategory();
                 let department_id = $(this).data('department_id');
-                    console.log(department_id);
+                console.log(department_id);
+
                 function pickuptoolsDetailCategory() {
 
                     const listPickuptools = document.getElementById('list_pickuptoolsDetail');

@@ -88,6 +88,21 @@
                                     <textarea class="form-control" id="news_notice_description" name="news_notice_description"></textarea>
                                 </div>
 
+                                <div class="col-12">
+                                    <label class="col-form-label">รูปที่ 1 :</label>
+                                    <textarea class="form-control" id="news_img1" name="news_img1"></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="col-form-label">รูปที่ 2 :</label>
+                                    <textarea class="form-control" id="news_img2" name="news_img2"></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="col-form-label">รูปที่ 3 :</label>
+                                    <textarea class="form-control" id="news_img3" name="news_img3"></textarea>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -260,6 +275,9 @@
                                         .val(),
                                     notice_category_id: $('#notice_category_id').val(),
                                     news_priority: $('#news_priority').val(),
+                                    news_img1: $('#news_img1').val(),
+                                    news_img2: $('#news_img2').val(),
+                                    news_img3: $('#news_img3').val(),
                                 },
                                 dataType: "json",
                                 success: function(response) {
@@ -295,6 +313,9 @@
                 $("#notice_category_id").val(data.notice_category_id);
                 $("#news_priority").val(data.news_priority);
                 $("#news_notice_description").val(data.news_notice_description);
+                $("#news_img1").val(data.news_img1);
+                $("#news_img2").val(data.news_img2);
+                $("#news_img3").val(data.news_img3);
             }
 
             $(document).on('click', '.btn-edit', function() {
@@ -343,6 +364,9 @@
                                         .val(),
                                     notice_category_id: $('#notice_category_id').val(),
                                     news_priority: $('#news_priority').val(),
+                                    news_img1: $('#news_img1').val(),
+                                    news_img2: $('#news_img2').val(),
+                                    news_img3: $('#news_img3').val(),
                                 },
                                 dataType: "json",
                                 success: function(response) {
