@@ -307,27 +307,29 @@ return [
 //            'text' => 'ค้นหา',
 //        ],
         [
-            'text'    => 'แดชบอร์ด',
+            'text'    => 'หน้าหลัก',
             'icon'    => 'fas fa-fw fa-home',
+            'url'     => '#',
+            'active'     => ['regex:@^zzzz@'],
 //            'label'       => 4,
 //            'label_color' => 'hr-menu',
-            'submenu' => [
-                [
-                    'text'    => 'ภาพรวมองค์กร',
-                    'url'     => '#',
-                ],
-                [
-                    'text' => 'สถิติการมาทำงาน',
-                    'active'     => ['regex:@^home@'],
-                    'url'  => '#',
-                ],
+//            'submenu' => [
+//                [
+//                    'text'    => 'ภาพรวมองค์กร',
+//                    'url'     => '#',
+//                ],
+//                [
+//                    'text' => 'สถิติการมาทำงาน',
+//                    'active'     => ['regex:@^home@'],
+//                    'url'  => '#',
+//                ],
 //                [
 //                    'text' => 'การแจ้งเดือน',
 //                    'url'  => '#',
 //                    'label'       => 4,
 //                    'label_color' => 'hr-menu',
 //                ],
-            ],
+//            ],
         ],
 //        [
 //            'text'        => 'pages',
@@ -339,117 +341,113 @@ return [
 //        ],
 
 //        ['header' => 'องค์กร'],
-        [
-            'text'    => 'โครงสร้างองค์กร',
-            'icon'    => 'fas fa-fw fa-sitemap',
-            'submenu' => [
-                [
-                    'text' => 'บริษัท',
-                    'url'  => '/companies/list',
-                    'active'   => ['regex:@^companies/list@'],
-                ],
-                [
-                    'text' => 'หน่วยงาน',
-                    'url'  => '/department/list',
-                    'active'   => ['regex:@^department/list@'],
-                ],
-                [
-                    'text'    => 'ตำแหน่ง',
-                    'url'  => '/position/list',
-                    'active'   => ['regex:@^position/list@'],
-                ],
-                [
-                    'text' => 'ระดับพนักงาน',
-                    'url'  => '/level/list',
-                    'active'   => ['regex:@^level/list@'],
-                ],
-            ],
-        ],
-        [
-            'text'    => 'ข้อมูลพนักงาน',// (Employee Management)
-            'icon'    => 'fas fa-fw fa-users-line',
-            'label'       => 1,
-            'label_color' => 'hr-menu',
-            'submenu' => [
-                [
-                    'text' => 'พนักงาน',
-                    'url'  => '/employees/list',
-                    'active'     => ['regex:@^employees@'],
-                ],
-                [
-                    'text'    => 'อบรมพนักงานใหม่',
-                    'url'     => '#',
-                    'label'       => 1,
-                    'label_color' => 'hr-menu',
-                ],
-                [
-                    'text'    => 'แจ้งเตือนพนักงาน',
-                    'url'     => '/news/notice/employee',
-                ],
-            ],
-        ],
-        [
-            'text'    => 'กฎระเบียบ',
-            'icon'    => 'fas fa-fw fa-scale-balanced',
-            'submenu' => [
-                [
-                    'text' => 'ระเบียบพนักงาน',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'การแต่งกาย',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'การเข้างาน',
-                    'url'     => '#',
-                ],
-            ],
-        ],
-        [
-            'text'    => 'สวัสดิการ',//Welfare
-            'icon'    => 'far fa-fw fa-face-smile',
-            'submenu' => [
-                [
-                    'text'    => 'วันหยุด',
-                    'url'     => '/holiday/list',
-                ],
-                [
-                    'text' => 'จัดการฝึกอบรมและสัมมนา',
-                    'url'  => '/tas/list',
-                ],
-                [
-                    'text' => 'RewardCoins',
-                    'url'  => '/rewardcoin/list',
-                ],
+//        [
+//            'text'    => 'โครงสร้างองค์กร',
+//            'icon'    => 'fas fa-fw fa-sitemap',
+//            'submenu' => [
 //                [
-//                    'text' => 'กลุ่มงาน',
+//                    'text' => 'บริษัท',
+//                    'url'  => '/companies/list',
+//                    'active'   => ['regex:@^companies/list@'],
+//                ],
+//                [
+//                    'text' => 'หน่วยงาน',
+//                    'url'  => '/department/list',
+//                    'active'   => ['regex:@^department/list@'],
+//                ],
+//                [
+//                    'text'    => 'ตำแหน่ง',
+//                    'url'  => '/position/list',
+//                    'active'   => ['regex:@^position/list@'],
+//                ],
+//                [
+//                    'text' => 'ระดับพนักงาน',
+//                    'url'  => '/level/list',
+//                    'active'   => ['regex:@^level/list@'],
+//                ],
+//            ],
+//        ],
+//        [
+//            'text'    => 'ข้อมูลพนักงาน',// (Employee Management)
+//            'icon'    => 'fas fa-fw fa-users-line',
+//            'label'       => 1,
+//            'label_color' => 'hr-menu',
+//            'submenu' => [
+//                [
+//                    'text' => 'พนักงาน',
+//                    'url'  => '/employees/list',
+//                    'active'     => ['regex:@^employees@'],
+//                ],
+//                [
+//                    'text'    => 'อบรมพนักงานใหม่',
+//                    'url'     => '#',
+//                    'label'       => 1,
+//                    'label_color' => 'hr-menu',
+//                ],
+//                [
+//                    'text'    => 'แจ้งเตือนพนักงาน',
+//                    'url'     => '/news/notice/employee',
+//                ],
+//            ],
+//        ],
+//        [
+//            'text'    => 'กฎระเบียบ',
+//            'icon'    => 'fas fa-fw fa-scale-balanced',
+//            'submenu' => [
+//                [
+//                    'text' => 'ระเบียบพนักงาน',
 //                    'url'  => '#',
 //                ],
-            ],
-        ],
+//                [
+//                    'text'    => 'การแต่งกาย',
+//                    'url'  => '#',
+//                ],
+//                [
+//                    'text' => 'การเข้างาน',
+//                    'url'     => '#',
+//                ],
+//            ],
+//        ],
+//        [
+//            'text'    => 'สวัสดิการ',//Welfare
+//            'icon'    => 'far fa-fw fa-face-smile',
+//            'submenu' => [
+//                [
+//                    'text'    => 'วันหยุด',
+//                    'url'     => '/holiday/list',
+//                ],
+//                [
+//                    'text' => 'จัดการฝึกอบรมและสัมมนา',
+//                    'url'  => '/tas/list',
+//                ],
+//                [
+//                    'text' => 'RewardCoins',
+//                    'url'  => '/rewardcoin/list',
+//                ],
+//            ],
+//        ],
 //        ['header' => 'การลงเวลาทำงาน'],
-        [
-            'text' => 'การลงเวลาทำงาน',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-calendar-days',
-            'label'       => 3,
-            'label_color' => 'hr-menu',
-            'submenu' => [
-                [
-                    'text' => 'การลงเวลาทำงาน',
-                    'url'  => '/pastecard/list',
-                    'icon' => 'fas fa-fw fa-business-time',
-                ],
-                [
-                    'text' => 'การลางาน',
-                    'url'  => '/empleave/list',
-                    'icon' => 'fas fa-fw fa-person-walking-arrow-right',
-                    'label'       => 3,
-                    'label_color' => 'hr-menu',
-                ],
-            ]
-        ],
+//        [
+//            'text' => 'การลงเวลาทำงาน',
+//            'url'  => 'admin/settings',
+//            'icon' => 'fas fa-fw fa-calendar-days',
+//            'label'       => 3,
+//            'label_color' => 'hr-menu',
+//            'submenu' => [
+//                [
+//                    'text' => 'การลงเวลาทำงาน',
+//                    'url'  => '/pastecard/list',
+//                    'icon' => 'fas fa-fw fa-business-time',
+//                ],
+//                [
+//                    'text' => 'การลางาน',
+//                    'url'  => '/empleave/list',
+//                    'icon' => 'fas fa-fw fa-person-walking-arrow-right',
+//                    'label'       => 3,
+//                    'label_color' => 'hr-menu',
+//                ],
+//            ]
+//        ],
 
 //        ['header' => 'เงินเดือน'],
 //        [
@@ -486,6 +484,114 @@ return [
 //            ],
 //        ],
         [
+            'text'    => 'ภาพรวมและสถิติ',
+            'icon'    => 'fas fa-fw fa-chart-line',
+            'url'  => '#',
+            'active'     => ['regex:@^zzzz@'],
+
+        ],
+        [
+            'text'    => 'งานของฉัน',
+            'icon'    => 'fas fa-fw fa-user-tag',
+            'submenu' => [
+                [
+                    'text' => 'เป้าหมายการทำงาน',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-crosshairs',
+                    'active'     => ['regex:@^zzzz@'],
+
+                ],
+                [
+                    'text' => 'งานที่ได้รับมอบหมาย',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-user-check',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'สิ่งที่ต้องทำ',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-clipboard-list',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'โน๊ต',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-clipboard',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+
+            ],
+        ],
+        [
+            'text'    => 'ประกาศและข่าวสาร',
+            'icon'    => 'fas fa-fw fa-bullhorn',
+            'submenu' => [
+                [
+                    'text' => 'เพิ่มรายการประกาศและข่าวสาร',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-plus',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'รายการประกาศ',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-list-ul',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+
+            ],
+        ],
+        [
+            'text'    => 'บุคคลากร',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                [
+                    'text' => 'เพิ่มบุคคลากร',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-user-plus',
+                    'active'     => ['regex:@^zzzz@'],
+
+                ],
+                [
+                    'text' => 'รายชื่อบุคคลากร',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-list-ul',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+
+            ],
+        ],
+        [
+            'text'    => 'งานอำนวยการ',
+            'icon'    => 'fas fa-fw fa-chalkboard-teacher',
+            'submenu' => [
+                [
+                    'text' => 'สร้างงานใหม่',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-plus-circle',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'ตารางงาน',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-archive',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'รายการงาน',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-clipboard-list',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'รายการการจัดการ',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-tasks',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+            ],
+        ],
+        [
             'text'    => 'คลัง (เก็บอุปกรณ์)',
             'icon'    => 'fas fa-fw fa-warehouse',
             'submenu' => [
@@ -493,12 +599,14 @@ return [
                     'text' => 'เพิ่มรายการอุปกรณ์',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-plus-circle',
+                    'active'     => ['regex:@^zzzz@'],
 
                 ],
                 [
                     'text' => 'รายการอุปกรณ์',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-list',
+                    'active'     => ['regex:@^zzzz@'],
                 ],
 
             ],
@@ -511,12 +619,14 @@ return [
                     'text' => 'เพิ่มรายการทรัพย์สิน',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-plus-circle',
+                    'active'     => ['regex:@^zzzz@'],
 
                 ],
                 [
                     'text' => 'รายการทรัพย์สิน',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-list',
+                    'active'     => ['regex:@^zzzz@'],
                 ],
 
             ],
@@ -525,17 +635,45 @@ return [
             'text' => 'รายงานสถานการณ์',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-building',
+            'active'     => ['regex:@^zzzz@'],
+        ],
+        [
+            'text'    => 'Organics Hero',
+            'icon'    => 'fas fa-fw fa-building',
+            'submenu' => [
+                [
+                    'text' => 'เพิ่มภารกิจ',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-plus-circle',
+                    'active'     => ['regex:@^zzzz@'],
+
+                ],
+                [
+                    'text' => 'รายการภารกิจ',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-list',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+                [
+                    'text' => 'ส่งภารกิจ',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-flag',
+                    'active'     => ['regex:@^zzzz@'],
+                ],
+            ],
         ],
 //        ['header' => 'ข้อมูลส่วนตัว'],
         [
             'text' => 'การตั้งค่า',
             'url'  => '/config',
             'icon' => 'fas fa-fw fa-cog',
+            'active'     => ['regex:@^config@'],
         ],
         [
             'text' => 'โปรไฟล์',
-            'url'  => 'admin/settings',
+            'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
+            'active'     => ['regex:@^profile@'],
 
         ],
 //        [

@@ -200,7 +200,8 @@
                     cancelButtonText: 'ปิด',
                     customClass: {
                         confirmButton: 'rounded-pill',
-                        cancelButton: 'text-hr-green rounded-pill'
+                        cancelButton: 'text-hr-green rounded-pill',
+                        popup: 'modal-radius'
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
