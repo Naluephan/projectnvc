@@ -139,4 +139,31 @@ class NewsNoticeController extends Controller
         }
         return json_encode($result);
     }
+
+    public function searchNewsById(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $searchNewsById = $this->newsNoticeRepository->searchNewsById($data);
+
+            if (count($searchNewsById) > 0) {
+                $result['status'] = ApiStatus::search_news_by_id_success_status;
+                $result['statusCode'] = ApiStatus::search_news_by_id_success_statusCode;
+                $result['searchNewsById'] = $searchNewsById;
+            } else {
+                $result['status'] = ApiStatus::search_news_by_id_failed_status;
+                $result['errCode'] = ApiStatus::search_news_by_id_failed_statusCode;
+                $result['errDesc'] = ApiStatus::search_news_by_id_failed_Desc;
+                $result['message'] = $searchNewsById;
+                DB::rollBack();
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::search_news_by_id_error_statusCode;
+            $result['errCode'] = ApiStatus::search_news_by_id_error_status;
+            $result['errDesc'] = ApiStatus::search_news_by_id_errDesc;
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
+    }
 }

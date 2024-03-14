@@ -218,6 +218,18 @@ class ApiStatus
        public const update_read_status_error_statusCode = "500";
        public const update_read_status_error_status = "News Notice Employee Update Read Status Error";
        public const update_read_status_errDesc = "Please check the information again.";
+
+       /////////// News Notice Search News By Id ///////////
+       public const search_news_by_id_success_status = "Send data successfully";
+       public const search_news_by_id_success_statusCode = "00";
+       // Unsuccessful
+       public const search_news_by_id_failed_status = "This information was not found in data.";
+       public const search_news_by_id_failed_statusCode = "200";
+       public const search_news_by_id_failed_Desc = "Please check the information again.";
+       //Catch
+       public const search_news_by_id_error_statusCode = "500";
+       public const search_news_by_id_error_status = "News Notice Search News By Id Error";
+       public const search_news_by_id_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus

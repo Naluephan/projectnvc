@@ -9,4 +9,5 @@ interface NewsNoticeInterface extends BaseInterface
 {
     public function news_notice_employee_paginate($param);
     public function news_notice_employee_getAll($param);
+    public function searchNewsById($params);
 }

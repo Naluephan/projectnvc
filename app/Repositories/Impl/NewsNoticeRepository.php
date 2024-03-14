@@ -55,5 +55,10 @@ class NewsNoticeRepository extends BaseRepository implements NewsNoticeInterface
             ->get();
     }
 
+    public function searchNewsById($params)
+    {
+        $newsId = $params['news_id'];
 
+        return $this->model->where('id', $newsId)->get();
+    }
 }
