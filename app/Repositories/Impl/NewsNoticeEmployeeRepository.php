@@ -55,12 +55,12 @@ class NewsNoticeEmployeeRepository extends BaseRepository implements NewsNoticeE
 
     public function updateReadStatus($params)
     {
-        $news_notice_id = $params['news_notice_id'];
+        $newId = $params['new_id'];
         $empId = $params['emp_id'];
 
         $affectedRows = DB::table('news_notice_employees')
             ->where('emp_id', $empId)
-            ->where('news_notice_id', $news_notice_id)
+            ->where('id', $newId)
             ->update(['read_or_not' => 1]);
 
         return $affectedRows;
