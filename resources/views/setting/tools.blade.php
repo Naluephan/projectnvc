@@ -3,7 +3,7 @@
 
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6 class="text-bold"><i class="fas fa-th-large"></i> หมวดหมู่อุปกรณ์</h6>
+            <h6 class="text-bold"><i class="fas fa-tools"></i> หมวดหมู่อุปกรณ์</h6>
         </div>
         <div class="card-body">
             <div class="row mt-1 list_supply" id="list_supply"></div>

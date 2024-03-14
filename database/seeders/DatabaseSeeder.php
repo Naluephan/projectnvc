@@ -41,5 +41,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RewardCoinHistorySeeder::class);
         $this->call(NewsNoticeSeeder::class);
         $this->call(NewsNoticeEmployeeSeeder::class);
+        $this->call(PickupToolsSeeder::class);
+        $this->call(PickupToolsDeviceTypeSeeder::class);
+
+
     }
 }

@@ -63,6 +63,10 @@ use App\Repositories\NewsTypeInterface;
 use App\Repositories\Impl\NewsTypeRepository;
 use App\Repositories\Impl\SecuritySettingRepository;
 use App\Repositories\SecuritySettingInterface;
+use App\Repositories\PickupToolsInterface;
+use App\Repositories\Impl\PickupToolsRepository;
+use App\Repositories\PickupToolsDeviceTypeInterface;
+use App\Repositories\Impl\PickupToolsDeviceTypeRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -103,6 +107,11 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(NewsNoticeInterface::class, NewsNoticeRepository::class);
         $this->app->bind(NewsNoticeEmployeeInterface::class, NewsNoticeEmployeeRepository::class);
         $this->app->bind(SecuritySettingInterface::class, SecuritySettingRepository::class);
+        $this->app->bind(PickupToolsInterface::class, PickupToolsRepository::class);
+        $this->app->bind(PickupToolsDeviceTypeInterface::class, PickupToolsDeviceTypeRepository::class);
+
+
+
 
 
     }

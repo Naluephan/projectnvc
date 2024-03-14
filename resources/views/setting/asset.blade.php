@@ -3,7 +3,7 @@
 
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6 class="text-bold"><i class="fas fa-th-large"></i> หมวดหมู่ทรัพย์สิน</h6>
+            <h6 class="text-bold"><i class="fas fa-file-invoice-dollar"></i> หมวดหมู่ทรัพย์สิน</h6>
         </div>
         <div class="card-body">
             <div class="row mt-1 list_asset" id="list_asset"></div>
@@ -152,7 +152,7 @@
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.asset.category.by.id') }}",
+                    url: "{{ route('api.v1.pickup.tools.show.detail.by.id') }}",
                     data: {
                         'id': id
                     },
