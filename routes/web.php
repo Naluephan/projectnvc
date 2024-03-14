@@ -60,7 +60,7 @@ Route::group([
     Route::get('/config/asset', [App\Http\Controllers\ConfigController::class, 'configAsset'])->name('config.asset');
     Route::get('/config/department', [App\Http\Controllers\ConfigController::class, 'configDepartment'])->name('config.department');
     Route::get('/config/building', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.building');
-    Route::get('/config/security', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.security');
+    Route::get('/config/security', [App\Http\Controllers\ConfigController::class, 'configSecurity'])->name('config.security');
     Route::get('/config/cleanness', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.cleanness');
     Route::get('/config/maintenance', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.maintenance');
     Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.pickuptools');

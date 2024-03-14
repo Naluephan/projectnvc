@@ -36,4 +36,8 @@ class ConfigController extends Controller
     {
         return view('setting.news_topic_category');
     }
+    public function configSecurity()
+    {
+        return view('setting.security');
+    }
 }

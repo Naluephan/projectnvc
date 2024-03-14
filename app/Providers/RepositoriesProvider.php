@@ -61,6 +61,8 @@ use App\Repositories\NewsNoticeEmployeeInterface;
 use App\Repositories\Impl\NewsNoticeEmployeeRepository;
 use App\Repositories\NewsTypeInterface;
 use App\Repositories\Impl\NewsTypeRepository;
+use App\Repositories\Impl\SecuritySettingRepository;
+use App\Repositories\SecuritySettingInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -100,6 +102,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(PositionCleanlineInterface::class, PositionCleanlineRepository::class);
         $this->app->bind(NewsNoticeInterface::class, NewsNoticeRepository::class);
         $this->app->bind(NewsNoticeEmployeeInterface::class, NewsNoticeEmployeeRepository::class);
+        $this->app->bind(SecuritySettingInterface::class, SecuritySettingRepository::class);
 
 
     }

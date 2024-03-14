@@ -1,2 +1,17 @@
+-- 14/03/2024
+CREATE TABLE `security_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `security_patrol` int(11) NOT NULL DEFAULT 0,
+  `security_time` time NOT NULL DEFAULT '00:00:00',
+  `security_img` varchar(255) NOT NULL,
+  `record_status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+ALTER TABLE `security_settings` ADD PRIMARY KEY (`id`);
+ALTER TABLE `security_settings` MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 -- 11/12/2023
 ALTER TABLE `employees` ADD `record_status` INT NOT NULL DEFAULT '1' AFTER `image`;

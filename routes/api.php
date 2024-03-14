@@ -188,5 +188,8 @@ Route::group(
 
         //API Pickup Tools
 
+
+        //api security setting
+        Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
     }
 );
