@@ -8,6 +8,6 @@ class NewsController extends Controller
 {
     public function listNews()
     {
-        return view('activity.news');
+        return view('setting.news');
     }
 }

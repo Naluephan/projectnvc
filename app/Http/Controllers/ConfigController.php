@@ -40,4 +40,8 @@ class ConfigController extends Controller
     {
         return view('setting.security');
     }
+    public function administCategories()
+    {
+        return view('setting.administrative_work_categories');
+    }
 }

@@ -133,8 +133,11 @@ Route::get('/position/cleanline', [App\Http\Controllers\ConfigController::class,
 
 Route::get('/supply/list', [App\Http\Controllers\ConfigController::class, 'listSupply'])->name('supply.list');
 
-//Activity and News Update
+//News  Category Topic
 Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class, 'newsTopicCategory'])->name('news.topic.category');
+
+// Administrative work categories
+Route::get('/administrative/work/categories', [App\Http\Controllers\ConfigController::class, 'administCategories'])->name('administrative.work.categories');
 
 //News Notice Employee
 Route::get('/news/notice/employee', [App\Http\Controllers\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
