@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news_categories', function (Blueprint $table) {
+        Schema::create('news_topic_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('news_id');
             $table->string('news_name');
             $table->string('news_details');
             $table->timestamps();
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_categories');
+        Schema::dropIfExists('news_topic_categories');
     }
 };

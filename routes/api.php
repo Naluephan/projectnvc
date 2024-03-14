@@ -160,11 +160,11 @@ Route::group(
         Route::post('update/password', [\App\Http\Controllers\APIs\EmployeeController::class, 'update_password'])->name('update.password');
 
         //API NewsCategory
-        Route::post('/news/category/list', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getNewsCategory'])->name('news.category.list');
-        Route::post('/news/category/create', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'create'])->name('news.category.create');
-        Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'update'])->name('news.category.update');
-        Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'delete'])->name('news.category.delete');
-        Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getById'])->name('news.category.by.id');
+        Route::post('/news/category/list', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'getNewsCategory'])->name('news.category.list');
+        Route::post('/news/category/create', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'create'])->name('news.category.create');
+        Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'update'])->name('news.category.update');
+        Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'delete'])->name('news.category.delete');
+        Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'getById'])->name('news.category.by.id');
         //API PositionCleanLine
         Route::post('position/clean/line/list', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'getPositionCleanLine'])->name('position.clean.line.list');
         Route::post('position/clean/line/create', [\App\Http\Controllers\APIs\PositionCleanlineController::class, 'create'])->name('position.clean.line.create');
@@ -177,6 +177,8 @@ Route::group(
         Route::post('news/notice/employee/update/read/status', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'updateReadStatus'])->name('news.notice.employee.update.read.status');
 
         //API News Notice
+        Route::post('news/notice/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_list'])->name('news.notice.list');
+        Route::post('news/notice/employee', [\App\Http\Controllers\APIs\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
         Route::post('news/notice/employee/list', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'news_notice_employee_lists'])->name('news.notice.employee.lists');
         Route::post('news/notice/employee/create', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'create'])->name('news.notice.employee.create');
         Route::post('news/notice/employee/delete', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'delete'])->name('news.notice.employee.delete');
@@ -184,7 +186,6 @@ Route::group(
         Route::post('news/notice/employee/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'getById'])->name('news.notice.employee.by.id');
 
         //API Pickup Tools
-        Route::post('pickup/tools/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'getAll'])->name('pickup.tools.list');
 
     }
 );
