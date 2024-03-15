@@ -66,6 +66,10 @@ Route::group([
     Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'configPickupTools'])->name('config.pickuptools');
     Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'configWorktime'])->name('config.worktime');
     Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'configHoliday'])->name('config.holiday');
+    Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.worktime');
+    Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.holiday');
+    Route::get('/config/itemorganicscoins', [App\Http\Controllers\ConfigController::class, 'configItemOrganicsCoins'])->name('config.itemorganicscoins');
+
 
 
     //Profile
@@ -145,7 +149,7 @@ Route::get('/news/list', [App\Http\Controllers\NewsController::class, 'listNews'
 Route::get('/news/notice/employee', [App\Http\Controllers\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
 
 
-//Building Location 
+//Building Location
 Route::get('/building/location/list', [App\Http\Controllers\BuildingLocationController::class, 'listLocation'])->name('building.location.list');
 Route::get('/holiday/category/list', [App\Http\Controllers\ConfigController::class, 'listHoliday'])->name('holiday.category.list');
 

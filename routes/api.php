@@ -192,7 +192,8 @@ Route::group(
         Route::post('device/types/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deviceTypesList'])->name('device.types.list');
         Route::post('department/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'departmentList'])->name('department.list');
         Route::post('pickup/tools/delete', [\App\Http\Controllers\APIs\PickupToolsController::class, 'delete'])->name('pickup.tools.delete');
-
+        Route::post('pickup/tools/update', [\App\Http\Controllers\APIs\PickupToolsController::class, 'update'])->name('pickup.tools.update');
+        Route::post('pickup/tools/detail/department/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'detailDepartmentById'])->name('detail.department.by.id');
 
         //api security setting
         Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');

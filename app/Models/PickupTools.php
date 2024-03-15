@@ -13,12 +13,4 @@ class PickupTools extends Model
         'device_types_id',
         'number_requested',
     ];
-
-    public function pickupToolsDeviceType(){
-        return $this->belongsTo(PickupToolsDeviceType::class,'device_types_id');
-    }
-
-    public function department(){
-        return $this->belongsTo(Department::class,'department_id');
-    }
 }

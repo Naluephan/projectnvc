@@ -70,4 +70,9 @@ class ConfigController extends Controller
     {
         return view('setting.administrative_work_categories');
     }
+
+    public function configItemOrganicsCoins()
+    {
+        return view('setting.itemOrganicsCoins');
+    }
 }
