@@ -63,7 +63,7 @@ Route::group([
     Route::get('/config/security', [App\Http\Controllers\ConfigController::class, 'configSecurity'])->name('config.security');
     Route::get('/config/cleanness', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.cleanness');
     Route::get('/config/maintenance', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.maintenance');
-    Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.pickuptools');
+    Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'configPickupTools'])->name('config.pickuptools');
     Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.worktime');
     Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.holiday');
 

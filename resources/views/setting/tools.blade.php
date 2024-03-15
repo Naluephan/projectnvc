@@ -1,19 +1,20 @@
 @extends('setting_menu')
 @section('side-card')
 
-    <div class="card rounded-4 bg-hr-card">
-        <div class="card-header border-0">
-            <h6 class="text-bold"><i class="fas fa-th-large"></i> หมวดหมู่อุปกรณ์</h6>
+    <div class="card p-3 rounded-4 bg-hr-card">
+        <div class="card-header border-0 pb-0">
+            <h6 class="text-bold"><i class="fas fa-tools"></i> หมวดหมู่อุปกรณ์</h6>
         </div>
-        <div class="card-body">
+        <div class="card-body pt-0">
             <div class="row mt-1 list_supply" id="list_supply"></div>
-
-            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
-                    class="fa-solid fa-plus"></i>
-                เพิ่มหมวดหมู่</button>
-        </div>
-        <div class="card-footer bg-transparent">
-            <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
+            <div class="button px-0">
+                <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                        class="fa-solid fa-plus"></i>
+                    เพิ่มหมวดหมู่</button>
+            </div>
+            {{-- <div class="card-footer bg-transparent px-0 mt-4">
+                <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
+            </div> --}}
         </div>
     </div>
 
@@ -87,7 +88,7 @@
                             var Item = `
                                 <div class="test pt-2">
                                     <div class="row">
-                                        <div class="col-12 d-flex hhh">
+                                        <div class="col-12 d-flex hhh px-0">
                                             <div class="input-group">
                                                 <input type="text" class="form-control rounded-pill bg-white text-sm"
                                                     style="border-color: #c0e7e7; height: 45px;" disabled>

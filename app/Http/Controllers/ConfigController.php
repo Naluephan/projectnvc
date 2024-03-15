@@ -23,6 +23,12 @@ class ConfigController extends Controller
     {
         return view('setting.department');
     }
+
+    public function configPickupTools()
+    {
+        return view('setting.pickuptools');
+    }
+
     public function listSupply()
     {
         return view('list_supply_category');

@@ -11,7 +11,8 @@ class Department extends Model
     protected $fillable = [
         'name_th',
         'name_en',
-        'company_id'
+        'company_id',
+        'image_departments'
     ];
 
     public function company(){

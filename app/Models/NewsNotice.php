@@ -11,9 +11,14 @@ class NewsNotice extends Model
 
     protected $fillable = [
         'news_notice_name',
-        'news_notice_description',
         'notice_category_id',
+        'news_notice_description',
         'news_priority',
+        'news_img1',
+        'news_img2',
+        'news_img3',
+        'published_at',
+        'cancelled_at',
         'record_status',
     ];
 

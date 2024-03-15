@@ -16,10 +16,15 @@ return new class extends Migration
     {
         Schema::create('news_notices', function (Blueprint $table) {
             $table->id();
+            $table->integer("notice_category_id")->nullable();
             $table->string("news_notice_name")->nullable();
             $table->string("news_notice_description")->nullable();
-            $table->integer("notice_category_id")->nullable();
             $table->tinyInteger('news_priority')->comment('1=important 2=general')->default(2);
+            $table->string('news_img1')->default('-');
+            $table->string('news_img2')->default('-');
+            $table->string('news_img3')->default('-');
+            $table->date('published_at')->nullable();
+            $table->date('cancelled_at')->nullable();
 
             $table->tinyInteger('record_status')->comment('0=not active 1=active 2=complate')->default(1);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

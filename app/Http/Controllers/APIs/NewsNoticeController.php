@@ -66,6 +66,18 @@ class NewsNoticeController extends Controller
             $data['news_notice_description'] = '-';
         }
 
+        if ($data['news_img1'] === null) {
+            $data['news_img1'] = '-';
+        }
+
+        if ($data['news_img2'] === null) {
+            $data['news_img2'] = '-';
+        }
+
+        if ($data['news_img3'] === null) {
+            $data['news_img3'] = '-';
+        }
+
         try {
             $newsNoticeId = $this->newsNoticeRepository->create($data);
 
@@ -165,5 +177,32 @@ class NewsNoticeController extends Controller
             DB::rollBack();
         }
         return $result;
+    }
+
+    public function news_list(Request $request)
+    {
+        try{
+            $data = $request->all();
+            $news_list = $this->newsNoticeRepository->getAll($data);
+            if($news_list != null ){
+             $result['status'] = ApiStatus::news_list_success_status;
+             $result['statusCode'] = ApiStatus::news_list_success_statusCode;
+             $result['news_list'] = $news_list;
+
+            }else{
+             $result['status'] = ApiStatus::news_list_failed_status;
+             $result['errCode'] = ApiStatus::news_list_failed_statusCode;
+             $result['errDesc'] = ApiStatus::news_list_failed_Desc;
+             $result['message'] = $news_list;
+             DB::rollBack();
+            }
+         } catch (\Exception $ex) {
+             $result['status'] = ApiStatus::news_list_error_statusCode;
+             $result['errCode'] = ApiStatus::news_list_error_status;
+             $result['errDesc'] = ApiStatus::news_list_errDesc;
+             $result['message'] = $ex->getMessage();
+             DB::rollBack();
+         }
+         return $result;
     }
 }
