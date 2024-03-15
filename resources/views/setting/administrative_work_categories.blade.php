@@ -4,7 +4,6 @@
         color: #fff !important;
         border-color: #FA9583 !important;
         background-color: #FA9583 !important;
-        padding: 0.75rem !important;
     }
     .btn-danger:hover {
         color: #FA9583 !important;
@@ -15,7 +14,6 @@
         color: #fff !important;
         border-color: #77c6c5 !important;
         background-color: #77c6c5 !important;
-        padding: 0.75rem !important;
     }
     .btn-success:hover {
         color: #77c6c5 !important;
@@ -32,9 +30,8 @@
     }
     .form-control {
         background-color: #fff !important;
-        color: #c0e7e7 !important;
-        border-color: #c0e7e7 !important;
-        height: 45px !important;
+        color: #77c6c5 !important;
+        border-color: #77c6c5 !important;
     }
     .btn-outline-successful {
         border-color: none !important;
@@ -53,33 +50,29 @@
         <div class="col-12">
             <div class="container p-4 m-2 rounded-3 shadow-sm bg-hr-card">
                 <div class="row">
-                    <h6><i class="fa-solid fa-layer-group"></i> หมวดหมู่ข่าวสาร</h6>
+                    <h6><i class="fa-solid fa-file-circle-plus"></i> สร้างประเภทงานอำนวยการ</h6>
                     <div class="row list_news" id="list_news">
                     </div> 
                 </div>
-                <button type="button" class="form-control btn btn-outline-success rounded-pill addNews" id="addNews" data-bs-toggle="modal" data-bs-target="#newsModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มหมวดหมู่</button> 
+                <button type="button" class="form-control btn btn-outline-success rounded-pill addNews" id="addNews" data-bs-toggle="modal" data-bs-target="#newsModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มประเภทงาน</button> 
             </div>
         </div>
     </div>
 
     {{-- modal --}}
-    <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal fade" id="administModal" tabindex="-1" aria-labelledby="administModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content modal-radius">
         <div class="modal-header bg-hr-green-app modal-header-radius">
-            <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fa-solid fa-file-circle-plus"></i> เพิ่มข่าวสาร</h5>
+            <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fa-solid fa-file-circle-plus"></i> เพิ่มประเภทงาน</h5>
             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
         </div>
         <div class="modal-body">
             <form id ="news_FromModal">
                 <input type="hidden" name="id" id="id">
                 <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อข่าวสาร</label>
+                    <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อประเภทงาน</label>
                     <input type="text" class="form-control rounded-pill" id="news_name" name="news_name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="message-text" class="col-form-label"><i class="fa-regular fa-newspaper"></i> รายละเอียด</label>
-                    <textarea class="form-control rounded-pill" id="news_details" name="news_details"></textarea>
                 </div>
             </form>
         </div>
@@ -126,7 +119,7 @@
 
                                         <button class="btn btn-sm btn-success rounded-pill btn-edit mx-2" 
                                              data-id="${id}"
-                                            data-ac="edit" data-bs-toggle="modal" data-bs-target="#newsModal">
+                                            data-ac="edit" data-bs-toggle="modal" data-bs-target="#administModal">
                                             <em class="fas fa-edit fs-5"></em>
                                         </button>
 
@@ -144,18 +137,18 @@
             });
         }
 
-        var news_model = $('#newsModal');
+        var administ_model = $('#administModal');
         $(document).on('click', '.addNews', function() {
-            news_model.modal('show')
+            administ_model.modal('show')
         })
 
          ////// save news //////
         $(document).on('click', '.save-new', function() {
                 let id = $('#id').val();
-                let news_FromModal = $('#news_FromModal');
+                let administ_model = $('#administModal');
 
-                if (news_FromModal.valid()) {
-                    const formData = new FormData($('#news_FromModal')[0]);
+                if (administ_model.valid()) {
+                    const formData = new FormData($('#administModal')[0]);
                     const data = Object.fromEntries(formData.entries());
                     if (!id) {
                         $.ajax({

@@ -41,6 +41,9 @@
         .setting-image-10{
             background-image: url({{asset('images/menu/10.png')}}); /* replace with your image URL */
         }
+        .setting-image-administ{
+            background-image: url({{asset('images/menu/administ.jpg')}}); /* replace with your image URL */
+        }
 
 
     </style>
@@ -118,6 +121,20 @@
                 <div class="col-12 mb-3">
                     <h4 class="text-hr-green-app"><em class="fas fa-chalkboard-teacher"></em> <span class="h6 text-bold">งานอำนวยการ</span> </h4>
                 </div>
+                {{-- start row Administrative work Categories --}}
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-4">
+                        <a href="{{route('administrative.work.categories')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*administrative.work.categories*')) active @endif">
+                            <span class="button-image setting-image-administ w-40"></span>
+                            <span class="button-text w-60">
+                                <h6 class="text-bold">เพิ่มประเภท</h6>
+                                <h6 class="text-bold">งานอำนวยการ</h6>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                {{-- End row Administrative work Categories --}}
+
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
                         <a href="{{route('config.building')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.building*')) active @endif">
