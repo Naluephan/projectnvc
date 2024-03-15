@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\NewsCategory;
 use App\Repositories\AssetCategoryInterface;
 use App\Repositories\BaseInterface;
+use App\Repositories\BuildingLocationInterface;
 use App\Repositories\CompanyInterface;
 use App\Repositories\DepartmentInterface;
 use App\Repositories\EmployeeInterface;
@@ -42,8 +43,12 @@ use App\Repositories\TraningAndSeminarInterface;
 use App\Repositories\SalaryRequestSlipInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\EmployeeLeaveQuotasInterface;
+use App\Repositories\HolidayCategoryInterface;
 use App\Repositories\Impl\AssetCategoryRepository;
+use App\Repositories\Impl\BuildingLocationRepository;
 use App\Repositories\Impl\EmployeeLeaveQuotasRepository;
+use App\Repositories\Impl\HolidayCategoryRepository;
+use App\Repositories\Impl\NewsCategoryRepository;
 use App\Repositories\Impl\SupplyCategoryRepository;
 use App\Repositories\Impl\NewsTopicCategoryRepository;
 use App\Repositories\SupplyCategoryInterface;
@@ -69,7 +74,9 @@ use App\Repositories\PickupToolsDeviceTypeInterface;
 use App\Repositories\Impl\PickupToolsDeviceTypeRepository;
 use App\Repositories\Impl\AdministrativeWorkCategoriesRepository;
 use App\Repositories\AdministrativeWorkCategoriesInterface;
-
+use App\Repositories\Impl\WorktimeRepository;
+use App\Repositories\NewsCategoryInterface;
+use App\Repositories\WorktimeInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -101,6 +108,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SalaryRequestSlipInterface::class, SalaryRequestSlipRepository::class);
         $this->app->bind(SupplyCategoryInterface::class, SupplyCategoryRepository::class);
         $this->app->bind(NewsTopicCategoryInterface::class, NewsTopicCategoryRepository::class);
+        $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
         $this->app->bind(AssetCategoryInterface::class, AssetCategoryRepository::class);
         $this->app->bind(NewsTypeInterface::class, NewsTypeRepository::class);
         // $this->app->bind(NewsCategoryInterface::class, NewsCategoryRepository::class);
@@ -116,6 +124,10 @@ class RepositoriesProvider extends ServiceProvider
 
 
 
+
+        $this->app->bind(BuildingLocationInterface::class, BuildingLocationRepository::class);
+        $this->app->bind(HolidayCategoryInterface::class, HolidayCategoryRepository::class);
+        $this->app->bind(WorktimeInterface::class, WorktimeRepository::class);
 
 
     }

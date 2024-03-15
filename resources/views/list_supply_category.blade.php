@@ -1,191 +1,193 @@
 @extends('adminlte::page')
 @section('css')
-    <style>
-        :root {
-            --color1: #77c6c5;
-            --color2: #fa9583;
-            --color3: #449e9d;
-            --color4: #edf5f5;
-            --color2-hover: #e48170;
-            --color3-hover: #398786;
-            --color5-head-modal: #048482;
-        }
+<style>
+    :root {
+        --color1: #77c6c5;
+        --color2: #fa9583;
+        --color3: #449e9d;
+        --color4: #edf5f5;
+        --color2-hover: #e48170;
+        --color3-hover: #398786;
+        --color5-head-modal: #048482;
+    }
 
-        .modal-dialog {
-            margin: 0;
-            position: absolute;
-            top: 30%;
-            left: 42%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-        }
+    .modal-dialog {
+        margin: 0;
+        position: absolute;
+        top: 30%;
+        left: 42%;
+        transform: translate(-50%, -50%);
+        width: 450px;
+    }
 
-        .modal-radius {
-            border-radius: 1.5rem;
-            border-color: none;
-        }
+    .modal-radius {
+        border-radius: 1.5rem;
+        border-color: none;
+    }
 
-        .modal-header-radius {
-            border-radius: 1.5rem 1.5rem 0rem 0rem;
-        }
+    .modal-header-radius {
+        border-radius: 1.5rem 1.5rem 0rem 0rem;
+    }
 
-        .background2 {
-            background-color: var(--color5-head-modal);
-            color: white
-        }
+    .background2 {
+        background-color: var(--color5-head-modal);
+        color: white
+    }
 
-        .button-footer {
-            padding-left: 35px;
-            padding-right: 35px;
-            padding-top: 10px;
-            padding-bottom: 35px;
-        }
+    .button-footer {
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 10px;
+        padding-bottom: 35px;
+    }
 
-        .button-footer .btn {
-            width: 100%;
-            height: 45px;
-        }
+    .button-footer .btn {
+        width: 100%;
+        height: 45px;
+    }
 
-        .input-modal {
-            height: 45px;
-            border: 1px solid #dddddd;
-            font-size: 13px;
-            color: var(--color3);
-            font-weight: 500;
-        }
+    .input-modal {
+        height: 45px;
+        border: 1px solid #dddddd;
+        font-size: 13px;
+        color: var(--color3);
+        font-weight: 500;
+    }
 
-        .position {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 1;
-            color: #a5d8d8;
-        }
+    .position {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 1;
+        color: #a5d8d8;
+    }
 
-        .position-main {
-            position: absolute;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            z-index: 1;
-            color: var(--color3);
-        }
+    .position-main {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        z-index: 1;
+        color: var(--color3);
+    }
 
-        .text-end .btn-edit {
-            height: 50px;
-            width: 50px;
-            background-color: #77c6c5;
-            border-color: #77c6c5;
-        }
+    .text-end .btn-edit {
+        height: 50px;
+        width: 50px;
+        background-color: #77c6c5;
+        border-color: #77c6c5;
+    }
 
-        .text-end .btn-delete {
-            height: 50px;
-            width: 50px;
-            background-color: #fa9583;
-            border-color: #fa9583;
-        }
+    .text-end .btn-delete {
+        height: 50px;
+        width: 50px;
+        background-color: #fa9583;
+        border-color: #fa9583;
+    }
 
-        .subject,
-        .card-text,
-        label {
-            color: var(--color3);
-        }
+    .subject,
+    .card-text,
+    label {
+        color: var(--color3);
+    }
 
-        .background {
-            background-color: #fafafa;
-            border-right: 2px solid #e8e8e8;
-            min-height: 100vh;
+    .background {
+        background-color: #fafafa;
+        border-right: 2px solid #e8e8e8;
+        min-height: 100vh;
 
-        }
+    }
 
-        .modalshow {
-            background-color: var(--color4);
-            border-right: 2px solid #e8e8e8;
-            border-left: 2px solid #e8e8e8;
-            border-bottom: 4px solid #dcdbdb;
-            border-top: 1px solid #e8e8e8;
-            border-radius: 4%;
-            min-height: 100%;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-        }
+    .modalshow {
+        background-color: var(--color4);
+        border-right: 2px solid #e8e8e8;
+        border-left: 2px solid #e8e8e8;
+        border-bottom: 4px solid #dcdbdb;
+        border-top: 1px solid #e8e8e8;
+        border-radius: 4%;
+        min-height: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
 
-        .card,
-        .col-5,
-        .col-7 {
-            height: 90px;
-        }
+    .card,
+    .col-5,
+    .col-7 {
+        height: 90px;
+    }
 
-        .card {
-            margin-top: 0.5rem;
-        }
+    .card {
+        margin-top: 0.5rem;
+    }
 
-        h6,
-        .card-text,
-        .btn-add {
-            font-weight: 1000;
-        }
+    h6,
+    .card-text,
+    .btn-add {
+        font-weight: 1000;
+    }
 
-        h6 {
-            display: flex;
-            align-items: center;
-        }
+    h6 {
+        display: flex;
+        align-items: center;
+    }
 
-        i {
-            font-size: 24px;
-            margin-right: 5px;
-        }
+    i {
+        font-size: 24px;
+        margin-right: 5px;
+    }
 
-        .img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-        .btn-save,
-        .save-asset {
-            width: 100%;
-            height: 50px;
-            background-color: var(--color2);
-            border-color: var(--color2);
-        }
+    .btn-save,
+    .save-asset {
+        width: 100%;
+        height: 50px;
+        background-color: var(--color2);
+        border-color: var(--color2);
+    }
 
-        .btn-add {
-            width: 100%;
-            height: 50px;
-            background-color: var(--color4);
-            border-color: var(--color3);
-            color: var(--color3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+    .btn-add {
+        width: 100%;
+        height: 50px;
+        background-color: var(--color4);
+        border-color: var(--color3);
+        color: var(--color3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
-        .btn-save,
-        .save-asset:hover {
-            background-color: var(--color2-hover);
-            border-color: var(--color2-hover);
-        }
+    .btn-save,
+    .save-asset:hover {
+        background-color: var(--color2-hover);
+        border-color: var(--color2-hover);
+    }
 
-        .btn-add:hover {
-            background-color: var(--color3-hover);
-            border-color: var(--color3-hover);
-        }
+    .btn-add:hover {
+        background-color: var(--color3-hover);
+        border-color: var(--color3-hover);
+    }
 
-        .modal-body .fa-newspaper,
-        .fa-th-list {
-            color: #fa9583;
-        }
+    .modal-body .fa-newspaper,
+    .fa-th-list {
+        color: #fa9583;
+    }
 
-        .use-url {
-            background-color: #a1dcdb;
-            border: 10px solid #048482;
-            border-width: 2px;
-        }
-    </style>
+    .use-url {
+        background-color: #a1dcdb;
+        border: 10px solid #048482;
+        border-width: 2px;
+    }
+</style>
+
+
 @stop
 @section('content')
     <div class="row">

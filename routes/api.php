@@ -133,8 +133,8 @@ Route::group(
         Route::post('emp/approve/status', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'approveStatusLeave'])->name('emp.approve.status');
 
         //API Supply Category
-         Route::post('/category/list', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getSupplyCategory'])->name('category.list');
-         Route::post('/category/create', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'create'])->name('category.create');
+        Route::post('/category/list', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getSupplyCategory'])->name('category.list');
+        Route::post('/category/create', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'create'])->name('category.create');
         Route::post('/category/update', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'update'])->name('category.update');
         Route::post('/category/delete', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'delete'])->name('category.delete');
         Route::post('/category/by/id', [\App\Http\Controllers\APIs\SupplyCategoryController::class, 'getById'])->name('category.by.id');
@@ -196,5 +196,28 @@ Route::group(
 
         //api security setting
         Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
+
+        //API BuildingLocation
+        Route::post('/building/location/list', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingLocation'])->name('building.location.list');
+        Route::post('/building/location/create', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'create'])->name('building.location.create');
+        Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.location.update');
+        Route::post('/building/location/delete', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'delete'])->name('building.location.delete');
+        Route::post('/building/location/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getById'])->name('building.location.by.id');
+
+        
+        //API HolidayCategory
+        Route::post('/holiday/category/list', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'getHolidayCategory'])->name('holiday.category.list');
+        Route::post('/holiday/category/create', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'create'])->name('holiday.category.create');
+        Route::post('/holiday/category/update', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'update'])->name('holiday.category.update');
+        Route::post('/holiday/category/delete', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'delete'])->name('holiday.category.delete');
+        Route::post('/holiday/category/by/id', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'getById'])->name('holiday.category.by.id');
+
+
+        //API Worktime
+        Route::post('/worktime/list', [\App\Http\Controllers\APIs\WorktimeController::class, 'getWorktime'])->name('worktime.list');
+        Route::post('/worktime/create', [\App\Http\Controllers\APIs\WorktimeController::class, 'create'])->name('worktime.create');
+        Route::post('/worktime/update', [\App\Http\Controllers\APIs\WorktimeController::class, 'update'])->name('worktime.update');
+        Route::post('/worktime/delete', [\App\Http\Controllers\APIs\WorktimeController::class, 'delete'])->name('worktime.delete');
+        Route::post('/worktime/by/id', [\App\Http\Controllers\APIs\WorktimeController::class, 'getById'])->name('worktime.by.id');
     }
 );
