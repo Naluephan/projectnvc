@@ -38,9 +38,13 @@ class PickupToolsController extends Controller
 
     public function createCondition(Request $request)
     {
-        $data = $request->all();
-        $deviceTypesList = $this->pickupToolsRepository->createCondition($data);
-        return $deviceTypesList;
+        try {
+            $data = $request->all();
+            $deviceTypesList = $this->pickupToolsRepository->createCondition($data);
+            return $deviceTypesList;
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 
     public function deviceTypesList(Request $request)
@@ -59,11 +63,39 @@ class PickupToolsController extends Controller
 
     public function delete(Request $request)
     {
+        try {
+            $data = $request->all();
+            $deleteCondition = $this->pickupToolsRepository->deleteCondition($data);
+
+            if ($deleteCondition) {
+                return response()->json(['message' => 'Delete Successfully'], 200);
+            } else {
+                return response()->json(['message' => 'Delete Failed'], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function detailDepartmentById(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $deviceTypesList = $this->pickupToolsRepository->detailDepartmentById($data);
+            return $deviceTypesList;
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function update(Request $request)
+    {
         DB::beginTransaction();
-        $id = $request->id;
+        $data = $request->all();
+        $department_id = $data['department_id'];
         $result['status'] = "Success";
         try {
-            $this->pickupToolsRepository->delete($id);
+            $this->pickupToolsRepository->update($department_id,$data);
             DB::commit();
         } catch (\Exception $ex){
             $result['status'] = "Failed";

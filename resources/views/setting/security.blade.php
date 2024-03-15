@@ -99,6 +99,11 @@
     .import-file input[type="file"] {
         display: none;
     }
+
+    .modal-dialog {
+        top: 10% !important;
+        width: 450px;
+    }
 </style>
 
 @section('side-card')
@@ -114,7 +119,7 @@
             </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                     class="fa-solid fa-plus"></i>
-                เพิ่มหมวดหมู่</button>
+                เพิ่มข้อมูล</button>
         </div>
         <div class="card-footer bg-transparent">
             <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
@@ -125,7 +130,7 @@
         <div class="modal-dialog">
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
-                    <h6 class="modal-title" id="securityModalLabel"><i class="fa-solid fa-file-circle-plus"></i> เพิ่มข้อมูล
+                    <h6 class="modal-title " id="securityModalLabel"><i class="fa-solid fa-file-circle-plus"></i> <span class="add-data">เพิ่มข้อมูล</span>
                     </h6>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
@@ -166,8 +171,8 @@
                                     <label for="security_image" class="col-form-label text-color"><i
                                             class="fas fa-image hr-icon"></i> รูปสถานที่</label>
                                     <label for="import-file" class="import-file">
-                                        {{-- <input type="file" class="form-control rounded-pill" id="location_img"
-                                            name="location_img"> --}}
+                                        <input type="file" class="form-control rounded-pill" id="location_img"
+                                            name="location_img">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-upload"
                                             width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
                                             stroke="#707070" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -178,10 +183,10 @@
                                         </svg>
                                         <div>
                                             <p class="text-center">อัพโหลดรูปภาพ</p>
-                                            <p class="text-center">ไฟล์ JPG, PNG</p>
+                                            <p class="text-center">ไฟล์ JPG, PNG, PDF</p>
                                         </div>
                                     </label>
-                                    <input type="file" style="display: none;" id="upload_img" />
+                                    <input type="file" style="display: none;" id="import-file" />
                                 </div>
                             </div>
                         </div>
@@ -201,30 +206,99 @@
             </div>
         </div>
     </div>
+    {{-- modal detail --}}
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content modal-radius">
+                <div class="modal-header background2 modal-header-radius">
+                    <h6 class="modal-title" id="detailModalLabel">
+                        ข้อมูลรักษาความปลอดภัย
+                    </h6>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body security_detail" id="security_detail">
+                    <div class="row">
+                        <div class="col-10 col-sm-10">
+                            <h6 class="hr-text-green" id="detail-name"></h6>
+                            <p class="text-black-50" id="detail-location"></p>
+                            <p class="text-black-50 mt-n3">การตรวจตราทุก <span id="detail-security_patrol">0</span>
+                                ชั่วโมง เริ่ม <span id="detail-security_time">0</span> น.</p>
+                        </div>
+                        <div class="col-2 col-sm-2">
+                            <p class="text-end">
+                                <span class="btn-edit" id="security_edit"><i
+                                        class="fas fa-edit hr-text-green mr-2"></i></span>
+                                <span class="btn-delete" id="security_id"><i
+                                        class="fas fa-trash-alt hr-icon mr-2 mt-1"></i></span>
+                            </p>
+                        </div>
+                    </div>
+                    <p for="security_image" class="col-form-label text-color"><i class="fas fa-image hr-icon"></i>
+                        รูปสถานที่</p>
+                    <div class="row">
+                        <div class="col-12 col-sm-12">
+                            <div class="text-center">
+                                <img src="" class="border border-0 rounded-start-4 rounded-end-4 " alt=""
+                                    style=" width: 180px; height: 180px;" id="detail-security_img">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p for="" class="col-form-label text-color"><i class="fas fa-qrcode hr-icon"></i>
+                                QR Code</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="hr-icon print-qr mt-1 text-end"><i class="fas fa-download"></i> ดาวน์โหลด</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12">
+                            <div class="text-center qr-code" id="qrCodeDiv">
+                                {!! QrCode::size(180)->generate('5') !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-footer">
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-hr-confirm form-control rounded-pill"
+                                data-bs-dismiss="modal">ตกลง</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/qrcode"></script>
     <script>
         $(() => {
-            $(document).ready(function() {
-                function getSecurityList() {
-                    let data = {};
 
-                    $.ajax({
-                        url: "{{ route('api.v1.security.list') }}",
-                        data: data,
-                        type: "post",
-                        dataType: "json",
-                        success: function(response) {
-                            $(".security_list").empty();
-                            $.each(response.data, function(index, securityInfo) {
-                                var id = securityInfo.id;
-                                var img_path =
-                                    '{{ asset('uploads/images/setting/security') }}';
-                                var location_img = img_path + '/' + securityInfo
-                                    .security_img;
-                                var item = `
-                                    <div class="card border border-2 p-0 rounded-4 detail" data-id="${id}">
+            function getSecurityList() {
+                let data = {};
+
+                $.ajax({
+                    url: "{{ route('api.v1.security.list') }}",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success: function(response) {
+                        $(".security_list").empty();
+                        $.each(response.data, function(index, securityInfo) {
+                            var id = securityInfo.id;
+                            var img_path =
+                                '{{ asset('uploads/images/setting/security') }}';
+                            var location_img = img_path + '/' + securityInfo
+                                .security_img;
+                            var item = `
+                                    <div class="card border border-2 p-0 rounded-4 btn-detail" data-id="${id}">
                                         <div class="row">
                                             <div class="col-3">
                                                 <div style="width: 100%; ">
@@ -232,7 +306,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-5 ">
-                                            <b><h6 class="ml-2 hr-text-green">${securityInfo.name}</h6></b>
+                                            <b><h6 class="ml-2 hr-text-green mt-2">${securityInfo.name}</h6></b>
                                                 <p class="ml-2 text-black-50">${securityInfo.location}</p>
                                                 <p class="ml-2 text-black-50">การตรวจตราทุก ${securityInfo.security_patrol} ชั่วโมง เริ่ม ${securityInfo.security_time} น.</p>
                                             </div>
@@ -244,19 +318,260 @@
                                         </div>
                                     </div>
                                 `;
-                                $(".security_list").append(item);
-                            });
+                            $(".security_list").append(item);
+                        });
 
-                        }
-                    });
-                }
-                getSecurityList();
-            });
+                    }
+                });
+            }
+            getSecurityList();
+
             $(document).on('click', '.btn-add', function() {
                 $('#securityModal').modal('show');
+                $('#security_name').val('');
+                $('#security_location').val('');
+                $('#security_patrol').val('');
+                $('#security_time').val('');
+                $('#import-file').val('');
+                $('#securityModal').modal('hide');
+                $('#id').val('');
+                $('.add-data').text('เพิ่มข้อมูล');
             });
 
+            $(document).on('click', '.save-security', function() {
+                var id = $('#id').val();
+                if ($('#securityForm').valid()) {
+                    var formData = new FormData();
+                    formData.append('_token', $('#_token').val());
+                    formData.append('id', $('#id').val());
+                    formData.append('name', $('#security_name').val());
+                    formData.append('location', $('#security_location').val());
+                    formData.append('security_patrol', $('#security_patrol').val());
+                    formData.append('security_time', $('#security_time').val());
+                    if (document.getElementById("import-file").files.length != 0) {
+                        formData.append('security_img', $('#import-file').prop('files')[0]);
+                    }
+                    if (!id) {
+                        Swal.fire({
+                            title: 'ยืนยันการเพิ่มรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FA9583',
+                            cancelButtonColor: '#646464',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.security.create') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'เพิ่มรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $('#security_name').val('');
+                                            $('#security_location').val('');
+                                            $('#security_patrol').val('');
+                                            $('#security_time').val('');
+                                            $('#import-file').val('');
+                                            $('#securityModal').modal('hide');
+                                            $('#id').val('');
+                                            getSecurityList();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'เพิ่มรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'ยืนยันการแก้ไขรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FA9583',
+                            cancelButtonColor: '#646464',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.security.update') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'แก้ไขรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $('#security_name').val('');
+                                            $('#security_location').val('');
+                                            $('#security_patrol').val('');
+                                            $('#security_time').val('');
+                                            $('#import-file').val('');
+                                            $('#securityModal').modal('hide');
+                                            $('#id').val('');
+                                            getSecurityList();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'แก้ไขรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        title: 'กรุณากรอกข้อมูล',
+                        icon: 'warning',
+                        iconColor: '#FA9583',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
 
+            $(document).on('click', '.btn-detail', function() {
+                let id = $(this).data('id');
+                $('#detailModal').modal('show');
+                $.ajax({
+                    type: "post",
+                    url: "{{ route('api.v1.security.by.id') }}",
+                    data: {
+                        'id': id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        var img_url = ''
+                        if (response.data.security_img != null) {
+                            img_url = "{{ asset('uploads/images/setting/security') }}/" +
+                                response.data.security_img;
+                        }
+                        $('#detail-name').text(response.data.name);
+                        $('#detail-location').text(response.data.location);
+                        $('#detail-security_patrol').text(response.data.security_patrol);
+                        $('#detail-security_time').text(response.data.security_time);
+                        $('#detail-security_img').attr('src', img_url);
+                        $('#security_id').val(response.data.id);
+                        $('#security_edit').val(response.data.id);
+                        $('#security_edit').data('name', response.data.name);
+                        $('#security_edit').data('location', response.data.location);
+                        $('#security_edit').data('security_patrol', response.data.security_patrol);
+                        $('#security_edit').data('security_time', response.data.security_time);
+                    }
+                });
+            });
+
+            $(document).on('click', '.btn-edit', function() {
+                const id = $('#security_edit').val();
+                var name = $(this).data('name');
+                var location = $(this).data('location');
+                var security_patrol = $(this).data('security_patrol');
+                var security_time = $(this).data('security_time');
+                $('#detailModal').modal('hide');
+                $('#securityModal').modal('show');
+                $('#security_name').val(name);
+                $('#security_location').val(location);
+                $('#security_patrol').val(security_patrol);
+                $('#security_time').val(security_time);
+                $('#id').val(id);
+                $('.add-data').text('แก้ไขข้อมูล');
+            });
+
+            $(document).on('click', '.btn-delete', function() {
+                const id = $('#security_id').val();
+                console.log(id);
+                Swal.fire({
+                    title: 'ยืนยันการลบรายการ?',
+                    text: "ต้องการดำเนินการใช่หรือไม่!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FA9583',
+                    cancelButtonColor: '#646464',
+                    iconColor: '#FA9583',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ปิด'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('api.v1.security.update') }}",
+                            data: {
+                                'id': id,
+                                'record_status': 0
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                if (response) {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'success',
+                                        title: 'ลบรายการสำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    $('#detailModal').modal('hide');
+                                    getSecurityList();
+                                } else {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'error',
+                                        iconColor: '#FA9583',
+                                        title: 'ลบรายการไม่สำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            }
+                        });
+                    }
+                });
+            })
+            $('.print-qr').click(function() {
+                printQRCode();
+            });
+
+            function printQRCode() {
+                var printContents = $('#qrCodeDiv').html();
+                var newWindow = window.open('', '_blank');
+
+                newWindow.document.write('<html><head><title>Print</title></head><body>');
+                newWindow.document.write(printContents);
+                newWindow.document.write('</body></html>');
+
+                newWindow.document.close();
+                newWindow.print();
+            }
             ////
         });
     </script>

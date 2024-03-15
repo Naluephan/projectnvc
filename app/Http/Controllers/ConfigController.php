@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
@@ -45,9 +47,32 @@ class ConfigController extends Controller
     public function configSecurity()
     {
         return view('setting.security');
+
+    }
+    public function listHoliday()
+    {
+        return view('list_holiday');
+    }
+    public function configBuilding()
+    {
+        return view('setting.building');
+    }
+    public function configHoliday()
+    {
+        return view('setting.holiday');
+    }
+    public function configWorktime()
+    {
+        $departments = Department::all();
+        return view('setting.worktime',compact('departments'));
     }
     public function administCategories()
     {
         return view('setting.administrative_work_categories');
+    }
+
+    public function configItemOrganicsCoins()
+    {
+        return view('setting.itemOrganicsCoins');
     }
 }

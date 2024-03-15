@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PickupTools extends Model
+class HolidayCategory extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'department_id',
-        'device_types_id',
-        'number_requested',
+        'holiday_name',
+        'holiday_start',
+        'holiday_end',
     ];
 }

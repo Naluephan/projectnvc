@@ -45,6 +45,10 @@
             background-image: url({{asset('images/menu/administ.jpg')}}); /* replace with your image URL */
         }
 
+        .setting-image-12{
+            background-image: url({{asset('images/menu/12.png')}}); /* replace with your image URL */
+        }
+
 
     </style>
 @stop
@@ -60,8 +64,8 @@
                         <a href="{{route('config.tools')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.tools*')) active @endif">
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">หมวดหมู่</h6>
-                                <h6 class="text-bold">อุปกรณ์</h6>
+                                <h6>หมวดหมู่</h6>
+                                <h6>อุปกรณ์</h6>
                             </span>
                         </a>
                     </div>
@@ -70,8 +74,8 @@
                         <a href="{{route('config.asset')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.asset*')) active @endif">
                             <span class="button-image setting-image-2 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">หมวดหมู่</h6>
-                                <h6 class="text-bold">ทรัพย์สิน</h6>
+                                <h6>หมวดหมู่</h6>
+                                <h6>ทรัพย์สิน</h6>
                             </span>
                         </a>
                     </div>
@@ -89,8 +93,8 @@
                         <a href="{{route('config.department')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.department*')) active @endif">
                             <span class="button-image setting-image-3 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">แผนก</h6>
-                                <h6 class="text-bold">และตำแหน่ง</h6>
+                                <h6>แผนก</h6>
+                                <h6>และตำแหน่ง</h6>
                             </span>
                         </a>
                     </div>
@@ -100,7 +104,7 @@
              {{-- start row News Category --}}
              <div class="row">
                 <div class="col-12 mb-3">
-                    <h4 class="text-hr-green-app"><i class="fa-regular fa-newspaper"></i> <span class="h6">ข่าวสาร</span> </h4>
+                    <h4 class="text-hr-green-app"><i class="fa-regular fa-newspaper"></i> <span class="h6 text-bold">ข่าวสาร</span> </h4>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-sm-4">
@@ -140,8 +144,8 @@
                         <a href="{{route('config.building')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.building*')) active @endif">
                             <span class="button-image setting-image-4 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">อาคาร</h6>
-                                <h6 class="text-bold">สถานที่</h6>
+                                <h6>อาคาร</h6>
+                                <h6>สถานที่</h6>
                             </span>
                         </a>
                     </div>
@@ -149,8 +153,8 @@
                         <a href="{{route('config.security')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.security*')) active @endif">
                             <span class="button-image setting-image-5 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">รักษาความ</h6>
-                                <h6 class="text-bold">ปลอดภัย</h6>
+                                <h6>รักษาความ</h6>
+                                <h6>ปลอดภัย</h6>
                             </span>
                         </a>
                     </div>
@@ -158,8 +162,8 @@
                         <a href="{{route('config.cleanness')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.cleanness*')) active @endif">
                             <span class="button-image setting-image-6 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">รักษา</h6>
-                                <h6 class="text-bold">ความสะอาด</h6>
+                                <h6>รักษา</h6>
+                                <h6>ความสะอาด</h6>
                             </span>
                         </a>
                     </div>
@@ -194,8 +198,8 @@
                         <a href="{{route('config.worktime')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.worktime*')) active @endif">
                             <span class="button-image setting-image-9 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">เวลาเข้า-ออก</h6>
-                                <h6 class="text-bold">การทำงาน</h6>
+                                <h6>เวลาเข้า-ออก</h6>
+                                <h6>การทำงาน</h6>
                             </span>
                         </a>
                     </div>
@@ -203,14 +207,35 @@
                         <a href="{{route('config.holiday')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.holiday*')) active @endif">
                             <span class="button-image setting-image-10 w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">วันหยุด</h6>
-                                <h6 class="text-bold">ประจำปี</h6>
+                                <h6>วันหยุด</h6>
+                                <h6>ประจำปี</h6>
                             </span>
                         </a>
                     </div>
                 </div>
             </div>
             {{--     end row       --}}
+
+            {{-- start Item Organics Coins --}}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h4 class="text-hr-green-app"><em class="fas fa-users"></em> <span class="h6 text-bold">Organics Coins</span> </h4>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-4">
+                        <a href="{{route('config.itemorganicscoins')}}" class="menu-button p-0 w-100 @if(Route::currentRouteNamed('*config.itemorganicscoins*')) active @endif">
+                            <span class="button-image setting-image-12 w-40"></span>
+                            <span class="button-text w-60">
+                                <h6>Item</h6>
+                                <h6>Organics Coins</h6>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            {{-- End Item Organics Coins --}}
+
         </div>
         <div class="col-12 col-sm-5 bg-white p-4">
             @yield('side-card')

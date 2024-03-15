@@ -59,13 +59,17 @@ Route::group([
     Route::get('/config/tools', [App\Http\Controllers\ConfigController::class, 'configTools'])->name('config.tools');
     Route::get('/config/asset', [App\Http\Controllers\ConfigController::class, 'configAsset'])->name('config.asset');
     Route::get('/config/department', [App\Http\Controllers\ConfigController::class, 'configDepartment'])->name('config.department');
-    Route::get('/config/building', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.building');
     Route::get('/config/security', [App\Http\Controllers\ConfigController::class, 'configSecurity'])->name('config.security');
+    Route::get('/config/building', [App\Http\Controllers\ConfigController::class, 'configBuilding'])->name('config.building');
     Route::get('/config/cleanness', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.cleanness');
     Route::get('/config/maintenance', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.maintenance');
     Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'configPickupTools'])->name('config.pickuptools');
+    Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'configWorktime'])->name('config.worktime');
+    Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'configHoliday'])->name('config.holiday');
     Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.worktime');
     Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.holiday');
+    Route::get('/config/itemorganicscoins', [App\Http\Controllers\ConfigController::class, 'configItemOrganicsCoins'])->name('config.itemorganicscoins');
+
 
 
     //Profile
@@ -139,6 +143,13 @@ Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class
 // Administrative work categories
 Route::get('/administrative/work/categories', [App\Http\Controllers\ConfigController::class, 'administCategories'])->name('administrative.work.categories');
 
+
+Route::get('/news/list', [App\Http\Controllers\NewsController::class, 'listNews'])->name('news.list');
 //News Notice Employee
 Route::get('/news/notice/employee', [App\Http\Controllers\NewsNoticeEmployeeController::class, 'news_notice_employee'])->name('news.notice.employee');
+
+
+//Building Location
+Route::get('/building/location/list', [App\Http\Controllers\BuildingLocationController::class, 'listLocation'])->name('building.location.list');
+Route::get('/holiday/category/list', [App\Http\Controllers\ConfigController::class, 'listHoliday'])->name('holiday.category.list');
 

@@ -192,16 +192,36 @@ Route::group(
                 Route::post('device/types/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deviceTypesList'])->name('device.types.list');
                 Route::post('department/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'departmentList'])->name('department.list');
                 Route::post('pickup/tools/delete', [\App\Http\Controllers\APIs\PickupToolsController::class, 'delete'])->name('pickup.tools.delete');
-
+                Route::post('pickup/tools/update', [\App\Http\Controllers\APIs\PickupToolsController::class, 'update'])->name('pickup.tools.update');
+                Route::post('pickup/tools/detail/department/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'detailDepartmentById'])->name('detail.department.by.id');
 
                 //api security setting
                 Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
+                Route::post('security/create', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'create'])->name('security.create');
+                Route::post('security/by/id', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'getSecurityById'])->name('security.by.id');
+                Route::post('security/update', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityUpdate'])->name('security.update');
 
-                //API NewsCategory
-                Route::post('/administrative/work/categories/list', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getAdministList'])->name('administrative.work.categories.list');
-                Route::post('/administrative/work/categories/create', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'create'])->name('administrative.work.categories.create');
-                Route::post('/administrative/work/categories/update', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'update'])->name('administrative.work.categories.update');
-                Route::post('/administrative/work/categories/delete', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'delete'])->name('administrative.work.categories.delete');
-                Route::post('/administrative/work/categories/by/id', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getById'])->name('administrative.work.categories.by.id');
+                //API BuildingLocation
+                Route::post('/building/location/list', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingLocation'])->name('building.location.list');
+                Route::post('/building/location/create', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'create'])->name('building.location.create');
+                Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.location.update');
+                Route::post('/building/location/delete', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'delete'])->name('building.location.delete');
+                Route::post('/building/location/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getById'])->name('building.location.by.id');
+
+
+                //API HolidayCategory
+                Route::post('/holiday/category/list', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'getHolidayCategory'])->name('holiday.category.list');
+                Route::post('/holiday/category/create', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'create'])->name('holiday.category.create');
+                Route::post('/holiday/category/update', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'update'])->name('holiday.category.update');
+                Route::post('/holiday/category/delete', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'delete'])->name('holiday.category.delete');
+                Route::post('/holiday/category/by/id', [\App\Http\Controllers\APIs\HolidayCategoryController::class, 'getById'])->name('holiday.category.by.id');
+
+
+                //API Worktime
+                Route::post('/worktime/list', [\App\Http\Controllers\APIs\WorktimeController::class, 'getWorktime'])->name('worktime.list');
+                Route::post('/worktime/create', [\App\Http\Controllers\APIs\WorktimeController::class, 'create'])->name('worktime.create');
+                Route::post('/worktime/update', [\App\Http\Controllers\APIs\WorktimeController::class, 'update'])->name('worktime.update');
+                Route::post('/worktime/delete', [\App\Http\Controllers\APIs\WorktimeController::class, 'delete'])->name('worktime.delete');
+                Route::post('/worktime/by/id', [\App\Http\Controllers\APIs\WorktimeController::class, 'getById'])->name('worktime.by.id');
         }
 );

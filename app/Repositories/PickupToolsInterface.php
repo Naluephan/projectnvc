@@ -10,4 +10,6 @@ interface PickupToolsInterface extends BaseInterface
     public function showDetailBydepartment($params);
     public function allList($params);
     public function createCondition($params);
+    public function deleteCondition($params);
+    public function detailDepartmentById($params);
 }

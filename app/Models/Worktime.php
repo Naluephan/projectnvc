@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PickupTools extends Model
+class Worktime extends Model
 {
     use HasFactory;
     protected $fillable = [
         'department_id',
-        'device_types_id',
-        'number_requested',
+        'worktime_day',
+        'work_time',
     ];
+    public function departments(){
+        return $this->belongsTo(Department::class,'department_id','id');
+    }
 }
+
