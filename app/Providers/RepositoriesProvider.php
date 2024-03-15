@@ -63,7 +63,6 @@ use App\Repositories\NewsTypeInterface;
 use App\Repositories\Impl\NewsTypeRepository;
 use App\Repositories\Impl\SecuritySettingRepository;
 use App\Repositories\SecuritySettingInterface;
-<<<<<<< Updated upstream
 use App\Repositories\PickupToolsInterface;
 use App\Repositories\Impl\PickupToolsRepository;
 use App\Repositories\PickupToolsDeviceTypeInterface;
@@ -71,8 +70,6 @@ use App\Repositories\Impl\PickupToolsDeviceTypeRepository;
 use App\Repositories\Impl\AdministrativeWorkCategoriesRepository;
 use App\Repositories\AdministrativeWorkCategoriesInterface;
 
-=======
->>>>>>> Stashed changes
 
 class RepositoriesProvider extends ServiceProvider
 {

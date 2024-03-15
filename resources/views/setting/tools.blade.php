@@ -1,9 +1,13 @@
 @extends('setting_menu')
 @section('side-card')
 
-    <div class="card p-3 rounded-4 bg-hr-card">
-        <div class="card-header border-0 pb-0">
-            <h6 class="text-bold"><i class="fas fa-tools"></i> หมวดหมู่อุปกรณ์</h6>
+    <div class="card rounded-4 bg-hr-card">
+        <div class="card-header border-0">
+            <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentcolor" viewBox="0 0 1024 1024"> 
+                <path d="M170.7 469.3h256a42.7 42.7 0 0 0 42.6-42.6V170.7a42.7 42.7 0 0 0-42.6-42.7H170.7a42.7 42.7 0 0 0-42.7 42.7v256a42.7 42.7 0 0 0 42.7 42.6z m426.6 0h256a42.7 42.7 0 0 0 42.7-42.6V170.7a42.7 42.7 0 0 0-42.7-42.7h-256a42.7 42.7 0 0 0-42.6 42.7v256a42.7 42.7 0 0 0 42.6 42.6zM170.7 896h256a42.7 42.7 0 0 0 42.6-42.7v-256a42.7 42.7 0 0 0-42.6-42.6H170.7a42.7 42.7 0 0 0-42.7 42.6v256a42.7 42.7 0 0 0 42.7 42.7z m554.6 0c94.1 0 170.7-76.5 170.7-170.7s-76.5-170.7-170.7-170.6-170.7 76.5-170.6 170.6 76.5 170.7 170.6 170.7z"> 
+                </path> 
+                </svg>  หมวดหมู่อุปกรณ์
+            </h6>
         </div>
         <div class="card-body pt-0">
             <div class="row mt-1 list_supply" id="list_supply"></div>
@@ -30,15 +34,19 @@
                     <form id="categoryForm">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3 pr-3 pl-3">
-                            <label for="category_name" class="col-form-label text-color"><i
-                                    class="fas fa-th-list text-sm"></i>
+                            <label for="category_name" class="col-form-label text-color"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="#e6896a" viewBox="0 0 1024 1024"> 
+                                <path d="M170.7 469.3h256a42.7 42.7 0 0 0 42.6-42.6V170.7a42.7 42.7 0 0 0-42.6-42.7H170.7a42.7 42.7 0 0 0-42.7 42.7v256a42.7 42.7 0 0 0 42.7 42.6z m426.6 0h256a42.7 42.7 0 0 0 42.7-42.6V170.7a42.7 42.7 0 0 0-42.7-42.7h-256a42.7 42.7 0 0 0-42.6 42.7v256a42.7 42.7 0 0 0 42.6 42.6zM170.7 896h256a42.7 42.7 0 0 0 42.6-42.7v-256a42.7 42.7 0 0 0-42.6-42.6H170.7a42.7 42.7 0 0 0-42.7 42.6v256a42.7 42.7 0 0 0 42.7 42.7z m554.6 0c94.1 0 170.7-76.5 170.7-170.7s-76.5-170.7-170.7-170.6-170.7 76.5-170.6 170.6 76.5 170.7 170.6 170.7z"> 
+                                </path> 
+                                </svg>
                                 ชื่อหมวดหมู่</label>
                             <input type="text" class="form-control input-modal rounded-pill text-color"
                                 id="category_name" name="category_name" required>
                         </div>
                         <div class="pr-3 pl-3">
-                            <label for="category_code" class="col-form-label text-color"><i
-                                    class="fas fa-newspaper text-sm"></i>
+                            <label for="category_code" class="col-form-label text-color"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="#e6896a" viewBox="0 0 1024 1024"> 
+                                <path d="M120 160H72c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V168c0-4.4-3.6-8-8-8z m833 0h-48c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V168c0-4.4-3.6-8-8-8zM200 736h112c4.4 0 8-3.6 8-8V168c0-4.4-3.6-8-8-8H200c-4.4 0-8 3.6-8 8v560c0 4.4 3.6 8 8 8z m321 0h48c4.4 0 8-3.6 8-8V168c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v560c0 4.4 3.6 8 8 8z m126 0h178c4.4 0 8-3.6 8-8V168c0-4.4-3.6-8-8-8H647c-4.4 0-8 3.6-8 8v560c0 4.4 3.6 8 8 8z m-255 0h48c4.4 0 8-3.6 8-8V168c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v560c0 4.4 3.6 8 8 8z m-79 64H201c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h112c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z m257 0h-48c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z m256 0H648c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h178c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z m-385 0h-48c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"> 
+                                </path> 
+                                </svg> 
                                 รหัสหมวดหมู่ (กำหนดตัวอักษรภาษาอังกฤษ 3
                                 อักษร)</label>
                             <input type="text" class="form-control input-modal rounded-pill text-color"
@@ -96,7 +104,7 @@
                                                 <label class="position-main2 pt-2">#${categoryCode}</label>
                                             </div>&nbsp;&nbsp;
                                             <button class="btn btn-sm rounded-pill btn-edit" style="color: #ffff;" data-id="${categoryId}"
-                                                data-ac="edit" data-bs-toggle="modal" data-bs-target="#assetModal"><em
+                                                data-ac="edit" data-bs-toggle="modal" data-bs-target="#categoryModal"><em
                                                     class="fas fa-edit" style="font-size: 20px;"></em></button>&nbsp;&nbsp;
                                             <button class="btn btn-sm rounded-pill btn-delete" style="color: #ffff;" data-id="${categoryId}"><em
                                                     class="fas fa-trash-alt" style="font-size: 20px;"></em></button>
