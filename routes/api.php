@@ -185,6 +185,13 @@ Route::group(
                 Route::post('news/notice/employee/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'getById'])->name('news.notice.employee.by.id');
                 Route::post('news/notice/search/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'searchNewsById'])->name('search.news.by.id');
 
+                // //API Pickup Tools
+                // Route::post('pickup/tools/show/detail/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'showDetailBydepartmentById'])->name('pickup.tools.show.detail.by.id');
+                // Route::post('pickup/tools/all/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'allList'])->name('pickup.tools.all.list');
+                // Route::post('pickup/tools/create', [\App\Http\Controllers\APIs\PickupToolsController::class, 'createCondition'])->name('pickup.tools.create');
+                // Route::post('device/types/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deviceTypesList'])->name('device.types.list');
+                // Route::post('department/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'departmentList'])->name('department.list');
+                // Route::post('pickup/tools/delete', [\App\Http\Controllers\APIs\PickupToolsController::class, 'delete'])->name('pickup.tools.delete');
                 //API Pickup Tools
                 Route::post('pickup/tools/show/detail/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'showDetailBydepartmentById'])->name('pickup.tools.show.detail.by.id');
                 Route::post('pickup/tools/all/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'allList'])->name('pickup.tools.all.list');
@@ -195,11 +202,19 @@ Route::group(
                 Route::post('pickup/tools/update', [\App\Http\Controllers\APIs\PickupToolsController::class, 'update'])->name('pickup.tools.update');
                 Route::post('pickup/tools/detail/department/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'detailDepartmentById'])->name('detail.department.by.id');
 
+
                 //api security setting
                 Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
                 Route::post('security/create', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'create'])->name('security.create');
                 Route::post('security/by/id', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'getSecurityById'])->name('security.by.id');
                 Route::post('security/update', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityUpdate'])->name('security.update');
+
+                //API NewsCategory
+                Route::post('/administrative/work/categories/list', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getAdministList'])->name('administrative.work.categories.list');
+                Route::post('/administrative/work/categories/create', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'create'])->name('administrative.work.categories.create');
+                Route::post('/administrative/work/categories/update', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'update'])->name('administrative.work.categories.update');
+                Route::post('/administrative/work/categories/delete', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'delete'])->name('administrative.work.categories.delete');
+                Route::post('/administrative/work/categories/by/id', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getById'])->name('administrative.work.categories.by.id');
 
                 //API BuildingLocation
                 Route::post('/building/location/list', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingLocation'])->name('building.location.list');
@@ -224,4 +239,9 @@ Route::group(
                 Route::post('/worktime/delete', [\App\Http\Controllers\APIs\WorktimeController::class, 'delete'])->name('worktime.delete');
                 Route::post('/worktime/by/id', [\App\Http\Controllers\APIs\WorktimeController::class, 'getById'])->name('worktime.by.id');
         }
+
+
+
+
+
 );

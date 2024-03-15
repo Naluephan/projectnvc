@@ -66,8 +66,6 @@ Route::group([
     Route::get('/config/pickuptools', [App\Http\Controllers\ConfigController::class, 'configPickupTools'])->name('config.pickuptools');
     Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'configWorktime'])->name('config.worktime');
     Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'configHoliday'])->name('config.holiday');
-    Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.worktime');
-    Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'config'])->name('config.holiday');
     Route::get('/config/itemorganicscoins', [App\Http\Controllers\ConfigController::class, 'configItemOrganicsCoins'])->name('config.itemorganicscoins');
 
 
