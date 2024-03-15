@@ -196,5 +196,8 @@ Route::group(
 
         //api security setting
         Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
+        Route::post('security/create', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'create'])->name('security.create');
+        Route::post('security/by/id', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'getSecurityById'])->name('security.by.id');
+        Route::post('security/update', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityUpdate'])->name('security.update');
     }
 );

@@ -53,10 +53,47 @@ class SecuritySettingController extends Controller
                 'security_time' => $data['security_time'],
             ];
             if ($request->file('security_img')) {
-                $save_data['security_img'] = save_image($request->file('security_img'), 500, '/product_img/');
+                $save_data['security_img'] = save_image($request->file('security_img'), 500, '/images/setting/security/');
             }
             $this->securitySettingRepository->create($save_data);
 
+            $result['status'] = "success";
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
+    }
+
+    public function getSecurityById(Request $request)
+    {
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            $securityList = $this->securitySettingRepository->find($postData['id']);
+            $result['status'] = "success";
+            $result['data'] = $securityList;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
+    }
+
+    public function securityUpdate(Request $request)
+    {
+        DB::beginTransaction();
+        $result = [];
+        $data = $request->all();
+        try {
+            if ($request->file('security_img')) {
+                $data['security_img'] = save_image($request->file('security_img'), 500, '/images/setting/security/');
+            }
+            $update = $this->securitySettingRepository->update($data['id'], $data);
             $result['status'] = "success";
             DB::commit();
         } catch (\Exception $ex) {
