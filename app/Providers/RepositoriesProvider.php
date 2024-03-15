@@ -67,6 +67,9 @@ use App\Repositories\PickupToolsInterface;
 use App\Repositories\Impl\PickupToolsRepository;
 use App\Repositories\PickupToolsDeviceTypeInterface;
 use App\Repositories\Impl\PickupToolsDeviceTypeRepository;
+use App\Repositories\Impl\AdministrativeWorkCategoriesRepository;
+use App\Repositories\AdministrativeWorkCategoriesInterface;
+
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -109,6 +112,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SecuritySettingInterface::class, SecuritySettingRepository::class);
         $this->app->bind(PickupToolsInterface::class, PickupToolsRepository::class);
         $this->app->bind(PickupToolsDeviceTypeInterface::class, PickupToolsDeviceTypeRepository::class);
+        $this->app->bind(AdministrativeWorkCategoriesInterface::class, AdministrativeWorkCategoriesRepository::class);
 
 
 
