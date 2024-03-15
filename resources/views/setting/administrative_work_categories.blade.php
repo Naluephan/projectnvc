@@ -51,10 +51,10 @@
             <div class="container p-4 m-2 rounded-3 shadow-sm bg-hr-card">
                 <div class="row">
                     <h6><i class="fa-solid fa-file-circle-plus"></i> สร้างประเภทงานอำนวยการ</h6>
-                    <div class="row list_news" id="list_news">
+                    <div class="row list_administ" id="list_administ">
                     </div> 
                 </div>
-                <button type="button" class="form-control btn btn-outline-success rounded-pill addNews" id="addNews" data-bs-toggle="modal" data-bs-target="#newsModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มประเภทงาน</button> 
+                <button type="button" class="form-control btn btn-outline-success rounded-pill add-administ" id="add-administ" data-bs-toggle="modal" data-bs-target="#administModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มประเภทงาน</button> 
             </div>
         </div>
     </div>
@@ -68,18 +68,18 @@
             {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
         </div>
         <div class="modal-body">
-            <form id ="news_FromModal">
+            <form id ="administ_FromModal">
                 <input type="hidden" name="id" id="id">
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อประเภทงาน</label>
-                    <input type="text" class="form-control rounded-pill" id="news_name" name="news_name" required>
+                    <input type="text" class="form-control rounded-pill" id="administ_name" name="administ_name" required>
                 </div>
             </form>
         </div>
         <div class="row p-4 ">
             <div class="row">
                 <button type="button" class="btn btn-outline-successful rounded-pill col-5 mx-auto p-2" data-bs-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-danger rounded-pill save-new col-5 mx-auto p-2" id="save-new">ยืนยัน</button>
+                <button type="button" class="btn btn-danger rounded-pill save-administ col-5 mx-auto p-2" id="save-administ">ยืนยัน</button>
             </div>
         </div>
         </div>
@@ -91,69 +91,68 @@
 @section('js')
 <script>
     $(() => {
-        getNewsCategory();
-        function getNewsCategory() {
+        getAdministWorkCategories();
+        function getAdministWorkCategories() {
             let id = "{{ Auth::user()->id }}";
-            const listNews = document.getElementById('list_news');
-            listNews.innerHTML = '';
+            const listAdminist = document.getElementById('list_administ');
+            listAdminist.innerHTML = '';
             $.ajax({
                 type: "POST",
-                url: "{{ route('api.v1.news.category.list') }}",
+                url: "{{ route('api.v1.administrative.work.categories.list') }}",
                 data: {'id': id,},
                 datatype: "JSON",
                 success: function (response) {
-                    var newsContainer = $('.list_news');
-                    response.forEach(function(newsCategory) {
-                        var id = newsCategory.id;
-                        // var newsId = newsCategory.id;
-                        var newsName = newsCategory.news_name;
-                        var newsDetails = newsCategory.news_details;
+                    var administContainer = $('.list_administ');
+                    response.forEach(function(administ) {
+                        var administ_id = administ.id;
+                        var administ_name = administ.administ_name;
+                        // console.log('name = ' + $(administ_name));
                         var Item =`
                             <div class="test pt-2 mb-3">
                                 <div class="row">
                                     <div class="col-12 d-flex">
                                         <div class="input-group">
                                             <input type="text" class="form-control rounded-pill text-sm" disabled>
-                                            <label class="position-main pt-2">${newsName}</label>
+                                            <label class="position-main pt-2">${administ_name}</label>
                                         </div>
 
                                         <button class="btn btn-sm btn-success rounded-pill btn-edit mx-2" 
-                                             data-id="${id}"
+                                             data-id="${administ_id}"
                                             data-ac="edit" data-bs-toggle="modal" data-bs-target="#administModal">
                                             <em class="fas fa-edit fs-5"></em>
                                         </button>
 
                                         <button class="btn btn-danger btn-sm rounded-pill btn-delete" 
-                                             data-id="${id}">
+                                             data-id="${administ_id}">
                                             <em class="fas fa-trash-alt fs-5"></em>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         `;
-                        newsContainer.append(Item);
+                        administContainer.append(Item);
                     });
                 },
             });
         }
 
         var administ_model = $('#administModal');
-        $(document).on('click', '.addNews', function() {
+        $(document).on('click', '.add-administ', function() {
             administ_model.modal('show')
         })
 
          ////// save news //////
-        $(document).on('click', '.save-new', function() {
+        $(document).on('click', '.save-administ', function() {
                 let id = $('#id').val();
-                let administ_model = $('#administModal');
+                let administ_FromModal = $('#administ_FromModal');
 
-                if (administ_model.valid()) {
-                    const formData = new FormData($('#administModal')[0]);
+                if (administ_FromModal.valid()) {
+                    const formData = new FormData($('#administ_FromModal')[0]);
                     const data = Object.fromEntries(formData.entries());
                     if (!id) {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.news.category.create') }}",
+                            url: "{{ route('api.v1.administrative.work.categories.create') }}",
                             data: data,
                             dataType: "json",
                             success: function (response) {
@@ -165,8 +164,8 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    news_model.modal('hide');
-                                    getNewsCategory();
+                                    administ_model.modal('hide');
+                                    getAdministWorkCategories();
                                 } else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',
@@ -181,7 +180,7 @@
                     }else {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.news.category.update') }}",
+                            url: "{{ route('api.v1.administrative.work.categories.update') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -193,8 +192,8 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    news_model.modal('hide');
-                                    getNewsCategory();
+                                    administ_model.modal('hide');
+                                    getAdministWorkCategories();
 
                                 } else {
                                     Swal.fire({
@@ -225,33 +224,31 @@
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.news.category.by.id') }}",
+                    url: "{{ route('api.v1.administrative.work.categories.by.id') }}",
                     data: {
                         'id': id
                     },
                     dataType: "json",
                     success: function(response) {
                         setNewsCategoryFormData(response);
-                        $("#id").val(response.id);
-                        news_model.modal('show')
-                        console.log(response);
+                        $("#id").val(response.data.id);
+                        administ_model.modal('show')
+                        // console.log(response);
                     }
                 });
             })
             function setNewsCategoryFormData(data) {
-                $("#news_name").val(data.news_name);
-                $("#news_details").val(data.news_details);
+                $("#administ_name").val(data.data.administ_name);
             }
-            news_model.on('show.bs.modal', function(event) {
+            administ_model.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
                 let title = btn.data('ac') === 'edit' ? 'แก้ไขหัวข้อข่าว':'เพิ่มหัวข้อข่าว';
                 let obj = $(this);
                 obj.find('.modal-title').text(title)
             })
-            news_model.on('hide.bs.modal', function() {
+            administ_model.on('hide.bs.modal', function() {
             let obj = $(this);
-            obj.find('#news_name').val("");
-            obj.find('#news_details').val("");
+            obj.find('#administ_name').val("");
             })
 
         ////// delete news //////
@@ -276,7 +273,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.news.category.delete') }}",
+                            url: "{{ route('api.v1.administrative.work.categories.delete') }}",
                             data: {
                                 'id': id
                             },
@@ -290,7 +287,7 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                    getNewsCategory();
+                                    getAdministWorkCategories();
                                 } else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',

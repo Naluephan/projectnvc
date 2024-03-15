@@ -157,7 +157,7 @@
                 if (news_FromModal.valid()) {
                     const formData = new FormData($('#news_FromModal')[0]);
                     const data = Object.fromEntries(formData.entries());
-                    if (!id) {
+                    if (id.length == 0) {
                         $.ajax({
                             type: 'post',
                             url: "{{ route('api.v1.news.category.create') }}",

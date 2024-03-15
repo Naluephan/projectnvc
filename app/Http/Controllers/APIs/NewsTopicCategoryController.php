@@ -27,7 +27,6 @@ class NewsTopicCategoryController extends Controller
         try {
             $query = $this->newsTopicCategoryRepository->create($data);
             $result = [
-                'news_id' => $query['news_id'],
                 'news_name' => $query['news_name'],
                 'news_details' => $query['news_details'],
             ];

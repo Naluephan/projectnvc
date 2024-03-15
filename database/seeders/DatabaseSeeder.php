@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsNoticeEmployeeSeeder::class);
         $this->call(PickupToolsSeeder::class);
         $this->call(PickupToolsDeviceTypeSeeder::class);
+        $this->call(administrativeWorkCategoriesSeeder::class);
 
 
     }

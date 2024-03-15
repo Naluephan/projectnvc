@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\APIs;
 
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class AdministWorkCategoriesController extends Controller
     {
         $this->AdministrativeWorkCategoriesRepository = $AdministrativeWorkCategoriesRepository;
     }
-    public function getNewsCategory(Request $request){
+    public function getAdministList(Request $request)
+    {
         return $this->AdministrativeWorkCategoriesRepository->getAll();
     }
 
@@ -23,13 +25,12 @@ class AdministWorkCategoriesController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
-        // $result['status'] = "Create Success";
         try {
             $query = $this->AdministrativeWorkCategoriesRepository->create($data);
             $result = [
                 'administ_name' => $query['administ_name'],
             ];
-            
+
             if (isset($result)) {
                 $result['status'] = 'Success';
                 $result['statusCode'] = '00';
@@ -37,7 +38,7 @@ class AdministWorkCategoriesController extends Controller
                 $result['status'] = 'Create Failed';
                 DB::rollBack();
             }
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
@@ -51,23 +52,22 @@ class AdministWorkCategoriesController extends Controller
         $data = $request->all();
         $id = $data['id'];
         try {
-            $this->AdministrativeWorkCategoriesRepository->update($id,$data);
+            $this->AdministrativeWorkCategoriesRepository->update($id, $data);
             $result['status'] = "Success";
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Update Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
         return response()->json(["data" => $result]);
-
     }
     public function updateCategory(Request $request)
     {
         $id = $request->id;
         $name = $request->news_name;
         $details = $request->news_details;
-        
+
         $where = ['id' => $id];
         $update = ['administ_name' => $name];
         // $whereRaw = 'news_id = '.$id;
@@ -93,7 +93,7 @@ class AdministWorkCategoriesController extends Controller
                 DB::rollBack();
             }
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Delete Error. Check the information again";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
@@ -105,9 +105,9 @@ class AdministWorkCategoriesController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        return $this->AdministrativeWorkCategoriesRepository->find($id);
-       
+        // return $this->AdministrativeWorkCategoriesRepository->find($id);
+        $administId = $this->AdministrativeWorkCategoriesRepository->find($id);
+
+        return response()->json(["data" => $administId]);
     }
-
-
 }
