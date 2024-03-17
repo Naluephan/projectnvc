@@ -1,7 +1,15 @@
 @extends('setting_menu')
 @section('side-card')
     <style>
+        .cursor-pointer {
+            cursor: pointer;
+        }
 
+
+        .modal-dialog {
+            top: 10% !important;
+            width: 450px;
+        }
     </style>
 
     <div class="card p-3 rounded-4 bg-hr-card">
@@ -40,19 +48,12 @@
                             <input type="text" class="form-control input-modal rounded-pill text-color" id="reward_name"
                                 name="reward_name" required>
                         </div>
-                        <div class="pr-3 pl-3">
+                        <div class="mb-3 pr-3 pl-3">
                             <label for="reward_coins_change" class="col-form-label text-color"><i
                                     class="fas fa-newspaper text-sm"></i>
                                 เหรียญที่ใช้แลก</label>
                             <input type="text" class="form-control input-modal rounded-pill text-color"
                                 id="reward_coins_change" name="reward_coins_change" required>
-                        </div>
-                        <div class="mb-3 pr-3 pl-3">
-                            <label for="reward_description" class="col-form-label text-color"><i
-                                    class="fas fa-th-list text-sm"></i>
-                                รายละเอียด Item Organics Coins</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color"
-                                id="reward_description" name="reward_description" required>
                         </div>
                         <div class="pr-3 pl-3">
                             <label for="reward_image" class="col-form-label text-color"><i
@@ -87,56 +88,163 @@
     <script>
         $(() => {
 
-            // getItemOrganicsCoins();
+            getItemOrganicsCoins();
 
-            // function getItemOrganicsCoins() {
-            //     let id = "{{ Auth::user()->id }}";
-            //     const listItemOrganicsCoins = document.getElementById('list_itemOrganicsCoins');
-            //     listItemOrganicsCoins.innerHTML = '';
-            //     $.ajax({
-            //         type: 'post',
-            //         url: "{{ route('api.v1.asset.category.list') }}",
-            //         data: {
-            //             'id': id,
-            //         },
-            //         dataType: "json",
-            //         success: function(response) {
-            //             //console.log(response);
-            //             var itemOrganicsCoinsContainer = $(".list_itemOrganicsCoins");
-            //             response.forEach(function(assetInfo) {
-            //                 var cetegoryId = assetInfo.id;
-            //                 var cetegoryName = assetInfo.cetegory_name;
-            //                 var cetegoryCode = assetInfo.cetegory_code;
-            //                 var Item = `
-            //                 <div class="test pt-2">
-            //                     <div class="row">
-            //                         <div class="col-12 d-flex hhh px-0">
-            //                             <div class="input-group">
-            //                                 <input type="text" class="form-control rounded-pill bg-white text-sm"
-            //                                     style="border-color: #c0e7e7; height: 45px;" disabled>
-            //                                 <label class="position-main pt-2">${cetegoryName}</label>
-            //                                 <label class="position-main2 pt-2">#${cetegoryCode}</label>
-            //                             </div>&nbsp;&nbsp;
-            //                             <button class="btn btn-sm rounded-pill btn-edit" style="color: #ffff;" data-id="${cetegoryId}"
-            //                                 data-ac="edit" data-bs-toggle="modal" data-bs-target="#assetModal"><em
-            //                                     class="fas fa-edit" style="font-size: 20px;"></em></button>&nbsp;&nbsp;
-            //                             <button class="btn btn-sm rounded-pill btn-delete" style="color: #ffff;" data-id="${cetegoryId}"><em
-            //                                     class="fas fa-trash-alt" style="font-size: 20px;"></em></button>
-            //                         </div>
-            //                     </div>
-            //                 </div>
-            //             `;
-            //                 itemOrganicsCoinsContainer.append(Item);
-            //             });
-
-            //         },
-            //     });
-            // }
+            function getItemOrganicsCoins() {
+                const listItemOrganicsCoins = document.getElementById('list_itemOrganicsCoins');
+                listItemOrganicsCoins.innerHTML = '';
+                $.ajax({
+                    type: 'post',
+                    url: "{{ route('api.v1.reward.list') }}",
+                    dataType: "json",
+                    success: function(response) {
+                        // console.log(response);
+                        var itemOrganicsCoinsContainer = $("#list_itemOrganicsCoins");
+                        response.forEach(function(coinsInfo) {
+                            var rewardId = coinsInfo.id;
+                            var rewardName = coinsInfo.reward_name;
+                            var rewardImage = coinsInfo.reward_image;
+                            var rewardCoinsChange = coinsInfo.reward_coins_change;
+                            var rewardDescription = coinsInfo.reward_description;
+                            var Item = `
+                            <div class="content p-2">
+                                <div class="row button-details p-0 w-100 mb-3 cursor-pointer" style="height: 130px;">
+                                    <span class="button-text w-100 pt-3">
+                                        <div class="row">
+                                            <div class="col-4 col-sm-3 pl-0">
+                                                <img src="${rewardImage}" alt=""
+                                                    style="max-width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="col-6 col-sm-7">
+                                                <h6 class="text-bold mb-0 mr-2 py-2 text-truncate">${rewardName}</h6>
+                                                <p class="text-bold mb-0" style="color: #d4d4d4;">ใช้คะแนน ${rewardCoinsChange} คะแนน</p>
+                                            </div>
+                                            <div class="col-2 col-sm-2 d-flex justify-content-end">
+                                                <div class="icons">
+                                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" data-id="${rewardId}"></i>
+                                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;" data-id="${rewardId}"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            `;
+                            itemOrganicsCoinsContainer.append(Item);
+                        });
+                    },
+                });
+            }
 
             var asset_modal = $("#itemOrganicsCoinsModal");
             $(document).on('click', '.btn-add', function() {
                 asset_modal.modal('show')
             })
+
+            asset_modal.on('show.bs.modal', function(event) {
+                let btn = $(event.relatedTarget);
+                let title = btn.data('ac') === 'edit' ? '<em class="fas fa-edit"></em>&nbsp;แก้ไขรายการ' :
+                    '<i class="fa-solid fa-file-circle-plus"></i>&nbsp;เพิ่มข้อมูล';
+                //console.log(btn.data('ac'));
+                let obj = $(this);
+                obj.find('.modal-title').html(title);
+            });
+
+            asset_modal.on('hide.bs.modal', function() {
+                let obj = $(this);
+                obj.find('#id').val("");
+                obj.find('#cetegory_name').val("");
+                obj.find('#cetegory_code').val("");
+            })
+
+            $(document).on('click', '.save-itemOrganicsCoins', function() {
+                let id = $("#id").val();
+                let itemOrganicsCoinsForm = $("#itemOrganicsCoinsForm");
+                if (itemOrganicsCoinsForm.valid()) {
+                    const formData = new FormData($("#itemOrganicsCoinsForm")[0]);
+                    const data = Object.fromEntries(formData.entries());
+                    if (id.length == 0) {
+
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.reward.create') }}",
+                            data: data,
+                            dataType: "json",
+                            success: function(response) {
+                                asset_modal.modal('hide');
+                                getItemOrganicsCoins();
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.reward.update') }}",
+                            data: data,
+                            dataType: "json",
+                            success: function(response) {
+                                asset_modal.modal('hide');
+                                getItemOrganicsCoins();
+                            }
+                        });
+                    }
+                }
+            })
+
+            $(document).on('click', '.btn-edit', function() {
+                let id = $(this).data('id');
+                // console.log(id);
+                $.ajax({
+                    type: 'post',
+                    url: "{{ route('api.v1.reward.get.by.id') }}",
+                    data: {
+                        'id': id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        // console.log(response);
+                        getItemOrganicsCoins(response);
+                        $("#id").val(response.id);
+                        asset_modal.modal('show')
+                    }
+                });
+            })
+
+            $(document).on('click', '.btn-delete', function() {
+                let obj = $(this);
+                let id = obj.data('id');
+                // console.log(id);
+                Swal.fire({
+                    title: 'ยืนยัน!! ลบข้อมูล',
+                    text: "ต้องการดำเนินการใช่หรือไม่!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FA9583',
+                    cancelButtonColor: 'transparent',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ปิด',
+                    customClass: {
+                        confirmButton: 'rounded-pill',
+                        cancelButton: 'text-hr-green rounded-pill',
+                        popup: 'modal-radius'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('api.v1.reward.delete') }}",
+                            data: {
+                                'id': id
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                getItemOrganicsCoins();
+                            }
+                        });
+
+                    }
+                })
+            })
+
         });
     </script>
 @stop

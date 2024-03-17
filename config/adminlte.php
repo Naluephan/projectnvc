@@ -671,7 +671,7 @@ return [
         ],
         [
             'text' => 'โปรไฟล์',
-            'url'  => 'profile',
+            'url'  => '/profile',
             'icon' => 'fas fa-fw fa-user',
             'active'     => ['regex:@^profile@'],
 

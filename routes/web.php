@@ -71,7 +71,26 @@ Route::group([
 
 
     //Profile
-//    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profileMenu'])->name('profile');
+   Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profileMenu'])->name('profile');
+   Route::get('/profile/profile', [App\Http\Controllers\ProfileController::class, 'profileProfile'])->name('profile.profile');
+   Route::get('/profile/honor', [App\Http\Controllers\ProfileController::class, 'profileHonor'])->name('profile.honor');
+   Route::get('/profile/entryandexit', [App\Http\Controllers\ProfileController::class, 'profileEntryandexit'])->name('profile.entryandexit');
+   Route::get('/profile/privatecar', [App\Http\Controllers\ProfileController::class, 'profilePrivatecar'])->name('profile.privatecar');
+   Route::get('/profile/salary', [App\Http\Controllers\ProfileController::class, 'profileSalary'])->name('profile.salary');
+   Route::get('/profile/document', [App\Http\Controllers\ProfileController::class, 'profileDocument'])->name('profile.document');
+   Route::get('/profile/loginorganicsplus', [App\Http\Controllers\ProfileController::class, 'profileLoginorganicsplus'])->name('profile.loginorganicsplus');
+   Route::get('/profile/transactionhistory', [App\Http\Controllers\ProfileController::class, 'profileTransactionhistory'])->name('profile.transactionhistory');
+   Route::get('/profile/equipment', [App\Http\Controllers\ProfileController::class, 'profileEquipment'])->name('profile.equipment');
+   Route::get('/profile/holiday', [App\Http\Controllers\ProfileController::class, 'profileHoliday'])->name('profile.holiday');
+   Route::get('/profile/socialsecurity', [App\Http\Controllers\ProfileController::class, 'profileSocialsecurity'])->name('profile.socialsecurity');
+   Route::get('/profile/organicscoins', [App\Http\Controllers\ProfileController::class, 'profileOrganicscoins'])->name('profile.organicscoins');
+   Route::get('/profile/savings', [App\Http\Controllers\ProfileController::class, 'profileSavings'])->name('profile.savings');
+   Route::get('/profile/reservefund', [App\Http\Controllers\ProfileController::class, 'profileReservefund'])->name('profile.reservefund');
+   Route::get('/profile/groupinsurance', [App\Http\Controllers\ProfileController::class, 'profileGroupinsurance'])->name('profile.groupinsurance');
+   Route::get('/profile/organicshero', [App\Http\Controllers\ProfileController::class, 'profileOrganicshero'])->name('profile.organicshero');
+   Route::get('/profile/organicsmaintenance', [App\Http\Controllers\ProfileController::class, 'profileOrganicsmaintenance'])->name('profile.organicsmaintenance');
+   Route::get('/profile/comment', [App\Http\Controllers\ProfileController::class, 'profileComment'])->name('profile.comment');
+
 
 
 
