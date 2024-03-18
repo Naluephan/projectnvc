@@ -114,7 +114,7 @@
             {{--     end row       --}}
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h4 class="text-hr-green-app"><em class="fas fa-prayemng-hands"></em> <span
+                    <h4 class="text-hr-green-app"><em class="fas fa-praying-hands"></em> <span
                             class="h6 text-bold">สวัสดิการ</span>
                     </h4>
                 </div>

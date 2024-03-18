@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-6 pr-3">
                                     <label for="number_requested" class="col-form-label text-color"><i
-                                            class="fas fa-newspaper text-sm"></i> จำนวน (หน่อย) / ปี</label>
+                                            class="fas fa-newspaper text-sm"></i> จำนวน (หน่วย) / ปี</label>
                                     <input type="number" class="form-control input-modal rounded-pill text-color"
                                         id="number_requested" name="number_requested" style="height: 45px;" required
                                         min="1">
@@ -92,11 +92,11 @@
                             </div>
                         </div>
                     </form>
-                    {{-- <div class="button-addList pl-2 pr-2">
+                    <div class="button-addList pl-2 pr-2">
                         <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-addList"><i
                                 class="fa-solid fa-plus"></i>
                             เพิ่มรายการ</button>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="button-footer">
                     <div class="row">
@@ -339,6 +339,7 @@
                                 success: function(response) {
                                     pickuptools_modal.modal('hide');
                                     $('#pickuptoolsForm')[0].reset();
+                                    $('.btn-addList')[0].reset();
                                     getPickuptoolsCategory()
                                 }
                             });

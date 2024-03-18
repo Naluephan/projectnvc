@@ -349,10 +349,15 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#FA9583',
-                            cancelButtonColor: '#646464',
+                            confirmButtonColor: '#136E68',
+                            cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
-                            cancelButtonText: 'ปิด'
+                            cancelButtonText: 'ปิด',
+                            customClass: {
+                                confirmButton: 'rounded-pill',
+                                cancelButton: 'text-hr-green rounded-pill',
+                                popup: 'modal-radius'
+                            }
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
@@ -399,10 +404,15 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#FA9583',
-                            cancelButtonColor: '#646464',
+                            confirmButtonColor: '#136E68',
+                            cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
-                            cancelButtonText: 'ปิด'
+                            cancelButtonText: 'ปิด',
+                            customClass: {
+                                confirmButton: 'rounded-pill',
+                                cancelButton: 'text-hr-green rounded-pill',
+                                popup: 'modal-radius'
+                            }
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
@@ -522,10 +532,14 @@
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#FA9583',
-                    cancelButtonColor: '#646464',
-                    iconColor: '#FA9583',
+                    cancelButtonColor: 'transparent',
                     confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ปิด'
+                    cancelButtonText: 'ปิด',
+                    customClass: {
+                        confirmButton: 'rounded-pill',
+                        cancelButton: 'text-hr-green rounded-pill',
+                        popup: 'modal-radius'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({

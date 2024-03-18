@@ -17,18 +17,18 @@ class RewardCoinTableSeeder extends Seeder
      */
     public function run()
     {
-    foreach (range(1, 190) as $index) {
-        $reward_name = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6'];
-        $randomImage = 'https://newhr.organicscosme.com/uploads/images/medical_certificate/01.jpg';
-        $change = ['50', '100', '30', '20', '40'];
-        $description = 'product description';
+    // foreach (range(1, 190) as $index) {
+    //     $reward_name = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6'];
+    //     $randomImage = 'https://newhr.organicscosme.com/uploads/images/medical_certificate/01.jpg';
+    //     $change = ['50', '100', '30', '20', '40'];
+    //     $description = 'product description';
 
-        DB::table('reward_coins')->insert([
-            'reward_name' => $reward_name[array_rand($reward_name)],
-            'reward_image' => $randomImage,
-            'reward_description' => $description,
-            'reward_coins_change' => $change[array_rand($change)],
-        ]);
-    }
+    //     DB::table('reward_coins')->insert([
+    //         'reward_name' => $reward_name[array_rand($reward_name)],
+    //         'reward_image' => $randomImage,
+    //         'reward_description' => $description,
+    //         'reward_coins_change' => $change[array_rand($change)],
+    //     ]);
+    // }
     }
 }

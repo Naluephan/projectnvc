@@ -5,10 +5,45 @@
             cursor: pointer;
         }
 
-
         .modal-dialog {
             top: 10% !important;
             width: 450px;
+        }
+
+        .import-file {
+            height: 150px;
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed #b3b3b3;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .import-file:hover {
+            background-color: #f3f4f6;
+        }
+
+        .import-file svg {
+            width: auto;
+            height: 50px;
+            fill: none;
+            stroke: #898585;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .import-file p {
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .import-file input[type="file"] {
+            display: none;
         }
     </style>
 
@@ -17,7 +52,34 @@
             <h6 class="text-bold"><i class="fas fa-cubes"></i> Item Organics Coins</h6>
         </div>
         <div class="card-body pt-0">
-            <div class="row mt-1 list_itemOrganicsCoins p-2" id="list_itemOrganicsCoins"></div>
+            <div class="mt-1 list_itemOrganicsCoins pb-2" id="list_itemOrganicsCoins"></div>
+
+            {{-- <div class="pb-2">
+                <div class="button-details p-0 w-100" style="height: 140px;">
+                    <span class="button-text w-100">
+                        <div class="row">
+                            <div class="col-4 col-sm-3 px-0 d-flex align-items-center justify-content-center">
+                                <img src="https://img5.pic.in.th/file/secure-sv1/imageca5de9024f118645.png" alt=""
+                                    style="max-width: 111.94px; max-height: 111.94px; width: auto; height: auto; max-width: 111.94px; max-height: 111.94px;  object-fit: contain;">
+                            </div>
+                            <div class="col-6 col-sm-7">
+                                <h6 class="text-bold mb-0 mr-2 py-2 text-truncate">ตุ๊กตา</h6>
+                                <p class="text-bold mb-0" style="color: #d4d4d4;">ใช้คะแนน 500 คะแนน</p>
+                            </div>
+                            <div class="col-2 col-sm-2 d-flex justify-content-end">
+                                <div class="icons">
+                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" data-id="${rewardId}"></i>
+                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"
+                                        data-id="${rewardId}"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div> --}}
+
+
+
             <div class="button px-0">
                 <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                         class="fa-solid fa-plus"></i>
@@ -35,6 +97,7 @@
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
                     <h6 class="modal-title" id="itemOrganicsCoinsModalLabel"><i class="fa-solid fa-file-circle-plus"></i>
+                        <span class="add-data">เพิ่มข้อมูล</span>
                     </h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -56,13 +119,32 @@
                                 id="reward_coins_change" name="reward_coins_change" required>
                         </div>
                         <div class="pr-3 pl-3">
-                            <label for="reward_image" class="col-form-label text-color"><i
-                                    class="fas fa-newspaper text-sm"></i>
-                                รูป Item Organics Coins</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color" id="reward_image"
-                                name="reward_image" required>
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <label for="reward_image" class="col-form-label text-color"><i
+                                            class="fas fa-image hr-icon"></i> รูป Item Organics Coins</label>
+                                    <div class="import pt-3">
+                                        <label for="import-file" class="import-file">
+                                            <input type="file" class="form-control rounded-pill" id="reward_image"
+                                                name="reward_image">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-upload pb-2" width="20"
+                                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#707070"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                <path d="M7 9l5 -5l5 5" />
+                                                <path d="M12 4l0 12" />
+                                            </svg>
+                                            <div>
+                                                <p class="text-center">อัพโหลดรูปภาพ <br>ไฟล์ JPG, PNG, PDF</p>
+                                            </div>
+                                        </label>
+                                        <input type="file" style="display: none;" id="import-file" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </form>
                 </div>
                 <div class="button-footer">
@@ -74,6 +156,75 @@
                         <div class="col-6">
                             <button
                                 class="btn btn-hr-confirm form-control rounded-pill save-itemOrganicsCoins">บันทึก</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- modal detail --}}
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content modal-radius">
+                <div class="modal-header background2 modal-header-radius">
+                    <h6 class="modal-title" id="detailModalLabel">
+                        Item Organics Coins
+                    </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="detailModal">
+                        <div class="row list_detail" id="list_detail">
+                            <div class="col-10 col-sm-10">
+                                <input type="hidden" name="id" id="id">
+                                <div class="mb-3 pr-3 pl-3">
+                                    <label for="detail-reward_name" class="col-form-label text-color"><i
+                                            class="fas fa-th-list text-sm"></i>
+                                        ชื่อ Item Organics Coins : </label>
+                                    <label class="text-black-50 pt-1" id="detail-reward_name"></label>
+                                </div>
+                                <div class="mb-3 pr-3 pl-3">
+                                    <label for="detail-reward_coins_change" class="col-form-label text-color"><i
+                                            class="fas fa-newspaper text-sm"></i>
+                                        เหรียญที่ใช้แลก : </label>
+                                    <label class="text-black-50 pt-1" id="detail-reward_coins_change"></label>
+                                </div>
+                                <div class="pr-3 pl-3">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12">
+                                            <label for="detail-reward_image" class="col-form-label text-color"><i
+                                                    class="fas fa-image hr-icon"></i> รูป Item Organics Coin
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6 pt-2">
+                                                    <div class="text-center">
+                                                        <img src=""
+                                                            class="border border-0 rounded-start-4 rounded-end-4 "
+                                                            alt="" style=" width: 180px; height: 180px;"
+                                                            id="detail-reward_image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-2 d-flex justify-content-end">
+                                <div class="icons">
+                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer"></i>
+                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="button-footer">
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-hr-confirm form-control rounded-pill"
+                                data-bs-dismiss="modal">ตกลง</button>
                         </div>
                     </div>
                 </div>
@@ -103,27 +254,28 @@
                         response.forEach(function(coinsInfo) {
                             var rewardId = coinsInfo.id;
                             var rewardName = coinsInfo.reward_name;
-                            var rewardImage = coinsInfo.reward_image;
+                            var img_path =
+                                '{{ asset('uploads/images/setting/itemOrganicsCoins') }}';
+                            var rewardImage = img_path + '/' + coinsInfo
+                                .reward_image;
                             var rewardCoinsChange = coinsInfo.reward_coins_change;
                             var rewardDescription = coinsInfo.reward_description;
                             var Item = `
-                            <div class="content p-2">
-                                <div class="row button-details p-0 w-100 mb-3 cursor-pointer" style="height: 130px;">
-                                    <span class="button-text w-100 pt-3">
+                            <div class="pb-2">
+                                <div class="button-details btn-detail cursor-pointer p-0 w-100"
+                                data-id="${rewardId}"
+                                data-reward_name="${rewardName}"
+                                data-reward_coins_change="${rewardCoinsChange}"
+                                data-reward_image="${rewardImage}">
+                                    <span class="button-text w-100">
                                         <div class="row">
-                                            <div class="col-4 col-sm-3 pl-0">
+                                            <div class="col-4 col-sm-3 px-0 d-flex align-items-center justify-content-center">
                                                 <img src="${rewardImage}" alt=""
-                                                    style="max-width: 100%; height: 100%;">
+                                                    style="max-width: 111.94px; max-height: 111.94px;">
                                             </div>
                                             <div class="col-6 col-sm-7">
                                                 <h6 class="text-bold mb-0 mr-2 py-2 text-truncate">${rewardName}</h6>
                                                 <p class="text-bold mb-0" style="color: #d4d4d4;">ใช้คะแนน ${rewardCoinsChange} คะแนน</p>
-                                            </div>
-                                            <div class="col-2 col-sm-2 d-flex justify-content-end">
-                                                <div class="icons">
-                                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" data-id="${rewardId}"></i>
-                                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;" data-id="${rewardId}"></i>
-                                                </div>
                                             </div>
                                         </div>
                                     </span>
@@ -139,62 +291,161 @@
             var asset_modal = $("#itemOrganicsCoinsModal");
             $(document).on('click', '.btn-add', function() {
                 asset_modal.modal('show')
-            })
-
-            asset_modal.on('show.bs.modal', function(event) {
-                let btn = $(event.relatedTarget);
-                let title = btn.data('ac') === 'edit' ? '<em class="fas fa-edit"></em>&nbsp;แก้ไขรายการ' :
-                    '<i class="fa-solid fa-file-circle-plus"></i>&nbsp;เพิ่มข้อมูล';
-                //console.log(btn.data('ac'));
-                let obj = $(this);
-                obj.find('.modal-title').html(title);
-            });
-
-            asset_modal.on('hide.bs.modal', function() {
-                let obj = $(this);
-                obj.find('#id').val("");
-                obj.find('#cetegory_name').val("");
-                obj.find('#cetegory_code').val("");
+                $('.add-data').text('เพิ่มข้อมูล');
+                $('#reward_name').val('');
+                $('#reward_coins_change').val('');
+                $('#import-file').val('');
             })
 
             $(document).on('click', '.save-itemOrganicsCoins', function() {
-                let id = $("#id").val();
-                let itemOrganicsCoinsForm = $("#itemOrganicsCoinsForm");
-                if (itemOrganicsCoinsForm.valid()) {
-                    const formData = new FormData($("#itemOrganicsCoinsForm")[0]);
-                    const data = Object.fromEntries(formData.entries());
-                    if (id.length == 0) {
-
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.reward.create') }}",
-                            data: data,
-                            dataType: "json",
-                            success: function(response) {
-                                asset_modal.modal('hide');
-                                getItemOrganicsCoins();
+                var id = $('#id').val();
+                if ($('#itemOrganicsCoinsForm').valid()) {
+                    var formData = new FormData();
+                    formData.append('_token', $('#_token').val());
+                    formData.append('id', $('#id').val());
+                    formData.append('reward_name', $('#reward_name').val());
+                    formData.append('reward_coins_change', $('#reward_coins_change').val());
+                    if (document.getElementById("import-file").files.length != 0) {
+                        formData.append('reward_image', $('#import-file').prop('files')[0]);
+                    }
+                    if (!id) {
+                        Swal.fire({
+                            title: 'ยืนยันการเพิ่มรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#136E68',
+                            cancelButtonColor: 'transparent',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด',
+                            customClass: {
+                                confirmButton: 'rounded-pill',
+                                cancelButton: 'text-hr-green rounded-pill',
+                                popup: 'modal-radius'
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.reward.create') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'เพิ่มรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $('#reward_name').val('');
+                                            $('#reward_coins_change').val('');
+                                            $('#import-file').val('');
+                                            $('#id').val('');
+                                            asset_modal.modal('hide');
+                                            getItemOrganicsCoins();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'เพิ่มรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
                             }
                         });
                     } else {
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.reward.update') }}",
-                            data: data,
-                            dataType: "json",
-                            success: function(response) {
-                                asset_modal.modal('hide');
-                                getItemOrganicsCoins();
+                        Swal.fire({
+                            title: 'ยืนยันการแก้ไขรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#136E68',
+                            cancelButtonColor: 'transparent',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด',
+                            customClass: {
+                                confirmButton: 'rounded-pill',
+                                cancelButton: 'text-hr-green rounded-pill',
+                                popup: 'modal-radius'
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.reward.update') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'แก้ไขรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $('#reward_name').val('');
+                                            $('#reward_coins_change').val('');
+                                            $('#import-file').val('');
+                                            $('#id').val('');
+                                            asset_modal.modal('hide');
+                                            getItemOrganicsCoins();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'แก้ไขรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
                             }
                         });
                     }
+                } else {
+                    Swal.fire({
+                        title: 'กรุณากรอกข้อมูล',
+                        icon: 'warning',
+                        iconColor: '#FA9583',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
-            })
+            });
 
-            $(document).on('click', '.btn-edit', function() {
+            $(document).on('click', '.btn-detail', function() {
                 let id = $(this).data('id');
-                // console.log(id);
+                let reward_name = $(this).data('reward_name');
+                let reward_coins_change = $(this).data('reward_coins_change');
+                let reward_image = $(this).data('reward_image');
+                let data = {
+                    id,
+                    reward_name,
+                    reward_coins_change,
+                    reward_image
+                }
+
+                $('.btn-delete').data('id', id)
+                $('.btn-edit').data('data', data)
+                $('#detailModal').modal('show');
+                // console.log(data);
+                // console.log(reward_name);
+                // console.log(reward_coins_change);
+                // console.log(reward_image);
+
                 $.ajax({
-                    type: 'post',
+                    type: "post",
                     url: "{{ route('api.v1.reward.get.by.id') }}",
                     data: {
                         'id': id
@@ -202,17 +453,41 @@
                     dataType: "json",
                     success: function(response) {
                         // console.log(response);
-                        getItemOrganicsCoins(response);
-                        $("#id").val(response.id);
-                        asset_modal.modal('show')
+                        var img_url = ''
+                        if (response.data.reward_image != null) {
+                            img_url =
+                                "{{ asset('uploads/images/setting/itemOrganicsCoins') }}/" +
+                                response.data.reward_image;
+                        }
+                        $('#detail-reward_name').text(response.data.reward_name);
+                        $('#detail-reward_coins_change').text(response.data
+                            .reward_coins_change);
+                        $('#detail-reward_image').attr('src', img_url);
                     }
                 });
-            })
+            });
+
+            $(document).on('click', '.btn-edit', function() {
+                $('#detailModal').modal('hide');
+                $('#itemOrganicsCoinsModal').modal('show');
+                $('.add-data').text('แก้ไขข้อมูล');
+                let data = $(this).data('data');
+                // console.log(id);
+                // console.log(reward_name);
+                // console.log(reward_image);
+                // console.log(reward_coins_change);
+
+
+                $('#id').val(data.id);
+                $('#reward_name').val(data.reward_name);
+                $('#reward_coins_change').val(data.reward_coins_change);
+                $('#reward_image').val(reward_image);
+            });
 
             $(document).on('click', '.btn-delete', function() {
                 let obj = $(this);
                 let id = obj.data('id');
-                // console.log(id);
+                console.log(id);
                 Swal.fire({
                     title: 'ยืนยัน!! ลบข้อมูล',
                     text: "ต้องการดำเนินการใช่หรือไม่!",
@@ -237,7 +512,27 @@
                             },
                             dataType: "json",
                             success: function(response) {
-                                getItemOrganicsCoins();
+                                if (response) {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'success',
+                                        title: 'ลบรายการสำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    $('#detailModal').modal('hide');
+                                    $('#itemOrganicsCoinsModal').modal('hide');
+                                    getItemOrganicsCoins();
+                                } else {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'error',
+                                        iconColor: '#FA9583',
+                                        title: 'ลบรายการไม่สำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
                             }
                         });
 
