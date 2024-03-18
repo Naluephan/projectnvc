@@ -130,7 +130,8 @@
         <div class="modal-dialog">
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
-                    <h6 class="modal-title " id="securityModalLabel"><i class="fa-solid fa-file-circle-plus"></i> <span class="add-data">เพิ่มข้อมูล</span>
+                    <h6 class="modal-title " id="securityModalLabel"><i class="fa-solid fa-file-circle-plus"></i> <span
+                            class="add-data">เพิ่มข้อมูล</span>
                     </h6>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
@@ -169,24 +170,8 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <label for="security_image" class="col-form-label text-color"><i
-                                            class="fas fa-image hr-icon"></i> รูปสถานที่</label>
-                                    <label for="import-file" class="import-file">
-                                        <input type="file" class="form-control rounded-pill" id="location_img"
-                                            name="location_img">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-upload"
-                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
-                                            stroke="#707070" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                                            <path d="M7 9l5 -5l5 5" />
-                                            <path d="M12 4l0 12" />
-                                        </svg>
-                                        <div>
-                                            <p class="text-center">อัพโหลดรูปภาพ</p>
-                                            <p class="text-center">ไฟล์ JPG, PNG, PDF</p>
-                                        </div>
-                                    </label>
-                                    <input type="file" style="display: none;" id="import-file" />
+                                        class="fas fa-image hr-icon"></i> รูปสถานที่</label>
+                                    <input type="file" class="dropify" id="image_file" name="image_file" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -280,6 +265,12 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcode"></script>
     <script>
         $(() => {
+            $('.dropify').dropify({
+                tpl: {
+                    message: '<div class="dropify-message"><span class="file-icon"/><p><h5>กรุณาเลือกไฟล์ภาพ</h5></p></div>',
+                    preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message"></p></div></div></div>',
+                },
+            });
 
             function getSecurityList() {
                 let data = {};
@@ -336,6 +327,7 @@
                 $('#securityModal').modal('hide');
                 $('#id').val('');
                 $('.add-data').text('เพิ่มข้อมูล');
+                $(".dropify-clear").trigger("click");
             });
 
             $(document).on('click', '.save-security', function() {
@@ -348,8 +340,8 @@
                     formData.append('location', $('#security_location').val());
                     formData.append('security_patrol', $('#security_patrol').val());
                     formData.append('security_time', $('#security_time').val());
-                    if (document.getElementById("import-file").files.length != 0) {
-                        formData.append('security_img', $('#import-file').prop('files')[0]);
+                    if (document.getElementById("image_file").files.length != 0) {
+                        formData.append('security_img', $('#image_file').prop('files')[0]);
                     }
                     if (!id) {
                         Swal.fire({
@@ -386,6 +378,7 @@
                                             $('#import-file').val('');
                                             $('#securityModal').modal('hide');
                                             $('#id').val('');
+                                            $(".dropify-clear").trigger("click");
                                             getSecurityList();
                                         } else {
                                             Swal.fire({
@@ -435,6 +428,7 @@
                                             $('#import-file').val('');
                                             $('#securityModal').modal('hide');
                                             $('#id').val('');
+                                            $(".dropify-clear").trigger("click");
                                             getSecurityList();
                                         } else {
                                             Swal.fire({
@@ -486,8 +480,11 @@
                         $('#security_edit').val(response.data.id);
                         $('#security_edit').data('name', response.data.name);
                         $('#security_edit').data('location', response.data.location);
-                        $('#security_edit').data('security_patrol', response.data.security_patrol);
+                        $('#security_edit').data('security_patrol', response.data
+                            .security_patrol);
                         $('#security_edit').data('security_time', response.data.security_time);
+                        $('#security_edit').data('security_img', img_url);
+                        $('#security_edit').data('security_img_name', response.data.security_img);
                     }
                 });
             });
@@ -498,6 +495,8 @@
                 var location = $(this).data('location');
                 var security_patrol = $(this).data('security_patrol');
                 var security_time = $(this).data('security_time');
+                var img_url = $(this).data('security_img');
+                var image = $(this).data('security_img_name');
                 $('#detailModal').modal('hide');
                 $('#securityModal').modal('show');
                 $('#security_name').val(name);
@@ -505,6 +504,12 @@
                 $('#security_patrol').val(security_patrol);
                 $('#security_time').val(security_time);
                 $('#id').val(id);
+                $("#image_file").attr("data-default-file", img_url); //dropify
+                // $('#image_file').prop('required',false);
+                $('.dropify-render').html('<img src="" />');
+                $('.dropify-render img').attr('src', img_url);
+                $('.dropify-preview').css('display', 'block');
+                $('.dropify-filename-inner').text(image);
                 $('.add-data').text('แก้ไขข้อมูล');
             });
 
