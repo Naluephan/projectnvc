@@ -5,6 +5,10 @@
             cursor: pointer;
         }
 
+        .modal {
+            overflow: auto !important;
+        }
+
         .modal-dialog {
             top: 10% !important;
             width: 450px;
@@ -53,33 +57,6 @@
         </div>
         <div class="card-body pt-0">
             <div class="mt-1 list_itemOrganicsCoins pb-2" id="list_itemOrganicsCoins"></div>
-
-            {{-- <div class="pb-2">
-                <div class="button-details p-0 w-100" style="height: 140px;">
-                    <span class="button-text w-100">
-                        <div class="row">
-                            <div class="col-4 col-sm-3 px-0 d-flex align-items-center justify-content-center">
-                                <img src="https://img5.pic.in.th/file/secure-sv1/imageca5de9024f118645.png" alt=""
-                                    style="max-width: 111.94px; max-height: 111.94px; width: auto; height: auto; max-width: 111.94px; max-height: 111.94px;  object-fit: contain;">
-                            </div>
-                            <div class="col-6 col-sm-7">
-                                <h6 class="text-bold mb-0 mr-2 py-2 text-truncate">ตุ๊กตา</h6>
-                                <p class="text-bold mb-0" style="color: #d4d4d4;">ใช้คะแนน 500 คะแนน</p>
-                            </div>
-                            <div class="col-2 col-sm-2 d-flex justify-content-end">
-                                <div class="icons">
-                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" data-id="${rewardId}"></i>
-                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"
-                                        data-id="${rewardId}"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </span>
-                </div>
-            </div> --}}
-
-
-
             <div class="button px-0">
                 <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                         class="fa-solid fa-plus"></i>
@@ -123,25 +100,7 @@
                                 <div class="col-12 col-sm-6">
                                     <label for="reward_image" class="col-form-label text-color"><i
                                             class="fas fa-image hr-icon"></i> รูป Item Organics Coins</label>
-                                    <div class="import pt-3">
-                                        <label for="import-file" class="import-file">
-                                            <input type="file" class="form-control rounded-pill" id="reward_image"
-                                                name="reward_image">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-upload pb-2" width="20"
-                                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#707070"
-                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                                                <path d="M7 9l5 -5l5 5" />
-                                                <path d="M12 4l0 12" />
-                                            </svg>
-                                            <div>
-                                                <p class="text-center">อัพโหลดรูปภาพ <br>ไฟล์ JPG, PNG, PDF</p>
-                                            </div>
-                                        </label>
-                                        <input type="file" style="display: none;" id="import-file" />
-                                    </div>
+                                    <input type="file" class="dropify" id="image_file" name="image_file" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -238,6 +197,12 @@
 @section('js')
     <script>
         $(() => {
+            $('.dropify').dropify({
+                tpl: {
+                    message: '<div class="dropify-message"><span class="file-icon"/><p><h5>กรุณาเลือกไฟล์ภาพ</h5></p></div>',
+                    preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message"></p></div></div></div>',
+                },
+            });
 
             getItemOrganicsCoins();
 
@@ -295,6 +260,7 @@
                 $('#reward_name').val('');
                 $('#reward_coins_change').val('');
                 $('#import-file').val('');
+                $(".dropify-clear").trigger("click");
             })
 
             $(document).on('click', '.save-itemOrganicsCoins', function() {
@@ -305,8 +271,8 @@
                     formData.append('id', $('#id').val());
                     formData.append('reward_name', $('#reward_name').val());
                     formData.append('reward_coins_change', $('#reward_coins_change').val());
-                    if (document.getElementById("import-file").files.length != 0) {
-                        formData.append('reward_image', $('#import-file').prop('files')[0]);
+                    if (document.getElementById("image_file").files.length != 0) {
+                        formData.append('reward_image', $('#image_file').prop('files')[0]);
                     }
                     if (!id) {
                         Swal.fire({
@@ -346,6 +312,7 @@
                                             $('#import-file').val('');
                                             $('#id').val('');
                                             asset_modal.modal('hide');
+                                            $(".dropify-clear").trigger("click");
                                             getItemOrganicsCoins();
                                         } else {
                                             Swal.fire({
@@ -398,6 +365,7 @@
                                             $('#import-file').val('');
                                             $('#id').val('');
                                             asset_modal.modal('hide');
+                                            $(".dropify-clear").trigger("click");
                                             getItemOrganicsCoins();
                                         } else {
                                             Swal.fire({
@@ -439,10 +407,6 @@
                 $('.btn-delete').data('id', id)
                 $('.btn-edit').data('data', data)
                 $('#detailModal').modal('show');
-                // console.log(data);
-                // console.log(reward_name);
-                // console.log(reward_coins_change);
-                // console.log(reward_image);
 
                 $.ajax({
                     type: "post",
@@ -476,12 +440,16 @@
                 // console.log(reward_name);
                 // console.log(reward_image);
                 // console.log(reward_coins_change);
-
-
                 $('#id').val(data.id);
                 $('#reward_name').val(data.reward_name);
                 $('#reward_coins_change').val(data.reward_coins_change);
-                $('#reward_image').val(reward_image);
+                // $('#reward_image').val(reward_image);
+                $("#image_file").attr("data-default-file", data.reward_image); //dropify
+                // $('#image_file').prop('required',false);
+                $('.dropify-render').html('<img src="" />');
+                $('.dropify-render img').attr('src', data.reward_image);
+                $('.dropify-preview').css('display', 'block');
+                $('.dropify-filename-inner').text(image);
             });
 
             $(document).on('click', '.btn-delete', function() {

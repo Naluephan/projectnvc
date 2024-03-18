@@ -35,16 +35,28 @@ class PickupToolsController extends Controller
         return $showDetail;
     }
 
-
     public function createCondition(Request $request)
     {
+        $data = $request->all();
+        $result = [];
+
         try {
-            $data = $request->all();
-            $deviceTypesList = $this->pickupToolsRepository->createCondition($data);
-            return $deviceTypesList;
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
+            foreach ($data['arr_order'] as $row) {
+                $params = [
+                    'department_id' => $data['department_id'],
+                    'device_types_id' => $row['device_types_id'],
+                    'number_requested' => $row['number_requested'],
+                ];
+                $this->pickupToolsRepository->createCondition($params); // เรียกใช้ฟังก์ชั่น createCondition() ที่ถูกสร้างขึ้นก่อนหน้านี้
+            }
+            $result['status'] = "success";
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
         }
+        return $result;
     }
 
     public function deviceTypesList(Request $request)

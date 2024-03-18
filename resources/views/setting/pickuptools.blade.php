@@ -75,19 +75,18 @@
                             <div class="row mt-3 list-pickuptools">
                                 <div class="col-6 pl-3">
                                     <label for="device_types_id" class="col-form-label text-color"><i
-                                            class="fas fa-newspaper text-sm"></i>
-                                        อุปกรณ์ที่เบิกได้</label>
-                                    <select class="form-select input-modal rounded-pill bg-white text-color"
-                                        id="device_types_id" name="device_types_id" required>
+                                            class="fas fa-newspaper text-sm"></i> อุปกรณ์ที่เบิกได้</label>
+                                    <select class="form-select input-modal rounded-pill bg-white text-color device_types_id"
+                                        name="device_types_id" id="device_types_id" required>
                                         <option selected>เลือกอุปกรณ์</option>
                                     </select>
                                 </div>
                                 <div class="col-6 pr-3">
                                     <label for="number_requested" class="col-form-label text-color"><i
                                             class="fas fa-newspaper text-sm"></i> จำนวน (หน่วย) / ปี</label>
-                                    <input type="number" class="form-control input-modal rounded-pill text-color"
-                                        id="number_requested" name="number_requested" style="height: 45px;" required
-                                        min="1">
+                                    <input type="number"
+                                        class="form-control input-modal rounded-pill text-color number_requested"
+                                        style="height: 45px;" required min="1">
                                 </div>
                             </div>
                         </div>
@@ -174,7 +173,7 @@
                 }
             });
 
-            var deviceTypesId = $('#device_types_id');
+            var deviceTypesId = $('.device_types_id');
             $.ajax({
                 url: '{{ route('api.v1.device.types.list') }}',
                 type: 'post',
@@ -297,9 +296,6 @@
                 const pickuptoolsContainer = document.querySelector('.list-pickuptools');
                 const newPickuptoolsContainer = pickuptoolsContainer.cloneNode(true);
 
-                newPickuptoolsContainer.classList.remove('list-pickuptools');
-                newPickuptoolsContainer.classList.add('added-pickuptools');
-
                 pickuptoolsContainer.parentNode.insertBefore(newPickuptoolsContainer, pickuptoolsContainer);
             });
 
@@ -307,7 +303,17 @@
                 let pickuptoolsForm = $("#pickuptoolsForm");
                 let department_id = $('#department_id').val();
                 let device_types_id = $('#device_types_id').val();
+                var arr_order = [];
+                $('.list-pickuptools').each(function() {
+                    var device_types_id = $(this).find('.device_types_id').val();
+                    var number_requested = $(this).find('.number_requested').val();
 
+                    arr_order.push({
+                        device_types_id: device_types_id,
+                        number_requested: number_requested
+                    });
+                });
+                // console.log(arr_order);
                 if (department_id !== "เลือกแผนก" && device_types_id !== "เลือกอุปกรณ์" &&
                     pickuptoolsForm
                     .valid()) {
@@ -332,15 +338,17 @@
                                 url: '{{ route('api.v1.pickup.tools.create') }}',
                                 data: {
                                     department_id: $('#department_id').val(),
-                                    device_types_id: $('#device_types_id').val(),
-                                    number_requested: $('#number_requested').val(),
+                                    arr_order: arr_order
                                 },
                                 dataType: "json",
                                 success: function(response) {
-                                    pickuptools_modal.modal('hide');
+                                    if (response.status=='success') {
+                                        pickuptools_modal.modal('hide');
                                     $('#pickuptoolsForm')[0].reset();
-                                    $('.btn-addList')[0].reset();
-                                    getPickuptoolsCategory()
+                                    // $('.btn-addList')[0].reset();
+                                    getPickuptoolsCategory();
+                                    }
+
                                 }
                             });
                         }

@@ -1,6 +1,10 @@
 @extends('setting_menu')
 
 <style>
+    .modal {
+        overflow: auto !important;
+    }
+
     .custom-file {
         position: relative;
         display: inline-block;
@@ -133,7 +137,7 @@
                     <h6 class="modal-title " id="securityModalLabel"><i class="fa-solid fa-file-circle-plus"></i> <span
                             class="add-data">เพิ่มข้อมูล</span>
                     </h6>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="securityForm">
@@ -170,7 +174,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <label for="security_image" class="col-form-label text-color"><i
-                                        class="fas fa-image hr-icon"></i> รูปสถานที่</label>
+                                            class="fas fa-image hr-icon"></i> รูปสถานที่</label>
                                     <input type="file" class="dropify" id="image_file" name="image_file" placeholder="">
                                 </div>
                             </div>
@@ -494,7 +498,8 @@
                             .security_patrol);
                         $('#security_edit').data('security_time', response.data.security_time);
                         $('#security_edit').data('security_img', img_url);
-                        $('#security_edit').data('security_img_name', response.data.security_img);
+                        $('#security_edit').data('security_img_name', response.data
+                            .security_img);
                     }
                 });
             });
