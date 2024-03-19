@@ -135,8 +135,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="detailModal">
+                        <div class="d-flex justify-content-end">
+                            <div class="icons">
+                                <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer"></i>
+                                <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
+                            </div>
+                        </div>
                         <div class="row list_detail" id="list_detail">
-                            <div class="col-10 col-sm-10">
+                            <div class="col-12">
                                 <input type="hidden" name="id" id="id">
                                 <div class="mb-3 pr-3 pl-3">
                                     <label for="detail-reward_name" class="col-form-label text-color"><i
@@ -151,29 +157,14 @@
                                     <label class="text-black-50 pt-1" id="detail-reward_coins_change"></label>
                                 </div>
                                 <div class="pr-3 pl-3">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12">
-                                            <label for="detail-reward_image" class="col-form-label text-color"><i
-                                                    class="fas fa-image hr-icon"></i> รูป Item Organics Coin
-                                            </label>
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6 pt-2">
-                                                    <div class="text-center">
-                                                        <img src=""
-                                                            class="border border-0 rounded-start-4 rounded-end-4 "
-                                                            alt="" style=" width: 180px; height: 180px;"
-                                                            id="detail-reward_image">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <label for="detail-reward_image" class="col-form-label text-color"><i
+                                            class="fas fa-image hr-icon"></i> รูป Item Organics Coin :
+                                    </label>
+                                    <div class="text-center pt-2">
+                                        <img src="" class="border border-0 rounded-start-4 rounded-end-4 "
+                                            alt="" style=" width: 180px; height: 180px;"
+                                            id="detail-reward_image">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-2 col-sm-2 d-flex justify-content-end">
-                                <div class="icons">
-                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer"></i>
-                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +190,7 @@
         $(() => {
             $('.dropify').dropify({
                 tpl: {
-                    message: '<div class="dropify-message"><span class="file-icon"/><p><h5>กรุณาเลือกไฟล์ภาพ</h5></p></div>',
+                    message: '<div class="dropify-message"><span class="file-icon"/><p><h6>อัพโหลดรูปภาพ<br/>ไฟล์ JPG, PNG, PDF</h6></p></div>',
                     preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message"></p></div></div></div>',
                 },
             });

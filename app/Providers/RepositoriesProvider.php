@@ -69,7 +69,8 @@ use App\Repositories\PickupToolsDeviceTypeInterface;
 use App\Repositories\Impl\PickupToolsDeviceTypeRepository;
 use App\Repositories\Impl\AdministrativeWorkCategoriesRepository;
 use App\Repositories\AdministrativeWorkCategoriesInterface;
-
+use App\Repositories\Impl\PrivateCarRepository;
+use App\Repositories\PrivateCarInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -113,6 +114,8 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(PickupToolsInterface::class, PickupToolsRepository::class);
         $this->app->bind(PickupToolsDeviceTypeInterface::class, PickupToolsDeviceTypeRepository::class);
         $this->app->bind(AdministrativeWorkCategoriesInterface::class, AdministrativeWorkCategoriesRepository::class);
+        $this->app->bind(PrivateCarInterface::class, PrivateCarRepository::class);
+
 
 
 

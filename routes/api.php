@@ -185,22 +185,17 @@ Route::group(
                 Route::post('news/notice/employee/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'getById'])->name('news.notice.employee.by.id');
                 Route::post('news/notice/search/by/id', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'searchNewsById'])->name('search.news.by.id');
 
-                // //API Pickup Tools
-                // Route::post('pickup/tools/show/detail/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'showDetailBydepartmentById'])->name('pickup.tools.show.detail.by.id');
-                // Route::post('pickup/tools/all/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'allList'])->name('pickup.tools.all.list');
-                // Route::post('pickup/tools/create', [\App\Http\Controllers\APIs\PickupToolsController::class, 'createCondition'])->name('pickup.tools.create');
-                // Route::post('device/types/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deviceTypesList'])->name('device.types.list');
-                // Route::post('department/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'departmentList'])->name('department.list');
-                // Route::post('pickup/tools/delete', [\App\Http\Controllers\APIs\PickupToolsController::class, 'delete'])->name('pickup.tools.delete');
                 //API Pickup Tools
                 Route::post('pickup/tools/show/detail/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'showDetailBydepartmentById'])->name('pickup.tools.show.detail.by.id');
                 Route::post('pickup/tools/all/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'allList'])->name('pickup.tools.all.list');
                 Route::post('pickup/tools/create', [\App\Http\Controllers\APIs\PickupToolsController::class, 'createCondition'])->name('pickup.tools.create');
                 Route::post('device/types/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deviceTypesList'])->name('device.types.list');
                 Route::post('department/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'departmentList'])->name('department.list');
-                Route::post('pickup/tools/delete', [\App\Http\Controllers\APIs\PickupToolsController::class, 'delete'])->name('pickup.tools.delete');
+                Route::post('pickup/tools/deleteCondition', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deleteCondition'])->name('pickup.tools.deleteCondition');
                 Route::post('pickup/tools/update', [\App\Http\Controllers\APIs\PickupToolsController::class, 'update'])->name('pickup.tools.update');
                 Route::post('pickup/tools/detail/department/by/id', [\App\Http\Controllers\APIs\PickupToolsController::class, 'detailDepartmentById'])->name('detail.department.by.id');
+                Route::post('pickup/tools/delete/list', [\App\Http\Controllers\APIs\PickupToolsController::class, 'deleteList'])->name('pickup.tools.delete.list');
+
 
 
                 //api security setting
@@ -238,9 +233,10 @@ Route::group(
                 Route::post('/worktime/update', [\App\Http\Controllers\APIs\WorktimeController::class, 'update'])->name('worktime.update');
                 Route::post('/worktime/delete', [\App\Http\Controllers\APIs\WorktimeController::class, 'delete'])->name('worktime.delete');
                 Route::post('/worktime/by/id', [\App\Http\Controllers\APIs\WorktimeController::class, 'getById'])->name('worktime.by.id');
+
+                //API Private Car
+                Route::post('/privatecar/list', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecar'])->name('privatecar.list');
         }
-
-
 
 
 
