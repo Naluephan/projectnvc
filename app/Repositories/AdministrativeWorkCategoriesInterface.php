@@ -8,5 +8,7 @@ use Illuminate\Support\Collection;
 interface AdministrativeWorkCategoriesInterface extends BaseInterface
 {
     public function getAll();
+    public function findByAdminist($administName);
+
 }
 

@@ -30,7 +30,7 @@
     }
     .form-control {
         background-color: #fff !important;
-        color: #77c6c5 !important;
+        color: #136E68 !important;
         border-color: #77c6c5 !important;
     }
     .btn-outline-successful {
@@ -149,7 +149,7 @@
                 if (administ_FromModal.valid()) {
                     const formData = new FormData($('#administ_FromModal')[0]);
                     const data = Object.fromEntries(formData.entries());
-                    if (!id) {
+                    if (id.length == 0) {
                         $.ajax({
                             type: 'post',
                             url: "{{ route('api.v1.administrative.work.categories.create') }}",
@@ -166,6 +166,14 @@
                                     });
                                     administ_model.modal('hide');
                                     getAdministWorkCategories();
+                                }else if ((response.data.statusCode == '200')){
+                                    Swal.fire({
+                                        title: 'หมวดหมูงานนี้มีอยู่แล้ว',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
                                 } else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',
@@ -195,7 +203,15 @@
                                     administ_model.modal('hide');
                                     getAdministWorkCategories();
 
-                                } else {
+                                } else if ((response.data.statusCode == '200')){
+                                    Swal.fire({
+                                        title: 'หมวดหมูงานนี้มีอยู่แล้ว',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                }else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',
                                         icon: 'warning',
@@ -207,14 +223,6 @@
                             }
                         });
                     }
-                }else {
-                    Swal.fire({
-                        title: 'กรุณาตรวจสอบข้อมูล',
-                        icon: 'warning',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        toast: true
-                    });
                 }
             });
 

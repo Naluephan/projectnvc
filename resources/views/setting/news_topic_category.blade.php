@@ -25,6 +25,7 @@
     div {
         color: #136E68;
     }
+
     .modal-body i {
         color: #FA9583;
         font-size: 1.2rem;
@@ -32,7 +33,7 @@
     }
     .form-control {
         background-color: #fff !important;
-        color: #c0e7e7 !important;
+        color: #136E68 !important;
         border-color: #c0e7e7 !important;
         height: 45px !important;
     }
@@ -77,10 +78,10 @@
                     <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อข่าวสาร</label>
                     <input type="text" class="form-control rounded-pill" id="news_name" name="news_name" required>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="message-text" class="col-form-label"><i class="fa-regular fa-newspaper"></i> รายละเอียด</label>
                     <textarea class="form-control rounded-pill" id="news_details" name="news_details"></textarea>
-                </div>
+                </div> --}}
             </form>
         </div>
         <div class="row p-4 ">
@@ -114,7 +115,7 @@
                         var id = newsCategory.id;
                         // var newsId = newsCategory.id;
                         var newsName = newsCategory.news_name;
-                        var newsDetails = newsCategory.news_details;
+                        // var newsDetails = newsCategory.news_details;
                         var Item =`
                             <div class="test pt-2 mb-3">
                                 <div class="row">
@@ -174,7 +175,15 @@
                                     });
                                     news_model.modal('hide');
                                     getNewsCategory();
-                                } else {
+                                }else if ((response.data.statusCode == '200')){
+                                    Swal.fire({
+                                        title: 'หัวข้อข่าวสารนี้มีอยู่แล้ว',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
+                                }else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',
                                         icon: 'warning',
@@ -203,6 +212,14 @@
                                     news_model.modal('hide');
                                     getNewsCategory();
 
+                                }else if ((response.data.statusCode == '200')){
+                                    Swal.fire({
+                                        title: 'หัวข้อข่าวสารนี้มีอยู่แล้ว',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        toast: true
+                                    });
                                 } else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',
@@ -215,14 +232,6 @@
                             }
                         });
                     }
-                }else {
-                    Swal.fire({
-                        title: 'กรุณาตรวจสอบข้อมูล',
-                        icon: 'warning',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        toast: true
-                    });
                 }
             });
 
@@ -247,7 +256,7 @@
             })
             function setNewsCategoryFormData(data) {
                 $("#news_name").val(data.news_name);
-                $("#news_details").val(data.news_details);
+                // $("#news_details").val(data.news_details);
             }
             news_model.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
@@ -258,7 +267,7 @@
             news_model.on('hide.bs.modal', function() {
             let obj = $(this);
             obj.find('#news_name').val("");
-            obj.find('#news_details').val("");
+            // obj.find('#news_details').val("");
             })
 
         ////// delete news //////

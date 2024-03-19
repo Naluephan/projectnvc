@@ -8,5 +8,6 @@ use Illuminate\Support\Collection;
 interface NewsTopicCategoryInterface extends BaseInterface
 {
     public function getAll();
+    public function findByNewsName($newsName);
 }
 

@@ -19,5 +19,9 @@ class AdministrativeWorkCategoriesRepository extends MasterRepository implements
     public function getAll(){
         return $this->model->get();
     }
+    public function findByAdminist($administName)
+    {
+        return $this->model->where('administ_name', $administName)->exists();
+    }
 
 }

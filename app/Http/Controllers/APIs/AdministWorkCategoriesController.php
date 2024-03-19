@@ -24,21 +24,27 @@ class AdministWorkCategoriesController extends Controller
     ///// create category /////
     public function create(Request $request)
     {
+        DB::beginTransaction();
         $data = $request->all();
         try {
+            $existingCategory  = $this->AdministrativeWorkCategoriesRepository->findByAdminist($data['administ_name']);
+
+        if ($existingCategory ) {
+            $result = [
+                'status' => 'Duplicate information',
+                'statusCode' => '200',
+                'message' => 'This work category already exists.'
+            ];
+        } else {
             $query = $this->AdministrativeWorkCategoriesRepository->create($data);
             $result = [
-                'administ_name' => $query['administ_name'],
+                'news_name' => $query['news_name'],
+                'status' => 'Success',
+                'statusCode' => '00'
             ];
-
-            if (isset($result)) {
-                $result['status'] = 'Success';
-                $result['statusCode'] = '00';
-            } else {
-                $result['status'] = 'Create Failed';
-                DB::rollBack();
-            }
-        } catch (\Exception $ex) {
+        }
+        DB::commit();
+        } catch (\Exception $ex){
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
@@ -52,8 +58,21 @@ class AdministWorkCategoriesController extends Controller
         $data = $request->all();
         $id = $data['id'];
         try {
-            $this->AdministrativeWorkCategoriesRepository->update($id, $data);
-            $result['status'] = "Success";
+            $existingCategory  = $this->AdministrativeWorkCategoriesRepository->findByAdminist($data['administ_name']);
+            if ($existingCategory ) {
+                $result = [
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This work category already exists.'
+                ];
+            } else {
+                $query = $this->AdministrativeWorkCategoriesRepository->update($id, $data);
+                $result = [
+                    'administ_name' => $query['administ_name'],
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ]; 
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Update Failed";
