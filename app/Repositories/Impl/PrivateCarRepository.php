@@ -19,8 +19,13 @@ class PrivateCarRepository extends MasterRepository implements PrivateCarInterfa
 
     public function getPrivatecar($params)
     {
-        return $this->model->get();
-        // return $this->model->where('rd_user_id', $params['rd_user_id'])->with('sale_data', 'customer_data')->get();
+        return $this->model->where('record_status', 1)
+            ->where('emp_id', $params['emp_id'])
+            ->get();
     }
 
+    public function findBy(array $criteria)
+    {
+        return PrivateCar::where($criteria)->first();
+    }
 }

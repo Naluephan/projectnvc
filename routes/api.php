@@ -236,12 +236,15 @@ Route::group(
 
                 //API Private Car
                 Route::post('/privatecar/list', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecar'])->name('privatecar.list');
+                Route::post('/privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'create'])->name('privatecar.create');
 
-                 //api maintenance setting
-                 Route::post('maintenance/list', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceList'])->name('maintenance.list');
-                 Route::post('maintenance/create', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'create'])->name('maintenance.create');
-                 Route::post('maintenance/by/id', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'getmaintenanceById'])->name('maintenance.by.id');
-                 Route::post('maintenance/update', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceUpdate'])->name('maintenance.update');
+                //api maintenance setting
+                Route::post('maintenance/list', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceList'])->name('maintenance.list');
+                Route::post('maintenance/create', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'create'])->name('maintenance.create');
+                Route::post('maintenance/by/id', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'getmaintenanceById'])->name('maintenance.by.id');
+                Route::post('maintenance/update', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceUpdate'])->name('maintenance.update');
+
+
         }
 
 

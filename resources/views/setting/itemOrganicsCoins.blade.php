@@ -137,7 +137,7 @@
                     <form id="detailModal">
                         <div class="d-flex justify-content-end">
                             <div class="icons">
-                                <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer"></i>
+                                <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" id="reward_edit"></i>
                                 <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                                     </label>
                                     <div class="text-center pt-2">
                                         <img src="" class="border border-0 rounded-start-4 rounded-end-4 "
-                                            alt="" style=" width: 180px; height: 180px;"
+                                            alt="" style="max-width: 180px; max-height: 180px;"
                                             id="detail-reward_image">
                                     </div>
                                 </div>
@@ -418,6 +418,8 @@
                         $('#detail-reward_coins_change').text(response.data
                             .reward_coins_change);
                         $('#detail-reward_image').attr('src', img_url);
+                        $('#reward_edit').data('reward_img_name', response.data
+                            .reward_image);
                     }
                 });
             });
@@ -426,17 +428,14 @@
                 $('#detailModal').modal('hide');
                 $('#itemOrganicsCoinsModal').modal('show');
                 $('.add-data').text('แก้ไขข้อมูล');
+
                 let data = $(this).data('data');
-                // console.log(id);
-                // console.log(reward_name);
-                // console.log(reward_image);
-                // console.log(reward_coins_change);
+                var image = $(this).data('reward_img_name');
+
                 $('#id').val(data.id);
                 $('#reward_name').val(data.reward_name);
                 $('#reward_coins_change').val(data.reward_coins_change);
-                // $('#reward_image').val(reward_image);
                 $("#image_file").attr("data-default-file", data.reward_image); //dropify
-                // $('#image_file').prop('required',false);
                 $('.dropify-render').html('<img src="" />');
                 $('.dropify-render img').attr('src', data.reward_image);
                 $('.dropify-preview').css('display', 'block');

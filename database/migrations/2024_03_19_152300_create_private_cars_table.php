@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("car_color")->nullable();
             $table->string("car_image")->default(null);
 
+            $table->tinyInteger('record_status')->comment('0=not active 1=active 2=pending')->default(2);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

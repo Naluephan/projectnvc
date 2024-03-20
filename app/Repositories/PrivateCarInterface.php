@@ -8,4 +8,5 @@ use Illuminate\Support\Collection;
 interface PrivateCarInterface extends BaseInterface
 {
     public function getPrivatecar($params);
+    public function findBy(array $criteria);
 }
