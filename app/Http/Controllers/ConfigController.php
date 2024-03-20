@@ -87,4 +87,8 @@ class ConfigController extends Controller
     {
         return view('companies.create');
     }
+    public function configMaintenance()
+    {
+        return view('setting.maintenance');
+    }
 }

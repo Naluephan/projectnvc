@@ -24,6 +24,7 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
             ->join('pickup_tools_device_types AS PTDT', 'PTDT.id', '=', 'PT.device_types_id')
             ->select(
                 'PT.id',
+                'PT.device_types_id',
                 'PTDT.device_types_name',
                 'PT.number_requested',
                 'PTDT.unit',

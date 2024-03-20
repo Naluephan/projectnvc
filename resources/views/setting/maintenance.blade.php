@@ -118,11 +118,11 @@
 
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6><i class="fas fa-user-shield"></i> รักษาความปลอดภัย</h6>
-            <p class="mt-3"><i class="fas fa-exclamation-circle hr-icon"></i> กำหนดจุดสแกนเพื่อรักษาความปลอดภัย</p>
+            <h6><i class="fas fa-tools"></i> ตรวจสอบซ่อมบำรุง</h6>
+            <p class="mt-3">กำหนดจุดสแกนเพื่อซ่อมบำรุง</p>
         </div>
         <div class="card-body">
-            <div class="row mt-n4 security_list" id="security_list">
+            <div class="row mt-n4 maintenance_list" id="maintenance_list">
 
             </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
@@ -133,51 +133,51 @@
             <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
         </div>
     </div>
-    <div class="modal fade" id="securityModal" tabindex="-1" aria-labelledby="securityModalLabel" aria-hidden="true"
+    <div class="modal fade" id="maintenanceModal" tabindex="-1" aria-labelledby="maintenanceModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
-                    <h6 class="modal-title " id="securityModalLabel"><i class="fa-solid fa-file-circle-plus"></i> <span
+                    <h6 class="modal-title " id="maintenanceModalLabel"><i class="fa-solid fa-file-circle-plus"></i> <span
                             class="add-data">เพิ่มข้อมูล</span>
                     </h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="securityForm">
+                    <form id="maintenanceForm">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3 pr-3 pl-3">
-                            <label for="security_name" class="col-form-label text-color"><i
+                            <label for="maintenance_name" class="col-form-label text-color"><i
                                     class="fas fa-th-list text-sm "></i> หัวข้อ</label>
                             <input type="text" class="form-control input-modal rounded-pill text-color"
-                                id="security_name" name="security_name" required>
+                                id="maintenance_name" name="maintenance_name" required>
                         </div>
                         <div class="mb-3 pr-3 pl-3">
-                            <label for="security_location" class="col-form-label text-color"><i
+                            <label for="maintenance_location" class="col-form-label text-color"><i
                                     class="fas fa-building text-sm hr-icon"></i> สถานที่</label>
                             <input type="text" class="form-control input-modal rounded-pill text-color"
-                                id="security_location" name="security_location" required>
+                                id="maintenance_location" name="maintenance_location" required>
                         </div>
                         <div class="mb-3 pr-3 pl-3">
                             <div class="row">
                                 <div class="col-12 col-sm-6">
-                                    <label for="security_patrol" class="col-form-label text-color"><i
-                                            class="fas fa-user-shield hr-icon"></i> การตรวจตราทุกๆ(ชม.)</label>
+                                    <label for="maintenance_patrol" class="col-form-label text-color"><i
+                                            class="fas fa-user-shield hr-icon"></i> การตรวจตราทุกๆ เดือน</label>
                                     <input type="number" class="form-control input-modal rounded-pill text-color"
-                                        id="security_patrol" name="security_patrol" required>
+                                        id="maintenance_patrol" name="maintenance_patrol" required>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <label for="security_time" class="col-form-label text-color"><i
+                                    <label for="maintenance_time" class="col-form-label text-color"><i
                                             class="fas fa-clock hr-icon"></i> เวลาเริ่มต้น</label>
                                     <input type="time" class="form-control input-modal rounded-pill text-color"
-                                        id="security_time" name="security_time" required>
+                                        id="maintenance_time" name="maintenance_time" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3 pr-3 pl-3">
                             <div class="row">
                                 <div class="col-12 col-sm-6">
-                                    <label for="security_image" class="col-form-label text-color"><i
+                                    <label for="maintenance_image" class="col-form-label text-color"><i
                                             class="fas fa-image hr-icon"></i> รูปสถานที่</label>
                                     <input type="file" class="dropify" id="image_file" name="image_file" placeholder="">
                                 </div>
@@ -192,7 +192,7 @@
                                 data-bs-dismiss="modal">ยกเลิก</button>
                         </div>
                         <div class="col-6">
-                            <button class="btn btn-hr-confirm form-control rounded-pill save-security">บันทึก</button>
+                            <button class="btn btn-hr-confirm form-control rounded-pill save-maintenance">บันทึก</button>
                         </div>
                     </div>
                 </div>
@@ -206,34 +206,34 @@
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
                     <h6 class="modal-title" id="detailModalLabel">
-                        ข้อมูลรักษาความปลอดภัย
+                        ข้อมูลซ่อมบำรุง
                     </h6>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body security_detail" id="security_detail">
+                <div class="modal-body maintenance_detail" id="maintenance_detail">
                     <div class="row">
                         <div class="col-10 col-sm-10">
                             <h6 class="hr-text-green" id="detail-name"></h6>
                             <p class="text-black-50" id="detail-location"></p>
-                            <p class="text-black-50 mt-n3">การตรวจตราทุก <span id="detail-security_patrol">0</span>
-                                ชั่วโมง เริ่ม <span id="detail-security_time">0</span> น.</p>
+                            <p class="text-black-50 mt-n3">การตรวจตราทุก <span id="detail-maintenance_patrol">0</span>
+                                เดือน เริ่ม <span id="detail-maintenance_time">0</span> น.</p>
                         </div>
                         <div class="col-2 col-sm-2">
                             <p class="text-end">
-                                <span class="btn-edit" id="security_edit"><i
+                                <span class="btn-edit" id="maintenance_edit"><i
                                         class="fas fa-edit cursor-pointer hr-text-green mr-2"></i></span>
-                                <span class="btn-delete" id="security_id"><i
+                                <span class="btn-delete" id="maintenance_id"><i
                                         class="fas fa-trash-alt cursor-pointer hr-icon mr-2 mt-1"></i></span>
                             </p>
                         </div>
                     </div>
-                    <p for="security_image" class="col-form-label text-color"><i class="fas fa-image hr-icon"></i>
+                    <p for="maintenance_image" class="col-form-label text-color"><i class="fas fa-image hr-icon"></i>
                         รูปสถานที่</p>
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <div class="text-center">
                                 <img src="" class="border border-0 rounded-start-4 rounded-end-4 " alt=""
-                                    style=" width: 180px; height: 180px;" id="detail-security_img">
+                                    style=" width: 180px; height: 180px;" id="detail-maintenance_img">
 
                             </div>
                         </div>
@@ -244,7 +244,7 @@
                                 QR Code</p>
                         </div>
                         <div class="col-6">
-                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end"><i class="fas fa-download"></i> ดาวน์โหลด</p>
+                            <p class="hr-icon print-qr cursor-pointer mt-1 text-end"><i class="fas fa-download"></i> ดาวน์โหลด</p>
                         </div>
                     </div>
 
@@ -280,22 +280,22 @@
                 },
             });
 
-            function getSecurityList() {
+            function getmaintenanceList() {
                 let data = {};
 
                 $.ajax({
-                    url: "{{ route('api.v1.security.list') }}",
+                    url: "{{ route('api.v1.maintenance.list') }}",
                     data: data,
                     type: "post",
                     dataType: "json",
                     success: function(response) {
-                        $(".security_list").empty();
-                        $.each(response.data, function(index, securityInfo) {
-                            var id = securityInfo.id;
+                        $(".maintenance_list").empty();
+                        $.each(response.data, function(index, maintenanceInfo) {
+                            var id = maintenanceInfo.id;
                             var img_path =
-                                '{{ asset('uploads/images/setting/security') }}';
-                            var location_img = img_path + '/' + securityInfo
-                                .security_img;
+                                '{{ asset('uploads/images/setting/maintenance') }}';
+                            var location_img = img_path + '/' + maintenanceInfo
+                                .maintenance_img;
                             var item = `
                                     <div class="card border border-2 p-0 rounded-4 btn-detail cursor-pointer" data-id="${id}">
                                         <div class="row">
@@ -305,9 +305,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-5 ">
-                                            <b><h6 class="ml-2 hr-text-green mt-2">${securityInfo.name}</h6></b>
-                                                <p class="ml-2 text-black-50">${securityInfo.location}</p>
-                                                <p class="ml-2 text-black-50">การตรวจตราทุก ${securityInfo.security_patrol} ชั่วโมง เริ่ม ${securityInfo.security_time} น.</p>
+                                            <b><h6 class="ml-2 hr-text-green mt-2">${maintenanceInfo.name}</h6></b>
+                                                <p class="ml-2 text-black-50">${maintenanceInfo.location}</p>
+                                                <p class="ml-2 text-black-50">การตรวจตราทุก ${maintenanceInfo.maintenance_patrol} เดือน เริ่ม ${maintenanceInfo.maintenance_time} น.</p>
                                             </div>
                                             <div class="col-4">
                                                 <div class="mt-2 mb-2 mr-2 text-end">
@@ -317,39 +317,39 @@
                                         </div>
                                     </div>
                                 `;
-                            $(".security_list").append(item);
+                            $(".maintenance_list").append(item);
                         });
 
                     }
                 });
             }
-            getSecurityList();
+            getmaintenanceList();
 
             $(document).on('click', '.btn-add', function() {
-                $('#securityModal').modal('show');
-                $('#security_name').val('');
-                $('#security_location').val('');
-                $('#security_patrol').val('');
-                $('#security_time').val('');
+                $('#maintenanceModal').modal('show');
+                $('#maintenance_name').val('');
+                $('#maintenance_location').val('');
+                $('#maintenance_patrol').val('');
+                $('#maintenance_time').val('');
                 $('#import-file').val('');
-                $('#securityModal').modal('hide');
+                $('#maintenanceModal').modal('hide');
                 $('#id').val('');
                 $('.add-data').text('เพิ่มข้อมูล');
                 $(".dropify-clear").trigger("click");
             });
 
-            $(document).on('click', '.save-security', function() {
+            $(document).on('click', '.save-maintenance', function() {
                 var id = $('#id').val();
-                if ($('#securityForm').valid()) {
+                if ($('#maintenanceForm').valid()) {
                     var formData = new FormData();
                     formData.append('_token', $('#_token').val());
                     formData.append('id', $('#id').val());
-                    formData.append('name', $('#security_name').val());
-                    formData.append('location', $('#security_location').val());
-                    formData.append('security_patrol', $('#security_patrol').val());
-                    formData.append('security_time', $('#security_time').val());
+                    formData.append('name', $('#maintenance_name').val());
+                    formData.append('location', $('#maintenance_location').val());
+                    formData.append('maintenance_patrol', $('#maintenance_patrol').val());
+                    formData.append('maintenance_time', $('#maintenance_time').val());
                     if (document.getElementById("image_file").files.length != 0) {
-                        formData.append('security_img', $('#image_file').prop('files')[0]);
+                        formData.append('maintenance_img', $('#image_file').prop('files')[0]);
                     }
                     if (!id) {
                         Swal.fire({
@@ -370,7 +370,7 @@
                             if (result.isConfirmed) {
                                 $.ajax({
                                     type: "post",
-                                    url: "{{ route('api.v1.security.create') }}",
+                                    url: "{{ route('api.v1.maintenance.create') }}",
                                     data: formData,
                                     contentType: false,
                                     processData: false,
@@ -384,15 +384,15 @@
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
-                                            $('#security_name').val('');
-                                            $('#security_location').val('');
-                                            $('#security_patrol').val('');
-                                            $('#security_time').val('');
+                                            $('#maintenance_name').val('');
+                                            $('#maintenance_location').val('');
+                                            $('#maintenance_patrol').val('');
+                                            $('#maintenance_time').val('');
                                             $('#import-file').val('');
-                                            $('#securityModal').modal('hide');
+                                            $('#maintenanceModal').modal('hide');
                                             $('#id').val('');
                                             $(".dropify-clear").trigger("click");
-                                            getSecurityList();
+                                            getmaintenanceList();
                                         } else {
                                             Swal.fire({
                                                 position: 'center-center',
@@ -425,7 +425,7 @@
                             if (result.isConfirmed) {
                                 $.ajax({
                                     type: "post",
-                                    url: "{{ route('api.v1.security.update') }}",
+                                    url: "{{ route('api.v1.maintenance.update') }}",
                                     data: formData,
                                     contentType: false,
                                     processData: false,
@@ -439,15 +439,15 @@
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
-                                            $('#security_name').val('');
-                                            $('#security_location').val('');
-                                            $('#security_patrol').val('');
-                                            $('#security_time').val('');
+                                            $('#maintenance_name').val('');
+                                            $('#maintenance_location').val('');
+                                            $('#maintenance_patrol').val('');
+                                            $('#maintenance_time').val('');
                                             $('#import-file').val('');
-                                            $('#securityModal').modal('hide');
+                                            $('#maintenanceModal').modal('hide');
                                             $('#id').val('');
                                             $(".dropify-clear").trigger("click");
-                                            getSecurityList();
+                                            getmaintenanceList();
                                         } else {
                                             Swal.fire({
                                                 position: 'center-center',
@@ -478,50 +478,51 @@
                 $('#detailModal').modal('show');
                 $.ajax({
                     type: "post",
-                    url: "{{ route('api.v1.security.by.id') }}",
+                    url: "{{ route('api.v1.maintenance.by.id') }}",
                     data: {
                         'id': id
                     },
                     dataType: "json",
                     success: function(response) {
                         var img_url = ''
-                        if (response.data.security_img != null) {
-                            img_url = "{{ asset('uploads/images/setting/security') }}/" +
-                                response.data.security_img;
+                        if (response.data.maintenance_img != null) {
+                            img_url = "{{ asset('uploads/images/setting/maintenance') }}/" +
+                                response.data.maintenance_img;
                         }
                         $('#detail-name').text(response.data.name);
                         $('#detail-location').text(response.data.location);
-                        $('#detail-security_patrol').text(response.data.security_patrol);
-                        $('#detail-security_time').text(response.data.security_time);
-                        $('#detail-security_img').attr('src', img_url);
-                        $('#security_id').val(response.data.id);
-                        $('#security_edit').val(response.data.id);
-                        $('#security_edit').data('name', response.data.name);
-                        $('#security_edit').data('location', response.data.location);
-                        $('#security_edit').data('security_patrol', response.data
-                            .security_patrol);
-                        $('#security_edit').data('security_time', response.data.security_time);
-                        $('#security_edit').data('security_img', img_url);
-                        $('#security_edit').data('security_img_name', response.data
-                            .security_img);
+                        $('#detail-maintenance_patrol').text(response.data.maintenance_patrol);
+                        $('#detail-maintenance_time').text(response.data.maintenance_time);
+                        $('#detail-maintenance_img').attr('src', img_url);
+                        $('#maintenance_id').val(response.data.id);
+                        $('#maintenance_edit').val(response.data.id);
+                        $('#maintenance_edit').data('name', response.data.name);
+                        $('#maintenance_edit').data('location', response.data.location);
+                        $('#maintenance_edit').data('maintenance_patrol', response.data
+                            .maintenance_patrol);
+                        $('#maintenance_edit').data('maintenance_time', response.data
+                            .maintenance_time);
+                        $('#maintenance_edit').data('maintenance_img', img_url);
+                        $('#maintenance_edit').data('maintenance_img_name', response.data
+                            .maintenance_img);
                     }
                 });
             });
 
             $(document).on('click', '.btn-edit', function() {
-                const id = $('#security_edit').val();
+                const id = $('#maintenance_edit').val();
                 var name = $(this).data('name');
                 var location = $(this).data('location');
-                var security_patrol = $(this).data('security_patrol');
-                var security_time = $(this).data('security_time');
-                var img_url = $(this).data('security_img');
-                var image = $(this).data('security_img_name');
+                var maintenance_patrol = $(this).data('maintenance_patrol');
+                var maintenance_time = $(this).data('maintenance_time');
+                var img_url = $(this).data('maintenance_img');
+                var image = $(this).data('maintenance_img_name');
                 $('#detailModal').modal('hide');
-                $('#securityModal').modal('show');
-                $('#security_name').val(name);
-                $('#security_location').val(location);
-                $('#security_patrol').val(security_patrol);
-                $('#security_time').val(security_time);
+                $('#maintenanceModal').modal('show');
+                $('#maintenance_name').val(name);
+                $('#maintenance_location').val(location);
+                $('#maintenance_patrol').val(maintenance_patrol);
+                $('#maintenance_time').val(maintenance_time);
                 $('#id').val(id);
                 $("#image_file").attr("data-default-file", img_url); //dropify
                 // $('#image_file').prop('required',false);
@@ -533,7 +534,7 @@
             });
 
             $(document).on('click', '.btn-delete', function() {
-                const id = $('#security_id').val();
+                const id = $('#maintenance_id').val();
                 console.log(id);
                 Swal.fire({
                     title: 'ยืนยันการลบรายการ?',
@@ -553,7 +554,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "post",
-                            url: "{{ route('api.v1.security.update') }}",
+                            url: "{{ route('api.v1.maintenance.update') }}",
                             data: {
                                 'id': id,
                                 'record_status': 0
@@ -569,7 +570,7 @@
                                         timer: 1500
                                     })
                                     $('#detailModal').modal('hide');
-                                    getSecurityList();
+                                    getmaintenanceList();
                                 } else {
                                     Swal.fire({
                                         position: 'center-center',
