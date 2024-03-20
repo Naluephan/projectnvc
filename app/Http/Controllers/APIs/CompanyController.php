@@ -57,15 +57,31 @@ class CompanyController extends Controller
             "iTotalDisplayRecords" => $totalRecordswithFilter,
         ];
     }
+    public function getCompanyList(Request $request)
+    {
+        return $this->companyRepository->getComAll();
+    }
 
     public function create(Request $request)
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
         try {
-            $this->companyRepository->create($data);
-            DB::commit();
+            $existingCompany  = $this->companyRepository->findCompany($data['name_th'], $data['name_en']);
+            if ($existingCompany) {
+                $result = [
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This company already exists.'
+                ];
+            } else {
+                $query = $this->companyRepository->create($data);
+                $result = [
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ];
+                DB::commit();
+            };
         } catch (\Exception $ex){
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();

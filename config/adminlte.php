@@ -567,7 +567,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'สร้างงานใหม่',
-                    'url'  => '#',
+                    'url'  => '/add/administrative/work/categories',
                     'icon' => 'fas fa-fw fa-plus-circle',
                     'active'     => ['regex:@^zzzz@'],
                 ],

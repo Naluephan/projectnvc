@@ -66,13 +66,25 @@ class ConfigController extends Controller
         $departments = Department::all();
         return view('setting.worktime',compact('departments'));
     }
+    
+    public function configItemOrganicsCoins()
+    {
+        return view('setting.itemOrganicsCoins');
+    }
+
+    //////////// Administrative Work Categories ////////////
     public function administCategories()
     {
         return view('setting.administrative_work_categories');
     }
-
-    public function configItemOrganicsCoins()
+    public function addAdministCategories()
     {
-        return view('setting.itemOrganicsCoins');
+        return view('administrativeWork.add_administrative');
+    }
+
+    //////////// company ////////////
+    public function companyCreate()
+    {
+        return view('companies.create');
     }
 }
