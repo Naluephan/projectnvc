@@ -75,4 +75,9 @@ class ConfigController extends Controller
     {
         return view('setting.itemOrganicsCoins');
     }
+
+    public function configMaintenance()
+    {
+        return view('setting.maintenance');
+    }
 }
