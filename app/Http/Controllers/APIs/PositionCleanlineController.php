@@ -16,93 +16,57 @@ class PositionCleanlineController extends Controller
         $this->positioncleanlineRepository = $positioncleanlineRepository;
     }
 
-    public function getPositionCleanLine(Request $request){
+    public function getPositionCleanLine(Request $request)
+    {
 
         return $this->positioncleanlineRepository->getAll();
     }
 
     public function create(Request $request)
     {
-
+        DB::beginTransaction();
+        $data = $request->all();
+        $result = [];
         try {
-            $image = $request->file('image_location');
-            if(isset($image)){
-                $imageName = 'Z' . date('YmdHis') . '' . uniqid() . '.jpg';
-                $path_file = FileHelper::upload_path() . "/image_location/";
-                $image->move($path_file, $imageName);
-                $image_location = $imageName;
-                $data=[
-                    'title' => $request->title,
-                    'location' => $request->location,
-                    'time' => $request->time,
-                    'time_start' => $request->time_start,
-                    'image_location' => $image_location,
-                ];
-                $create = $this->positioncleanlineRepository->create($data);
-                $result['status'] = "Success";
-                DB::commit();
-            }else{
-                $data=[
-                    'title' => $request->title,
-                    'location' => $request->location,
-                    'time' => $request->time,
-                    'time_start' => $request->time_start,
-                    'image_location' => "",
-                ];
-                $create = $this->positioncleanlineRepository->create($data);
-                $result['status'] = "Success";
-                DB::commit();
+            $save_data = [
+                'title' => $data['title'],
+                'location' => $data['location'],
+                'time' => $data['time'],
+                'time_start' => $data['time_start'],
+            ];
+            if ($request->file('image_location')) {
+                $save_data['image_location'] = save_image($request->file('image_location'), 500, '/images/content/cleanness/');
             }
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+            $this->positioncleanlineRepository->create($save_data);
+
+            $result['status'] = "success";
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function update(Request $request)
     {
         DB::beginTransaction();
+        $result = [];
+        $data = $request->all();
         try {
-            $image = $request->file('image_location');
-            if(isset($image)){
-                $imageName = 'Z' . date('YmdHis') . '' . uniqid() . '.jpg';
-                $path_file = FileHelper::upload_path() . "/image_location/";
-                $image->move($path_file, $imageName);
-                $image_location = $imageName;
-                $data=[
-                    'title' => $request->title,
-                    'location' => $request->location,
-                    'time' => $request->time,
-                    'time_start' => $request->time_start,
-                    'image_location' => $image_location,
-                ];
-                $id = $request->id;
-                $create = $this->positioncleanlineRepository->update($id,$data);
-                $result['status'] = "Success";
-                DB::commit();
-            }else{
-                $data=[
-                    'title' => $request->title,
-                    'location' => $request->location,
-                    'time' => $request->time,
-                    'time_start' => $request->time_start,
-                    'image_location' => "",
-                ];
-                $id = $request->id;
-                $create = $this->positioncleanlineRepository->update($id,$data);
-                $result['status'] = "Success";
-                DB::commit();
+            if ($request->file('image_location')) {
+                $data['image_location'] = save_image($request->file('image_location'), 500, '/images/content/cleanness/');
             }
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
+            $update = $this->positioncleanlineRepository->update($data['id'], $data);
+            $result['status'] = "success";
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex;
             DB::rollBack();
         }
-
-        return json_encode($result);
-        
+        return $result;
     }
 
     public function delete(Request $request)
@@ -113,7 +77,7 @@ class PositionCleanlineController extends Controller
         try {
             $this->positioncleanlineRepository->delete($id);
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();

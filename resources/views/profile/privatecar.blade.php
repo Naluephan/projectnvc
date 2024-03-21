@@ -222,8 +222,7 @@
                 var emp_id = {{ Auth::user()->id }} //ตัวเทส
                 // var emp_id = {{ Auth::user()->emp_id }} //ใช้งานจริง
                 if ($('#privatecarForm').valid()) {
-                    if ($('#car_registration').val() && $('#car_brand').val() && $('#car_color').val() &&
-                        document.getElementById("image_file").files.length != 0) {
+                    if ($('#car_registration').val() && $('#car_brand').val() && $('#car_color').val()) {
                         var formData = new FormData();
                         formData.append('_token', $('#_token').val());
                         formData.append('id', $('#id').val());
