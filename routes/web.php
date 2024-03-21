@@ -67,6 +67,7 @@ Route::group([
     Route::get('/config/worktime', [App\Http\Controllers\ConfigController::class, 'configWorktime'])->name('config.worktime');
     Route::get('/config/holiday', [App\Http\Controllers\ConfigController::class, 'configHoliday'])->name('config.holiday');
     Route::get('/config/itemorganicscoins', [App\Http\Controllers\ConfigController::class, 'configItemOrganicsCoins'])->name('config.itemorganicscoins');
+    Route::get('/config/cleanness', [App\Http\Controllers\ConfigController::class, 'configCleanness'])->name('config.cleanness');
 
 
 

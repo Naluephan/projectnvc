@@ -91,4 +91,9 @@ class ConfigController extends Controller
     {
         return view('setting.maintenance');
     }
+
+    public function configCleanness()
+    {
+        return view('setting.cleanness');
+    }
 }

@@ -31,13 +31,17 @@ class PrivateCarController extends Controller
         $result = [];
         try {
             $search_criteria = [
-                'emp_id' => $data['emp_id'],
-                // 'car_category_id' => $data['car_category_id'],
+                // 'emp_id' => $data['emp_id'],
+                'car_category_id' => $data['car_category_id'],
+                'car_registration' => $data['car_registration'],
+                'car_brand' => $data['car_brand'],
+                'car_color' => $data['car_color'],
             ];
             $existing_car = $this->privateCarRepository->findBy($search_criteria);
 
             if ($existing_car) {
                 $update_data = [
+                    'car_category_id' => $data['car_category_id'],
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
                     'car_color' => $data['car_color'],
