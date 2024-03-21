@@ -63,13 +63,12 @@ class CompanyRepository extends MasterRepository implements CompanyInterface
             ->get();
     }
 
-    public function findCompany(array $data)
+    public function findCompany($data)
     {
-        return $this->model->where(
-            'name_th',
-            $data,
-            'name_en',
-            $data
-        )->exists();
+        return $this->model->where('name_th',$data)           
+            ->orWhere('name_en', $data)
+            ->orWhere('short_name', $data)
+            ->exists();
     }
+    
 }
