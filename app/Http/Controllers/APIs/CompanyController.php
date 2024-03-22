@@ -64,92 +64,35 @@ class CompanyController extends Controller
         return $this->companyRepository->getComAll();
     }
 
-    // public function create(Request $request)
-    // {
-    //     DB::beginTransaction();
-    //     $data = $request->all();
-    //     try {
-    //         $existingCompany  = $this->companyRepository->findCompany($data['name_th']);
-    //         if ($existingCompany) {
-    //             $result = [
-    //                 'status' => 'Duplicate information',
-    //                 'statusCode' => '200',
-    //                 'message' => 'This company already exists.'
-    //             ];
-    //         } else {
-    //             $query = $this->companyRepository->create($data);
-    //             $result = [
-    //                 'name_th' => $query['name_th'],
-    //                 'status' => 'Success',
-    //                 'statusCode' => '00'
-    //             ];
-    //         };
-    //         DB::commit();
-    //     } catch (\Exception $ex){
-    //         $result['status'] = "Failed";
-    //         $result['message'] = $ex->getMessage();
-    //         DB::rollBack();
-    //     }
-    //     // return json_encode($result);
-    //     return response()->json(["data" => $result]);
-    // }
-    ////////////// Create for check duplicate ////////////
-    private function checkDuplicates(array $data, array $fields): array
-    {
-        $duplicates = [];
-        $nonDuplicates = [];
-
-        foreach ($fields as $field) {
-            $fieldValues = array_column($data, $field);
-            $uniqueFieldValues = array_unique($fieldValues);
-
-            if (count($fieldValues) !== count($uniqueFieldValues)) {
-                $duplicates[] = $field;
-            } else {
-                $nonDuplicates[] = $field;
-            }
-        }
-
-        return [
-            'duplicates' => $duplicates,
-            'nonDuplicates' => $nonDuplicates,
-        ];
-    }
     public function create(Request $request)
     {
+        DB::beginTransaction();
         $data = $request->all();
         try {
-            $fieldsToCheck = $this->companyRepository->findCompany($data['name_th'], $data['name_en'],$data['short_name']);
-            $checkResult = $this->checkDuplicates($data, $fieldsToCheck);
-            $duplicates = $checkResult['duplicates'];
-            $nonDuplicates = $checkResult['nonDuplicates'];
-
-            if (isset($duplicates['duplicates'])) {
+            $whereOr = "name_th = '".$data ['name_th']."' OR "."name_en = '".$data ['name_en']."' OR "."short_name = '".$data ['short_name']."' OR "."order_prefix = '".$data ['order_prefix']."'"; 
+            $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
+            if (count($existingCompany) > 0) {
                 $result = [
-                    'status' => 'Create Failed',
-                    'message' => 'Duplicate data exists.',
-                    'duplicates' => $duplicates,
-                    'statusCode' => '01',
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This company already exists.'
                 ];
-            } else if (isset($nonDuplicates)) {
+            } else {
                 $query = $this->companyRepository->create($data);
                 $result = [
-                    'dataNoneDuplicate' => $nonDuplicates,
+                    'name_th' => $query['name_th'],
                     'status' => 'Success',
-                    'message' => 'Data created successfully.',
-                    'statusCode' => '00',
+                    'statusCode' => '00'
                 ];
-            }
-        } catch (\Exception $ex) {
-            $result = [
-                'status' => 'Create Failed',
-                'message' => $ex->getMessage(),
-                'statusCode' => '02',
-            ];
+            };
+            DB::commit();
+        } catch (\Exception $ex){
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
         }
         return response()->json(["data" => $result]);
     }
-    //////////////////////////////////////////////////////
 
     public function update(Request $request)
     {
@@ -165,7 +108,8 @@ class CompanyController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+
     }
 
     public function delete(Request $request)
@@ -181,7 +125,8 @@ class CompanyController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+
     }
 
     public function getById(Request $request)

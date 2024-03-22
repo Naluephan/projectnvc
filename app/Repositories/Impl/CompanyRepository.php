@@ -70,5 +70,20 @@ class CompanyRepository extends MasterRepository implements CompanyInterface
             ->orWhere('short_name', $data)
             ->exists();
     }
+
+    public function existsWithFields(array $data)
+    {
+        $query = $this->model->query();
+        
+        foreach ($data as $field => $value) {
+            $query->where($field, $value);
+        }
+
+        return $query->exists();
+    }
+    public function createCom(array $attributes)
+    {
+        return $this->model->create($attributes);
+    }
     
 }
