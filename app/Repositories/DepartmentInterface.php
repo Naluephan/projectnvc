@@ -8,8 +8,9 @@ use Illuminate\Support\Collection;
 interface DepartmentInterface extends BaseInterface
 {
     public function paginate($param):Collection;
-    public function getAll():Collection;
+    public function getAll($param):Collection;
     public function getDepartmentInCompany($company_id);
     public function all() : Collection; 
+    public function findBy($params);
 }
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('name_en', 100);
             $table->integer('company_id')->nullable();
             $table->string('image_departments');
+            $table->tinyInteger('position_count')->default(0);
+            $table->tinyInteger('record_status')->default(1);
             $table->timestamps();
         });
     }

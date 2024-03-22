@@ -40,13 +40,16 @@ Route::group(
                 Route::post('/companies/delete', [\App\Http\Controllers\APIs\CompanyController::class, 'delete'])->name('companies.delete');
                 Route::post('/companies/by/id', [\App\Http\Controllers\APIs\CompanyController::class, 'getById'])->name('companies.by.id');
                 //      department
-                Route::post('/department/list', [\App\Http\Controllers\APIs\DepartmentController::class, 'getAll'])->name('department.list');
+                Route::post('/department/list/setting', [\App\Http\Controllers\APIs\DepartmentController::class, 'getAll'])->name('department.list.setting');
                 Route::post('/department/create', [\App\Http\Controllers\APIs\DepartmentController::class, 'create'])->name('department.create');
+                Route::post('/department/and/position/create', [\App\Http\Controllers\APIs\DepartmentController::class, 'createDepartmentAndPosition'])->name('department.and.position.create');
                 Route::post('/department/update', [\App\Http\Controllers\APIs\DepartmentController::class, 'update'])->name('department.update');
                 Route::post('/department/delete', [\App\Http\Controllers\APIs\DepartmentController::class, 'delete'])->name('department.delete');
                 Route::post('/department/by/id', [\App\Http\Controllers\APIs\DepartmentController::class, 'getById'])->name('department.by.id');
                 Route::post('/department/by/company/id', [\App\Http\Controllers\APIs\DepartmentController::class, 'getDepartmentByCompny'])->name('department.by.company.id');
                 Route::post('/department/filter', [\App\Http\Controllers\APIs\DepartmentController::class, 'departmentFilter'])->name('department.filter');
+                Route::post('/department/find/id', [\App\Http\Controllers\APIs\DepartmentController::class, 'getDepartmentById'])->name('department.find.id');
+                Route::post('/department/and/position/update', [\App\Http\Controllers\APIs\DepartmentController::class, 'updateDepartmentAndPosition'])->name('department.and.position.update');
                 //      position
                 Route::post('/position/list', [\App\Http\Controllers\APIs\PositionController::class, 'getAll'])->name('position.list');
                 Route::post('/position/create', [\App\Http\Controllers\APIs\PositionController::class, 'create'])->name('position.create');

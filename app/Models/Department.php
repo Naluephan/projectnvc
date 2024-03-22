@@ -12,10 +12,16 @@ class Department extends Model
         'name_th',
         'name_en',
         'company_id',
-        'image_departments'
+        'image_departments',
+        'position_count',
+        'record_status',
     ];
 
     public function company(){
         return $this->hasOne(Company::class,'id','company_id');
+    }
+
+    public function position(){
+        return $this->hasMany(Position::class,'department_id');
     }
 }

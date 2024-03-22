@@ -3,11 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Repositories\CompanyInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {
+
+    private $companyRepository;
+  
+    public function __construct(
+        CompanyInterface $companyRepository
+    )
+    {
+        $this->companyRepository = $companyRepository;
+    }
+
     public function configMenu()
     {
         return view('setting_menu');
@@ -23,7 +34,8 @@ class ConfigController extends Controller
 
     public function configDepartment()
     {
-        return view('setting.department');
+        $companies = $this->companyRepository->all();
+        return view('setting.department',compact('companies'));
     }
 
     public function configPickupTools()
