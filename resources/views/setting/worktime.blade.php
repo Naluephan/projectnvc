@@ -29,11 +29,12 @@
             color: #fff;
             border-color: #1b8f8d;
         }
+
     </style>
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
             <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    fill="none" stroke="text-hr-orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-stats">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
@@ -63,7 +64,7 @@
         <div class="modal-dialog">
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
-                    <h5 class="modal-title" id="worktimeModalLabel"><i class="fa-solid fa-file-circle-plus"></i>
+                    <h5 class="modal-title" id="worktimeModalLabel"><i class="fa-solid fa-file-circle-plus text-sm"></i>
                         เพิ่มข่าวสาร</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -77,55 +78,64 @@
                                 </path>
                             </svg>
                             <label for="department_id" class="col-form-label">แผนก</label>
-                            <select class="form-select" name="department_id" id="department_id" value="">
-                                <option value="">เลือกแผนก</option>
+                            <select class="form-select input-modal rounded-pill bg-white text-color" name="department_id" id="department_id" value="" required>
+                                <option>เลือกแผนก</option>
                                 @foreach ($departments as $departmnet)
-                                    <option value="{{ $departmnet->department_id }}">{{ $departmnet->name_th }}</option>
+                                    <option value="{{ $departmnet->id }}">{{ $departmnet->name_th }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <label for="worktime_day" class="col-form-label"><i
-                                class="fa-solid fa-calendar-days"></i>วันทำงาน</label>
-                        <div class="mb-3" style="margin-left: 65px;margin-right: 0px;">
+                                class="fa-solid fa-calendar-days text-hr-orange" style="margin-right: 10px"></i>วันทำงาน</label>
+                                <div class="mb-3" style="margin-left: 65px;margin-right: 0px;">
+                            {{-- <input type="checkbox" name="worktime_day1" value="อาทิตย์"> อา<br>
+                            <input type="checkbox" name="worktime_day2" value="จันทร์"> จ<br>
+                            <input type="checkbox" name="worktime_day3" value="อังคาร"> อ<br>
+                            <input type="checkbox" name="worktime_day4" value="พุธ"> พ<br>
+                            <input type="checkbox" name="worktime_day5" value="พฤหัสบดี"> พฤ<br>
+                            <input type="checkbox" name="worktime_day6" value="ศุกร์"> ศ<br>
+                            <input type="checkbox" name="worktime_day7" value="เสาร์"> ส<br> --}}
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox1">อา</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day1" name="worktime_day1" value="อาทิตย์">
+                                <label class="form-check-label" for="worktime_day1">อา</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox2">จ</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day2" name="worktime_day2" value="จันทร์">
+                                <label class="form-check-label" for="worktime_day2">จ</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox3">อ</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day3" name="worktime_day3" value="อังคาร">
+                                <label class="form-check-label" for="worktime_day3">อ</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox4">พ</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day4" name="worktime_day4" value="พุธ">
+                                <label class="form-check-label" for="worktime_day4">พ</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox5">พฤ</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day5" name="worktime_day5" value="พฤหัสบดี">
+                                <label class="form-check-label" for="worktime_day5">พฤ</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
-                                    value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox6">ศ</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day6" name="worktime_day6" value="ศุกร์">
+                                <label class="form-check-label" for="worktime_day6">ศ</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox7"
-                                    value="worktime_day">
-                                <label class="form-check-label" for="inlineCheckbox7">ส</label>
+                                <input class="form-check-input" type="checkbox" id="worktime_day7" name="worktime_day7" value="เสาร์">
+                                <label class="form-check-label" for="worktime_day7">ส</label>
                             </div>
-                        </div>
+                    </div>
                         <div class="mb-3">
                             <div class="row">
-                                <label for="worktime" class="col-form-label"><i class="fa-solid fa-clock"
+                                <label for="worktime" class="col-form-label"><i class="fa-solid fa-clock text-hr-orange"
                                         style="margin-right: 10px"></i>เวลาทำงาน</label>
                                 <div class="col-6">
-                                    <input type="time" class="form-control rounded-pill" id="work_time"
-                                        name="work_time" required>
+                                    <input type="time" class="form-control rounded-pill text-color" id="worktime_start"
+                                        name="worktime_start" required>
+                                </div>
+                                <div class="col-6">
+                                    <input type="time" class="form-control rounded-pill text-color" id="worktime_end"
+                                        name="worktime_end" required>
                                 </div>
                             </div>
                         </div>
@@ -143,6 +153,34 @@
 @section('js')
     <script>
         $(() => {
+            // var selectedDays = [];
+            // document.querySelectorAll('input[name="work_days[]"]').forEach(function(day) {
+            //     day.addEventListener('change', function() {
+            //         if (this.checked) {
+            //             selectedDays.push(this.value);
+            //         } else {
+            //             var index = selectedDays.indexOf(this.value);
+            //             if (index !== -1) {
+            //                 selectedDays.splice(index, 1);
+            //             }
+            //         }
+            //         document.getElementById('worktime_day').value = selectedDays.join(',');
+            //     });
+            // });
+            document.querySelectorAll('.form-check-input').forEach(item => {
+                item.addEventListener('change', event => {
+                    if (event.target.checked) {
+                        event.target.nextElementSibling.style.color = 'blue';
+                        event.target.nextElementSibling.style.fontWeight = 'bold';
+                    } else {
+                        event.target.nextElementSibling.style.color = '';
+                        event.target.nextElementSibling.style.fontWeight = '';
+
+                    }
+                });
+            });
+
+
             getWorktime();
 
             function getWorktime() {
@@ -161,25 +199,47 @@
                         var worktimeContainer = $(".list_worktime");
                         response.forEach(function(worktimeInfo) {
                             var worktimeId = worktimeInfo.id;
-                            var worktimeName = worktimeInfo.departments;
-                            var worktimeStart = worktimeInfo.worktime_day;
-                            var worktimeEnd = worktimeInfo.work_time;
+                            var worktimeName = worktimeInfo.departments.name_th;
+                            var locationImg = worktimeInfo.departments.image_departments;
+                            var startWorkday, endWorkday;
+                            for (var i = 1; i <= 7; i++) {
+                                var workday = worktimeInfo['worktime_day' + i];
+                                if (workday !== null && workday !== undefined) {
+                                    if (!startWorkday) {
+                                        startWorkday = workday;
+                                    }
+                                    endWorkday = workday;
+                                }
+                            }
+
+                            var worktimeStart = worktimeInfo.worktime_start.substring(0, 5);
+                            var worktimeEnd = worktimeInfo.worktime_end.substring(0, 5);
                             var Item = `
-                            <div class="card border border-2 p-0 rounded-4 detail" data-id="${worktimeId}">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <div style="width: 100%; ">
-                                            <img src="https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 100%; height: 100%; object-fit: cover; ">
+                                    <div class="card border border-2 p-0 rounded-4 detail" data-id="${worktimeId}">
+                                        <div class="row">
+                                            <div class="col-4 align-items-center">
+                                                <div style="width: 100%; ">
+                                                    <img src="${locationImg}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 100%; object-fit: cover; ">
+                                                </div>
+                                            </div>
+                                            <div class="col-4 align-items-center">
+                                                <h5 class="ml-2 ">${worktimeName}</h5>
+                                                <p class="ml-2">${startWorkday} - ${endWorkday}</p>
+                                        
+                                                <p class="ml-2">${worktimeStart} - ${worktimeEnd}</p>
+                                                
+                                            </div>
+                                            <div class="col-4 d-flex hhh align-items-center justify-content-md-end">
+                                                <button class="btn btn-sm me-md-2 rounded-pill btn-edit" style="color: #ffff;" data-id="${worktimeId}"
+                                                data-ac="edit" data-bs-toggle="modal" data-bs-target="#worktimeModal"><em
+                                                    class="fas fa-edit" style="font-size: 20px;"></em></button>&nbsp;&nbsp;
+                                            <button class="btn btn-sm me-md-2 rounded-pill btn-delete" style="color: #ffff;" data-id="${worktimeId}"><em
+                                                    class="fas fa-trash-alt" style="font-size: 20px;"></em></button>
+                                                </div>
                                         </div>
                                     </div>
-                                    <div class="col-8 ">
-                                        <h5 class="ml-2 ">${worktimeName}</h5>
-                                        <p class="ml-2">${worktimeStart}</p>
-                                        <p class="ml-2">${worktimeEnd}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            `;
+                                    `;
+
                             worktimeContainer.append(Item);
                         });
                     },
@@ -265,19 +325,6 @@
                     });
                 }
             })
-
-            document.querySelectorAll('.form-check-input').forEach(item => {
-                item.addEventListener('change', event => {
-                    if (event.target.checked) {
-                        event.target.nextElementSibling.style.color = 'blue';
-                        event.target.nextElementSibling.style.fontWeight = 'bold';
-                    } else {
-                        event.target.nextElementSibling.style.color = '';
-                        event.target.nextElementSibling.style.fontWeight = '';
-
-                    }
-                });
-            });
             $(document).on('click', '.btn-edit', function() {
                 let id = $(this).data('id');
                 $.ajax({

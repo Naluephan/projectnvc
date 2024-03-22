@@ -1,105 +1,6 @@
 @extends('setting_menu')
 @section('side-card')
     <style>
-        .custom-file {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            height: calc(2.25rem + 2px);
-            padding: 0.5rem 0.75rem;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-        .custom-file-input {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 3;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .custom-file-label {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 2;
-            height: 100%;
-            padding: 0.5rem 0.75rem;
-            line-height: 1.5;
-            color: #5a5e63;
-            background-color: #fff;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-        .custom-file-label::after {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            display: block;
-            height: calc(2.25rem + 2px);
-            padding: 0.5rem 0.75rem;
-            line-height: 1.5;
-            color: #495057;
-            content: "Choose file";
-            background-color: #fff;
-
-            border: 1px solid #ced4da;
-        }
-
-        .import-file {
-            height: 150px;
-            width: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px dashed #616161;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .import-file:hover {
-            background-color: #f3f4f6;
-        }
-
-        .import-file svg {
-            width: 50px;
-            height: 50px;
-            fill: none;
-            stroke: #898585;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .import-file p {
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        .import-file input[type="file"] {
-            display: none;
-        }
-
         .modal-footer {
             justify-content: center;
         }
@@ -135,46 +36,33 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="location_name" class="col-form-label"><i class="fa-solid fa-hotel"
+                                        <label for="location_name" class="col-form-label text-color"><i class="fa-solid fa-hotel"
                                                 style="color:#e6896a; margin-right:10px"></i>ชื่ออาคาร หรือสถานที่</label>
                                         <input type="text" class="form-control" id="location_name" name="location_name"
                                             required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="location_img" class="col-form-label"><i class="fa-solid fa-image"
-                                                style="color:#e6896a; margin-right:10px"></i>รูปภาพหรือสัญลักษณ์อาคาร/สถานที่</label>
-                                        <div>
-                                            <label for="import-file" class="import-file">
-                                                <input type="file" class="form-control rounded-pill" id="location_img"
-                                                    name="location_img">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-upload" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#707070"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                                                    <path d="M7 9l5 -5l5 5" />
-                                                    <path d="M12 4l0 12" />
-                                                </svg>
-                                                <div>
-                                                    <p>อัพโหลดรูปภาพ</p>
-                                                    <p>ไฟล์ JPG, PNG, PDF</p>
+                                        <label for="location_img" class="col-form-label text-color"><i class="fas fa-image hr-icon"
+                                                ></i>รูปภาพหรือสัญลักษณ์อาคาร/สถานที่</label>
+                                                <div class="mb-3 pr-3 pl-3">
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-6">
+                                                            <input type="file" class="dropify" id="location_img" name="location_img" placeholder="">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </label>
-                                            <input type="file" style="display: none;" id="import-file" />
-                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <div class="row">
                                             <div class="col-6">
-                                                <label for="total_floors" class="col-form-label"><i
+                                                <label for="total_floors" class="col-form-label text-color"><i
                                                         class="fa-sharp fa-solid fa-stairs"
                                                         style="color:#e6896a; margin-right:10px"></i>จำนวนชั้นทั้งหมด</label>
                                                 <input type="text" class="form-control" id="total_floors"
                                                     name="total_floors" required>
                                             </div>
                                             <div class="col-6">
-                                                <label for="total_rooms" class="col-form-label"><svg
+                                                <label for="total_rooms" class="col-form-label text-color"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                                         fill="#e6896a" viewBox="0 0 1024 1024">
                                                         <path
@@ -192,7 +80,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="place_name" class="col-form-label"><i
+                                        <label for="place_name" class="col-form-label text-color"><i
                                                 class="fa-solid fa-hotel"
                                                 style="color:#e6896a; margin-right:10px"></i>กำหนดสถานที่</label>
                                     </div>
@@ -200,14 +88,14 @@
                                         <div class="mb-3 list-building">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <label for="floor" class="col-form-label"><i
+                                                    <label for="floor" class="col-form-label text-color"><i
                                                             class="fa-sharp fa-solid fa-stairs"
                                                             style="color:#e6896a; margin-right:10px"></i>ชั้น</label>
                                                     <input type="text" class="form-control" id="floor"
                                                         name="floor" required>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="room" class="col-form-label"><i
+                                                    <label for="room" class="col-form-label text-color"><i
                                                             class="fa-solid fa-hotel"
                                                             style="color:#e6896a; margin-right:10px"></i>ชื่อห้อง/สถานที่</label>
                                                     <input type="text" class="form-control" id="place_name"
@@ -254,142 +142,223 @@
 @section('js')
     <script>
         $(() => {
+            $('.dropify').dropify({
+                tpl: {
+                    message: '<div class="dropify-message"><span class="file-icon"/><p><h5>กรุณาเลือกไฟล์ภาพ</h5></p></div>',
+                    preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message"></p></div></div></div>',
+                },
+            });
             getBuildingLocation();
 
             function getBuildingLocation() {
-                let id = "{{ Auth::user()->id }}";
-                const listbuildlocation = document.getElementById('list_building_location');
-                listbuildlocation.innerHTML = '';
+                let data = {};
                 $.ajax({
                     type: 'post',
                     url: "{{ route('api.v1.building.location.list') }}",
-                    data: {
-                        'id': id,
-                    },
+                    data: data,
                     dataType: "json",
                     success: function(response) {
-                        var supplyContainer = $(".list_building_location");
-                        response.forEach(function(locationInfo) {
-                            var LocationId = locationInfo.id;
-                            var LocationName = locationInfo.location_name;
-                            var LocationImg = locationInfo.location_img;
-                            var LocationFloors = locationInfo.total_floors;
-                            var LocationRooms = locationInfo.total_rooms;
+                        $(".list_building_location").empty();
+                        $.each(response.data, function(index, locationInfo) {
+                            var id = locationInfo.id;
+                            var img_path =
+                                '{{ asset('uploads/images/setting/building') }}';
+                            var locationImg = img_path + '/' + locationInfo
+                                .location_img;
                             var Item = `
-                            <div class="card border border-2 p-0 rounded-4 detail" data-id="${LocationId}">
+                            <div class="card border border-2 p-0 rounded-4 detail" data-id="${id}">
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <div style="width: 100%; ">
-                                            <img src="https://media.discordapp.net/attachments/1068009652882772048/1213840762593345617/IMG_2033.jpg?ex=65f6f04d&is=65e47b4d&hm=3c9f20a33d307983ff42ac8da496ff3b4fbd997f08807cec20aed5bd1111af0e&=&format=webp&width=496&height=662" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 100%; height: 100%; object-fit: cover; ">
+                                            <img src="${locationImg}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 100%; object-fit: cover; ">
                                         </div>
                                     </div>
                                     <div class="col-8 ">
-                                        <h5 class="ml-2 ">${LocationName}</h5>
-                                        <p class="ml-2">${LocationFloors} ชั้น</p>
-                                        <p class="ml-2">${LocationRooms} ห้อง</p>
+                                        <h5 class="ml-2 ">${locationInfo.location_name}</h5>
+                                        <p class="ml-2">${locationInfo.total_floors} ชั้น</p>
+                                        <p class="ml-2">${locationInfo.total_rooms} ห้อง</p>
                                     </div>
                                 </div>
                             </div>
                             `;
-                            supplyContainer.append(Item);
+                            $(".list_building_location").append(Item);
                         });
                     },
                 });
             }
-
+            getBuildingLocation();
 
             var buildinglocation_modal = $("#buildinglocationModal");
             $(document).on('click', '.btn-add', function() {
+                $('#buildinglocationModal').modal('show');
+                $('#location_name').val('');
+                $('#total_floors').val('');
+                $('#total_rooms').val('');
+                $('#floor').val('');
+                $('#place_name').val('');
+                $('#import-file').val('');
+                $('#buildinglocationModal').modal('hide');
+                $('#id').val('');
                 buildinglocation_modal.modal('show')
             })
+            let addedContainers = [];
             $(document).on('click', '.btn-addform', function() {
-                const buildingsContainer = document.querySelector('.list-building');
-                const newBuildingContainer = buildingsContainer.cloneNode(true);
+                const buildingContainer = document.querySelectorAll('.list-building');
+                if (buildingContainer.length > 0) {
+                    const newBuildingContainer = buildingContainer[0].cloneNode(true);
 
-                newBuildingContainer.classList.remove('list-building');
-                newBuildingContainer.classList.add('add-building');
+                    const inputs = newBuildingContainer.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+                    const inputFields = newBuildingContainer.querySelectorAll('input[type="text"]');
+                    inputFields.forEach(function(input) {
+                        input.value = '';
+                    });
+                    buildingContainer[0].parentNode.appendChild(newBuildingContainer);
 
-                buildingsContainer.parentNode.insertBefore(newBuildingContainer, buildingsContainer);
+                    // เพิ่มอ้างอิงของส่วนที่ถูกเพิ่มลงใน addedContainers
+                    addedContainers.push(newBuildingContainer);
+                } else {
+                    Swal.fire({
+                        position: 'center-center',
+                        icon: 'warning',
+                        title: 'คุณเพิ่มได้สูงสุดแล้ว',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
             });
 
             $(document).on('click', '.save-buildinglocation', function() {
                 let id = $("#id").val();
                 let buildinglocationForm = $("#buildinglocationForm");
                 if (buildinglocationForm.valid()) {
-                    const formData = new FormData($("#buildinglocationForm")[0]);
-                    formData.append('location_img_name', $('#location_img')[0].files[0]);
-                    formData.append('location_img_value', $('#location_img').val());
-                    if (id.length == 0) {
-
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.building.location.create') }}",
-                            data: formData,
-                            dataType: "json",
-                            processData: false,
-                            contentType: false,
-                            success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    buildinglocation_modal.modal('hide');
-                                    getBuildingLocation();
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                    var formData = new FormData();
+                    var locations
+                    // formData.append('_token', $('#_token').val());
+                    formData.append('id', $('#id').val());
+                    formData.append('location_name', $('#location_name').val());
+                    formData.append('total_floors', $('#total_floors').val());
+                    formData.append('total_rooms', $('#total_rooms').val());
+                    formData.append('floor', $('#floor').val());
+                    formData.append('place_name', $('#place_name').val());
+                    if (document.getElementById("import-file").files.length != 0) {
+                        formData.append('location_img', $('#import-file').prop('files')[0]);
+                    }
+                  
+                    if (!id) {
+                        Swal.fire({
+                            title: 'ยืนยันการเพิ่มรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FA9583',
+                            cancelButtonColor: '#646464',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.building.location.create') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'เพิ่มรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $('#location_name').val('');
+                                            $('#total_floors').val('');
+                                            $('#total_rooms').val('');
+                                            $('#floor').val('');
+                                            $('#place_name').val('');
+                                            $('#import-file').val('');
+                                            $('#buildinglocationModal').modal('hide');
+                                            $('#id').val('');
+                                            getBuildingLocation();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'เพิ่มรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
                             }
                         });
                     } else {
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.building.location.update') }}",
-                            data: data,
-                            dataType: "json",
-                            success: function(response) {
-                                if (response.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    buildinglocation_modal.modal('hide');
-                                    getBuildingLocation();
-
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                        Swal.fire({
+                            title: 'ยืนยันการแก้ไขรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FA9583',
+                            cancelButtonColor: '#646464',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.building.location.update') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'แก้ไขรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $('#location_name').val('');
+                                            $('#total_floors').val('');
+                                            $('#total_rooms').val('');
+                                            $('#floor').val('');
+                                            $('#place_name').val('');
+                                            $('#import-file').val('');
+                                            $('#buildinglocationModal').modal('hide');
+                                            $('#id').val('');
+                                            getBuildingLocation();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'แก้ไขรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
                             }
                         });
                     }
                 } else {
                     Swal.fire({
-                        title: 'กรุณาตรวจสอบข้อมูล',
+                        title: 'กรุณากรอกข้อมูล',
                         icon: 'warning',
+                        iconColor: '#FA9583',
                         showConfirmButton: false,
-                        timer: 2000,
-                        toast: true
+                        timer: 1500
                     });
                 }
-            })
+            });
+
             var buildinglocation_detail_modal = $("#buildinglocationDetailModal");
             $(document).on('click', '.detail', function() {
                 const list = document.getElementById('detail_building_location');
@@ -398,22 +367,23 @@
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.building.location.by.id') }}",
+                    url: "{{ route('api.v1.building.location.detail.by.id') }}",
                     data: {
-                        'id': id
+                        'id': id,
                     },
                     dataType: "json",
                     success: function(response) {
-                        //    console.log(response)
+                           console.log(response)
                         var DetailContainer = $(".detail_building_location");
-                        var id = response.id;
-                        var title = response.location_name;
-                        var floor = response.total_floors;
-                        var room = response.total_rooms;
+                        
+                        response.forEach(function(buildingInfo) {
+                        
+                        var floor = buildingInfo.floor;
+                        var room = buildingInfo.place_name;
                         var Item = `
                             <div class="row">
                                 <div class="col-6">
-                                    <h6 class="title">${title}</h6>
+                                   
                                 </div>
                                 <div class="col-6 text-right">
                                     <button class="btn btn-sm rounded-pill btn-edit" data-id="${id}" data-ac="edit" data-bs-toggle="modal" data-bs-target="#buildinglocationModal"><em class="fas fa-edit"></em></button>
@@ -436,6 +406,7 @@
                                 </div>
                         `;
                         DetailContainer.append(Item);
+                            })
                     }
                 });
             })
@@ -460,6 +431,8 @@
                 $("#location_name").val(data.location_name);
                 $("#total_floors").val(data.total_floors);
                 $("#total_rooms").val(data.total_rooms);
+                $("#floor").val(data.floor);
+                $("#place_name").val(data.place_name);
             }
             buildinglocation_modal.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
@@ -473,6 +446,8 @@
                 obj.find('#location_name').val("");
                 obj.find('#total_floors').val("");
                 obj.find('#total_rooms').val("");
+                obj.find('#floor').val("");
+                obj.find('#place_name').val("");
             })
 
 

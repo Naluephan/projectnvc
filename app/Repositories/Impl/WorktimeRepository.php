@@ -17,7 +17,9 @@ class WorktimeRepository extends MasterRepository implements WorktimeInterface
     }
 
     public function getAll(){
-        return $this->model->with('departments')->get();
+        return $this->model
+        ->with('departments')
+        ->get();
     }
 
 }

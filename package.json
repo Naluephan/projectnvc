@@ -37,6 +37,7 @@
         "datatables.net-responsive": "^2.2.9",
         "datatables.net-responsive-bs5": "^2.2.9",
         "dropify": "^0.2.2",
+        "flatpickr": "^4.6.13",
         "icheck-bootstrap": "^3.0.1",
         "jquery-validation": "^1.19.3",
         "moment": "^2.29.4",

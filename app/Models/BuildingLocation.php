@@ -14,8 +14,10 @@ class BuildingLocation extends Model
         'location_img',
         'total_floors',
         'total_rooms',
+        'record_status'
     ];
-    public function places(){
-        return $this->belongsTo(Location::class,'id');
+    public function locations()
+    {
+        return $this->hasMany(Location::class,'id','id');
     }
 }
