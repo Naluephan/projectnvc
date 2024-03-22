@@ -18,25 +18,44 @@ class WorktimeController extends Controller
     }
 
     public function getWorktime(Request $request){
-        return $this->worktimeRepository->getAll();
+        $id = $request->id;
+        return $this->worktimeRepository->getAll($id);
     }
-
     public function create(Request $request)
     {
         DB::beginTransaction();
-        $data = $request->all();
-        $result['status'] = "Success";
+        $result = [];
         try {
-            $this->worktimeRepository->create($data);
+            $data = $request->all();
+            
+            // สร้างข้อมูลที่จะบันทึกลงฐานข้อมูล
+            $savedata = [
+                'department_id'=> $data['department_id'],
+                'worktime_day1' => isset($data['worktime_day1']) ? $data['worktime_day1'] : null,
+                'worktime_day2' => isset($data['worktime_day2']) ? $data['worktime_day2'] : null,
+                'worktime_day3' => isset($data['worktime_day3']) ? $data['worktime_day3'] : null,
+                'worktime_day4' => isset($data['worktime_day4']) ? $data['worktime_day4'] : null,
+                'worktime_day5' => isset($data['worktime_day5']) ? $data['worktime_day5'] : null,
+                'worktime_day6' => isset($data['worktime_day6']) ? $data['worktime_day6'] : null,
+                'worktime_day7' => isset($data['worktime_day7']) ? $data['worktime_day7'] : null,
+                'worktime_start' => $data['worktime_start'],
+                'worktime_end' => $data['worktime_end'],
+            ];
+    
+            // บันทึกข้อมูลลงในฐานข้อมูล
+            $this->worktimeRepository->create($savedata);
+    
+            // สถานะการทำงานสำเร็จ
+            $result['status'] = "success";
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+        } catch (\Exception $ex) {
+            // กรณีเกิดข้อผิดพลาด
+            $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
-
     public function update(Request $request)
     {
         DB::beginTransaction();
