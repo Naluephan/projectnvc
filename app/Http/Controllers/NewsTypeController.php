@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class NewsType extends Controller
+class NewsTypeController extends Controller
 {
     //
 }
