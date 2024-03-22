@@ -34,7 +34,7 @@
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
             <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
-                    fill="none" stroke="text-hr-orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    fill="none" stroke="#048482" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-stats">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
@@ -223,10 +223,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-4 align-items-center">
-                                                <h5 class="ml-2 ">${worktimeName}</h5>
-                                                <p class="ml-2">${startWorkday} - ${endWorkday}</p>
+                                                <h6 class="mt-2" style="color:#048482">${worktimeName}</h6>
+                                                <p class="mt-2" style="color: #d4d4d4;">วัน${startWorkday} - วัน${endWorkday}</p>
                                         
-                                                <p class="ml-2">${worktimeStart} - ${worktimeEnd}</p>
+                                                <p class="mt-2" style="color: #d4d4d4;">เวลา ${worktimeStart} น. - ${worktimeEnd} น.</p>
                                                 
                                             </div>
                                             <div class="col-4 d-flex hhh align-items-center justify-content-md-end">
@@ -344,7 +344,14 @@
 
 
             function setworktimeFormData(data) {
-                $("#worktime_name").val(data.worktime_name);
+                $("#department_id").val(data.department_id);
+                $("#worktime_day1").val(data.worktime_day1);
+                $("#worktime_day2").val(data.worktime_day2);
+                $("#worktime_day3").val(data.worktime_day3);
+                $("#worktime_day4").val(data.worktime_day4);
+                $("#worktime_day5").val(data.worktime_day5);
+                $("#worktime_day6").val(data.worktime_day6);
+                $("#worktime_day7").val(data.worktime_day7);
                 $("#worktime_start").val(data.worktime_start);
                 $("#worktime_end").val(data.worktime_end);
             }
@@ -361,7 +368,14 @@
             worktime_modal.on('hide.bs.modal', function() {
                 let obj = $(this);
                 obj.find('#id').val("");
-                obj.find('#worktime_name').val("");
+                obj.find('#department_id').val("");
+                obj.find('#worktime_day1').val("");
+                obj.find('#worktime_day2').val("");
+                obj.find('#worktime_day3').val("");
+                obj.find('#worktime_day4').val("");
+                obj.find('#worktime_day5').val("");
+                obj.find('#worktime_day6').val("");
+                obj.find('#worktime_day7').val("");
                 obj.find('#worktime_start').val("");
                 obj.find('#worktime_end').val("");
             })
