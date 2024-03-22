@@ -59,6 +59,10 @@
             background-image: url({{ asset('images/menu/administ.jpg') }});
             /* replace with your image URL */
         }
+        .setting-image-company {
+            background-image: url({{ asset('images/menu/company.png') }});
+            /* replace with your image URL */
+        }
 
         .setting-image-12 {
             background-image: url({{ asset('images/menu/12.png') }});
@@ -81,7 +85,7 @@
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
                                 <h6>หมวดหมู่</h6>
-                                <h6>อุปกรณ์</h6>
+                                <h6>อุปกรณ์</h6>kashian krongnawakul
                             </span>
                         </a>
                     </div>
@@ -107,6 +111,17 @@
                     </h4>
                 </div>
                 <div class="row mb-3">
+                    <div class="col-12 col-sm-4">
+                        <a href="{{ route('companies.create') }}"
+                            class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*companies.create*')) active @endif">
+                            <span class="button-image setting-image-company w-40"></span>
+                            <span class="button-text w-60">
+                                <h6 class="my-auto text-bold">บริษัท</h6>
+                                {{-- <h6>และตำแหน่ง</h6> --}}
+                            </span>
+                        </a>
+                    </div>
+
                     <div class="col-12 col-sm-4">
                         <a href="{{ route('config.department') }}"
                             class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*config.department*')) active @endif">

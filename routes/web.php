@@ -117,6 +117,7 @@ Route::get('/emp/detail/{id}', [App\Http\Controllers\HomeController::class, 'emp
 
 //companies
 Route::get('/companies/list', [App\Http\Controllers\CompanyController::class, 'list'])->name('companies.list');
+Route::get('/companies/create', [App\Http\Controllers\CompanyController::class, 'companyCreate'])->name('companies.create');
 //department
 Route::get('/department/list', [App\Http\Controllers\DepartmentController::class, 'list'])->name('department.list');
 //position
@@ -155,11 +156,16 @@ Route::get('/position/cleanline', [App\Http\Controllers\ConfigController::class,
 
 Route::get('/supply/list', [App\Http\Controllers\ConfigController::class, 'listSupply'])->name('supply.list');
 
-//News  Category Topic
+//////// Category Topic ////////
 Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class, 'newsTopicCategory'])->name('news.topic.category');
 
-// Administrative work categories
+//////// Category Topic ////////
+Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class, 'newsTopicCategory'])->name('news.topic.category');
+
+//////// Administrative work categories ////////
 Route::get('/administrative/work/categories', [App\Http\Controllers\ConfigController::class, 'administCategories'])->name('administrative.work.categories');
+Route::get('/add/administrative/work/categories', [App\Http\Controllers\ConfigController::class, 'addAdministCategories'])->name('add.administrative.work.categories');
+// Route::get('/show/administrative/work/categories', [App\Http\Controllers\ConfigController::class, 'addAdministCategories'])->name('show.administrative.work.categories');
 
 
 Route::get('/news/list', [App\Http\Controllers\NewsController::class, 'listNews'])->name('news.list');

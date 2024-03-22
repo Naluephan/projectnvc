@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             // $table->string('location_id');
             $table->string('location_name');
-            $table->string('location_img');
+            $table->string('location_img')->nullable();
             $table->string('total_floors');
             $table->string('total_rooms');
+            $table->tinyInteger('record_status')->default(1);
             $table->timestamps();
         });
     }

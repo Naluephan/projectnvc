@@ -15,12 +15,14 @@ class CompanyController extends Controller
         $this->companyRepository = $companyRepository;
     }
 
-    public function getCompanies(Request $request){
+    public function getCompanies(Request $request)
+    {
 
         return $this->companyRepository->all();
     }
 
-    public function getAll(Request $request){
+    public function getAll(Request $request)
+    {
         $postData = $request->all();
         ## Read value
         $draw = $postData['draw'];
@@ -57,38 +59,70 @@ class CompanyController extends Controller
             "iTotalDisplayRecords" => $totalRecordswithFilter,
         ];
     }
+    public function getCompanyList(Request $request)
+    {
+        return $this->companyRepository->getComAll();
+    }
 
     public function create(Request $request)
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
         try {
-            $this->companyRepository->create($data);
+            $whereOr = "name_th = '".$data ['name_th']."' OR "."name_en = '".$data ['name_en']."' OR "."short_name = '".$data ['short_name']."' OR "."order_prefix = '".$data ['order_prefix']."'"; 
+            $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
+            if (count($existingCompany) > 0) {
+                $result = [
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This company already exists.'
+                ];
+            } else {
+                $query = $this->companyRepository->create($data);
+                $result = [
+                    'name_th' => $query['name_th'],
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ];
+            };
             DB::commit();
         } catch (\Exception $ex){
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
     }
 
     public function update(Request $request)
     {
         DB::beginTransaction();
         $data = $request->all();
-        $id = $data['id'];
-        $result['status'] = "Success";
         try {
-            $this->companyRepository->update($id,$data);
+            $whereOr = "name_th = '".$data ['name_th']."' OR "."name_en = '".$data ['name_en']."' OR "."short_name = '".$data ['short_name']."' OR "."order_prefix = '".$data ['order_prefix']."'"; 
+            $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
+            if (count($existingCompany) > 0) {
+                $result = [
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This company already exists.'
+                ];
+            } else {
+                $query = $this->companyRepository->create($data);
+                $result = [
+                    'name_th' => $query['name_th'],
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ];
+            };
             DB::commit();
         } catch (\Exception $ex){
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+
     }
 
     public function delete(Request $request)
@@ -99,12 +133,13 @@ class CompanyController extends Controller
         try {
             $this->companyRepository->delete($id);
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+
     }
 
     public function getById(Request $request)

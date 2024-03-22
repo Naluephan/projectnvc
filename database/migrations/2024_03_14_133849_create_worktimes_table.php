@@ -15,9 +15,16 @@ return new class extends Migration
     {
         Schema::create('worktimes', function (Blueprint $table) {
             $table->id();
-            $table->string('department_id')->nullable();
-            $table->string('worktime_day')->nullable();
-            $table->time('work_time');
+            $table->string('department_id');
+            $table->string('worktime_day1')->nullable();
+            $table->string('worktime_day2')->nullable();
+            $table->string('worktime_day3')->nullable();
+            $table->string('worktime_day4')->nullable();
+            $table->string('worktime_day5')->nullable();
+            $table->string('worktime_day6')->nullable();
+            $table->string('worktime_day7')->nullable();
+            $table->time('worktime_start');
+            $table->time('worktime_end');
             $table->timestamps();
         });
     }

@@ -9,8 +9,12 @@ class Location extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'building_location_id',
         'floor',
         'place_name',
      
     ];
+    public function location(){
+        return $this->belongsTo(BuildingLocation::class,'building_location_id','id');
+    }
 }

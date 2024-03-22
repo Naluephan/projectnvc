@@ -10,4 +10,8 @@ class CompanyController extends Controller
     {
         return view('companies.list');
     }
+    public function companyCreate()
+    {
+        return view('companies.create');
+    }
 }

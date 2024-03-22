@@ -73,6 +73,12 @@ use App\Repositories\Impl\MaintenanceSettingRepository;
 use App\Repositories\Impl\PrivateCarRepository;
 use App\Repositories\MaintenanceSettingInterface;
 use App\Repositories\PrivateCarInterface;
+use App\Repositories\BuildingLocationInterface;
+use App\Repositories\Impl\BuildingLocationRepository;
+use App\Repositories\Impl\LocationRepository;
+use App\Repositories\Impl\WorktimeRepository;
+use App\Repositories\LocationInterface;
+use App\Repositories\WorktimeInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -118,6 +124,9 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(AdministrativeWorkCategoriesInterface::class, AdministrativeWorkCategoriesRepository::class);
         $this->app->bind(PrivateCarInterface::class, PrivateCarRepository::class);
         $this->app->bind(MaintenanceSettingInterface::class, MaintenanceSettingRepository::class);
+        $this->app->bind(BuildingLocationInterface::class, BuildingLocationRepository::class);
+        $this->app->bind(WorktimeInterface::class, WorktimeRepository::class);
+        $this->app->bind(LocationInterface::class,LocationRepository::class);
 
 
 
