@@ -31,11 +31,8 @@ class PrivateCarController extends Controller
         $result = [];
         try {
             $search_criteria = [
-                // 'emp_id' => $data['emp_id'],
-                'car_category_id' => $data['car_category_id'],
-                'car_registration' => $data['car_registration'],
-                'car_brand' => $data['car_brand'],
-                'car_color' => $data['car_color'],
+                'emp_id' => $data['emp_id'],
+                // 'car_category_id' => $data['car_category_id']
             ];
             $existing_car = $this->privateCarRepository->findBy($search_criteria);
 

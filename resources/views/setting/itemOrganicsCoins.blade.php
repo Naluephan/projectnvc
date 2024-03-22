@@ -11,7 +11,7 @@
 
         .modal-dialog {
             top: 10% !important;
-            width: 450px;
+            /* width: 450px; */
         }
 
         .import-file {
@@ -92,7 +92,7 @@
                             <label for="reward_coins_change" class="col-form-label text-color"><i
                                     class="fas fa-newspaper text-sm"></i>
                                 เหรียญที่ใช้แลก</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color"
+                            <input type="number" class="form-control input-modal rounded-pill text-color"
                                 id="reward_coins_change" name="reward_coins_change" required>
                         </div>
                         <div class="pr-3 pl-3">
@@ -131,34 +131,42 @@
                     <h6 class="modal-title" id="detailModalLabel">
                         Item Organics Coins
                     </h6>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
                     <form id="detailModal">
-                        <div class="d-flex justify-content-end">
-                            <div class="icons">
-                                <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" id="reward_edit"></i>
-                                <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
-                            </div>
-                        </div>
                         <div class="row list_detail" id="list_detail">
-                            <div class="col-12">
+                            <div class="col-8">
                                 <input type="hidden" name="id" id="id">
-                                <div class="mb-3 pr-3 pl-3">
-                                    <label for="detail-reward_name" class="col-form-label text-color"><i
+                                <div class="pr-3 pl-3">
+                                    {{-- <label for="detail-reward_name" class="col-form-label text-color"><i
                                             class="fas fa-th-list text-sm"></i>
-                                        ชื่อ Item Organics Coins : </label>
-                                    <label class="text-black-50 pt-1" id="detail-reward_name"></label>
-                                </div>
-                                <div class="mb-3 pr-3 pl-3">
-                                    <label for="detail-reward_coins_change" class="col-form-label text-color"><i
-                                            class="fas fa-newspaper text-sm"></i>
-                                        เหรียญที่ใช้แลก : </label>
-                                    <label class="text-black-50 pt-1" id="detail-reward_coins_change"></label>
+                                        ชื่อ Item Organics Coins : </label> --}}
+                                    <label class="text-black-50 pt-1 text-color" id="detail-reward_name"></label>
                                 </div>
                                 <div class="pr-3 pl-3">
-                                    <label for="detail-reward_image" class="col-form-label text-color"><i
-                                            class="fas fa-image hr-icon"></i> รูป Item Organics Coin :
+                                    <label for="detail-reward_coins_change" class="col-form-label text-color">
+                                        {{-- <i class="fas fa-newspaper text-sm"></i> --}}
+                                        เหรียญที่ใช้แลก : </label>
+                                    <label class="text-black-50 pt-1 text-color"
+                                        id="detail-reward_coins_change"></label><span class="text-color text-bold">
+                                        Coin</span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-end">
+                                    <div class="icons">
+                                        <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer"
+                                            id="reward_edit"></i>
+                                        <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="pr-3 pl-3">
+                                    <label for="detail-reward_image" class="col-form-label text-color">
+                                        {{-- <i class="fas fa-image hr-icon"></i> --}}
+                                        รูป Item Organics Coin
                                     </label>
                                     <div class="text-center pt-2">
                                         <img src="" class="border border-0 rounded-start-4 rounded-end-4 "
@@ -181,7 +189,6 @@
             </div>
         </div>
     </div>
-
 
 
 @stop
@@ -217,26 +224,25 @@
                             var rewardCoinsChange = coinsInfo.reward_coins_change;
                             var rewardDescription = coinsInfo.reward_description;
                             var Item = `
-                            <div class="pb-2">
-                                <div class="button-details btn-detail cursor-pointer p-0 w-100"
+
+                            <div class="card border border-2 p-0 rounded-4 button-details btn-detail cursor-pointer"
                                 data-id="${rewardId}"
                                 data-reward_name="${rewardName}"
                                 data-reward_coins_change="${rewardCoinsChange}"
-                                data-reward_image="${rewardImage}">
-                                    <span class="button-text w-100">
-                                        <div class="row">
-                                            <div class="col-4 col-sm-3 px-0 d-flex align-items-center justify-content-center">
-                                                <img src="${rewardImage}" alt=""
-                                                    style="max-width: 111.94px; max-height: 111.94px;">
-                                            </div>
-                                            <div class="col-6 col-sm-7">
-                                                <h6 class="text-bold mb-0 mr-2 py-2 text-truncate">${rewardName}</h6>
-                                                <p class="text-bold mb-0" style="color: #d4d4d4;">ใช้คะแนน ${rewardCoinsChange} คะแนน</p>
-                                            </div>
+                                data-reward_image="${rewardImage}" style="height: 110px;">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div style="width: 100%;">
+                                            <img src="${rewardImage}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 110px; object-fit: cover; ">
                                         </div>
-                                    </span>
+                                    </div>
+                                    <div class="col-9">
+                                    <b><h6 class="ml-2 hr-text-green mt-2">${rewardName}</h6></b>
+                                        <p class="ml-2 text-black-50">ใช้คะแนน ${rewardCoinsChange} คะแนน</p>
+                                    </div>
                                 </div>
                             </div>
+
                             `;
                             itemOrganicsCoinsContainer.append(Item);
                         });
@@ -445,7 +451,7 @@
             $(document).on('click', '.btn-delete', function() {
                 let obj = $(this);
                 let id = obj.data('id');
-                console.log(id);
+                // console.log(id);
                 Swal.fire({
                     title: 'ยืนยัน!! ลบข้อมูล',
                     text: "ต้องการดำเนินการใช่หรือไม่!",

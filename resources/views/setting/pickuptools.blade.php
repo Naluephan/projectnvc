@@ -1,6 +1,10 @@
 @extends('setting_menu')
 @section('side-card')
     <style>
+        .modal {
+            overflow: auto !important;
+        }
+
         .header img {
             width: 100px;
         }
@@ -18,7 +22,7 @@
 
         .modal-dialog {
             top: 10% !important;
-            width: 450px;
+            /* width: 450px; */
         }
     </style>
 
@@ -46,8 +50,8 @@
             <div class="modal-content modal-radius">
                 <div class="modal-header background2 modal-header-radius">
                     <h6 class="modal-title" id="pickuptoolsModalLabel"><i class="fa-solid fa-file-circle-plus"></i>
-                        เพิ่มข้อมูล</h6>
-                    {{-- <button type="button" class="btn-close btn-reset" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                        <span class="add-data">เพิ่มข้อมูล</span>
+                    </h6>
                 </div>
                 <div class="modal-body">
                     <form id="pickuptoolsForm">
@@ -77,9 +81,13 @@
                                 <div class="col-6 pr-3">
                                     <label for="number_requested" class="col-form-label text-color"><i
                                             class="fas fa-newspaper text-sm"></i> จำนวน (หน่วย) / ปี</label>
-                                    <input type="number"
-                                        class="form-control input-modal rounded-pill text-color number_requested"
-                                        style="height: 45px;" required min="1">
+                                    <div class="position_list input-group mb-3">
+                                        <input type="number"
+                                            class="form-control input-modal rounded-start-pill text-color number_requested"
+                                            style="height: 45px;" required min="1">
+                                        <button class="btn rounded-end-pill border" type="button"><em
+                                                class="fas fa-times-circle text-hr-orange btn-removeList"></em></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,14 +123,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="header px-3">
-                        <div class="row">
-                            <div class="col-8 detail-department" id="detail-department"></div>
-                            <div class="col-4 py-2 d-flex justify-content-end">
-                                <div class="icons">
-                                    <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer"></i>
-                                    <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;"></i>
-                                </div>
-                            </div>
+                        <div class="row pl-2 detail-department" id="detail-department">
                         </div>
                         <div class="content">
                             <div class="list_pickuptoolsDetail" id="list_pickuptoolsDetail"></div>
@@ -148,25 +149,30 @@
                 <div class="modal-header background2 modal-header-radius">
                     <h6 class="modal-title" id="pickuptoolsEditModalLabel"><i class="fa-solid fa-file-circle-plus"></i>
                         แก้ไขข้อมูล</h6>
-                    {{-- <button type="button" class="btn-close btn-reset" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
                     <form id="pickuptoolsEditForm">
                         <input type="hidden" name="id" id="id">
-                        <div class="added-pickuptools list_pickuptoolsByid px-3" id="list_pickuptoolsByid">
-
+                        <div class="added-pickuptools">
+                            <div class="row mt-3 list-editpickuptools list_pickuptoolsByid" id="list_pickuptoolsByid">
+                            </div>
                         </div>
                     </form>
+                    <div class="button-addEditList pl-2 pr-2">
+                        <button type="button"
+                            class="form-control btn btn-outline-success rounded-pill mt-3 btn-addEditList"><i
+                                class="fa-solid fa-plus"></i>
+                            เพิ่มรายการ</button>
+                    </div>
                 </div>
                 <div class="button-footer">
                     <div class="row">
                         <div class="col-6">
-                            <button type="button" class="btn card-text text-bold text-color btn-resetpickuptools"
+                            <button type="button" class="btn card-text text-bold text-color btn-reset"
                                 data-bs-dismiss="modal">ยกเลิก</button>
                         </div>
                         <div class="col-6">
-                            <button
-                                class="btn btn-hr-confirm form-control rounded-pill save-pickuptoolsByid">บันทึก</button>
+                            <button class="btn btn-hr-confirm form-control rounded-pill save-update">บันทึก</button>
                         </div>
                     </div>
                 </div>
@@ -178,85 +184,6 @@
 @section('js')
     <script>
         $(() => {
-
-            var pickuptools_modal = $("#pickuptoolsModal");
-            var pickuptoolsDetail_modal = $("#pickuptoolsDetailModal");
-            var pickuptoolsEdit_modal = $("#pickuptoolsEditModal");
-
-            $(document).on('click', '.btn-reset', function() {
-                $('#pickuptoolsForm')[0].reset();
-                addedContainers.forEach(container => {
-                    container.parentNode.removeChild(container);
-                });
-                addedContainers = [];
-            });
-
-            $(document).on('click', '.btn-resetpickuptools', function() {
-                location.reload();
-            });
-
-            var departmentId = $('#department_id');
-            $.ajax({
-                url: '{{ route('api.v1.department.list') }}',
-                type: 'post',
-                dataType: 'json',
-                success: function(data) {
-                    // console.log(data);
-                    data.forEach(function(item) {
-                        departmentId.append(
-                            `<option value="${item.id}">${item.name_th}</option>`);
-                    });
-                }
-            });
-
-            var deviceTypesId = $('.device_types_id');
-            var deviceTypesLength = 0;
-            $.ajax({
-                url: '{{ route('api.v1.device.types.list') }}',
-                type: 'post',
-                dataType: 'json',
-                success: function(data) {
-                    // console.log(data);
-                    var datalength = data.length;
-                    deviceTypesLength = datalength;
-                    data.forEach(function(item) {
-                        deviceTypesId.append(
-                            `<option value="${item.id}">${item.device_types_name}</option>`);
-                    });
-                }
-            });
-
-
-            let addedContainers = [];
-            $(document).on('click', '.btn-addList', function() {
-                // console.log(deviceTypesLength);
-                const pickuptoolsContainer = document.querySelectorAll('.list-pickuptools');
-                if (pickuptoolsContainer.length < deviceTypesLength) {
-                    const newPickuptoolsContainer = pickuptoolsContainer[0].cloneNode(true);
-
-                    const inputs = newPickuptoolsContainer.querySelectorAll('input');
-                    inputs.forEach(input => {
-                        input.value = '';
-                    });
-                    const inputFields = newPickuptoolsContainer.querySelectorAll('input[type="text"]');
-                    inputFields.forEach(function(input) {
-                        input.value = '';
-                    });
-                    pickuptoolsContainer[0].parentNode.appendChild(newPickuptoolsContainer);
-
-                    // เพิ่มอ้างอิงของส่วนที่ถูกเพิ่มลงใน addedContainers
-                    addedContainers.push(newPickuptoolsContainer);
-                } else {
-                    Swal.fire({
-                        position: 'center-center',
-                        icon: 'warning',
-                        title: 'คุณเพิ่มได้สูงสุดแล้ว',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                }
-            });
-
 
             getPickuptoolsCategory();
 
@@ -292,81 +219,230 @@
                 });
             }
 
+            $(document).on('click', '.btn-add', function() {
+                pickuptools_modal.modal('show')
+            })
+
+            var pickuptools_modal = $("#pickuptoolsModal");
+            var pickuptoolsDetail_modal = $("#pickuptoolsDetailModal");
+            var pickuptoolsEdit_modal = $("#pickuptoolsEditModal");
+
+            $(document).on('click', '.btn-reset', function() {
+                $('#pickuptoolsForm')[0].reset();
+                addedContainers.forEach(container => {
+                    container.parentNode.removeChild(container);
+                });
+                addedContainers = [];
+            });
+
+            var departmentId = $('#department_id');
+            $.ajax({
+                url: '{{ route('api.v1.department.list') }}',
+                type: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data);
+                    data.forEach(function(item) {
+                        departmentId.append(
+                            `<option value="${item.id}">${item.name_th}</option>`);
+                    });
+                }
+            });
+
+            var deviceTypesId = $('.device_types_id');
+            var deviceTypesLength = 0;
+            var listType = []; // Create an empty array to store device type data
+
+            $.ajax({
+                url: '{{ route('api.v1.device.types.list') }}',
+                type: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    var datalength = data.length;
+                    deviceTypesLength = datalength;
+
+                    data.forEach(function(item) {
+                        deviceTypesId.append(
+                            `<option value="${item.id}">${item.device_types_name}</option>`
+                        );
+
+                        // Add device type data to listType
+                        listType.push({
+                            id: item.id,
+                            device_types_name: item.device_types_name
+                        });
+                    });
+                }
+            });
+
+
+            let addedContainers = [];
+            $(document).on('click', '.btn-addList', function() {
+                // console.log(deviceTypesLength);
+                const pickuptoolsContainer = document.querySelectorAll('.list-pickuptools');
+                if (pickuptoolsContainer.length < deviceTypesLength) {
+                    const newPickuptoolsContainer = pickuptoolsContainer[0].cloneNode(true);
+
+                    const inputs = newPickuptoolsContainer.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+                    const inputFields = newPickuptoolsContainer.querySelectorAll('input[type="text"]');
+                    inputFields.forEach(function(input) {
+                        input.value = '';
+                    });
+                    pickuptoolsContainer[0].parentNode.appendChild(newPickuptoolsContainer);
+
+                    // เพิ่มอ้างอิงของส่วนที่ถูกเพิ่มลงใน addedContainers
+                    addedContainers.push(newPickuptoolsContainer);
+                } else {
+                    Swal.fire({
+                        position: 'center-center',
+                        title: 'ไม่สามารถเพิ่มได้',
+                        text: "คุณได้เพิ่มถึงสูงสุดแล้ว",
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#FA9583',
+                        cancelButtonColor: 'transparent',
+                        customClass: {
+                            confirmButton: 'rounded-pill',
+                            cancelButton: 'text-hr-green rounded-pill',
+                            popup: 'modal-radius'
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '.btn-addEditList', function() {
+                const pickuptoolsContainer = document.querySelectorAll('.list-editpickuptools');
+                if (pickuptoolsContainer.length < deviceTypesLength) {
+                    const newPickuptoolsContainer = pickuptoolsContainer[0].cloneNode(true);
+
+                    const inputs = newPickuptoolsContainer.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+                    const inputFields = newPickuptoolsContainer.querySelectorAll('input[type="text"]');
+                    inputFields.forEach(function(input) {
+                        input.value = '';
+                    });
+                    pickuptoolsContainer[0].parentNode.appendChild(newPickuptoolsContainer);
+
+                    // เพิ่มอ้างอิงของส่วนที่ถูกเพิ่มลงใน addedContainers
+                    addedContainers.push(newPickuptoolsContainer);
+                } else {
+                    Swal.fire({
+                        position: 'center-center',
+                        title: 'ไม่สามารถเพิ่มได้',
+                        text: "คุณได้เพิ่มถึงสูงสุดแล้ว",
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#FA9583',
+                        cancelButtonColor: 'transparent',
+                        customClass: {
+                            confirmButton: 'rounded-pill',
+                            cancelButton: 'text-hr-green rounded-pill',
+                            popup: 'modal-radius'
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '.btn-removeList', function() {
+                if (addedContainers.length > 0) {
+                    const removedContainer = addedContainers.pop();
+                    removedContainer.parentNode.removeChild(removedContainer);
+                } else {
+                    Swal.fire({
+                        position: 'center-center',
+                        title: 'ไม่สามารถลบได้ !!',
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#FA9583',
+                        cancelButtonColor: 'transparent',
+                        customClass: {
+                            confirmButton: 'rounded-pill',
+                            cancelButton: 'text-hr-green rounded-pill',
+                            popup: 'modal-radius'
+                        }
+                    });
+                }
+            });
+
+            // Display Details
             var detailDepartment = $('#detail-department');
             var showDetail = $('#list_pickuptoolsDetail');
             $(document).on('click', '.button-details', function() {
                 pickuptoolsDetail_modal.modal('show')
-                var department_id = $(this).data('department_id');
-                $('.btn-delete').data('department_id', department_id)
-                $('.btn-edit').data('department_id', department_id)
 
-                // เคลียร์ข้อมูลที่มีอยู่ก่อนแสดงข้อมูลใหม่
+                var department_id = $(this).data('department_id');
                 detailDepartment.empty();
                 showDetail.empty();
 
-                $.ajax({
+                var ajax1 = $.ajax({
                     url: '{{ route('api.v1.detail.department.by.id') }}',
                     type: 'post',
                     data: {
                         'department_id': department_id
                     },
-                    dataType: 'json',
-                    success: function(data) {
-                        // console.log(data);
-                        var item = data[0]; // เลือกรายการแรกจากข้อมูล
-                        detailDepartment.html(`
-                            <div class="col-8 pl-0 d-flex align-items-center">
-                                <img src="${item.image_departments}" alt="Generic placeholder image"
-                                    class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
-                                <p class="ml-2 mb-0 text-bold text-color">${item.department_name}</p>
-                            </div>
-                            <div class="text-header pt-2 pl-0">
-                                <p class="mb-0" style="color: #c7c8c8;">สิทธิ์การเบิกอุปกรณ์ ${item.department_count} รายการ (ต่อปี)</p>
-                            </div>
-                        `);
-                    }
+                    dataType: 'json'
                 });
 
-                $.ajax({
+                var ajax2 = $.ajax({
                     url: '{{ route('api.v1.pickup.tools.show.detail.by.id') }}',
                     type: 'post',
                     data: {
                         'department_id': department_id
                     },
-                    dataType: 'json',
-                    success: function(data) {
-                        // console.log(data);
-                        data.forEach(function(item) {
-                            showDetail.append(`
-                                <div class="card card-content border-0 mt-3">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <i class="fas fa-cubes text-color" style="font-size: 40px;"></i>
-                                            </div>
-                                            <div class="col-7">
-                                                <p class="text-color p-2">${item.device_types_name}</p>
-                                            </div>
-                                            <div class="col-3 d-flex align-items-center justify-content-end">
-                                                <p class="text-color py-2">${item.number_requested} ${item.unit}</p>
-                                            </div>
+                    dataType: 'json'
+                });
+
+                $.when(ajax1, ajax2).done(function(data1, data2) {
+                    var departmentData = data1[0][0];
+                    var toolsData = data2[0];
+
+                    detailDepartment.html(`
+                        <div class="col-12 icons d-flex justify-content-end">
+                            <i class="fas fa-edit mr-2 text-color btn-edit cursor-pointer" data-department_id="${departmentData.department_id}"></i>
+                            <i class="fas fa-trash-alt btn-delete cursor-pointer" style="color: #FA9583;" data-department_id="${departmentData.department_id}"></i>
+                        </div>
+                        <div class="col-12 pl-0 d-flex align-items-center">
+                            <img src="${departmentData.image_departments}" alt="Generic placeholder image" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+                            <p class="ml-2 mb-0 text-bold text-color">${departmentData.department_name}</p>
+                        </div>
+                        <div class="text-header pt-2 pl-0">
+                            <p class="mb-0" style="color: #c7c8c8;">สิทธิ์การเบิกอุปกรณ์ ${departmentData.department_count} รายการ (ต่อปี)</p>
+                        </div>
+                    `);
+
+                    toolsData.forEach(function(item) {
+
+                        showDetail.append(`
+                            <div class="card card-content border-0 mt-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="fas fa-cubes text-color" style="font-size: 40px;"></i>
+                                        </div>
+                                        <div class="col-7">
+                                            <p class="text-color p-2">${item.device_types_name}</p>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                            <p class="text-color py-2">${item.number_requested} ${item.unit}</p>
                                         </div>
                                     </div>
                                 </div>
-                            `);
-                        });
-                    }
+                            </div>
+                        `);
+                    });
                 });
-            })
-
-            $(document).on('click', '.btn-add', function() {
-                pickuptools_modal.modal('show')
-            })
+            });
 
             $(document).on('click', '.save-pickuptools', function() {
                 let pickuptoolsForm = $("#pickuptoolsForm");
                 let department_id = $('#department_id').val();
                 let device_types_id = $('#device_types_id').val();
+                // var id = $('#id').val();
                 var arr_order = [];
                 $('.list-pickuptools').each(function() {
                     var device_types_id = $(this).find('.device_types_id').val();
@@ -377,10 +453,10 @@
                         number_requested: number_requested
                     });
                 });
-                // console.log(arr_order);
-                if (department_id !== "เลือกแผนก" && device_types_id !== "เลือกอุปกรณ์" &&
-                    pickuptoolsForm
+                if (department_id !== "เลือกแผนก" && device_types_id !== "เลือกอุปกรณ์" && pickuptoolsForm
                     .valid()) {
+
+                    // if (!id) {
                     Swal.fire({
                         title: 'เพิ่มข้อมูล ?',
                         text: "ต้องการดำเนินการใช่หรือไม่!",
@@ -418,8 +494,9 @@
                                         getPickuptoolsCategory();
                                         $('#pickuptoolsForm')[0].reset();
                                         addedContainers.forEach(container => {
-                                            container.parentNode.removeChild(
-                                                container);
+                                            container.parentNode
+                                                .removeChild(
+                                                    container);
                                         });
                                         addedContainers = [];
                                     }
@@ -427,6 +504,54 @@
                             });
                         }
                     });
+                    // } else {
+                    //     Swal.fire({
+                    //         title: 'ยืนยันการแก้ไขรายการ?',
+                    //         text: "ต้องการดำเนินการใช่หรือไม่!",
+                    //         icon: 'warning',
+                    //         showCancelButton: true,
+                    //         confirmButtonColor: '#136E68',
+                    //         cancelButtonColor: 'transparent',
+                    //         confirmButtonText: 'ยืนยัน',
+                    //         cancelButtonText: 'ปิด',
+                    //         customClass: {
+                    //             confirmButton: 'rounded-pill',
+                    //             cancelButton: 'text-hr-green rounded-pill',
+                    //             popup: 'modal-radius'
+                    //         }
+                    //     }).then((result) => {
+                    //         if (result.isConfirmed) {
+                    //             $.ajax({
+                    //                 type: "post",
+                    //                 url: "{{ route('api.v1.reward.update') }}",
+                    //                 data: formData,
+                    //                 contentType: false,
+                    //                 processData: false,
+                    //                 cache: false,
+                    //                 success: function(response) {
+                    //                     if (response.status == 'success') {
+                    //                         Swal.fire({
+                    //                             position: 'center-center',
+                    //                             icon: 'success',
+                    //                             title: 'แก้ไขรายการสำเร็จ',
+                    //                             showConfirmButton: false,
+                    //                             timer: 1500
+                    //                         })
+                    //                         pickuptools_modal.modal('hide');
+                    //                         getPickuptoolsCategory();
+                    //                         $('#pickuptoolsForm')[0].reset();
+                    //                         addedContainers.forEach(container => {
+                    //                             container.parentNode
+                    //                                 .removeChild(
+                    //                                     container);
+                    //                         });
+                    //                         addedContainers = [];
+                    //                     }
+                    //                 }
+                    //             });
+                    //         }
+                    //     });
+                    // }
                 } else {
                     Swal.fire({
                         title: 'กรอกข้อมูลให้ครบ!!',
@@ -446,7 +571,7 @@
             $(document).on('click', '.btn-delete', function() {
                 let obj = $(this);
                 let department_id = obj.data('department_id');
-                // console.log(department_id);
+                console.log(department_id);
                 Swal.fire({
                     title: 'ยืนยัน!! ลบข้อมูล',
                     text: "ต้องการดำเนินการใช่หรือไม่!",
@@ -471,52 +596,26 @@
                             },
                             dataType: "json",
                             success: function(response) {
-                                pickuptoolsDetail_modal.modal('hide');
-                                getPickuptoolsCategory();
-                            }
-                        });
-
-                    }
-                })
-            })
-
-            $(document).on('click', '.btn-deleteList', function() {
-                let obj = $(this);
-                var id = $(this).data('id');
-                var device_types_id = $(this).data('device_types_id');
-                $('.save-pickuptoolsByid').data('id', id)
-                $('.save-pickuptoolsByid').data('device_types_id', device_types_id)
-
-                // console.log(device_types_id);
-
-                // console.log(id);
-                Swal.fire({
-                    title: 'ยืนยัน!! ลบรายการ',
-                    text: "ต้องการดำเนินการใช่หรือไม่!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#FA9583',
-                    cancelButtonColor: 'transparent',
-                    confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ปิด',
-                    customClass: {
-                        confirmButton: 'rounded-pill',
-                        cancelButton: 'text-hr-green rounded-pill',
-                        popup: 'modal-radius'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.pickup.tools.delete.list') }}",
-                            data: {
-                                'id': id
-                            },
-                            dataType: "json",
-                            success: function(response) {
-                                pickuptoolsEdit_modal.modal('hide');
-                                getPickuptoolsCategory();
-                                location.reload();
+                                if (response) {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'success',
+                                        title: 'ลบรายการสำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    pickuptoolsDetail_modal.modal('hide');
+                                    getPickuptoolsCategory();
+                                } else {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'error',
+                                        iconColor: '#FA9583',
+                                        title: 'ลบรายการไม่สำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
                             }
                         });
 
@@ -527,11 +626,12 @@
             $(document).on('click', '.btn-edit', function() {
                 pickuptoolsDetail_modal.modal('hide');
                 pickuptoolsEdit_modal.modal('show');
+                $('.add-data').text('แก้ไขข้อมูล');
+                var department_id = $(this).data('department_id');
+                $('.save-update').data('department_id', department_id);
+                var list_pickuptoolsByid = $('#list_pickuptoolsByid');
 
                 addedContainers = [];
-                var department_id = $(this).data('department_id');
-
-                var list_pickuptoolsByid = $('#list_pickuptoolsByid');
                 $.ajax({
                     url: "{{ route('api.v1.pickup.tools.show.detail.by.id') }}",
                     type: 'post',
@@ -541,33 +641,30 @@
                     success: function(data) {
                         // console.log(data);
                         data.forEach(function(item) {
+                            // console.log(item.id);
+                            var device_types_id = item.device_types_id
+                            var device_types_name = item.device_types_name
+                            var number_requested = item.number_requested
+                            // console.log(device_types_id);
                             list_pickuptoolsByid.append(`
-                                <div class="content">
-                                    <div class="row mt-3">
-                                        <div class="col-6 ">
-                                            <label for="device_types_id" class="col-form-label text-color"><i
-                                                    class="fas fa-newspaper text-sm"></i> อุปกรณ์ที่เบิกได้</label>
-                                            <select
-                                                class="form-select input-modal rounded-pill bg-white text-color device_types_id"
-                                                name="device_types_id" id="device_types_id" disabled>
-                                                <option value="${item.device_types_id}">${item.device_types_name}</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-5 pr-2">
-                                            <label for="number_requested" class="col-form-label text-color"><i
-                                                    class="fas fa-newspaper text-sm"></i> จำนวน (หน่วย) / ปี</label>
-                                            <input type="number"
-                                                class="form-control input-modal rounded-pill text-color number_requested"
-                                                style="height: 45px;" value="${item.number_requested}" min="1">
-                                        </div>
-                                        <div class="col-1">
-                                            <svg class="btn-deleteList cursor-pointer pt-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 448 512" style="width: 20px;" data-id="${item.id}" data-device_types_id="${item.device_types_id}">
-                                                <path
-                                                    d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1 -32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1 -32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1 -32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16z"
-                                                    style="fill:#FA9583" />
-                                            </svg>
-                                        </div>
+
+                                <div class="col-6 pl-3">
+                                    <label for="device_types_id" class="col-form-label text-color"><i
+                                            class="fas fa-newspaper text-sm"></i> อุปกรณ์ที่เบิกได้</label>
+                                    <select class="form-select input-modal rounded-pill bg-white text-color device_types_id"
+                                        name="device_types_id" id="device_types_id" required>
+                                        <option value="${item.device_types_id}">${item.device_types_name}</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 pr-3">
+                                    <label for="number_requested" class="col-form-label text-color"><i
+                                            class="fas fa-newspaper text-sm"></i> จำนวน (หน่วย) / ปี</label>
+                                    <div class="position_list input-group mb-3">
+                                        <input type="number"
+                                            class="form-control input-modal rounded-start-pill text-color number_requested"
+                                            style="height: 45px;" value="${item.number_requested}" required min="1">
+                                        <button class="btn rounded-end-pill border btn-deleteList" type="button"><em
+                                                class="fas fa-times-circle text-hr-orange" data-id="${item.id}" data-device_types_id="${item.device_types_id}"></em></button>
                                     </div>
                                 </div>
                             `);
@@ -576,26 +673,25 @@
                 });
             });
 
+            $(document).on('click', '.save-update', function() {
+                let pickuptoolsEditForm = $("#pickuptoolsEditForm");
 
-            $(document).on('click', '.save-pickuptoolsByid', function() {
-                let pickuptoolsForm = $("#pickuptoolsForm");
-
+                var department_id = $(this).data('department_id');
+                let device_types_id = $('#device_types_id').val();
+                var id = $('#id').val();
                 var arr_order = [];
-                var id = $(this).data('id');
-                var device_types_id = $(this).data('device_types_id');
-                // console.log(device_types_id);
-                // var device_types_id = $(this).find('.device_types_id').val();
-                var number_requested = $(this).find('.number_requested').val();
+                $('.list-editpickuptools').each(function() {
+                    var device_types_id = $(this).find('.device_types_id').val();
+                    var number_requested = $(this).find('.number_requested').val();
 
-
-                arr_order.push({
-                    device_types_id: device_types_id,
-                    number_requested: number_requested
+                    arr_order.push({
+                        device_types_id: device_types_id,
+                        number_requested: number_requested
+                    });
                 });
-
-                console.log(arr_order);
+                // console.log(department_id);
                 Swal.fire({
-                    title: 'อัพเดทข้อมูล ?',
+                    title: 'ยืนยันการแก้ไขรายการ?',
                     text: "ต้องการดำเนินการใช่หรือไม่!",
                     icon: 'warning',
                     showCancelButton: true,
@@ -612,31 +708,39 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "post",
-                            url: "{{ route('api.v1.pickup.tools.update') }}",
+                            url: "{{ route('api.v1.reward.update') }}",
                             data: {
-                                id: id,
+                                department_id: department_id,
                                 arr_order: arr_order
                             },
-                            dataType: "json",
+                            contentType: false,
+                            processData: false,
+                            cache: false,
                             success: function(response) {
+                                // console.log(response);
                                 if (response.status == 'success') {
                                     Swal.fire({
                                         position: 'center-center',
                                         icon: 'success',
-                                        title: 'อัพเดทข้อมูลสำเร็จ',
+                                        title: 'แก้ไขรายการสำเร็จ',
                                         showConfirmButton: false,
                                         timer: 1500
                                     })
-                                    pickuptoolsEdit_modal.modal('hide');
+                                    pickuptools_modal.modal('hide');
                                     getPickuptoolsCategory();
-                                    $('#pickuptoolsForm')[0].reset();
+                                    $('#pickuptoolsEditForm')[0].reset();
+                                    addedContainers.forEach(container => {
+                                        container.parentNode
+                                            .removeChild(
+                                                container);
+                                    });
+                                    addedContainers = [];
                                 }
                             }
                         });
                     }
                 });
             })
-
 
 
 

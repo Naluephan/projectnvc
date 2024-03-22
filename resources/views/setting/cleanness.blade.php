@@ -110,7 +110,7 @@
 
         .modal-dialog {
             top: 10% !important;
-            width: 450px;
+            /* width: 450px; */
         }
 
         .rounded-all {
@@ -223,7 +223,7 @@
                             <h6 class="hr-text-green" id="detail-title"></h6>
                             <p class="text-black-50" id="detail-location"></p>
                             <p class="text-black-50 mt-n3">การตรวจตราทุก <span id="detail-time">0</span>
-                                ชั่วโมง เริ่ม <span id="detail-time">0</span> น.</p>
+                                ชั่วโมง เริ่ม <span id="detail-time_start">0</span> น.</p>
                         </div>
                         <div class="col-2 col-sm-2">
                             <p class="text-end">
@@ -316,27 +316,23 @@
                                 .image_location;
                             var qr_code = positionInfo.qr_code;
                             var Item = `
-                            <div class="pb-2">
-                                <div class="button-details btn-detail cursor-pointer p-0 w-100" data-id="${id}">
-                                    <span class="button-text w-100">
-                                        <div class="row">
-                                            <div class="col-3 px-0 d-flex align-items-center justify-content-center">
-                                                <img src="${image_location}"
-                                                    alt="" style="max-width: 111.94px; max-height: 111.94px;">
-                                            </div>
-                                            <div class="col-5">
-                                                <h6 class="hr-text-green pt-2">${title}</h6>
-                                                <p class="text-black-50">${location}</p>
-                                                <p class="text-black-50">ทำความสะอาดทุก ${time} ชั่วโมง เริ่ม ${time_start} น.</p>
-                                            </div>
-
-                                            <div class="col-4">
-                                                <div class="pt-2 pb-2 pr-2 text-end">
-                                                    {!! QrCode::size(90)->generate('${id}') !!}
-                                                </div>
-                                            </div>
+                            <div class="card border border-2 p-0 rounded-4 btn-detail cursor-pointer" data-id="${id}">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div style="width: 100%; ">
+                                            <img src="${image_location}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 100%; object-fit: cover; ">
                                         </div>
-                                    </span>
+                                    </div>
+                                    <div class="col-5 ">
+                                    <b><h6 class="ml-2 hr-text-green mt-2">${title}</h6></b>
+                                        <p class="ml-2 text-black-50">${location}</p>
+                                        <p class="ml-2 text-black-50">การตรวจตราทุก ${time} ชั่วโมง เริ่ม ${time_start} น.</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mt-2 mb-2 mr-2 text-end">
+                                            {!! QrCode::size(90)->generate('${id}') !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             `;

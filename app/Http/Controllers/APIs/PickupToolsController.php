@@ -73,7 +73,7 @@ class PickupToolsController extends Controller
         return $departmentList;
     }
 
-    public function delete(Request $request)
+    public function deleteCondition(Request $request)
     {
         try {
             $data = $request->all();
