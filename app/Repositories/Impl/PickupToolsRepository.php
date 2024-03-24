@@ -16,38 +16,19 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
         parent::__construct($model);
     }
 
-    public function showDetailBydepartment($params)
-    {
-        $departmentId = $params['department_id'];
-
-        $showDetail = DB::table('pickup_tools AS PT')
-            ->join('pickup_tools_device_types AS PTDT', 'PTDT.id', '=', 'PT.device_types_id')
-            ->select(
-                'PT.id',
-                'PT.device_types_id',
-                'PTDT.device_types_name',
-                'PT.number_requested',
-                'PTDT.unit',
-            )
-            ->where('PT.department_id', '=', $departmentId)
-            ->get();
-
-
-        return $showDetail;
-    }
-
     public function allList($params)
     {
         $showDetail = DB::table('pickup_tools AS PT')
             ->join('pickup_tools_device_types AS PTDT', 'PTDT.id', '=', 'PT.device_types_id')
-            ->join('departments AS d', 'd.id', '=', 'PT.department_id')
+            ->join('positions AS p', 'p.id', '=', 'PT.position_id')
+            ->join('departments AS d', 'd.id', '=', 'p.department_id')
             ->select(
-                'PT.department_id',
-                'd.name_th AS department_name',
+                'PT.position_id',
+                'p.name_th AS position_name',
                 'd.image_departments',
-                DB::raw('COUNT(PT.department_id) AS department_count')
+                DB::raw('COUNT(PT.position_id) AS count')
             )
-            ->groupBy('PT.department_id', 'd.name_th', 'd.image_departments')
+            ->groupBy('PT.position_id', 'p.name_th', 'd.image_departments')
             ->orderBy('PT.updated_at', 'desc')
             ->get();
 

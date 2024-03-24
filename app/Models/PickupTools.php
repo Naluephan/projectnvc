@@ -9,8 +9,9 @@ class PickupTools extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'department_id',
+        'position_id',
         'device_types_id',
         'number_requested',
     ];
+
 }

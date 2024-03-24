@@ -19,13 +19,6 @@ class PickupToolsController extends Controller
         $this->departmentRepository = $departmentRepository;
     }
 
-    public function showDetailBydepartmentById(Request $request)
-    {
-        $data = $request->all();
-        $showDetail = $this->pickupToolsRepository->showDetailBydepartment($data);
-
-        return $showDetail;
-    }
 
     public function allList(Request $request)
     {

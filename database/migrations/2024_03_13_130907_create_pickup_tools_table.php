@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('pickup_tools', function (Blueprint $table) {
             $table->id();
-            $table->integer("department_id")->nullable();
+            $table->integer("position_id")->nullable();
             $table->integer("device_types_id")->nullable();
             $table->integer("number_requested")->nullable();
 
