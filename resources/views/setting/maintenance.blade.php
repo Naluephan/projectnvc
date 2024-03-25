@@ -244,14 +244,17 @@
                                 QR Code</p>
                         </div>
                         <div class="col-6">
-                            <p class="hr-icon print-qr cursor-pointer mt-1 text-end"><i class="fas fa-download"></i> ดาวน์โหลด</p>
+                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end" id="downloadQR"><i
+                                    class="fas fa-download"></i>
+                                ดาวน์โหลด</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <div class="text-center qr-code" id="qrCodeDiv">
-                                {!! QrCode::size(180)->generate('5') !!}
+                                <img src="" alt="QR Code" id="detail-maintenance_qr"
+                                    style=" width: 180px; height: 180px;">
                             </div>
                         </div>
                     </div>
@@ -296,6 +299,10 @@
                                 '{{ asset('uploads/images/setting/maintenance') }}';
                             var location_img = img_path + '/' + maintenanceInfo
                                 .maintenance_img;
+
+                            var qrCodeUrl =
+                                "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                                id;
                             var item = `
                                     <div class="card border border-2 p-0 rounded-4 btn-detail cursor-pointer" data-id="${id}">
                                         <div class="row">
@@ -311,7 +318,7 @@
                                             </div>
                                             <div class="col-4">
                                                 <div class="mt-2 mb-2 mr-2 text-end">
-                                                    {!! QrCode::size(90)->generate('${id}') !!}
+                                                    <img src="${qrCodeUrl}" alt="QR Code for ${id}"style=" width: 100px; height: 100px;" >
                                                 </div>
                                             </div>
                                         </div>
@@ -484,6 +491,9 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        var qrCodeUrl =
+                            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                            response.data.id;
                         var img_url = ''
                         if (response.data.maintenance_img != null) {
                             img_url = "{{ asset('uploads/images/setting/maintenance') }}/" +
@@ -494,6 +504,7 @@
                         $('#detail-maintenance_patrol').text(response.data.maintenance_patrol);
                         $('#detail-maintenance_time').text(response.data.maintenance_time);
                         $('#detail-maintenance_img').attr('src', img_url);
+                        $('#detail-maintenance_qr').attr('src', qrCodeUrl);
                         $('#maintenance_id').val(response.data.id);
                         $('#maintenance_edit').val(response.data.id);
                         $('#maintenance_edit').data('name', response.data.name);
@@ -586,22 +597,23 @@
                     }
                 });
             })
-            $('.print-qr').click(function() {
-                printQRCode();
-            });
 
-            function printQRCode() {
-                var printContents = $('#qrCodeDiv').html();
-                var newWindow = window.open('', '_blank');
-
-                newWindow.document.write('<html><head><title>Print</title></head><body>');
-                newWindow.document.write(printContents);
-                newWindow.document.write('</body></html>');
-
-                newWindow.document.close();
-                newWindow.print();
-            }
             ////
+        });
+    </script>
+    <script>
+        document.getElementById("downloadQR").addEventListener("click", function() {
+            var qrImageSrc = document.getElementById("detail-maintenance_qr").getAttribute("src");
+            if (qrImageSrc) {
+                var link = document.createElement("a");
+                link.href = qrImageSrc;
+                link.download = "QR_Code.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                console.error("QR Code image source is not available.");
+            }
         });
     </script>
 @stop

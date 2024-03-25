@@ -14,24 +14,25 @@
     }
 </style>
 @section('side-card')
+<div class="row mb-2 mt-n3">
+    <div class="col-12 col-sm-6"></div>
+    <div class="col-12 col-sm-6">
+        <select name="company_filter" id="company_filter"
+            class="js-example-basic-single form-select input-modal rounded-pill hr-text-green company_filter"
+            style="width: 100%;">
+            <option value="-1">--บริษัท--</option>
+            @foreach ($companies as $company)
+                <option value="{{ $company->id }}">{{ $company->name_th }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
 
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <div class="row">
-                <div class="col-6">
+           
                     <h6><i class="fas fa-th-large"></i> แผนกและตำแหน่ง</h6>
-                </div>
-                <div class="col-6">
-                    <select name="company_filter" id="company_filter"
-                        class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color company_filter"
-                        style="width: 100%;">
-                        <option value="-1">--บริษัท--</option>
-                        @foreach ($companies as $company)
-                            <option value="{{ $company->id }}">{{ $company->name_th }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+              
         </div>
         <div class="card-body">
             <div class="row mt-n4 department_list" id="department_list">
@@ -39,9 +40,6 @@
             </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"
                 data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-plus"></i> เพิ่มข้อมูล</button>
-        </div>
-        <div class="card-footer bg-transparent">
-            <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
         </div>
     </div>
 

@@ -85,7 +85,7 @@
                             <span class="button-image setting-image-1 w-40"></span>
                             <span class="button-text w-60">
                                 <h6>หมวดหมู่</h6>
-                                <h6>อุปกรณ์</h6>kashian krongnawakul
+                                <h6>อุปกรณ์</h6>
                             </span>
                         </a>
                     </div>
@@ -115,7 +115,7 @@
                         <a href="{{ route('companies.create') }}"
                             class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*companies.create*')) active @endif">
                             <span class="button-image setting-image-company w-40"></span>
-                            <span class="button-text w-60">
+                            <span class="button-text w-60 d-flex">
                                 <h6 class="my-auto text-bold">บริษัท</h6>
                                 {{-- <h6>และตำแหน่ง</h6> --}}
                             </span>

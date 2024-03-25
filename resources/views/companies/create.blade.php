@@ -4,6 +4,7 @@
         color: #fff !important;
         border-color: #FA9583 !important;
         background-color: #FA9583 !important;
+        padding: 0.75rem !important;
     }
 
     .btn-danger:hover {
@@ -16,6 +17,7 @@
         color: #fff !important;
         border-color: #77c6c5 !important;
         background-color: #77c6c5 !important;
+        padding: 0.75rem !important;
     }
 
     .btn-success:hover {
@@ -37,7 +39,11 @@
     .form-control {
         background-color: #fff !important;
         color: #136E68 !important;
-        border-color: #77c6c5 !important;
+        border-color: #c0e7e7 !important;
+        height: 45px !important;
+    }
+    .addNews {
+        background-color: #EDF5F4 !important;
     }
 
     .btn-outline-successful {
@@ -53,16 +59,15 @@
 </style>
 
 @section('side-card')
-    <div class="row">
-        <div class="col-12">
-            <div class="container p-4 m-2 rounded-3 shadow-sm bg-hr-card">
-                <div class="row">
-                    <h6><i class="fa-solid fa-file-circle-plus"></i> เพิ่มบริษัท</h6>
-                    <div class="row list_company" id="list_company">
-                    </div>
-                </div>
-                <button type="button" class="form-control btn btn-outline-success rounded-pill add-company" id="add-company"
-                    data-bs-toggle="modal" data-bs-target="#companyModal" style="width: 100%; "><i
+    <div class="card rounded-4 bg-hr-card">
+        <div class="card-header border-0">
+            <h6><i class="fa-solid fa-file-circle-plus"></i> เพิ่มบริษัท</h6>
+        </div>
+        <div class="card-body pt-0">
+            <div class="row list_company" id="list_company"></div>
+            <div class="button p-2 mt-2">
+                <button type="button" class="form-control btn btn-outline-success rounded-pill add-company"
+                    id="add-company" data-bs-toggle="modal" data-bs-target="#companyModal" style="width: 100%; "><i
                         class="fa-solid fa-plus"></i> สร้างรายการใหม่</button>
             </div>
         </div>
@@ -193,7 +198,7 @@
                             // var logo = company.administ_name;
                             // console.log(response);
                             var Item = `
-                            <div class="test pt-2 mb-3">
+                            <div class="test pt-2 mb-1">
                                 <div class="row">
                                     <div class="col-12 d-flex">
                                         <div class="input-group">
@@ -201,7 +206,7 @@
                                             <label class="position-main pt-2">${name_th}</label>
                                         </div>
 
-                                        <button class="btn btn-sm btn-success rounded-pill btn-edit mx-2" 
+                                        <button class="btn btn-sm btn-success rounded-pill btn-edit mx-1" 
                                              data-id="${company_id}"
                                             data-ac="edit" data-bs-toggle="modal" data-bs-target="#companyModal">
                                             <em class="fas fa-edit fs-5"></em>

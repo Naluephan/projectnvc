@@ -15,7 +15,10 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            padding: 2rem;
+        }
+        .image-administ-profile {
+            /* max-height: 10rem; */
+            padding: 1rem;
         }
         .bg-danger {
             background-color: #e6896a !important;
@@ -25,8 +28,9 @@
             border-color: #e6896a !important;
         }
 
-        .image-administ-profile {
-            background-image: url({{ asset('images/menu/emp1.png') }});
+        .image-profile {
+            max-width:100%;
+            min-height: 1rem;
         }
        
     </style>
@@ -45,16 +49,18 @@
             </div>
             <div class="row text-center mt-3 mb-3 bg-white rounded-3 border border-danger">
                 <div class="col-2 rounded-start image-administ"></div>
-                <div class="col-2 p-3">ประเภทงาน</div>
-                <div class="col-2 p-3">รายการ</div>
-                <div class="col-2 p-3">วัน-เวลาที่เริ่ม</div>
+                <div class="col-2 p-3 m-auto">ประเภทงาน</div>
+                <div class="col-2 p-3 m-auto">รายการ</div>
+                <div class="col-2 p-3 m-auto">วัน-เวลาที่เริ่ม</div>
                 <div class="col-2 p-3">
                     <div class="row">
-                        <div class="col-6 image-administ-profile rounded-circle"></div>
-                        <div class="col-6">ผู้รับงาน</div>
+                        <div class="col-6">
+                            <img src="{{ asset('images/menu/emp1.png') }}" class="image-profile rounded-circle img-fluid" alt="profile">
+                        </div>
+                        <div class="col-6 m-auto">ผู้รับงาน</div>
                     </div>
                 </div>
-                <div class="col-2 p-3">ความเร่งด่วน</div>
+                <div class="col-2 p-3 m-auto">ความเร่งด่วน</div>
             </div>
         </div>
         <div class="col-12 col-sm-5 bg-white p-4">
