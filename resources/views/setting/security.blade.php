@@ -129,9 +129,6 @@
                     class="fa-solid fa-plus"></i>
                 เพิ่มข้อมูล</button>
         </div>
-        <div class="card-footer bg-transparent">
-            <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
-        </div>
     </div>
     <div class="modal fade" id="securityModal" tabindex="-1" aria-labelledby="securityModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
@@ -244,14 +241,15 @@
                                 QR Code</p>
                         </div>
                         <div class="col-6">
-                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end"><i class="fas fa-download"></i> ดาวน์โหลด</p>
+                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end" id="downloadQR"><i class="fas fa-download"></i>
+                                ดาวน์โหลด</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <div class="text-center qr-code" id="qrCodeDiv">
-                                {!! QrCode::size(180)->generate('5') !!}
+                                <img src="" alt="QR Code" id="detail-security_qr" style=" width: 180px; height: 180px;">
                             </div>
                         </div>
                     </div>
@@ -292,10 +290,14 @@
                         $(".security_list").empty();
                         $.each(response.data, function(index, securityInfo) {
                             var id = securityInfo.id;
-                            var img_path =
-                                '{{ asset('uploads/images/setting/security') }}';
-                            var location_img = img_path + '/' + securityInfo
-                                .security_img;
+                            var img_path = '{{ asset('uploads/images/setting/security') }}';
+                            var location_img = img_path + '/' + securityInfo.security_img;
+
+                            // Generate QR Code URL for the current security ID
+                            var qrCodeUrl =
+                                "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                                id;
+
                             var item = `
                                     <div class="card border border-2 p-0 rounded-4 btn-detail cursor-pointer" data-id="${id}">
                                         <div class="row">
@@ -305,13 +307,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-5 ">
-                                            <b><h6 class="ml-2 hr-text-green mt-2">${securityInfo.name}</h6></b>
+                                                <b><h6 class="ml-2 hr-text-green mt-2">${securityInfo.name}</h6></b>
                                                 <p class="ml-2 text-black-50">${securityInfo.location}</p>
                                                 <p class="ml-2 text-black-50">การตรวจตราทุก ${securityInfo.security_patrol} ชั่วโมง เริ่ม ${securityInfo.security_time} น.</p>
                                             </div>
                                             <div class="col-4">
                                                 <div class="mt-2 mb-2 mr-2 text-end">
-                                                    {!! QrCode::size(90)->generate('${id}') !!}
+                                                    <img src="${qrCodeUrl}" alt="QR Code for ${id}"style=" width: 100px; height: 100px;" >
                                                 </div>
                                             </div>
                                         </div>
@@ -319,10 +321,10 @@
                                 `;
                             $(".security_list").append(item);
                         });
-
                     }
                 });
             }
+
             getSecurityList();
 
             $(document).on('click', '.btn-add', function() {
@@ -485,6 +487,7 @@
                     dataType: "json",
                     success: function(response) {
                         var img_url = ''
+                        var qrCodeUrl ="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + response.data.id;
                         if (response.data.security_img != null) {
                             img_url = "{{ asset('uploads/images/setting/security') }}/" +
                                 response.data.security_img;
@@ -494,6 +497,7 @@
                         $('#detail-security_patrol').text(response.data.security_patrol);
                         $('#detail-security_time').text(response.data.security_time);
                         $('#detail-security_img').attr('src', img_url);
+                        $('#detail-security_qr').attr('src', qrCodeUrl);
                         $('#security_id').val(response.data.id);
                         $('#security_edit').val(response.data.id);
                         $('#security_edit').data('name', response.data.name);
@@ -585,22 +589,24 @@
                     }
                 });
             })
-            $('.print-qr').click(function() {
-                printQRCode();
-            });
-
-            function printQRCode() {
-                var printContents = $('#qrCodeDiv').html();
-                var newWindow = window.open('', '_blank');
-
-                newWindow.document.write('<html><head><title>Print</title></head><body>');
-                newWindow.document.write(printContents);
-                newWindow.document.write('</body></html>');
-
-                newWindow.document.close();
-                newWindow.print();
-            }
+            
             ////
+        });
+    </script>
+    <script>
+        // ให้ดาวน์โหลด QR Code เมื่อคลิกที่ปุ่ม "ดาวน์โหลด"
+        document.getElementById("downloadQR").addEventListener("click", function() {
+            var qrImageSrc = document.getElementById("detail-security_qr").getAttribute("src");
+            if (qrImageSrc) {
+                var link = document.createElement("a");
+                link.href = qrImageSrc;
+                link.download = "QR_Code.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                console.error("QR Code image source is not available.");
+            }
         });
     </script>
 @stop
