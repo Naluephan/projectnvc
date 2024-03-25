@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('reward_coins', function (Blueprint $table) {
             $table->id();
-            $table->string("reward_name")->nullable();
+            $table->string("reward_name")->nullable()->unique();
             $table->string("reward_image")->nullable();
             $table->string("reward_description")->nullable();
             $table->integer("reward_coins_change")->nullable();

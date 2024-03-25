@@ -125,7 +125,7 @@
                         d="M170.7 469.3h256a42.7 42.7 0 0 0 42.6-42.6V170.7a42.7 42.7 0 0 0-42.6-42.7H170.7a42.7 42.7 0 0 0-42.7 42.7v256a42.7 42.7 0 0 0 42.7 42.6z m426.6 0h256a42.7 42.7 0 0 0 42.7-42.6V170.7a42.7 42.7 0 0 0-42.7-42.7h-256a42.7 42.7 0 0 0-42.6 42.7v256a42.7 42.7 0 0 0 42.6 42.6zM170.7 896h256a42.7 42.7 0 0 0 42.6-42.7v-256a42.7 42.7 0 0 0-42.6-42.6H170.7a42.7 42.7 0 0 0-42.7 42.6v256a42.7 42.7 0 0 0 42.7 42.7z m554.6 0c94.1 0 170.7-76.5 170.7-170.7s-76.5-170.7-170.7-170.6-170.7 76.5-170.6 170.6 76.5 170.7 170.6 170.7z">
                     </path>
                 </svg> รักษาความสะอาด</h6>
-            <p>กำหนดจุดแสกนเพื่อรักษาความสะอาด</p>
+            <p class="mb-0">กำหนดจุดแสกนเพื่อรักษาความสะอาด</p>
         </div>
         <div class="card-body pt-0">
             <div class="mt-1 pb-2 list_position" id="list_position">
@@ -250,7 +250,8 @@
                                 QR Code</p>
                         </div>
                         <div class="col-6">
-                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end"><i class="fas fa-download"></i>
+                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end" id="downloadQR"><i
+                                    class="fas fa-download"></i>
                                 ดาวน์โหลด</p>
                         </div>
                     </div>
@@ -258,7 +259,8 @@
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <div class="text-center qr-code" id="qrCodeDiv">
-                                {!! QrCode::size(180)->generate('5') !!}
+                                <img src="" alt="QR Code" id="detail-security_qr"
+                                    style=" width: 180px; height: 180px;">
                             </div>
                         </div>
                     </div>
@@ -314,7 +316,9 @@
                                 '{{ asset('uploads/images/content/cleanness') }}';
                             var image_location = img_path + '/' + positionInfo
                                 .image_location;
-                            var qr_code = positionInfo.qr_code;
+                            var qrCodeUrl =
+                                "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                                id;
                             var Item = `
                             <div class="card border border-2 p-0 rounded-4 btn-detail cursor-pointer" data-id="${id}">
                                 <div class="row">
@@ -330,7 +334,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="mt-2 mb-2 mr-2 text-end">
-                                            {!! QrCode::size(90)->generate('${id}') !!}
+                                            <img src="${qrCodeUrl}" alt="QR Code for ${id}"style=" width: 100px; height: 100px;" >
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +377,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -428,7 +432,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -478,14 +482,6 @@
                             }
                         });
                     }
-                } else {
-                    Swal.fire({
-                        title: 'กรุณากรอกข้อมูล',
-                        icon: 'warning',
-                        iconColor: '#FA9583',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 }
             });
 
@@ -502,8 +498,11 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        // console.log(response);
+                        console.log(response);
                         var img_url = ''
+                        var qrCodeUrl =
+                            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                            response.id;
                         if (response.image_location != null) {
                             img_url = "{{ asset('uploads/images/content/cleanness') }}/" +
                                 response.image_location;
@@ -513,6 +512,7 @@
                         $('#detail-time').text(response.time);
                         $('#detail-time_start').text(response.time_start);
                         $('#detail-image_location').attr('src', img_url);
+                        $('#detail-security_qr').attr('src', qrCodeUrl);
                         $('#cleanness_id').val(response.id);
                         $('#cleanness_edit').val(response.id);
                         $('#cleanness_edit').data('title', response.title);
@@ -552,7 +552,7 @@
 
             $(document).on('click', '.btn-delete', function() {
                 const id = $('#cleanness_id').val();
-                console.log(id);
+                // console.log(id);
                 Swal.fire({
                     title: 'ยืนยันการลบรายการ?',
                     text: "ต้องการดำเนินการใช่หรือไม่!",
@@ -604,20 +604,22 @@
                 });
             })
 
-            $('.print-qr').click(function() {
-                printQRCode();
-            });
+        });
+    </script>
 
-            function printQRCode() {
-                var printContents = $('#qrCodeDiv').html();
-                var newWindow = window.open('', '_blank');
-
-                newWindow.document.write('<html><head><title>Print</title></head><body>');
-                newWindow.document.write(printContents);
-                newWindow.document.write('</body></html>');
-
-                newWindow.document.close();
-                newWindow.print();
+    <script>
+        // ให้ดาวน์โหลด QR Code เมื่อคลิกที่ปุ่ม "ดาวน์โหลด"
+        document.getElementById("downloadQR").addEventListener("click", function() {
+            var qrImageSrc = document.getElementById("detail-security_qr").getAttribute("src");
+            if (qrImageSrc) {
+                var link = document.createElement("a");
+                link.href = qrImageSrc;
+                link.download = "QR_Code.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                console.error("QR Code image source is not available.");
             }
         });
     </script>

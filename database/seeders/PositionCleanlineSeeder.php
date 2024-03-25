@@ -16,14 +16,6 @@ class PositionCleanlineSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('position_clean_lines')->insert([
-            [
-                'title' => 'รักษาความสะอาดจุดที่ 1',
-                'location' => 'ห้องน้ำชั้นที่ 1',
-                'time' => '3',
-                'time_start' => '08:00',
-                'image_location' => 'cleanness.jpg',
-            ],
-        ]);
+        //
     }
 }
