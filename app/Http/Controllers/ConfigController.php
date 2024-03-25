@@ -99,6 +99,12 @@ class ConfigController extends Controller
     {
         return view('companies.create');
     }
+     //////////// categories leave ////////////
+     public function categoriesLeaveCreate()
+     {
+         return view('holiday.categories_leave');
+     }
+
     public function configMaintenance()
     {
         return view('setting.maintenance');

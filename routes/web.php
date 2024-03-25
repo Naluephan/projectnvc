@@ -150,14 +150,13 @@ Route::get('/request/saraly/slip', [App\Http\Controllers\SalaryRequestSlipContro
 
 //Emp Leave
 Route::get('/empleave/list', [App\Http\Controllers\EmployeeLeaveController::class, 'list'])->name('empleave.list');
+Route::get('/categories/leave/create', [App\Http\Controllers\ConfigController::class, 'categoriesLeaveCreate'])->name('categories.leave.create');
 
 
 Route::get('/position/cleanline', [App\Http\Controllers\ConfigController::class, 'listPositionCleanline'])->name('position.cleanline');
 
 Route::get('/supply/list', [App\Http\Controllers\ConfigController::class, 'listSupply'])->name('supply.list');
 
-//////// Category Topic ////////
-Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class, 'newsTopicCategory'])->name('news.topic.category');
 
 //////// Category Topic ////////
 Route::get('/news/Topic/Category', [App\Http\Controllers\ConfigController::class, 'newsTopicCategory'])->name('news.topic.category');

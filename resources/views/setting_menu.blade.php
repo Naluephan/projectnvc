@@ -63,12 +63,16 @@
             background-image: url({{ asset('images/menu/company.png') }});
             /* replace with your image URL */
         }
+        .setting-image-leave {
+            background-image: url({{ asset('images/menu/leaveType.jpg') }});
+            /* replace with your image URL */
+        }
 
         .setting-image-12 {
             background-image: url({{ asset('images/menu/12.png') }});
             /* replace with your image URL */
         }
-    </style>
+    </style>leaveType
 @stop
 @section('content')
     <div class="row h-100vh">
@@ -255,6 +259,15 @@
                             <span class="button-text w-60">
                                 <h6>วันหยุด</h6>
                                 <h6>ประจำปี</h6>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <a href="{{ route('categories.leave.create') }}"
+                            class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*categories.leave.create*')) active @endif">
+                            <span class="button-image setting-image-leave w-40"></span>
+                            <span class="button-text w-60 d-flex">
+                                <h6 class="my-auto text-bold">ประเภทวันหยุด</h6>
                             </span>
                         </a>
                     </div>
