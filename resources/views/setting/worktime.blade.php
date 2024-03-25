@@ -29,6 +29,10 @@
             color: #fff;
             border-color: #1b8f8d;
         }
+        .form-check-input:checked + .form-check-label {
+    border: 1px solid #1b8f8d;
+}
+
 
     </style>
     <div class="card rounded-4 bg-hr-card">
@@ -43,7 +47,7 @@
                     <path d="M15 3v4" />
                     <path d="M7 3v4" />
                     <path d="M3 11h16" />
-                </svg> วันหยุดประจำปี
+                </svg> วันและเวลาทำงาน
             </h6>
         </div>
         <div class="card-body">
@@ -54,9 +58,9 @@
                     class="fa-solid fa-plus"></i>
                 เพิ่มหมวดหมู่</button>
         </div>
-        <div class="card-footer bg-transparent">
+        {{-- <div class="card-footer bg-transparent">
             <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
-        </div>
+        </div> --}}
     </div>
 
     <div class="modal fade" id="worktimeModal" tabindex="-1" aria-labelledby="worktimeModalLabel" aria-hidden="true"
@@ -77,7 +81,7 @@
                                     d="M864 708.5V576a64 64 0 0 0-64-64h-256v-128h64a64.1 64.1 0 0 0 64-64V128a64.1 64.1 0 0 0-64-64h-192a64.1 64.1 0 0 0-64 64v192a64.1 64.1 0 0 0 64 64h64v128H224a64 64 0 0 0-64 64v132.5a128 128 0 1 0 64 0V576h256v132.5a128 128 0 1 0 64 0V576h256v132.5a128 128 0 1 0 64 0ZM416 128h192l0 192H416ZM256 832a64 64 0 1 1-64-64 64.1 64.1 0 0 1 64 64Zm320 0a64 64 0 1 1-64-64 64.1 64.1 0 0 1 64 64Zm256 64a64 64 0 1 1 64-64 64.1 64.1 0 0 1-64 64Z">
                                 </path>
                             </svg>
-                            <label for="department_id" class="col-form-label">แผนก</label>
+                            <label for="department_id" class="col-form-label text-color">แผนก</label>
                             <select class="form-select input-modal rounded-pill bg-white text-color" name="department_id" id="department_id" value="" required>
                                 <option>เลือกแผนก</option>
                                 @foreach ($departments as $departmnet)
@@ -86,7 +90,7 @@
                             </select>
                         </div>
 
-                        <label for="worktime_day" class="col-form-label"><i
+                        <label for="worktime_day" class="col-form-label text-color"><i
                                 class="fa-solid fa-calendar-days text-hr-orange" style="margin-right: 10px"></i>วันทำงาน</label>
                                 <div class="mb-3" style="margin-left: 65px;margin-right: 0px;">
                             {{-- <input type="checkbox" name="worktime_day1" value="อาทิตย์"> อา<br>
@@ -127,7 +131,7 @@
                     </div>
                         <div class="mb-3">
                             <div class="row">
-                                <label for="worktime" class="col-form-label"><i class="fa-solid fa-clock text-hr-orange"
+                                <label for="worktime" class="col-form-label text-color"><i class="fa-solid fa-clock text-hr-orange"
                                         style="margin-right: 10px"></i>เวลาทำงาน</label>
                                 <div class="col-6">
                                     <input type="time" class="form-control rounded-pill text-color" id="worktime_start"
@@ -170,7 +174,7 @@
             document.querySelectorAll('.form-check-input').forEach(item => {
                 item.addEventListener('change', event => {
                     if (event.target.checked) {
-                        event.target.nextElementSibling.style.color = 'blue';
+                        event.target.nextElementSibling.style.color = '#1b8f8d';
                         event.target.nextElementSibling.style.fontWeight = 'bold';
                     } else {
                         event.target.nextElementSibling.style.color = '';
@@ -274,7 +278,7 @@
                                         toast: true
                                     });
                                     worktime_modal.modal('hide');
-                                    getWorktime();
+                                    getWorktime.reload();
                                 } else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',

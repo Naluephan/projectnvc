@@ -16,9 +16,9 @@
                     class="fa-solid fa-plus"></i>
                 เพิ่มข้อมูล</button>
         </div>
-        <div class="card-footer bg-transparent">
+        {{-- <div class="card-footer bg-transparent">
             <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
-        </div>
+        </div> --}}
     </div>
 
     <div class="modal fade" id="buildinglocationModal" tabindex="-1" aria-labelledby="buildinglocationModalLabel"
@@ -229,7 +229,45 @@
                     });
                 }
             });
+          // เรียกฟังก์ชันเมื่อมีการเปลี่ยนแปลงใน input ของ id="total_floors"
+    document.getElementById("total_rooms").addEventListener("input", function() {
+        // เลือก div container ที่มีคลาส "list-building" เพื่อนับจำนวน input fields ที่มี id="floor"
+        var listBuilding = document.querySelector(".list-building");
+        var floorInputs = listBuilding.querySelectorAll("#place_name");
+        var totalFloors = parseInt(this.value); // รับค่าจำนวนชั้นที่กรอกเข้ามา
 
+        // เช็คจำนวน input fields ที่มีอยู่แล้ว
+        var currentFloorCount = floorInputs.length;
+
+        // เริ่มต้นการเพิ่มหรือลบ input fields เพื่อให้ตรงกับจำนวนที่ใส่เข้ามา
+        if (totalFloors > currentFloorCount) {
+            // ต้องการเพิ่ม input fields
+            var floorsToAdd = totalFloors - currentFloorCount;
+            for (var i = 0; i < floorsToAdd; i++) {
+                // สร้าง div element ใหม่เพื่อเก็บ label และ input field
+                var newDiv = document.createElement("div");
+                newDiv.classList.add("row");
+                newDiv.innerHTML = `
+                    <div class="col-6">
+                        <label for="floor" class="col-form-label text-color"><i class="fa-sharp fa-solid fa-stairs" style="color:#e6896a; margin-right:10px"></i>ชั้น</label>
+                        <input type="text" class="form-control" id="floor" name="floor" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="place_name" class="col-form-label text-color"><i class="fa-solid fa-hotel" style="color:#e6896a; margin-right:10px"></i>ชื่อห้อง/สถานที่</label>
+                        <input type="text" class="form-control" id="place_name" name="place_name" required>
+                    </div>
+                `;
+                listBuilding.appendChild(newDiv);
+            }
+        } else if (totalFloors < currentFloorCount) {
+            // ต้องการลบ input fields เนื่องจากป้อนจำนวนน้อยลง
+            var floorsToRemove = currentFloorCount - totalFloors;
+            for (var i = 0; i < floorsToRemove; i++) {
+                // ลบ div element ล่าสุดที่มีคลาส "row"
+                listBuilding.removeChild(listBuilding.lastElementChild);
+            }
+        }
+    });
             $(document).on('click', '.save-buildinglocation', function() {
                 let id = $("#id").val();
                 let buildinglocationForm = $("#buildinglocationForm");
