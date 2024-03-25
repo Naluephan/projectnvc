@@ -59,8 +59,26 @@ class NewsNoticeRepository extends BaseRepository implements NewsNoticeInterface
     {
         $newsId = $params['news_id'];
 
-        return $this->model->where('id', $newsId)->get();
+        $leaveQuotas = DB::table('news_notices AS n')
+            ->join('news_types AS nc', 'nc.id', '=', 'n.notice_category_id')
+            ->select(
+                'n.id',
+                'n.news_notice_name AS announcement_topic',
+                'n.news_notice_description AS announcement_content',
+                'n.news_img1',
+                'n.news_img2',
+                'n.news_img3',
+                'nc.id AS category_id',
+                'nc.name_category AS category',
+                'n.created_at AS add_date',
+                'n.record_status',
+            )
+            ->where('n.id', $newsId)
+            ->get();
+
+        return $leaveQuotas;
     }
+
 
     public function getAll()
     {
@@ -77,8 +95,6 @@ class NewsNoticeRepository extends BaseRepository implements NewsNoticeInterface
                 'nc.id AS category_id',
                 'nc.name_category AS category',
                 'n.created_at AS add_date',
-                'n.published_at AS start_date',
-                'n.cancelled_at AS end_date',
                 // DB::raw("CONCAT(e.f_name, ' ', e.l_name) AS announcer_name"),
                 'n.record_status',
             )
