@@ -1,10 +1,10 @@
 @extends('setting_menu')
 @section('side-card')
-<style>
-     .modal-footer{
-           justify-content: center;
+    <style>
+        .modal-footer {
+            justify-content: center;
         }
-</style>
+    </style>
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
             <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
@@ -28,9 +28,6 @@
                     class="fa-solid fa-plus"></i>
                 เพิ่มหมวดหมู่</button>
         </div>
-        <div class="card-footer bg-transparent">
-            <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
-        </div>
     </div>
 
     <div class="modal fade" id="holidayModal" tabindex="-1" aria-labelledby="holidayModalLabel" aria-hidden="true"
@@ -46,20 +43,24 @@
                     <form id="holidayForm">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3">
-                            <label for="holiday_name" class="col-form-label"><i class="fa-solid fa-calendar-days"></i>วันหยุด :</label>
-                            <input type="text" class="form-control rounded-pill" id="holiday_name"
-                                name="holiday_name" required>
+                            <label for="holiday_name" class="col-form-label text-color"><i
+                                    class="fa-solid fa-calendar-days text-hr-orange"
+                                    style="margin-right: 10px"></i>วันหยุด</label>
+                            <input type="text" class="form-control rounded-pill" id="holiday_name" name="holiday_name"
+                                required>
                         </div>
                         <div class="mb-3">
                             <div class="row">
-                                <label for="holiday" class="col-form-label"><i class="fa-solid fa-calendar-days"></i>เลือกวันที่เริ่มต้น / วันที่สิ้นสุด</label>
+                                <label for="holiday" class="col-form-label text-color"><i
+                                        class="fa-solid fa-calendar-days text-hr-orange"
+                                        style="margin-right: 10px"></i>เลือกวันที่เริ่มต้น / วันที่สิ้นสุด</label>
                                 <div class="col-6">
-                                    <input type="date" class="form-control rounded-pill" id="holiday_start"
+                                    <input type="date" class="form-control rounded-pill text-color" id="holiday_start"
                                         name="holiday_start" required>
-                                        
+
                                 </div>
                                 <div class="col-6">
-                                    <input type="date" class="form-control rounded-pill" id="holiday_end"
+                                    <input type="date" class="form-control rounded-pill text-color" id="holiday_end"
                                         name="holiday_end" required>
                                 </div>
                             </div>
@@ -97,8 +98,18 @@
                         response.forEach(function(holidayInfo) {
                             var holidayId = holidayInfo.id;
                             var holidayName = holidayInfo.holiday_name;
-                            var holidayStart = holidayInfo.holiday_start;
-                            var holidayEnd = holidayInfo.holiday_end;
+                            // var holidayStart = moment(holidayInfo.holiday_start).locale('th').format('D');
+                            // var holidayEnd = moment(holidayInfo.holiday_end).locale('th').format('LL');
+                            var holidayStart = moment(holidayInfo.holiday_start).locale('th');
+                            var holidayEnd = moment(holidayInfo.holiday_end).locale('th');
+
+                            // เช็คว่าวันเริ่มและสิ้นสุดเป็นวันเดียวกันหรือไม่
+                            if (holidayStart.isSame(holidayEnd, 'day')) {
+                                var holidayDate = holidayStart.format('D MMMM YYYY'); // แสดงผลวันที่เป็นตัวเลข  เดือน  ปี
+                            } else {
+                                var holidayDate = holidayStart.format('D') + ' - ' + holidayEnd.format('D MMMM YYYY'); // แสดงผลเฉพาะวันที่เมื่อเริ่มและสิ้นสุดไม่เหมือนกัน
+                            }
+
                             var Item = `
                             <div class="test pt-2">
                                     <div class="row">
@@ -107,7 +118,7 @@
                                                 <input type="text" class="form-control rounded-pill bg-white text-sm"
                                                     style="border-color: #c0e7e7; height: 45px;" disabled>
                                                 <label class="position-main pt-2">${holidayName}</label>
-                                                <label class="position-main2 pt-2">${holidayStart}</label>
+                                                <label class="position-main2 pt-2">${holidayDate}</label>
                                             </div>&nbsp;&nbsp;
                                             <button class="btn btn-sm rounded-pill btn-edit" style="color: #ffff;" data-id="${holidayId}"
                                                 data-ac="edit" data-bs-toggle="modal" data-bs-target="#holidayModal"><em
@@ -128,28 +139,6 @@
             $(document).on('click', '.btn-add', function() {
                 holiday_modal.modal('show')
             })
-
-            function formatDateThai(dateInput) {
-        var date = new Date(dateInput);
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear() + 543; // เพิ่ม 543 เพื่อแปลงเป็น พ.ศ.
-        return year + "-" + (month < 10 ? '0' : '') + month + "-" + (day < 10 ? '0' : '') + day;
-    }
-
-    // เมื่อมีการเปลี่ยนค่าใน input วันที่เริ่มต้น ให้แปลงรูปแบบให้เป็นรูปแบบไทย
-    document.getElementById('holiday_start').addEventListener('change', function () {
-        var inputDate = this.value;
-        var thaiDate = formatDateThai(inputDate);
-        this.value = thaiDate;
-    });
-
-    // เมื่อมีการเปลี่ยนค่าใน input วันที่สิ้นสุด ให้แปลงรูปแบบให้เป็นรูปแบบไทย
-    document.getElementById('holiday_end').addEventListener('change', function () {
-        var inputDate = this.value;
-        var thaiDate = formatDateThai(inputDate);
-        this.value = thaiDate;
-    });
 
             $(document).on('click', '.save-holiday', function() {
                 let id = $("#id").val();
