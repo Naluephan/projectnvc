@@ -10,6 +10,7 @@ class RewardCoinHistory extends Model
     use HasFactory;
 
     protected $fillable = [
+        'emp_id',
         'type_reward',
         'reward_name',
         'reward_image',

@@ -18,6 +18,7 @@ class RewardCoinHistorySeeder extends Seeder
     {
         DB::table('reward_coin_histories')->insert([
             [
+                'emp_id' => 165,
                 'type_reward' => 1,
                 'reward_name' => 'ขนม',
                 'reward_image' => 'https://cdn.discordapp.com/attachments/589087498949361665/685417712406495262/gghh.jpg?ex=65f413fd&is=65e19efd&hm=19ce67a273284ffbb444b4e6d1975bbdb5da3da196a5830bb4ac5c976adc614a&',
@@ -25,6 +26,7 @@ class RewardCoinHistorySeeder extends Seeder
                 'record_status' => 1,
             ],
             [
+                'emp_id' => 165,
                 'type_reward' => 2,
                 'reward_name' => 'ของมีค่า',
                 'reward_image' => 'https://cdn.discordapp.com/attachments/589087498949361665/685417712406495262/gghh.jpg?ex=65f413fd&is=65e19efd&hm=19ce67a273284ffbb444b4e6d1975bbdb5da3da196a5830bb4ac5c976adc614a&',
