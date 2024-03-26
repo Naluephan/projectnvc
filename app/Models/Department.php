@@ -24,4 +24,8 @@ class Department extends Model
     public function position(){
         return $this->hasMany(Position::class,'department_id');
     }
+
+    public function pickupTools(){
+        return $this->hasMany(PickupTools::class,'department_id','id');
+    }
 }

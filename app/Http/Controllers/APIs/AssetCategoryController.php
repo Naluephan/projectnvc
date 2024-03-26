@@ -15,25 +15,44 @@ class AssetCategoryController extends Controller
         $this->assetcategoryRepository = $assetcategoryRepository;
     }
 
-    public function getAssetCategory(Request $request){
+    public function getAssetCategory(Request $request)
+    {
+        $postData = $request->all();
+        $result = [];
 
-        return $this->assetcategoryRepository->getAll();
+        try {
+            $param = [];
+
+
+            $assetcategoryList = $this->assetcategoryRepository->getAll($param);
+
+
+            $result['status'] = "success";
+            $result['data'] = $assetcategoryList;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
     }
 
     public function create(Request $request)
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
+        $result = [];
         try {
             $this->assetcategoryRepository->create($data);
+
+            $result['status'] = "success";
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function update(Request $request)
@@ -41,16 +60,16 @@ class AssetCategoryController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
-            $this->assetcategoryRepository->update($id,$data);
+            $this->assetcategoryRepository->update($id, $data);
+            $result['status'] = "success";
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex;
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function delete(Request $request)
@@ -61,12 +80,12 @@ class AssetCategoryController extends Controller
         try {
             $this->assetcategoryRepository->delete($id);
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function getById(Request $request)

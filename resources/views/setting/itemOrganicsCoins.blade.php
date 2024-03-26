@@ -49,13 +49,18 @@
         .import-file input[type="file"] {
             display: none;
         }
+
+        .col-2.pt-2 i.fas.fa-sort-down {
+            font-size: 25px;
+            color: #91d0c9;
+        }
     </style>
 
     <div class="card p-3 rounded-4 bg-hr-card">
         <div class="card-header border-0 pb-0">
             <h6 class="text-bold"><i class="fas fa-cubes"></i> Item Organics Coins</h6>
         </div>
-        <div class="card-body pt-0">
+        <div class="card-body pt-2">
             <div class="mt-1 list_itemOrganicsCoins pb-2" id="list_itemOrganicsCoins"></div>
             <div class="button px-0">
                 <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
@@ -65,6 +70,7 @@
             {{-- <div class="card-footer bg-transparent px-0 mt-4">
                 <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
             </div> --}}
+
         </div>
     </div>
 
@@ -236,9 +242,12 @@
                                             <img src="${rewardImage}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 110px; object-fit: cover; ">
                                         </div>
                                     </div>
-                                    <div class="col-9">
-                                    <b><h6 class="ml-2 hr-text-green mt-2">${rewardName}</h6></b>
+                                    <div class="col-7">
+                                        <b><h6 class="ml-2 hr-text-green mt-2">${rewardName}</h6></b>
                                         <p class="ml-2 text-black-50">ใช้คะแนน ${rewardCoinsChange} คะแนน</p>
+                                    </div>
+                                    <div class="col-2 pt-2 d-flex justify-content-end px-4">
+                                        <i class="fas fa-sort-down"></i>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +286,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -315,7 +324,7 @@
                                             Swal.fire({
                                                 position: 'center-center',
                                                 icon: 'error',
-                                                title: 'เพิ่มรายการไม่สำเร็จ',
+                                                title: 'รายการซ้ำเพิ่มไม่สำเร็จ',
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
@@ -330,7 +339,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -378,14 +387,6 @@
                             }
                         });
                     }
-                } else {
-                    Swal.fire({
-                        title: 'กรุณากรอกข้อมูล',
-                        icon: 'warning',
-                        iconColor: '#FA9583',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 }
             });
 

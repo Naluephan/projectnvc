@@ -88,4 +88,13 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
             })
             ->first();
     }
+
+    public function showDetailById($params)
+    {
+        return $this->model
+            ->where('id', $params['id'])
+            ->with('pickupTools.pickupToolsDeviceType')
+            ->withCount('pickupTools')
+            ->first();
+    }
 }
