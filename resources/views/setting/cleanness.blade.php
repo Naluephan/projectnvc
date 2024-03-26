@@ -127,14 +127,13 @@
                 </svg> รักษาความสะอาด</h6>
             <p class="mb-0">กำหนดจุดแสกนเพื่อรักษาความสะอาด</p>
         </div>
-        <div class="card-body pt-0">
-            <div class="mt-1 pb-2 list_position" id="list_position">
+        <div class="card-body">
+            <div class="row mt-n4 px-2 list_position" id="list_position">
+
             </div>
-            <div class="button px-0">
-                <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
-                        class="fa-solid fa-plus"></i>
-                    เพิ่มข้อมูล</button>
-            </div>
+            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                    class="fa-solid fa-plus"></i>
+                เพิ่มข้อมูล</button>
         </div>
     </div>
 

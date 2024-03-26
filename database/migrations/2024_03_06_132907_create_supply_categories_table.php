@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('supply_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name');
-            $table->string('category_code');
+            $table->string('category_name')->nullable()->unique();
+            $table->string('category_code')->nullable()->unique();
             $table->timestamps();
         });
     }

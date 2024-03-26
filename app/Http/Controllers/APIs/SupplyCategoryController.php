@@ -15,24 +15,44 @@ class SupplyCategoryController extends Controller
         $this->supplycategoryRepository = $supplycategoryRepository;
     }
 
-   public function getSupplyCategory(Request $request){
-    return $this->supplycategoryRepository->getAll();
-   }
+    public function getSupplyCategory(Request $request)
+    {
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            $param = [];
+
+
+            $supplyCategoryList = $this->supplycategoryRepository->getAll($param);
+
+
+            $result['status'] = "success";
+            $result['data'] = $supplyCategoryList;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
+    }
 
     public function create(Request $request)
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
+        $result = [];
         try {
             $this->supplycategoryRepository->create($data);
+
+            $result['status'] = "success";
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function update(Request $request)
@@ -40,16 +60,16 @@ class SupplyCategoryController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
-            $this->supplycategoryRepository->update($id,$data);
+            $this->supplycategoryRepository->update($id, $data);
+            $result['status'] = "success";
             DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex;
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function delete(Request $request)
@@ -60,12 +80,12 @@ class SupplyCategoryController extends Controller
         try {
             $this->supplycategoryRepository->delete($id);
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function getById(Request $request)

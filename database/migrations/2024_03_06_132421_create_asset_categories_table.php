@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('asset_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('cetegory_name');
-            $table->string('cetegory_code');
+            $table->string('cetegory_name')->nullable()->unique();
+            $table->string('cetegory_code')->nullable()->unique();
             $table->timestamps();
         });
     }

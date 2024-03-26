@@ -261,4 +261,21 @@ class DepartmentController extends Controller
 
         return $result;
     }
+
+    public function showDetailById(Request $request)
+    {
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            $epartmentList = $this->departmentRepository->showDetailById($postData);
+            $result['status'] = "success";
+            $result['data'] = $epartmentList;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
+    }
 }

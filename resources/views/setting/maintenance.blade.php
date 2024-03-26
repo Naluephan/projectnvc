@@ -118,11 +118,11 @@
 
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6><i class="fas fa-tools"></i> ตรวจสอบซ่อมบำรุง</h6>
-            <p class="mt-3">กำหนดจุดสแกนเพื่อซ่อมบำรุง</p>
+            <h6><i class="fas fa-user-shield"></i> ตรวจสอบซ่อมบำรุง</h6>
+            <p class="mt-3 mb-0"><i class="fas fa-tools hr-icon"></i> กำหนดจุดสแกนเพื่อซ่อมบำรุง</p>
         </div>
         <div class="card-body">
-            <div class="row mt-n4 maintenance_list" id="maintenance_list">
+            <div class="row mt-n4 px-2 maintenance_list" id="maintenance_list">
 
             </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
@@ -164,7 +164,7 @@
                                     <label for="maintenance_patrol" class="col-form-label text-color"><i
                                             class="fas fa-user-shield hr-icon"></i> การตรวจตราทุกๆ เดือน</label>
                                     <input type="number" class="form-control input-modal rounded-pill text-color"
-                                        id="maintenance_patrol" name="maintenance_patrol" required>
+                                        id="maintenance_patrol" name="maintenance_patrol" required min="1" max="24">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <label for="maintenance_time" class="col-form-label text-color"><i
@@ -311,12 +311,12 @@
                                                     <img src="${location_img}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 100%; object-fit: cover; ">
                                                 </div>
                                             </div>
-                                            <div class="col-5 ">
+                                            <div class="col-6 ">
                                             <b><h6 class="ml-2 hr-text-green mt-2">${maintenanceInfo.name}</h6></b>
                                                 <p class="ml-2 text-black-50">${maintenanceInfo.location}</p>
                                                 <p class="ml-2 text-black-50">การตรวจตราทุก ${maintenanceInfo.maintenance_patrol} เดือน เริ่ม ${maintenanceInfo.maintenance_time} น.</p>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <div class="mt-2 mb-2 mr-2 text-end">
                                                     <img src="${qrCodeUrl}" alt="QR Code for ${id}"style=" width: 100px; height: 100px;" >
                                                 </div>
@@ -364,7 +364,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -419,7 +419,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -469,14 +469,6 @@
                             }
                         });
                     }
-                } else {
-                    Swal.fire({
-                        title: 'กรุณากรอกข้อมูล',
-                        icon: 'warning',
-                        iconColor: '#FA9583',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 }
             });
 

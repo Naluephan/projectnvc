@@ -161,7 +161,7 @@
                                     <label for="security_patrol" class="col-form-label text-color"><i
                                             class="fas fa-user-shield hr-icon"></i> การตรวจตราทุกๆ(ชม.)</label>
                                     <input type="number" class="form-control input-modal rounded-pill text-color"
-                                        id="security_patrol" name="security_patrol" required>
+                                        id="security_patrol" name="security_patrol" required min="1" max="24">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <label for="security_time" class="col-form-label text-color"><i
