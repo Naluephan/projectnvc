@@ -11,6 +11,6 @@ interface CompanyInterface extends BaseInterface
     public function paginate($param):Collection;
     public function getAll():Collection;
     public function getComAll();
-    public function findCompany($data);
+    // public function findCompany($data);
 }
 

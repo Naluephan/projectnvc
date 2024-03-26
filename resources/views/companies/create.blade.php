@@ -133,7 +133,7 @@
                                 <div class="col-6">
                                     <label for="email" class="col-form-label"><i class="fa-solid fa-at"></i>
                                         อีเมล</label>
-                                    <input class="form-control rounded-pill" id="email" name="email" required></input>
+                                    <input class="form-control rounded-pill" id="email" name="email" type="email" required></input>
                                 </div>
                             </div>
                         </div>

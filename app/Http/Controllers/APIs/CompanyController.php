@@ -69,7 +69,7 @@ class CompanyController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         try {
-            $whereOr = "name_th = '".$data ['name_th']."' OR "."name_en = '".$data ['name_en']."' OR "."short_name = '".$data ['short_name']."' OR "."order_prefix = '".$data ['order_prefix']."'"; 
+            $whereOr = "name_th = '" . $data['name_th'] . "' OR " . "name_en = '" . $data['name_en'] . "' OR " . "short_name = '" . $data['short_name'] . "' OR " . "order_prefix = '" . $data['order_prefix'] . "'";
             $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
             if (count($existingCompany) > 0) {
                 $result = [
@@ -86,7 +86,7 @@ class CompanyController extends Controller
                 ];
             };
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
@@ -98,8 +98,9 @@ class CompanyController extends Controller
     {
         DB::beginTransaction();
         $data = $request->all();
+        $id = $data['id'];
         try {
-            $whereOr = "name_th = '".$data ['name_th']."' OR "."name_en = '".$data ['name_en']."' OR "."short_name = '".$data ['short_name']."' OR "."order_prefix = '".$data ['order_prefix']."'"; 
+            $whereOr = "name_th = '" . $data['name_th'] . "' OR " . "name_en = '" . $data['name_en'] . "' OR " . "short_name = '" . $data['short_name'] . "' OR " . "order_prefix = '" . $data['order_prefix'] . "'";
             $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
             if (count($existingCompany) > 0) {
                 $result = [
@@ -108,7 +109,7 @@ class CompanyController extends Controller
                     'message' => 'This company already exists.'
                 ];
             } else {
-                $query = $this->companyRepository->create($data);
+                $query = $this->companyRepository->update($id, $data);
                 $result = [
                     'name_th' => $query['name_th'],
                     'status' => 'Success',
@@ -116,13 +117,12 @@ class CompanyController extends Controller
                 ];
             };
             DB::commit();
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
         return response()->json(["data" => $result]);
-
     }
 
     public function delete(Request $request)
@@ -139,7 +139,6 @@ class CompanyController extends Controller
             DB::rollBack();
         }
         return response()->json(["data" => $result]);
-
     }
 
     public function getById(Request $request)
