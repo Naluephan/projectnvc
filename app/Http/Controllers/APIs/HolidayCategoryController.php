@@ -25,16 +25,33 @@ class HolidayCategoryController extends Controller
     {
         DB::beginTransaction();
         $data = $request->all();
-        $result['status'] = "Success";
         try {
-            $this->holidaycategoryRepository->create($data);
+            $whereOr = "holiday_name = '".$data ['holiday_name']."' OR "."holiday_start = '".$data ['holiday_start']."'"."' OR "."holiday_end = '".$data [' holidays']."'"; 
+            $existingHoliday = $this->holidaycategoryRepository->selectCustomData(null, $whereOr);
+            if (count($existingHoliday) > 0 ) {
+                $result = [
+                    'holiday_name' => $existingHoliday['holiday_name'],
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This company already exists.'
+                ];
+            }else{
+                $query = $this->holidaycategoryRepository->create($data);
+                $result = [
+                    'holiday_name' => $query['holiday_name'],
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ];
+            }
+            $result['status'] = "Success";
             DB::commit();
         } catch (\Exception $ex){
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        // return json_encode($result);
+        return response()->json(["data" => $result]);
     }
 
     public function update(Request $request)
@@ -51,7 +68,8 @@ class HolidayCategoryController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+        // return json_encode($result);
     }
 
     public function delete(Request $request)
@@ -67,7 +85,8 @@ class HolidayCategoryController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return json_encode($result);
+        return response()->json(["data" => $result]);
+        // return json_encode($result);
     }
 
     public function getById(Request $request)

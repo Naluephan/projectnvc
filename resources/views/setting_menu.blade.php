@@ -263,8 +263,8 @@
                         </a>
                     </div>
                     <div class="col-12 col-sm-4">
-                        <a href="{{ route('categories.leave.create') }}"
-                            class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*categories.leave.create*')) active @endif">
+                        <a href="{{ route('categories.holiday.create') }}"
+                            class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*categories.holiday.create*')) active @endif">
                             <span class="button-image setting-image-leave w-40"></span>
                             <span class="button-text w-60 d-flex">
                                 <h6 class="my-auto text-bold">ประเภทวันหยุด</h6>
