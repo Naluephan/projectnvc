@@ -119,10 +119,10 @@
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
             <h6><i class="fas fa-user-shield"></i> รักษาความปลอดภัย</h6>
-            <p class="mt-3"><i class="fas fa-exclamation-circle hr-icon"></i> กำหนดจุดสแกนเพื่อรักษาความปลอดภัย</p>
+            <p class="mt-3 mb-0"><i class="fas fa-exclamation-circle hr-icon"></i> กำหนดจุดสแกนเพื่อรักษาความปลอดภัย</p>
         </div>
         <div class="card-body">
-            <div class="row mt-n4 security_list" id="security_list">
+            <div class="row mt-n4 px-2 security_list" id="security_list">
 
             </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
@@ -359,7 +359,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -414,7 +414,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -464,14 +464,6 @@
                             }
                         });
                     }
-                } else {
-                    Swal.fire({
-                        title: 'กรุณากรอกข้อมูล',
-                        icon: 'warning',
-                        iconColor: '#FA9583',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 }
             });
 
@@ -589,7 +581,7 @@
                     }
                 });
             })
-            
+
             ////
         });
     </script>

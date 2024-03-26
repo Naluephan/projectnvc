@@ -30,4 +30,9 @@ class RewardCoinHistoryRepository extends MasterRepository implements RewardCoin
             ])
             ->get();
     }
+
+    public function findBy($params)
+    {
+        return $this->model->where('emp_id', $params['emp_id'])->get();
+    }
 }
