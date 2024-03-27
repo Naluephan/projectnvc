@@ -42,6 +42,7 @@
         border-color: #c0e7e7 !important;
         height: 45px !important;
     }
+
     .addNews {
         background-color: #EDF5F4 !important;
     }
@@ -66,8 +67,8 @@
         <div class="card-body pt-0">
             <div class="row list_company" id="list_company"></div>
             <div class="button p-2 mt-2">
-                <button type="button" class="form-control btn btn-outline-success rounded-pill add-company"
-                    id="add-company" data-bs-toggle="modal" data-bs-target="#companyModal" style="width: 100%; "><i
+                <button type="button" class="form-control btn btn-outline-success rounded-pill add-company" id="add-company"
+                    data-bs-toggle="modal" data-bs-target="#companyModal" style="width: 100%; "><i
                         class="fa-solid fa-plus"></i> สร้างรายการใหม่</button>
             </div>
         </div>
@@ -133,7 +134,8 @@
                                 <div class="col-6">
                                     <label for="email" class="col-form-label"><i class="fa-solid fa-at"></i>
                                         อีเมล</label>
-                                    <input class="form-control rounded-pill" id="email" name="email" type="email" required></input>
+                                    <input class="form-control rounded-pill" id="email" name="email" type="email"
+                                        required></input>
                                 </div>
                             </div>
                         </div>
@@ -141,14 +143,17 @@
                             <label for="website" class="col-form-label"><i class="fa-solid fa-globe"></i> เว็ปไซต์</label>
                             <input class="form-control rounded-pill" id="website" name="website" required></input>
                         </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="col-form-label"><i class="fa-solid fa-images"></i> โลโก้</label>
-                            <input class="form-control rounded-pill" id="logo" name="logo" required></input>
+                        <div class="mb-3 pr-3 pl-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <label for="company_logo" class="col-form-label text-color"><i
+                                            class="fas fa-image hr-icon"></i> โลโก้บริษัท</label>
+                                    <input type="file" class="dropify" id="company_logo" name="company_logo"
+                                        placeholder="">
+                                </div>
+                            </div>
                         </div>
-                        {{-- <div class="mb-3">
-                            <label for="formFile" class="form-label"><i class="fa-solid fa-images"></i> โลโก้</label>
-                            <input class="form-control rounded-pill" type="file" id="formFile" name="formFile">
-                        </div> --}}
+
                     </form>
                 </div>
                 <div class="row p-4 ">
@@ -168,6 +173,12 @@
 @section('js')
     <script>
         $(() => {
+            $('.dropify').dropify({
+                tpl: {
+                    message: '<div class="dropify-message"><span class="file-icon"/><p><h5>กรุณาเลือกไฟล์ภาพ</h5></p></div>',
+                    preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message"></p></div></div></div>',
+                },
+            });
             getCompany();
 
             function getCompany() {
@@ -182,7 +193,7 @@
                     },
                     datatype: "JSON",
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         var companyContainer = $('.list_company');
                         response.forEach(function(company) {
                             var company_id = company.id;
@@ -229,50 +240,90 @@
             var company_model = $('#companyModal');
             $(document).on('click', '.add-company', function() {
                 company_model.modal('show')
+                $('#id').val('');
+                $('#logo').val("");
+                $('#company_logo').val("");
+                $(".dropify-clear").trigger("click");
             })
 
             ////// save company //////
             $(document).on('click', '.save-company', function() {
-                let id = $('#id').val();
-                let company_FromModal = $('#company_FromModal');
-
-                if (company_FromModal.valid()) {
-                    const formData = new FormData($('#company_FromModal')[0]);
-                    const data = Object.fromEntries(formData.entries());
-                    if (id.length == 0) {
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.companies.create') }}",
-                            data: data,
-                            dataType: "json",
-                            success: function(response) {
-                                if (response.data.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    company_model.modal('hide');
-                                    getCompany();
-                                } else if ((response.data.statusCode == '200')) {
-                                    Swal.fire({
-                                        title: 'บริษัทนี้นี้มีอยู่แล้ว',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                }
+                var id = $('#id').val();
+                if ($('#company_FromModal').valid()) {
+                    var formData = new FormData();
+                    formData.append('_token', $('#_token').val());
+                    formData.append('id', $('#id').val());
+                    formData.append('name_th', $('#name_th').val());
+                    formData.append('name_en', $('#name_en').val());
+                    formData.append('short_name', $('#short_name').val());
+                    formData.append('order_prefix', $('#order_prefix').val());
+                    formData.append('address_th', $('#address_th').val());
+                    formData.append('address_en', $('#address_en').val());
+                    formData.append('contact_number', $('#contact_number').val());
+                    formData.append('email', $('#email').val());
+                    formData.append('website', $('#website').val());
+                    if (document.getElementById("company_logo").files.length != 0) {
+                        formData.append('logo', $('#company_logo').prop('files')[0]);
+                    }
+                    if (!id) {
+                        Swal.fire({
+                            title: 'ยืนยันการเพิ่มรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FA9583',
+                            cancelButtonColor: 'transparent',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด',
+                            customClass: {
+                                confirmButton: 'rounded-pill',
+                                cancelButton: 'text-hr-green rounded-pill',
+                                popup: 'modal-radius'
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.companies.create') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.data.status == 'Success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'เพิ่มรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            let obj = $(this);
+                                            obj.find('#name_th').val("");
+                                            obj.find('#name_en').val("");
+                                            obj.find('#short_name').val("");
+                                            obj.find('#order_prefix').val("");
+                                            obj.find('#address_th').val("");
+                                            obj.find('#address_en').val("");
+                                            obj.find('#contact_number').val("");
+                                            obj.find('#website').val("");
+                                            obj.find('#email').val("");
+                                            obj.find('#logo').val("");
+                                            obj.find('#company_logo').val("");
+                                            $(".dropify-clear").trigger("click");
+                                            company_model.modal('hide');
+                                            getCompany();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'เพิ่มรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
                             }
                         });
                     } else {
@@ -337,6 +388,10 @@
             })
 
             function setNewsCategoryFormData(data) {
+                var img_url = ''
+                        if (data.logo != null) {
+                            img_url = "{{ asset('uploads/images/setting/company/companyLogo') }}/" + data.logo;
+                        }
                 $("#name_th").val(data.name_th);
                 $("#name_en").val(data.name_en);
                 $("#short_name").val(data.short_name);
@@ -347,6 +402,10 @@
                 $("#website").val(data.website);
                 $("#email").val(data.email);
                 $("#logo").val(data.logo);
+                $('.dropify-render').html('<img src="" />');
+                $('.dropify-render img').attr('src', img_url);
+                $('.dropify-preview').css('display', 'block');
+                $('.dropify-filename-inner').text(data.logo);
             }
             company_model.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);

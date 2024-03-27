@@ -69,22 +69,25 @@ class CompanyController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         try {
-            $whereOr = "name_th = '" . $data['name_th'] . "' OR " . "name_en = '" . $data['name_en'] . "' OR " . "short_name = '" . $data['short_name'] . "' OR " . "order_prefix = '" . $data['order_prefix'] . "'";
-            $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
-            if (count($existingCompany) > 0) {
+            // $whereOr = "name_th = '" . $data['name_th'] . "' OR " . "name_en = '" . $data['name_en'] . "' OR " . "short_name = '" . $data['short_name'] . "' OR " . "order_prefix = '" . $data['order_prefix'] . "'";
+            // $existingCompany  = $this->companyRepository->selectCustomData(null, $whereOr);
+            // if (count($existingCompany) > 0) {
+            //     $result = [
+            //         'status' => 'Duplicate information',
+            //         'statusCode' => '200',
+            //         'message' => 'This company already exists.'
+            //     ];
+            // } else {
+                if ($request->file('logo')) {
+                    $save_data['logo'] = save_image($request->file('logo'), 500, '/images/setting/company/companyLogo/');
+                }
+                $this->companyRepository->create($data, $save_data);
                 $result = [
-                    'status' => 'Duplicate information',
-                    'statusCode' => '200',
-                    'message' => 'This company already exists.'
-                ];
-            } else {
-                $query = $this->companyRepository->create($data);
-                $result = [
-                    'name_th' => $query['name_th'],
+                    // 'name_th' => $query['name_th'],
                     'status' => 'Success',
                     'statusCode' => '00'
                 ];
-            };
+            // };
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
