@@ -330,7 +330,7 @@
                         $.ajax({
                             type: 'post',
                             url: "{{ route('api.v1.companies.update') }}",
-                            data: data,
+                            data: formData,
                             dataType: "json",
                             success: function(response) {
                                 if (response.data.status == 'Success') {
