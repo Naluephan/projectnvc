@@ -22,8 +22,38 @@ class LocationRepository extends BaseRepository implements LocationInterface
         ->with('location')
         ->get();
     }
-    public function createMultiple(array $data)
-{
-    return Location::insert($data);
-}
+    public function getAll($params = null): Collection
+    {
+
+        return $this->model
+            ->where(function ($q) use ($params) {
+                if (isset($params['searchValue'])) {
+                    $q->where('floor', 'like', '%' . $params['searchValue'] . '%');
+                    $q->orWhere('place_name', 'like', '%' . $params['searchValue'] . '%');
+                }
+            })
+            ->with('location')
+            ->get();
+    }
+    public function paginate($params): Collection
+    {
+        return $this->model
+        ->where(function ($q) use ($params) {
+            if (isset($params['searchValue'])) {
+                $q->where('floor', 'like', '%' . $params['searchValue'] . '%');
+                $q->orWhere('place_name', 'like', '%' . $params['searchValue'] . '%');
+            }
+        })
+        ->with('location')
+            ->select('*')
+            ->skip($params['start'])
+            ->take($params['rowperpage'])
+            ->get();
+    }
+
+    public function all(): Collection
+    {
+        return $this->model
+            ->get();
+    }
 }

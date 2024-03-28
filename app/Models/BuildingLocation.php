@@ -16,8 +16,8 @@ class BuildingLocation extends Model
         'total_rooms',
         'record_status'
     ];
-    public function locations()
+    public function location()
     {
-        return $this->hasMany(Location::class,'id','id');
+        return $this->hasMany(Location::class,'building_location_id');
     }
 }

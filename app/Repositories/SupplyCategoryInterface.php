@@ -8,5 +8,7 @@ use Illuminate\Support\Collection;
 interface SupplyCategoryInterface extends BaseInterface
 {
     public function getAll();
+    public function findByToolsName($toolsName);
+
 }
 

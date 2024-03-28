@@ -16,41 +16,8 @@ class HolidayController extends Controller
     }
 
     public function getAll(Request $request){
-        $postData = $request->all();
-        ## Read value
-        $draw = $postData['draw'];
-        $start = $postData['start'];
-        $rowperpage = $postData['length']; // Rows display per page
+        return $this->holidayRepository->getAll();
 
-        $columnIndex = $postData['order'][0]['column']; // Column index
-        $columnName = $postData['columns'][$columnIndex]['data']; // Column name
-        $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
-        $searchValue = $postData['search']['value']; // Search value
-        $param = [
-            "columnName" => $columnName,
-            "columnSortOrder" => $columnSortOrder,
-            "searchValue" => $searchValue,
-            "start" => $start,
-            "rowperpage" => $rowperpage,
-        ];
-
-
-        // Total records
-        $totalRecordswithFilter = $totalRecords = $this->holidayRepository->getAll($param)->count();
-
-        if (strlen($searchValue) > 0) {
-            $totalRecordswithFilter = $this->holidayRepository->getAll($param)->count();
-        }
-
-        // Fetch records
-        $records = $this->holidayRepository->paginate($param);
-
-        return [
-            "aaData" => $records,
-            "draw" => $draw,
-            "iTotalRecords" => $totalRecords,
-            "iTotalDisplayRecords" => $totalRecordswithFilter,
-        ];
     }
 
     public function create(Request $request)

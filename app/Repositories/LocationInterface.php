@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 interface LocationInterface extends BaseInterface
 {
     public function getLocation($id);
-    public function createMultiple(array $data);
+    public function getAll($params = null): Collection;
+    public function paginate($params): Collection;
+    public function all(): Collection;
+    // public function createMultiple(array $data);
 
 }

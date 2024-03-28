@@ -55,11 +55,13 @@
                                         class="fa-solid fa-calendar-days text-hr-orange"
                                         style="margin-right: 10px"></i>เลือกวันที่เริ่มต้น / วันที่สิ้นสุด</label>
                                 <div class="col-6">
+                                    <b class="col-form-label text-color"> เลือกวันที่เริ่มต้น :</b>
                                     <input type="date" class="form-control rounded-pill text-color" id="holiday_start"
                                         name="holiday_start" required>
 
                                 </div>
                                 <div class="col-6">
+                                    <b class="col-form-label text-color">วันที่สิ้นสุด :</b>
                                     <input type="date" class="form-control rounded-pill text-color" id="holiday_end"
                                         name="holiday_end" required>
                                 </div>
@@ -87,7 +89,7 @@
                 listHoliday.innerHTML = '';
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.holiday.category.list') }}",
+                    url: "{{ route('api.v1.holiday.list') }}",
                     data: {
                         'id': id,
                     },
@@ -102,12 +104,10 @@
                             // var holidayEnd = moment(holidayInfo.holiday_end).locale('th').format('LL');
                             var holidayStart = moment(holidayInfo.holiday_start).locale('th');
                             var holidayEnd = moment(holidayInfo.holiday_end).locale('th');
-
-                            // เช็คว่าวันเริ่มและสิ้นสุดเป็นวันเดียวกันหรือไม่
                             if (holidayStart.isSame(holidayEnd, 'day')) {
-                                var holidayDate = holidayStart.format('D MMMM YYYY'); // แสดงผลวันที่เป็นตัวเลข  เดือน  ปี
+                                var holidayDate = holidayStart.format('D MMMM YYYY');
                             } else {
-                                var holidayDate = holidayStart.format('D') + ' - ' + holidayEnd.format('D MMMM YYYY'); // แสดงผลเฉพาะวันที่เมื่อเริ่มและสิ้นสุดไม่เหมือนกัน
+                                var holidayDate = holidayStart.format('D') + ' - ' + holidayEnd.format('LL');
                             }
 
                             var Item = `
@@ -150,7 +150,7 @@
 
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.holiday.category.create') }}",
+                            url: "{{ route('api.v1.holiday.create') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -178,7 +178,7 @@
                     } else {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.holiday.category.update') }}",
+                            url: "{{ route('api.v1.holiday.update') }}",
                             data: data,
                             dataType: "json",
                             success: function(response) {
@@ -219,7 +219,7 @@
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
-                    url: "{{ route('api.v1.holiday.category.by.id') }}",
+                    url: "{{ route('api.v1.holiday.by.id') }}",
                     data: {
                         'id': id
                     },
@@ -272,7 +272,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'post',
-                            url: "{{ route('api.v1.holiday.category.delete') }}",
+                            url: "{{ route('api.v1.holiday.delete') }}",
                             data: {
                                 'id': id
                             },

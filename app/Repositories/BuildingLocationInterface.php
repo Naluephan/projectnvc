@@ -8,8 +8,6 @@ use Illuminate\Support\Collection;
 interface BuildingLocationInterface extends BaseInterface
 {
     public function getAll($param): Collection;
-    public function showDetailByBuilding($params);
-
-
+    public function findBy($params);
 }
 

@@ -19,6 +19,9 @@ class SupplyCategoryRepository extends MasterRepository implements SupplyCategor
 public function getAll(){
     return $this->model->get();
 }
-
+public function findByToolsName($toolsName)
+{
+    return $this->model->where('category_name', $toolsName)->exists();
+}
 
 }
