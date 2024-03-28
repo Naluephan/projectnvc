@@ -65,7 +65,7 @@
                                             class="fas fa-user text-hr-orange"></i> จำนวน (หน่วย) / ปี</label>
                                 </div>
                             </div>
-                            <div class="position_list row">
+                            <div class="position_list pr-2 row">
                                 <div class="col-6">
                                     <div class=" input-group mb-3">
                                         <select
@@ -80,12 +80,12 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class=" input-group mb-3">
-                                        <input type="number" class="form-control input-modal rounded-start-pill text-color"
+                                    <div class="mb-3 pr-3">
+                                        <input type="number" class="form-control input-modal rounded-pill text-color"
                                             id="number_requested" name="number_requested" required value="1"
                                             min="1" style="height: 45px;">
-                                        <button class="btn rounded-end-pill border btn-remove-position" type="button"><em
-                                                class="fas fa-times-circle text-hr-orange"></em></button>
+                                        <button class="btn rounded-pill btn-remove-position" type="button" style="position: absolute;right: -15px;top: 5px;"><em
+                                                class="fas fa-times-circle text-hr-orange text-lg"></em></button>
                                     </div>
                                 </div>
                             </div>
@@ -428,38 +428,6 @@
                 }
             });
 
-            // var clickCount = 0;
-
-            // $(document).on('click', '.btn-add-position', function() {
-            //     var selectElement = document.getElementById('device_types_id');
-            //     var optionCount = selectElement.options.length;
-            //     console.log(optionCount);
-            //     if (clickCount < optionCount) { // เปลี่ยนเครื่องหมายนี้จาก <= เป็น <
-            //         addPosition();
-            //         clickCount++;
-            //     }
-            // });
-
-
-            // document.addEventListener('DOMContentLoaded', function() {
-            //     var selectElement = document.getElementById('device_types_id');
-
-            //     var optionCount = selectElement.options.length;
-
-            //     console.log("จำนวน options ใน select element: " + optionCount);
-            // });
-            // $(document).on('change', '.js-example-basic-single', function() {
-            //     // addPosition();
-            //     let id = $(this).val();
-            //     $('.js-example-basic-single').find('option[value="'+id+'"]').remove();
-            //     console.log(id);
-            // });
-            // $('.js-example-basic-single').change(function() {
-            //     // ลบ Option ที่มีค่าเป็น 1
-            //     // $(this).find('option[value="1"]').remove();
-            //     console.log('55');
-            // });
-
             $(document).on('click', '.btn-add-position', function() {
                 addPosition();
             });
@@ -538,7 +506,7 @@
                 }
                 // console.log(id);
                 $(".positions").append(`
-                <div class="position_list row">
+                <div class="position_list pr-2 row">
                     <div class="col-6">
                         <div class="input-group mb-3">
                             <input type="hidden" value="${pickupTools_id}" name="pickupTools_id" id="pickupTools_id">
@@ -556,18 +524,17 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="col-6">
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control input-modal rounded-start-pill text-color"
+                        <div class="mb-3 pr-3">
+                            <input type="number" class="form-control input-modal rounded-pill text-color"
                                 id="number_requested" name="number_requested" data-id="${id}" value="${number_requested}" required value="1" min="1" style="height: 45px;">
-                            <button class="btn rounded-end-pill border btn-remove-position" data-id="${id}" type="button">
-                                <em class="fas fa-times-circle text-hr-orange"></em>
-                            </button>
+                            <button class="btn rounded-pill btn-remove-position" data-id="${id}" type="button" style="position: absolute;right: -15px;top: 5px;"><em class="fas fa-times-circle text-hr-orange text-lg"></em></button>
                         </div>
                     </div>
-                </div>`);
+                </div>
+                `);
             }
-
         });
     </script>
 @stop
