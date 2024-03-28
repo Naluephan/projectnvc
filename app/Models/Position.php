@@ -13,6 +13,7 @@ class Position extends Model
         'name_en',
         'department_id',
         'company_id',
+        'record_status',
     ];
 
     public function users(){

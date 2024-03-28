@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_en', 100);
             $table->integer('department_id')->nullable();
             $table->integer('company_id')->nullable();
+            $table->tinyInteger('record_status')->default(1);
             $table->timestamps();
         });
     }

@@ -22,8 +22,8 @@ class Department extends Model
     }
 
     public function position(){
-        return $this->hasMany(Position::class,'department_id');
-    }
+        return $this->hasMany(Position::class,'department_id')->where('record_status', 1);
+    }    
 
     public function pickupTools(){
         return $this->hasMany(PickupTools::class,'department_id','id');

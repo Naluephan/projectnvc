@@ -1,3 +1,6 @@
+-- 28/03/2024
+ALTER TABLE `positions` ADD `record_status` INT NOT NULL DEFAULT '1' AFTER `company_id`;
+
 -- 22/03/2024
 ALTER TABLE `departments` ADD `position_count` INT NOT NULL DEFAULT '0' AFTER `image_departments`, ADD `record_status` INT NOT NULL DEFAULT '1' AFTER `position_count`;
 update departments u set u.position_count = (select count(*) from positions  where positions.department_id = u.id)

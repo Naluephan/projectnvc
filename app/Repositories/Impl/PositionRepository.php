@@ -70,11 +70,11 @@ class PositionRepository extends MasterRepository implements PositionInterface
     public function deleteNotIn($ids, $department_id)
     {
         $query = $this->model->where('department_id', $department_id);
-
+    
         if ($ids !== null) {
             $query->whereNotIn('id', $ids);
         }
-
-        return $query->delete();
-    }
+    
+        return $query->update(['record_status' => 0]);
+    }    
 }
