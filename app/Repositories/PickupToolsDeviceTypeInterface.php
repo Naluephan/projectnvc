@@ -7,6 +7,6 @@ use Illuminate\Support\Collection;
 
 interface PickupToolsDeviceTypeInterface extends BaseInterface
 {
-    public function getAll($params);
+    public function all() : Collection;
 
 }

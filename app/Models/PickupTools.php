@@ -15,7 +15,7 @@ class PickupTools extends Model
     ];
 
     public function pickupToolsDeviceType(){
-        return $this->hasOne(PickupToolsDeviceType::class,'id');
+        return $this->hasOne(PickupToolsDeviceType::class,'id', 'device_types_id');
     }
 
 

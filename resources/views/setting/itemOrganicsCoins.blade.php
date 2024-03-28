@@ -50,27 +50,23 @@
             display: none;
         }
 
-        .col-2.pt-2 i.fas.fa-sort-down {
-            font-size: 25px;
+        .col-2.pt-2 i.fas.fa-info-circle {
+            font-size: 20px;
             color: #91d0c9;
         }
     </style>
 
-    <div class="card p-3 rounded-4 bg-hr-card">
-        <div class="card-header border-0 pb-0">
+    <div class="card rounded-4 bg-hr-card">
+        <div class="card-header border-0">
             <h6 class="text-bold"><i class="fas fa-cubes"></i> Item Organics Coins</h6>
         </div>
-        <div class="card-body pt-2">
-            <div class="mt-1 list_itemOrganicsCoins pb-2" id="list_itemOrganicsCoins"></div>
-            <div class="button px-0">
-                <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
-                        class="fa-solid fa-plus"></i>
-                    เพิ่มข้อมูล</button>
-            </div>
-            {{-- <div class="card-footer bg-transparent px-0 mt-4">
-                <button class="btn btn-hr-confirm form-control rounded-pill">บันทึก</button>
-            </div> --}}
+        <div class="card-body">
+            <div class="row mt-n4 px-2 list_itemOrganicsCoins" id="list_itemOrganicsCoins">
 
+            </div>
+            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                    class="fa-solid fa-plus"></i>
+                เพิ่มข้อมูล</button>
         </div>
     </div>
 
@@ -246,8 +242,8 @@
                                         <b><h6 class="ml-2 hr-text-green mt-2">${rewardName}</h6></b>
                                         <p class="ml-2 text-black-50">ใช้คะแนน ${rewardCoinsChange} คะแนน</p>
                                     </div>
-                                    <div class="col-2 pt-2 d-flex justify-content-end px-4">
-                                        <i class="fas fa-sort-down"></i>
+                                    <div class="col-2 pt-2 d-flex justify-content-end px-3">
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>

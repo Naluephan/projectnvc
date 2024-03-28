@@ -7,6 +7,8 @@ namespace App\Repositories\Impl;
 use App\Models\Department;
 use App\Repositories\DepartmentInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+
 
 class DepartmentRepository extends MasterRepository implements DepartmentInterface
 {
@@ -66,12 +68,6 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
             ->get();
     }
 
-    public function all(): Collection
-    {
-        return $this->model
-            ->get();
-    }
-
     public function findBy($params)
     {
         return $this->model->with('position')
@@ -96,5 +92,11 @@ class DepartmentRepository extends MasterRepository implements DepartmentInterfa
             ->with('pickupTools.pickupToolsDeviceType')
             ->withCount('pickupTools')
             ->first();
+    }
+
+    public function all(): Collection
+    {
+        return $this->model
+            ->get();
     }
 }

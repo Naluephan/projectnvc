@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Repositories\CompanyInterface;
+use App\Repositories\DepartmentInterface;
+use App\Repositories\PickupToolsDeviceTypeInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {
 
-    private $companyRepository;
-  
+    private $companyRepository, $departmentRepository, $pickupToolsDeviceTypeRepository;
+
     public function __construct(
-        CompanyInterface $companyRepository
+        CompanyInterface $companyRepository,
+        DepartmentInterface $departmentRepository,
+        PickupToolsDeviceTypeInterface $pickupToolsDeviceTypeRepository
     )
     {
         $this->companyRepository = $companyRepository;
+        $this->departmentRepository = $departmentRepository;
+        $this->pickupToolsDeviceTypeRepository = $pickupToolsDeviceTypeRepository;
+
     }
 
     public function configMenu()
@@ -40,7 +47,9 @@ class ConfigController extends Controller
 
     public function configPickupTools()
     {
-        return view('setting.pickuptools');
+        $department = $this->departmentRepository->all();
+        $pickupToolsType = $this->pickupToolsDeviceTypeRepository->all();
+        return view('setting.pickuptools',compact('department', 'pickupToolsType'));
     }
 
     public function listSupply()
@@ -78,7 +87,7 @@ class ConfigController extends Controller
         $departments = Department::all();
         return view('setting.worktime',compact('departments'));
     }
-    
+
     public function configItemOrganicsCoins()
     {
         return view('setting.itemOrganicsCoins');

@@ -20,15 +20,15 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
     {
         $showDetail = DB::table('pickup_tools AS PT')
             ->join('pickup_tools_device_types AS PTDT', 'PTDT.id', '=', 'PT.device_types_id')
-            ->join('positions AS p', 'p.id', '=', 'PT.position_id')
-            ->join('departments AS d', 'd.id', '=', 'p.department_id')
+            // ->join('positions AS p', 'p.id', '=', 'PT.position_id')
+            ->join('departments AS d', 'd.id', '=', 'PT.department_id')
             ->select(
-                'PT.position_id',
-                'p.name_th AS position_name',
+                'PT.department_id',
+                'd.name_th AS departments_name',
                 'd.image_departments',
-                DB::raw('COUNT(PT.position_id) AS count')
+                DB::raw('COUNT(PT.department_id) AS count')
             )
-            ->groupBy('PT.position_id', 'p.name_th', 'd.image_departments')
+            ->groupBy('PT.department_id', 'd.name_th', 'd.image_departments')
             ->orderBy('PT.updated_at', 'desc')
             ->get();
 
@@ -55,23 +55,28 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
         }
     }
 
-    public function detailDepartmentById($params)
+    public function deleteNotIn($ids, $department_id)
     {
-        $departmentId = $params['department_id'];
+        $query = $this->model->where('department_id', $department_id);
 
-        $listDetailDepartment = DB::table('pickup_tools AS PT')
-            ->join('pickup_tools_device_types AS PTDT', 'PTDT.id', '=', 'PT.device_types_id')
-            ->join('departments AS d', 'd.id', '=', 'PT.department_id')
-            ->select(
-                'PT.department_id',
-                'd.name_th AS department_name',
-                'd.image_departments',
-                DB::raw('COUNT(PT.department_id) AS department_count')
-            )
-            ->where('PT.department_id', '=', $departmentId)
-            ->groupBy('PT.department_id', 'd.name_th', 'd.image_departments')
-            ->get();
+        if ($ids !== null) {
+            $query->whereNotIn('id', $ids);
+        }
 
-        return $listDetailDepartment;
+        return $query->delete();
     }
+
+    public function updateCondition($params)
+    {
+        $existingData = $this->model->where('device_types_id', $params['device_types_id'])
+            // ->where('department_id', $params['department_id'])
+            ->first();
+
+        if ($existingData) {
+            $existingData->number_requested += $params['number_requested'];
+            $existingData->save();
+            return $existingData;
+        }
+    }
+
 }

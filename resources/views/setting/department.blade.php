@@ -30,12 +30,12 @@
 
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-           
+
                     <h6><i class="fas fa-th-large"></i> แผนกและตำแหน่ง</h6>
-              
+
         </div>
         <div class="card-body">
-            <div class="row mt-n4 department_list" id="department_list">
+            <div class="row px-2 mt-n4 department_list" id="department_list">
 
             </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"
@@ -262,7 +262,7 @@
                         $('#detail-department-company_id').val(response.data.company_id);
                         $("#position_detail").empty();
                         $.each(response.data.position, function(index, item) {
-                            var item = `  
+                            var item = `
                                 <div class="card card-content border-0">
                                     <div class="card-body">
                                         <div class="row">
@@ -354,7 +354,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -421,7 +421,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -474,14 +474,6 @@
                             }
                         });
                     }
-                } else {
-                    Swal.fire({
-                        title: 'กรุณากรอกข้อมูล',
-                        icon: 'warning',
-                        iconColor: '#FA9583',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 }
             });
 
