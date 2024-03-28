@@ -102,31 +102,31 @@
                             <input type="checkbox" name="worktime_day7" value="เสาร์"> ส<br> --}}
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day1" name="worktime_day1" value="อาทิตย์">
-                                <label class="form-check-label" for="worktime_day1">อา</label>
+                                <label class="form-check-label text-hr-orange" for="worktime_day1">อา</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day2" name="worktime_day2" value="จันทร์">
-                                <label class="form-check-label" for="worktime_day2">จ</label>
+                                <label class="form-check-label text-color" for="worktime_day2">จ</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day3" name="worktime_day3" value="อังคาร">
-                                <label class="form-check-label" for="worktime_day3">อ</label>
+                                <label class="form-check-label text-color" for="worktime_day3">อ</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day4" name="worktime_day4" value="พุธ">
-                                <label class="form-check-label" for="worktime_day4">พ</label>
+                                <label class="form-check-label text-color" for="worktime_day4">พ</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day5" name="worktime_day5" value="พฤหัสบดี">
-                                <label class="form-check-label" for="worktime_day5">พฤ</label>
+                                <label class="form-check-label text-color" for="worktime_day5">พฤ</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day6" name="worktime_day6" value="ศุกร์">
-                                <label class="form-check-label" for="worktime_day6">ศ</label>
+                                <label class="form-check-label text-color" for="worktime_day6">ศ</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="worktime_day7" name="worktime_day7" value="เสาร์">
-                                <label class="form-check-label" for="worktime_day7">ส</label>
+                                <label class="form-check-label text-color" for="worktime_day7">ส</label>
                             </div>
                     </div>
                         <div class="mb-3">

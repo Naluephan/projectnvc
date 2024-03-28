@@ -15,6 +15,6 @@ class Location extends Model
      
     ];
     public function location(){
-        return $this->belongsTo(BuildingLocation::class,'building_location_id','id');
+        return $this->hasOne(BuildingLocation::class,'id','building_location_id');
     }
 }

@@ -43,9 +43,23 @@ class SupplyCategoryController extends Controller
         $data = $request->all();
         $result = [];
         try {
-            $this->supplycategoryRepository->create($data);
+            
+            $existingTools  = $this->supplycategoryRepository->findByToolsName($data['category_name']);
 
-            $result['status'] = "success";
+            if ($existingTools) {
+                $result = [
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'News with this name already exists.'
+                ];
+            } else {
+                $query = $this->supplycategoryRepository->create($data);
+                $result = [
+                    'news_name' => $query['category_name'],
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ];
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "failed";

@@ -216,7 +216,7 @@ Route::group(
                 Route::post('/administrative/work/categories/by/id', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getById'])->name('administrative.work.categories.by.id');
 
                 //API BuildingLocation
-                Route::post('/building/location/detail/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'showBuildingById'])->name('building.location.detail.by.id');
+                Route::post('/building/location/detail/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingById'])->name('building.location.detail.by.id');
                 Route::post('/building/location/list', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingLocation'])->name('building.location.list');
                 Route::post('/building/location/create', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'create'])->name('building.location.create');
                 Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.location.update');
