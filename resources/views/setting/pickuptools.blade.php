@@ -58,11 +58,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="" class="col-form-label text-color"><i
-                                            class="fas fa-user text-hr-orange"></i> อุปกรณ์ที่เบิกได้</label>
+                                            class="fas fa-cubes text-hr-orange"></i> อุปกรณ์ที่เบิกได้</label>
                                 </div>
                                 <div class="col-6">
                                     <label for="number_requested" class="col-form-label text-color"><i
-                                            class="fas fa-user text-hr-orange"></i> จำนวน (หน่วย) / ปี</label>
+                                            class="fas fa-cubes text-hr-orange"></i> จำนวน (หน่วย) / ปี</label>
                                 </div>
                             </div>
                             <div class="position_list pr-2 row">
@@ -191,7 +191,7 @@
                     type: "post",
                     dataType: "json",
                     success: function(response) {
-
+                        // console.log(response);
 
                         $(".pickuptools_list").empty();
                         response.forEach(function(info) {
@@ -199,13 +199,13 @@
                             let img_path =
                                 '{{ asset('uploads/images/setting/department') }}';
                             let image_departments = img_path + '/' + info
-                                .image_departments;
+                                .department.image_departments;
                             let item = `
                                 <div class="content btn-detail p-2" data-id="${id}">
                                     <div class="button-details p-0 w-100 mb-3 cursor-pointer" style="height: 120px;">
                                         <span class="button-image w-40" style="background-image: url(${image_departments});"></span>
                                         <span class="button-text w-100 pt-3">
-                                        <h6 class="text-bold mb-0 mr-2">${info.departments_name}</h6>
+                                        <h6 class="text-bold mb-0 mr-2">${info.department.name_th}</h6>
                                         <p class="text-bold mb-0" style="color: #d4d4d4;">สิทธิ์การเบิก ${info.count} รายการ</p>
                                         </span>
                                     </div>
