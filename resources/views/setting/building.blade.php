@@ -4,13 +4,19 @@
         .modal-footer {
             justify-content: center;
         }
-        h6{
+
+        h6 {
             color: #048482
         }
+
+        .col-2.pt-2 i.fas.fa-info-circle {
+            font-size: 20px;
+            color: #91d0c9;
+        }
     </style>
-    <div class="card rounded-4 bg-hr-card">
+    {{-- <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6 class="text-bold"><i class="fa-solid fa-hotel"></i> อาคารและสถานที่</h6>
+            
         </div>
         <div class="card-body">
             <p class="mt-1 text-color">กำหนดอาคารและสถานที่</p>
@@ -19,10 +25,23 @@
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                     class="fa-solid fa-plus"></i>
                 เพิ่มข้อมูล</button>
-        </div>
-        {{-- <div class="card-footer bg-transparent">
+        </div> --}}
+    {{-- <div class="card-footer bg-transparent">
             <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
         </div> --}}
+    {{-- </div> --}}
+    <div class="card rounded-4 bg-hr-card">
+        <div class="card-header border-0">
+            <h6 class="text-bold"><i class="fa-solid fa-hotel"></i> อาคารและสถานที่</h6>
+        </div>
+        <div class="card-body">
+            <div class="row mt-n4 px-2 list_building_location" id="list_building_location">
+
+            </div>
+            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                    class="fa-solid fa-plus"></i>
+                เพิ่มข้อมูล</button>
+        </div>
     </div>
 
     <div class="modal fade" id="buildinglocationModal" tabindex="-1" aria-labelledby="buildinglocationModalLabel"
@@ -43,8 +62,8 @@
                                         <label for="location_name" class="col-form-label text-color"><i
                                                 class="fa-solid fa-hotel"
                                                 style="color:#e6896a; margin-right:10px"></i>ชื่ออาคาร หรือสถานที่</label>
-                                        <input type="text" class="form-control rounded-pill text-color" id="location_name" name="location_name"
-                                            required>
+                                        <input type="text" class="form-control rounded-pill text-color"
+                                            id="location_name" name="location_name" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="location_img" class="col-form-label text-color"><i
@@ -64,8 +83,8 @@
                                                 <label for="total_floors" class="col-form-label rounded-pill text-color"><i
                                                         class="fa-sharp fa-solid fa-stairs"
                                                         style="color:#e6896a; margin-right:10px"></i>จำนวนชั้นทั้งหมด</label>
-                                                <input type="text" class="form-control rounded-pill text-color" id="total_floors"
-                                                    name="total_floors" required>
+                                                <input type="number" class="form-control rounded-pill text-color"
+                                                    id="total_floors" name="total_floors" required>
                                             </div>
                                             <div class="col-6">
                                                 <label for="total_rooms" class="col-form-label text-color"><svg
@@ -78,14 +97,14 @@
                                                             d="M896 384c-46.9 0-85.3 38.4-85.3 85.3v170.7H213.3v-170.7c0-46.9-38.4-85.3-85.3-85.3s-85.3 38.4-85.3 85.3v213.4c0 70.4 57.6 128 128 128v42.6c0 23.5 19.2 42.7 42.6 42.7s42.7-19.2 42.7-42.7v-42.6h512v42.6c0 23.5 19.2 42.7 42.7 42.7s42.7-19.2 42.6-42.7v-42.6c70.4 0 128-57.6 128-128v-213.4c0-46.9-38.4-85.3-85.3-85.3z">
                                                         </path>
                                                     </svg> จำนวนห้องทั้งหมด</label>
-                                                <input type="number" class="form-control rounded-pill text-color" id="total_rooms" 
-                                                    name="total_rooms" required>
+                                                <input type="number" class="form-control rounded-pill text-color"
+                                                    id="total_rooms" name="total_rooms" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="mb-3">
+                                    <div>
                                         <label for="place_name" class="col-form-label text-color"><i
                                                 class="fa-solid fa-hotel"
                                                 style="color:#e6896a; margin-right:10px"></i>กำหนดสถานที่</label>
@@ -110,8 +129,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-addform btn-outline-success rounded-pill mt-3"
-                                        style="width: 100%; "><i class="fa-solid fa-plus fa-xs"></i>เพิ่มรายการ</button>
+                                    <button type="button"
+                                        class="form-control btn btn-outline-success btn-addform rounded-pill"><i
+                                            class="fa-solid fa-plus fa-xs"></i>เพิ่มรายการ</button>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +144,8 @@
                                 data-bs-dismiss="modal">ยกเลิก</button>
                         </div>
                         <div class="col-6">
-                            <button class="btn btn-hr-confirm form-control rounded-pill save-buildinglocation">ยืนยัน</button>
+                            <button
+                                class="btn btn-hr-confirm form-control rounded-pill save-buildinglocation">ยืนยัน</button>
                         </div>
                     </div>
                 </div>
@@ -172,7 +193,7 @@
             </div>
         </div>
     </div>
-  
+
 
 
 @stop
@@ -205,15 +226,18 @@
                             var Item = `
                             <div class="card border border-2 p-0 rounded-4 detail" data-id="${id}">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-5">
                                         <div style="width: 100%; ">
                                             <img src="${locationImg}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 100%; object-fit: cover; ">
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-5">
                                         <h6 class="ml-2">${locationInfo.location_name}</h6>
                                         <p class="text-black-50 ml-2">${locationInfo.total_floors} ชั้น</p>
                                         <p class="text-black-50 ml-2">${locationInfo.total_rooms} ห้อง</p>
+                                    </div>
+                                    <div class="col-2 pt-2 d-flex justify-content-end px-3">
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +253,7 @@
             $(document).on('click', '.btn-add', function() {
                 $('#buildinglocationModal').modal('show');
                 $('.locations').empty();
-                
+
                 $('#location_name').val('');
                 $('#total_floors').val('');
                 $('#total_rooms').val('0');
@@ -237,8 +261,9 @@
                 $('#place_name').val('');
                 $('#location_img').val('');
                 $('#buildinglocationModal').modal('hide');
-           
+
                 $('#id').val('');
+                $(".dropify-clear").trigger("click");
                 buildinglocation_modal.modal('show')
             })
             let addedContainers = [];
@@ -246,42 +271,36 @@
                 let buildingContainer = $('.list-building');
                 let roomCount = buildingContainer.length;
                 let total_rooms = $('#total_rooms').val();
-                console.log(roomCount+" "+total_rooms)
-                if (roomCount < total_rooms){
+                console.log(roomCount + " " + total_rooms)
+                if (total_rooms == 0) {
+                    Swal.fire({
+                        position: 'center-center',
+                        icon: 'warning',
+                        title: 'กรุณากรอกจำนวนห้อง',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    return; 
+                }
+
+                if (roomCount < total_rooms) {
                     addLocation();
-                    
-                
-                // if (buildingContainer.length > 0) {
-                //     const newBuildingContainer = buildingContainer[0].cloneNode(true);
-
-                //     const inputs = newBuildingContainer.querySelectorAll('input');
-                //     inputs.forEach(input => {
-                //         input.value = '';
-                //     });
-                //     const inputFields = newBuildingContainer.querySelectorAll('input[type="text"]');
-                //     inputFields.forEach(function(input) {
-                //         input.value = '';
-                //     });
-                //     buildingContainer[0].parentNode.appendChild(newBuildingContainer);
-
-                //     // เพิ่มอ้างอิงของส่วนที่ถูกเพิ่มลงใน addedContainers
-                //     addedContainers.push(newBuildingContainer);
                 } else {
                     Swal.fire({
                         position: 'center-center',
                         icon: 'warning',
-                        title: 'คุณเพิ่มได้สูงสุดแล้ว',
+                        title: 'เพิ่มสูงสุดแล้ว',
                         showConfirmButton: false,
                         timer: 1000
                     });
                 }
-            
             });
+
             $(document).on('click', '.btn-remove-location', function() {
                 removeLocation($(this));
             });
 
-           
+
             $(document).on('click', '.save-buildinglocation', function() {
                 var id = $("#id").val();
                 if ($("#buildinglocationForm").valid()) {
@@ -303,7 +322,7 @@
                         locationFormData.append('place_name', $(this).find('#place_name').val());
                         locationFormData.append('location_id', $(this).find('#locationid').val());
                         arr_order.push(locationFormData);
-                        console.log('test'+arr_order)
+                        console.log('test' + arr_order)
                     });
                     arr_order.forEach(function(locationFormData, index) {
                         for (var pair of locationFormData.entries()) {
@@ -407,7 +426,7 @@
                                                 timer: 1500
                                             })
                                             $('#location_name').val('');
-                                        
+
                                             $('#location_img').val('');
                                             $('#total_floors').val('');
                                             $('#total_rooms').val('');
@@ -518,7 +537,25 @@
                 $('.dropify-preview').css('display', 'block');
                 $('.dropify-filename-inner').text(location_img);
                 $('.locations').empty();
-               
+
+
+
+
+
+
+
+                $('#total_rooms').on('input', function() {
+                    var totalRooms = parseInt($(this).val());
+                    var currentRooms = $('.list-building').length;
+                    if (totalRooms < currentRooms) {
+                        var diff = currentRooms - totalRooms;
+                        $('.list-building').slice(-diff).remove();
+                    }
+                });
+
+
+
+
 
 
                 $.ajax({
@@ -549,7 +586,7 @@
                         $.each(floors, function(index, item) {
                             addLocation(item)
                         });
-                        
+
 
                         console.log(response)
                     }
@@ -634,6 +671,7 @@
             })
 
         });
+
         function removeLocation(button) {
             let location_id = button.siblings('.form-control').attr('data-location-id');
             button.closest('.list-building').remove();
@@ -654,15 +692,15 @@
             <input type="hidden" value="${location_id}" id="locationid">
             <input type="number" class="form-control input-modal rounded-pill text-color"
             id="floor"
-            name="floor" data-location-id="${location_id}" value="${floor}" style="height: 45px;">
+            name="floor" data-location-id="${location_id}" value="${floor}">
         </div>
     </div>
     <div class="col-6">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control input-modal rounded-start-pill text-color"
+        <div class="mb-3 pr-3">
+            <input type="text" class="form-control input-modal rounded-pill text-color"
             id="place_name"
-            name="place_name" data-location-id="${location_id}" value="${place_name}" style="height: 45px;">
-            <button class="btn rounded-end-pill border btn-remove-location delete-location" data-location-id="${location_id}" type="button"><em class="fas fa-times-circle text-hr-orange"></em></button>
+            name="place_name" data-location-id="${location_id}" value="${place_name}">
+            <button class="btn rounded-pill btn-remove-location delete-location" data-location-id="${location_id}" type="button"  style="position: absolute;right: -15px;top: 2px;"><em class="fas fa-times-circle text-hr-orange text-lg"></em></button>
         </div>
     </div>
 </div>`)

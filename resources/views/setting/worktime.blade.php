@@ -34,20 +34,9 @@
             border: 1px solid #1b8f8d;
         }
     </style>
-    <div class="card rounded-4 bg-hr-card">
+    {{-- <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
-                    fill="none" stroke="#048482" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-stats">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-                    <path d="M18 14v4h4" />
-                    <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                    <path d="M15 3v4" />
-                    <path d="M7 3v4" />
-                    <path d="M3 11h16" />
-                </svg> วันและเวลาทำงาน
-            </h6>
+            
         </div>
         <div class="card-body">
             <p class="text-color">กำหนดวันและเวลาแต่ละแผนก</p>
@@ -57,10 +46,34 @@
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                     class="fa-solid fa-plus"></i>
                 เพิ่มข้อมูล</button>
-        </div>
+        </div> --}}
         {{-- <div class="card-footer bg-transparent">
             <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
         </div> --}}
+    {{-- </div> --}}
+    <div class="card rounded-4 bg-hr-card">
+        <div class="card-header border-0">
+            <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
+                fill="none" stroke="#048482" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-stats">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+                <path d="M18 14v4h4" />
+                <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                <path d="M15 3v4" />
+                <path d="M7 3v4" />
+                <path d="M3 11h16" />
+            </svg> วันและเวลาทำงาน
+        </h6>
+        </div>
+        <div class="card-body">
+            <div class="row mt-n4 list_worktime" id="list_worktime">
+
+            </div>
+            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                    class="fa-solid fa-plus"></i>
+                เพิ่มข้อมูล</button>
+        </div>
     </div>
 
     <div class="modal fade" id="worktimeModal" tabindex="-1" aria-labelledby="worktimeModalLabel" aria-hidden="true"
@@ -110,27 +123,27 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="worktime_day2" name="worktime_day2"
-                                        value="จันทร์">
+                                        value="จันทร์" required>
                                     <label class="form-check-label text-color" for="worktime_day2">จ</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="worktime_day3" name="worktime_day3"
-                                        value="อังคาร">
+                                        value="อังคาร" required>
                                     <label class="form-check-label text-color" for="worktime_day3">อ</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="worktime_day4" name="worktime_day4"
-                                        value="พุธ">
+                                        value="พุธ" required>
                                     <label class="form-check-label text-color" for="worktime_day4">พ</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="worktime_day5" name="worktime_day5"
-                                        value="พฤหัสบดี">
+                                        value="พฤหัสบดี" required>
                                     <label class="form-check-label text-color" for="worktime_day5">พฤ</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="worktime_day6"
-                                        name="worktime_day6" value="ศุกร์">
+                                        name="worktime_day6" value="ศุกร์" required>
                                     <label class="form-check-label text-color" for="worktime_day6">ศ</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -149,6 +162,7 @@
                                     <input type="time" class="form-control rounded-pill text-color"
                                         id="worktime_start" name="worktime_start" required>
                                 </div>
+                                
                                 <div class="col-6">
                                     <input type="time" class="form-control rounded-pill text-color" id="worktime_end"
                                         name="worktime_end" required>

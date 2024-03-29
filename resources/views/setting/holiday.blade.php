@@ -5,25 +5,38 @@
             justify-content: center;
         }
     </style>
-    <div class="card rounded-4 bg-hr-card">
+    {{-- <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
-            <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-stats">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-                    <path d="M18 14v4h4" />
-                    <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                    <path d="M15 3v4" />
-                    <path d="M7 3v4" />
-                    <path d="M3 11h16" />
-                </svg> วันหยุดประจำปี
-            </h6>
+            
         </div>
         <div class="card-body">
             <div class="row list_holiday" id="list_holiday">
             </div>
 
+            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+                    class="fa-solid fa-plus"></i>
+                เพิ่มข้อมูล</button>
+        </div>
+    </div> --}}
+    <div class="card rounded-4 bg-hr-card">
+        <div class="card-header border-0">
+            <h6 class="text-bold"> <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-stats">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+                <path d="M18 14v4h4" />
+                <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                <path d="M15 3v4" />
+                <path d="M7 3v4" />
+                <path d="M3 11h16" />
+            </svg> วันหยุดประจำปี
+        </h6>
+        </div>
+        <div class="card-body">
+            <div class="row mt-n4 list_holiday" id="list_holiday">
+
+            </div>
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                     class="fa-solid fa-plus"></i>
                 เพิ่มข้อมูล</button>
@@ -52,17 +65,17 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-6">
-                                    <b class="col-form-label text-color"><i
+                                    <label class="col-form-label text-color"><i
                                         class="fa-solid fa-calendar-days text-hr-orange"
-                                        style="margin-right: 10px"></i> เลือกวันที่เริ่มต้น :</b>
+                                        style="margin-right: 10px"></i> เลือกวันที่เริ่มต้น :</label>
                                     <input type="date" class="form-control rounded-pill text-color" id="holiday_start"
                                         name="holiday_start" required>
 
                                 </div>
                                 <div class="col-6">
-                                    <b class="col-form-label text-color"><i
+                                    <label class="col-form-label text-color"><i
                                         class="fa-solid fa-calendar-days text-hr-orange"
-                                        style="margin-right: 10px"></i>วันที่สิ้นสุด :</b>
+                                        style="margin-right: 10px"></i>วันที่สิ้นสุด :</label>
                                     <input type="date" class="form-control rounded-pill text-color" id="holiday_end"
                                         name="holiday_end" required>
                                 </div>
