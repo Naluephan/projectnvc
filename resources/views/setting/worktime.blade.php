@@ -29,11 +29,10 @@
             color: #fff;
             border-color: #1b8f8d;
         }
-        .form-check-input:checked + .form-check-label {
-    border: 1px solid #1b8f8d;
-}
 
-
+        .form-check-input:checked+.form-check-label {
+            border: 1px solid #1b8f8d;
+        }
     </style>
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
@@ -56,7 +55,7 @@
 
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                     class="fa-solid fa-plus"></i>
-                เพิ่มหมวดหมู่</button>
+                เพิ่มข้อมูล</button>
         </div>
         {{-- <div class="card-footer bg-transparent">
             <button class="btn btn-hr-confirm form-control rounded-pill btn-save">บันทึก</button>
@@ -82,7 +81,8 @@
                                 </path>
                             </svg>
                             <label for="department_id" class="col-form-label text-color">แผนก</label>
-                            <select class="form-select input-modal rounded-pill bg-white text-color" name="department_id" id="department_id" value="" required>
+                            <select class="form-select input-modal rounded-pill bg-white text-color" name="department_id"
+                                id="department_id" value="" required>
                                 <option>เลือกแผนก</option>
                                 @foreach ($departments as $departmnet)
                                     <option value="{{ $departmnet->id }}">{{ $departmnet->name_th }}</option>
@@ -91,8 +91,9 @@
                         </div>
 
                         <label for="worktime_day" class="col-form-label text-color"><i
-                                class="fa-solid fa-calendar-days text-hr-orange" style="margin-right: 10px"></i>วันทำงาน</label>
-                                <div class="mb-3" style="margin-left: 65px;margin-right: 0px;">
+                                class="fa-solid fa-calendar-days text-hr-orange"
+                                style="margin-right: 10px"></i>วันทำงาน</label>
+                        <div class="mb-3" style="margin-left: 65px;margin-right: 0px;">
                             {{-- <input type="checkbox" name="worktime_day1" value="อาทิตย์"> อา<br>
                             <input type="checkbox" name="worktime_day2" value="จันทร์"> จ<br>
                             <input type="checkbox" name="worktime_day3" value="อังคาร"> อ<br>
@@ -100,42 +101,52 @@
                             <input type="checkbox" name="worktime_day5" value="พฤหัสบดี"> พฤ<br>
                             <input type="checkbox" name="worktime_day6" value="ศุกร์"> ศ<br>
                             <input type="checkbox" name="worktime_day7" value="เสาร์"> ส<br> --}}
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day1" name="worktime_day1" value="อาทิตย์">
-                                <label class="form-check-label text-hr-orange" for="worktime_day1">อา</label>
+                            <div class="workday">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day1" name="worktime_day1"
+                                        value="อาทิตย์">
+                                    <label class="form-check-label text-hr-orange" for="worktime_day1">อา</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day2" name="worktime_day2"
+                                        value="จันทร์">
+                                    <label class="form-check-label text-color" for="worktime_day2">จ</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day3" name="worktime_day3"
+                                        value="อังคาร">
+                                    <label class="form-check-label text-color" for="worktime_day3">อ</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day4" name="worktime_day4"
+                                        value="พุธ">
+                                    <label class="form-check-label text-color" for="worktime_day4">พ</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day5" name="worktime_day5"
+                                        value="พฤหัสบดี">
+                                    <label class="form-check-label text-color" for="worktime_day5">พฤ</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day6"
+                                        name="worktime_day6" value="ศุกร์">
+                                    <label class="form-check-label text-color" for="worktime_day6">ศ</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="worktime_day7"
+                                        name="worktime_day7" value="เสาร์">
+                                    <label class="form-check-label text-color" for="worktime_day7">ส</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day2" name="worktime_day2" value="จันทร์">
-                                <label class="form-check-label text-color" for="worktime_day2">จ</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day3" name="worktime_day3" value="อังคาร">
-                                <label class="form-check-label text-color" for="worktime_day3">อ</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day4" name="worktime_day4" value="พุธ">
-                                <label class="form-check-label text-color" for="worktime_day4">พ</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day5" name="worktime_day5" value="พฤหัสบดี">
-                                <label class="form-check-label text-color" for="worktime_day5">พฤ</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day6" name="worktime_day6" value="ศุกร์">
-                                <label class="form-check-label text-color" for="worktime_day6">ศ</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="worktime_day7" name="worktime_day7" value="เสาร์">
-                                <label class="form-check-label text-color" for="worktime_day7">ส</label>
-                            </div>
-                    </div>
+                        </div>
                         <div class="mb-3">
                             <div class="row">
-                                <label for="worktime" class="col-form-label text-color"><i class="fa-solid fa-clock text-hr-orange"
+                                <label for="worktime" class="col-form-label text-color"><i
+                                        class="fa-solid fa-clock text-hr-orange"
                                         style="margin-right: 10px"></i>เวลาทำงาน</label>
                                 <div class="col-6">
-                                    <input type="time" class="form-control rounded-pill text-color" id="worktime_start"
-                                        name="worktime_start" required>
+                                    <input type="time" class="form-control rounded-pill text-color"
+                                        id="worktime_start" name="worktime_start" required>
                                 </div>
                                 <div class="col-6">
                                     <input type="time" class="form-control rounded-pill text-color" id="worktime_end"
@@ -145,9 +156,16 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn text-color" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-hr-confirm rounded-pill save-worktime">ยืนยัน</button>
+                <div class="button-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn card-text text-bold text-color btn-reset"
+                                data-bs-dismiss="modal">ยกเลิก</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-hr-confirm form-control rounded-pill save-worktime">ยืนยัน</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -269,7 +287,7 @@
                             data: data,
                             dataType: "json",
                             success: function(response) {
-                                if (response.status == 'Success') {
+                                if (response.status == 'success') {
                                     Swal.fire({
                                         title: 'ดำเนินการเรียบร้อยแล้ว',
                                         icon: 'success',
@@ -278,14 +296,15 @@
                                         toast: true
                                     });
                                     worktime_modal.modal('hide');
-                                    getWorktime.reload();
-                                } else {
+                                    getWorktime();
+                                } else if (response.duplicate == 'duplicate') {
                                     Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
+                                        position: 'center-center',
+                                        icon: 'error',
+                                        title: 'เพิ่มรายการไม่สำเร็จ',
+                                        text: 'ชื่อแผนกซ้ำ',
                                         showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
+                                        timer: 1500
                                     })
                                 }
                             }

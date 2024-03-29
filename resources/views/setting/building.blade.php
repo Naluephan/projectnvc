@@ -4,6 +4,9 @@
         .modal-footer {
             justify-content: center;
         }
+        h6{
+            color: #048482
+        }
     </style>
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
@@ -113,10 +116,16 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn card-text text-bold text-color"
-                        data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-hr-confirm rounded-pill save-buildinglocation">ยืนยัน</button>
+                <div class="button-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn card-text text-bold text-color btn-reset"
+                                data-bs-dismiss="modal">ยกเลิก</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-hr-confirm form-control rounded-pill save-buildinglocation">ยืนยัน</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,10 +209,10 @@
                                             <img src="${locationImg}" class="border border-0 rounded-start-4" alt="..." style="position: absolute; width: 90%; height: 100%; object-fit: cover; ">
                                         </div>
                                     </div>
-                                    <div class="col-8 ">
-                                        <h5 class="ml-2 ">${locationInfo.location_name}</h5>
-                                        <p class="ml-2">${locationInfo.total_floors} ชั้น</p>
-                                        <p class="ml-2">${locationInfo.total_rooms} ห้อง</p>
+                                    <div class="col-8">
+                                        <h6 class="ml-2">${locationInfo.location_name}</h6>
+                                        <p class="text-black-50 ml-2">${locationInfo.total_floors} ชั้น</p>
+                                        <p class="text-black-50 ml-2">${locationInfo.total_rooms} ห้อง</p>
                                     </div>
                                 </div>
                             </div>
@@ -291,13 +300,14 @@
                         // var placeNameValue = $(this).find('#place_name').val();
                         locationFormData.append('floor', $(this).find('#floor').val());
                         locationFormData.append('place_name', $(this).find('#place_name').val());
+                        locationFormData.append('location_id', $(this).find('#locationid').val());
                         arr_order.push(locationFormData);
-                        // console.log(floorValue)
+                        console.log('test'+arr_order)
                     });
                     arr_order.forEach(function(locationFormData, index) {
                         for (var pair of locationFormData.entries()) {
                             formData.append(`locations[${index}][${pair[0]}]`, pair[1]);
-                            // console.log(pair[0] + ', ' + pair[1]);
+                            console.log(pair[0] + ', ' + pair[1]);
                         }
                     });
 
@@ -396,13 +406,15 @@
                                                 timer: 1500
                                             })
                                             $('#location_name').val('');
+                                        
+                                            $('#location_img').val('');
                                             $('#total_floors').val('');
                                             $('#total_rooms').val('');
+                                            $('.locations').empty();
                                             $('#floor').val('');
                                             $('#place_name').val('');
-                                            $('#location_img').val('');
+                                            $(".dropify-clear").trigger("click");
                                             $('#buildinglocationModal').modal('hide');
-                                            $('#id').val('');
                                             getBuildingLocation();
                                         } else {
                                             Swal.fire({
@@ -444,7 +456,7 @@
                         img_url = "{{ asset('uploads/images/setting/building') }}/" + response
                             .data.location_img;
 
-                        $('#detail-location-name').text(response.data.name_th);
+                        $('#detail-location-name').text(response.data.location_name);
                         $('#detail-location-img').attr('src', img_url);
                         $('#detail-total_rooms').text(response.data.total_rooms);
                         $('#building_location_id').val(response.data.id);
@@ -461,10 +473,10 @@
                                                 </svg>
                                             </div>
                                             <div class="col-8 mt-3">
-                                                <p class="room"> ${item.place_name}</p>
+                                                <p class="room text-color"> ${item.place_name}</p>
                                             </div>
                                             <div class="col-2 mt-3">
-                                                <p class="floor">ชั้นที่  ${item.floor}</p> 
+                                                <p class="floor text-color">ชั้นที่  ${item.floor}</p> 
                                             </div>
                                         </div>
                                     </div>
@@ -476,7 +488,7 @@
                         $('#location_edit').data('location_name', response.data.location_name);
                         $('#location_edit').data('total_floors', response.data.total_floor);
                         $('#location_edit').data('total_rooms', response.data.total_rooms);
-                        // $('#location_edit').data('security_img_url', img_url);
+                        $('#location_edit').data('building_img_url', img_url);
                         $('#location_edit').data('location_img', response.data
                             .location_img);
                         $('#location_edit').data('floor', response.data.floor);
@@ -485,8 +497,28 @@
                 });
             })
             $(document).on('click', '.btn-edit', function() {
-                const id = $('#building_location_id').val();
+                const id = $('#location_edit').val();
+                var location_name = $(this).data('location_name');
+                var total_floors = $(this).data('total_floors');
+                var total_rooms = $(this).data('total_rooms');
+                var building_img_url = $(this).data('building_img_url');
+                var location_img = $(this).data('location_img');
+                var floor = $(this).data('floor');
+                var place_name = $(this).data('place_name');
                 $('#buildinglocationDetailModal').modal('hide');
+                $('#buildinglocationModal').modal('show');
+                $('#id').val(id);
+                $('#location_name').val(location_name);
+                $('#total_floors').val(total_floors);
+                $('#total_rooms').val(total_rooms);
+                $("#location_img").attr("data-default-file", building_img_url); //dropify
+                $('.dropify-render').html('<img src="" />');
+                $('.dropify-render img').attr('src', building_img_url);
+                $('.dropify-preview').css('display', 'block');
+                $('.dropify-filename-inner').text(location_img);
+                $('.locations').empty();
+               
+
 
                 $.ajax({
                     type: 'post',
@@ -618,6 +650,7 @@
             $(".locations").append(`  <div class="row list-building">
     <div class="col-6">
         <div class="input-group mb-3">
+            <input type="hidden" value="${location_id}" id="locationid">
             <input type="number" class="form-control input-modal rounded-pill text-color"
             id="floor"
             name="floor" data-location-id="${location_id}" value="${floor}" style="height: 45px;">
@@ -627,7 +660,7 @@
         <div class="input-group mb-3">
             <input type="text" class="form-control input-modal rounded-start-pill text-color"
             id="place_name"
-            name="place_name" ata-location-id="${location_id}" value="${place_name}" style="height: 45px;">
+            name="place_name" data-location-id="${location_id}" value="${place_name}" style="height: 45px;">
             <button class="btn rounded-end-pill border btn-remove-location delete-location" data-location-id="${location_id}" type="button"><em class="fas fa-times-circle text-hr-orange"></em></button>
         </div>
     </div>
