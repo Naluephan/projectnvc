@@ -50,7 +50,7 @@ class SupplyCategoryController extends Controller
                 $result = [
                     'status' => 'Duplicate information',
                     'statusCode' => '200',
-                    'message' => 'News with this name already exists.'
+                    'message' => 'Tools with this name already exists.'
                 ];
             } else {
                 $query = $this->supplycategoryRepository->create($data);

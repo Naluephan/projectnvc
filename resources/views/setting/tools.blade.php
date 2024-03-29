@@ -180,11 +180,20 @@
                                             $('#category_code').val('');
                                             category_modal.modal('hide')
                                             getSupplyCategory();
+                                        } else if ((response.statusCode == '200')) {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'เพิ่มรายการไม่สำเร็จ',
+                                                text: 'หมวดหมู่อุปกรณ์ซ้ำ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
                                         } else {
                                             Swal.fire({
                                                 position: 'center-center',
                                                 icon: 'error',
-                                                title: 'รายการซ้ำเพิ่มไม่สำเร็จ',
+                                                title: 'เพิ่มรายการไม่สำเร็จ',
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
@@ -199,7 +208,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#FA9583',
+                            confirmButtonColor: '#136E68',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -245,6 +254,14 @@
                             }
                         });
                     }
+                } else {
+                    Swal.fire({
+                        title: 'กรุณากรอกข้อมูล',
+                        icon: 'warning',
+                        iconColor: '#FA9583',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
 
