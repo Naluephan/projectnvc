@@ -95,7 +95,7 @@
                                     class="fas fa-newspaper text-sm"></i>
                                 เหรียญที่ใช้แลก</label>
                             <input type="number" class="form-control input-modal rounded-pill text-color"
-                                id="reward_coins_change" name="reward_coins_change" required>
+                                id="reward_coins_change" name="reward_coins_change" required min="1">
                         </div>
                         <div class="pr-3 pl-3">
                             <div class="row">

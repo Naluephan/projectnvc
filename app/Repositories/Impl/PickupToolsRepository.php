@@ -18,22 +18,14 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
 
     public function allList($params)
     {
-        $showDetail = DB::table('pickup_tools AS PT')
-            ->join('pickup_tools_device_types AS PTDT', 'PTDT.id', '=', 'PT.device_types_id')
-            // ->join('positions AS p', 'p.id', '=', 'PT.position_id')
-            ->join('departments AS d', 'd.id', '=', 'PT.department_id')
-            ->select(
-                'PT.department_id',
-                'd.name_th AS departments_name',
-                'd.image_departments',
-                DB::raw('COUNT(PT.department_id) AS count')
-            )
-            ->groupBy('PT.department_id', 'd.name_th', 'd.image_departments')
-            ->orderBy('PT.updated_at', 'desc')
+        return $this->model->with('department')
+            ->selectRaw('department_id, COUNT(department_id) AS count')
+            ->groupBy('department_id')
+            ->orderByDesc('updated_at')
             ->get();
-
-        return $showDetail;
     }
+
+
 
     public function deleteCondition($params)
     {
@@ -78,5 +70,4 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
             return $existingData;
         }
     }
-
 }
