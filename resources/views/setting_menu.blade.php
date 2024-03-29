@@ -174,8 +174,8 @@
                             class="menu-button p-0 w-100 @if (Route::currentRouteNamed('*administrative.work.categories*')) active @endif">
                             <span class="button-image setting-image-administ w-40"></span>
                             <span class="button-text w-60">
-                                <h6 class="text-bold">เพิ่มประเภท</h6>
-                                <h6 class="text-bold">งานอำนวยการ</h6>
+                                <h6 class="text-bold">ประเภทงาน</h6>
+                                <h6 class="text-bold">อำนวยการ</h6>
                             </span>
                         </a>
                     </div>

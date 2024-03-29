@@ -245,6 +245,10 @@ Route::group(
                 Route::post('maintenance/by/id', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'getmaintenanceById'])->name('maintenance.by.id');
                 Route::post('maintenance/update', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceUpdate'])->name('maintenance.update');
 
+                //profile personal information
+                Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
+
+
 
         }
 

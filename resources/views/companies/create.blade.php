@@ -313,6 +313,15 @@
                                             $(".dropify-clear").trigger("click");
                                             company_model.modal('hide');
                                             getCompany();
+                                        } else if ((response.data.statusCode ==
+                                                '200')) {
+                                            Swal.fire({
+                                                title: 'ชื่อบริษัทนี้มีอยู่แล้ว',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                timer: 2000,
+                                                toast: true
+                                            });
                                         } else {
                                             Swal.fire({
                                                 position: 'center-center',
@@ -325,42 +334,66 @@
                                     }
                                 });
                             }
-                        });
+                        }); //url: "{{ route('api.v1.companies.update') }}",
                     } else {
-                        $.ajax({
-                            type: 'post',
-                            url: "{{ route('api.v1.companies.update') }}",
-                            data: formData,
-                            dataType: "json",
-                            success: function(response) {
-                                if (response.data.status == 'Success') {
-                                    Swal.fire({
-                                        title: 'ดำเนินการเรียบร้อยแล้ว',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                    company_model.modal('hide');
-                                    getCompany();
-
-                                } else if ((response.data.statusCode == '200')) {
-                                    Swal.fire({
-                                        title: 'บริษัทนี้นี้มีอยู่แล้ว',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
-                                    })
-                                }
+                        Swal.fire({
+                            title: 'ยืนยันการแก้ไขรายการ?',
+                            text: "ต้องการดำเนินการใช่หรือไม่!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FA9583',
+                            cancelButtonColor: 'transparent',
+                            confirmButtonText: 'ยืนยัน',
+                            cancelButtonText: 'ปิด',
+                            customClass: {
+                                confirmButton: 'rounded-pill',
+                                cancelButton: 'text-hr-green rounded-pill',
+                                popup: 'modal-radius'
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "{{ route('api.v1.companies.update') }}",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    cache: false,
+                                    success: function(response) {
+                                        if (response.status == 'success') {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'success',
+                                                title: 'แก้ไขรายการสำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            let obj = $(this);
+                                            obj.find('#name_th').val("");
+                                            obj.find('#name_en').val("");
+                                            obj.find('#short_name').val("");
+                                            obj.find('#order_prefix').val("");
+                                            obj.find('#address_th').val("");
+                                            obj.find('#address_en').val("");
+                                            obj.find('#contact_number').val("");
+                                            obj.find('#website').val("");
+                                            obj.find('#email').val("");
+                                            obj.find('#logo').val("");
+                                            obj.find('#company_logo').val("");
+                                            $(".dropify-clear").trigger("click");
+                                            company_model.modal('hide');
+                                            getmaintenanceList();
+                                        } else {
+                                            Swal.fire({
+                                                position: 'center-center',
+                                                icon: 'error',
+                                                title: 'แก้ไขรายการไม่สำเร็จ',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        }
+                                    }
+                                });
                             }
                         });
                     }
@@ -389,9 +422,9 @@
 
             function setNewsCategoryFormData(data) {
                 var img_url = ''
-                        if (data.logo != null) {
-                            img_url = "{{ asset('uploads/images/setting/company/companyLogo') }}/" + data.logo;
-                        }
+                if (data.logo != null) {
+                    img_url = "{{ asset('uploads/images/setting/company/companyLogo') }}/" + data.logo;
+                }
                 $("#name_th").val(data.name_th);
                 $("#name_en").val(data.name_en);
                 $("#short_name").val(data.short_name);

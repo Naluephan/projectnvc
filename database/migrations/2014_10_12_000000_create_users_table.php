@@ -32,6 +32,7 @@ return new class extends Migration
             $table->integer('title_id');
             $table->integer('company_id');
             $table->integer('role_id');
+            $table->string('user_code')->nullable();
             $table->string('user_profile')->nullable();
             $table->timestamps();
         });

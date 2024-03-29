@@ -102,13 +102,13 @@
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i>
                                     วันที่เริ่ม</label>
-                                <input type="datetime-local" class="form-control rounded-pill" id="holiday_start"
+                                <input type="date" class="form-control rounded-pill" id="holiday_start"
                                     name="holiday_start" required>
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i>
                                     วันที่สิ้นสุด</label>
-                                <input type="datetime-local" class="form-control rounded-pill" id="holiday_end"
+                                <input type="date" class="form-control rounded-pill" id="holiday_end"
                                     name="holiday_end" required>
                             </div>
                             
@@ -136,6 +136,7 @@
 
             function getCategoriesHoliday() {
                 let id = "{{ Auth::user()->id }}";
+                console.log(id);
                 const listHoliday = document.getElementById('list_holiday');
                 listHoliday.innerHTML = '';
                 $.ajax({
