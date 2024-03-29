@@ -25,7 +25,6 @@
             color: #f99482;
         }
     </style>
-
     <div class="herder-icons d-flex align-items-center justify-content-end">
         <div class="list">
             <button class="btn btn-sm rounded-pill btn-list"
@@ -38,13 +37,14 @@
                     style="font-size: 20px;"></em></button>
         </div>
     </div>
-    <div class="card rounded-4 bg-hr-card mt-3 card-list">
-        <div class="card-header border-0 px-4 pt-4">
+
+    <div class="card rounded-4 mt-2 bg-hr-card">
+        <div class="card-header border-0">
             <h6 class="text-bold"><i class="fas fa-car"></i> ข้อมูลรถส่วนตัว</h6>
         </div>
-        <div class="card-body pt-0">
-            <div class="row mt-1 list_privatecar" id="list_privatecar">
-                {{-- list_privatecar --}}
+        <div class="card-body">
+            <div class="row mt-n4 list_privatecar" id="list_privatecar">
+
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
                 <div class="row mt-1 edit_privatecar" id="edit_privatecar">
                     <div class="col-12 pb-4">
                         <div class="row">
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-lg-6">
                                 <label for="car_category_id" class="col-form-label text-color py-3"><i
                                         class="fas fa-th-large text-sm icon-color"></i>
                                     ประเภทรถ</label>
@@ -69,7 +69,7 @@
                                     <option value="2">รถมอเตอร์ไซด์</option>
                                 </select>
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-lg-6">
                                 <label for="car_registration" class="col-form-label text-color py-3"><i
                                         class="fa-solid fa-address-card text-sm icon-color"></i>
                                     เลขทะเบียนรถยนต์</label>
@@ -83,14 +83,14 @@
 
                     <div class="col-12 pb-4">
                         <div class="row">
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-lg-6">
                                 <label for="car_brand" class="col-form-label text-color py-3"><i
                                         class="fa-solid fa-car-side text-sm icon-color"></i>
                                     ยี่ห้อรถ</label>
                                 <input type="text" class="form-control input-modal rounded-pill text-color car_brand"
                                     id="car_brand" style="height: 45px;" placeholder="กรุณากรอกข้อมูล">
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-lg-6">
                                 <label for="car_color" class="col-form-label text-color py-3"><i
                                         class="fa-solid fa-palette text-sm icon-color"></i>
                                     สี</label>
@@ -101,7 +101,7 @@
 
                     </div>
 
-                    <div class="col-6 pb-5">
+                    <div class="col-12 col-lg-6 pb-5">
                         <label for="car_image" class="col-form-label text-color py-3"><i class="fas fa-image hr-icon"></i>
                             รูปถ่าาย</label>
                         <input type="file" class="dropify" id="image_file" name="image_file" placeholder="">
@@ -178,12 +178,12 @@
                                     '{{ asset('uploads/images/content/privateCar') }}';
                                 var car_image = img_path + '/' + privatecarInfo.car_image;
                                 var Item = `
-                                <div class="row pb-5">
-                                    <div class="col-12 col-sm-5 pb-2 img">
+                                <div class="row ">
+                                    <div class="col-12 col-lg-5 pb-2 img">
                                         <img class="rounded-4" src="${car_image}"
-                                            alt="" style="max-width: 250px; max-height: 250px;">
+                                            alt="" style="max-width: 100%; max-height: 250px;">
                                     </div>
-                                    <div class="col-12 col-sm-7 pt-2 pl-4">
+                                    <div class="col-12 col-lg-7 pt-2 pl-4">
                                         <div class="content">
                                             <p class="py-2 text-md"><i class="fas fa-th-large" style="color: #f99482;"></i>&nbsp; ประเภท :
                                                 ${car_category_id}
@@ -237,7 +237,7 @@
                             text: "ต้องการดำเนินการใช่หรือไม่!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#136E68',
+                            confirmButtonColor: '#FA9583',
                             cancelButtonColor: 'transparent',
                             confirmButtonText: 'ยืนยัน',
                             cancelButtonText: 'ปิด',
@@ -284,15 +284,6 @@
                                     }
                                 });
                             }
-                        });
-                    } else {
-                        // ถ้าข้อมูลไม่ครบ
-                        Swal.fire({
-                            title: 'กรุณากรอกข้อมูล',
-                            icon: 'warning',
-                            iconColor: '#FA9583',
-                            showConfirmButton: false,
-                            timer: 1500
                         });
                     }
                 }
