@@ -72,7 +72,7 @@
             background-image: url({{ asset('images/menu/12.png') }});
             /* replace with your image URL */
         }
-    </style>leaveType
+    </style>
 @stop
 @section('content')
     <div class="row h-100vh">
