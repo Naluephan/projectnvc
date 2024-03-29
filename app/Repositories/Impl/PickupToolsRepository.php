@@ -16,16 +16,14 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
         parent::__construct($model);
     }
 
-    public function allList($params)
+    public function allList($params = [])
     {
         return $this->model->with('department')
-            ->selectRaw('department_id, COUNT(department_id) AS count')
+            ->selectRaw('department_id, MAX(updated_at) as latest_updated_at, COUNT(*) AS count')
             ->groupBy('department_id')
-            ->orderByDesc('updated_at')
+            ->orderBy('latest_updated_at', 'desc')
             ->get();
     }
-
-
 
     public function deleteCondition($params)
     {
@@ -61,7 +59,6 @@ class PickupToolsRepository extends BaseRepository implements PickupToolsInterfa
     public function updateCondition($params)
     {
         $existingData = $this->model->where('device_types_id', $params['device_types_id'])
-            // ->where('department_id', $params['department_id'])
             ->first();
 
         if ($existingData) {

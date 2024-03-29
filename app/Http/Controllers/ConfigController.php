@@ -47,9 +47,10 @@ class ConfigController extends Controller
 
     public function configPickupTools()
     {
+        $companies = $this->companyRepository->all();
         $department = $this->departmentRepository->all();
         $pickupToolsType = $this->pickupToolsDeviceTypeRepository->all();
-        return view('setting.pickuptools',compact('department', 'pickupToolsType'));
+        return view('setting.pickuptools',compact('department', 'pickupToolsType','companies'));
     }
 
     public function listSupply()

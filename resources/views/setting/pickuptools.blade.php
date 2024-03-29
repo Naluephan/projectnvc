@@ -24,7 +24,7 @@
             <div class="row mt-n4 px-2 pickuptools_list" id="pickuptools_list">
 
             </div>
-            <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
+            <button type="button" class="form-control btn btn-outline-success rounded-pill btn-add"><i
                     class="fa-solid fa-plus"></i>
                 เพิ่มข้อมูล</button>
         </div>
@@ -42,17 +42,29 @@
                 <div class="modal-body">
                     <form id="pickuptoolsForm">
                         <input type="hidden" name="id" id="id">
+                        {{-- <div class="mb-3 pr-3 pl-3">
+                            <label for="" class="col-form-label text-color"><i
+                                    class="fas fa-building text-hr-orange"></i> บริษัท</label>
+                            <select class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color"
+                                name="" id="company_id" name="company_id" required>
+                                <option value="" selected>เลือกบริษัท</option>
+                                @foreach ($companies as $companie)
+                                    <option value="{{ $companie->id }}">{{ $companie->name_th }}</option>
+                                @endforeach
+                            </select>
+                        </div> --}}
+
                         <div class="mb-3 pr-3 pl-3">
                             <label for="" class="col-form-label text-color"><i
                                     class="fas fa-building text-hr-orange"></i> แผนก</label>
                             <select class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color"
                                 name="" id="department_id" name="department_id" required>
+                                <option value="" selected>เลือกแผนก</option>
                                 @foreach ($department as $departments)
                                     <option value="{{ $departments->id }}">{{ $departments->name_th }}</option>
                                 @endforeach
                             </select>
                         </div>
-
 
                         <div class="positions pr-3 pl-3">
                             <div class="row">
@@ -71,6 +83,7 @@
                                         <select
                                             class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color"
                                             id="device_types_id" name="device_types_name" required>
+                                            <option value="">เลือกอุปกรณ์</option>
                                             @foreach ($pickupToolsType as $pickupToolsTypes)
                                                 <option value="{{ $pickupToolsTypes->id }}">
                                                     {{ $pickupToolsTypes->device_types_name }}
@@ -83,8 +96,9 @@
                                     <div class="mb-3 pr-3">
                                         <input type="number" class="form-control input-modal rounded-pill text-color"
                                             id="number_requested" name="number_requested" required value="1"
-                                            min="1" style="height: 45px;">
-                                        <button class="btn rounded-pill btn-remove-position" type="button" style="position: absolute;right: -15px;top: 5px;"><em
+                                            min="1" placeholder="กรอกจำนวน" style="height: 45px;">
+                                        <button class="btn rounded-pill btn-remove-position" type="button"
+                                            style="position: absolute;right: -15px;top: 5px;"><em
                                                 class="fas fa-times-circle text-hr-orange text-lg"></em></button>
                                     </div>
                                 </div>
@@ -173,8 +187,8 @@
             $('.select2').select2();
             $(document).on('click', '.btn-add', function() {
                 $('#modal').modal('show');
-                $('#department_id').val('1').prop('disabled', false);
-                $('#device_types_id').val('1');
+                $('#department_id').val('').prop('disabled', false);
+                $('#device_types_id').val('');
                 $('#number_requested').val('');
                 $('.positions .position_list').not(':first').remove();
                 $('#modal').modal('hide');
@@ -494,7 +508,7 @@
             }
 
             function addPosition(data = null) {
-                console.log(data);
+                // console.log(data);
                 let id = '';
                 let number_requested = '';
                 let pickupTools_id = '';
@@ -512,7 +526,7 @@
                             <input type="hidden" value="${pickupTools_id}" name="pickupTools_id" id="pickupTools_id">
                             <select class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color"
                                 id="device_types_id" name="device_types_name" required>
-
+                                <option value="">เลือกอุปกรณ์</option>
                                 @foreach ($pickupToolsType as $pickupToolsTypes)
                                     @if ($pickupToolsTypes->id != null)
                                     <option value="{{ $pickupToolsTypes->id }}" ${id == '{{ $pickupToolsTypes->id }}' ? 'selected' : ''}>
@@ -528,13 +542,43 @@
                     <div class="col-6">
                         <div class="mb-3 pr-3">
                             <input type="number" class="form-control input-modal rounded-pill text-color"
-                                id="number_requested" name="number_requested" data-id="${id}" value="${number_requested}" required value="1" min="1" style="height: 45px;">
+                                id="number_requested" name="number_requested" data-id="${id}" value="${number_requested}" required value="1" min="1" placeholder="กรอกจำนวน" style="height: 45px;">
                             <button class="btn rounded-pill btn-remove-position" data-id="${id}" type="button" style="position: absolute;right: -15px;top: 5px;"><em class="fas fa-times-circle text-hr-orange text-lg"></em></button>
                         </div>
                     </div>
                 </div>
                 `);
             }
+            // $(document).ready(function() {
+            //     function getDepartment() {
+            //         let data = {
+            //             "_token": "{{ csrf_token() }}",
+            //             "company_id": $("#company_id").val(),
+            //         };
+            //         $.ajax({
+            //             url: "{{ route('api.v1.department.filter') }}",
+            //             data: data,
+            //             type: "post",
+            //             dataType: "json",
+            //             success: function(response) {
+            //                 // console.log(response);
+            //                 $("#department_id").empty();
+            //                 $("#department_id").append(
+            //                     '<option value="-1" selected>เลือกแผนก</option>'
+            //                 );
+            //                 response.data.forEach(function(item) {
+            //                     $("#department_id").append(
+            //                         `<option value="${item.id}">${item.name_th}</option>`
+            //                     );
+            //                 });
+            //             }
+            //         });
+            //     }
+            //     getDepartment();
+            //     $(document).on('change', '#company_id', function() {
+            //         getDepartment();
+            //     });
+            // });
         });
     </script>
 @stop
