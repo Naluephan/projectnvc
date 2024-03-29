@@ -16,9 +16,10 @@ class PickupToolsDeviceTypeRepository extends BaseRepository implements PickupTo
         parent::__construct($model);
     }
 
-    public function getAll($params)
+    public function all(): Collection
     {
-        return $this->model->get();
+        return $this->model
+            ->get();
     }
 
 }

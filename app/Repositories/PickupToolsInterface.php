@@ -11,5 +11,6 @@ interface PickupToolsInterface extends BaseInterface
 
     public function createCondition($params);
     public function deleteCondition($params);
-    public function detailDepartmentById($params);
+    public function deleteNotIn($ids,$department_id);
+    public function updateCondition($params);
 }
