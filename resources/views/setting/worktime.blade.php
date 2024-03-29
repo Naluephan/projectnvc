@@ -50,6 +50,7 @@
             </h6>
         </div>
         <div class="card-body">
+            <p class="text-color">กำหนดวันและเวลาแต่ละแผนก</p>
             <div class="row list_worktime" id="list_worktime">
             </div>
 
@@ -270,7 +271,14 @@
 
             var worktime_modal = $("#worktimeModal");
             $(document).on('click', '.btn-add', function() {
-                worktime_modal.modal('show')
+                worktime_modal.modal('show');
+                $("#worktime_day1").prop("checked", false);
+                $("#worktime_day2").prop("checked", false);
+                $("#worktime_day3").prop("checked", false);
+                $("#worktime_day4").prop("checked", false);
+                $("#worktime_day5").prop("checked", false);
+                $("#worktime_day6").prop("checked", false);
+                $("#worktime_day7").prop("checked", false);
             })
 
             $(document).on('click', '.save-worktime', function() {
@@ -367,14 +375,31 @@
 
 
             function setworktimeFormData(data) {
+                if(data.worktime_day1){
+                    $("#worktime_day1").prop("checked", true);
+                }
+                if(data.worktime_day2){
+                    $("#worktime_day2").prop("checked", true);
+                }if(data.worktime_day3){
+                    $("#worktime_day3").prop("checked", true);
+                }if(data.worktime_day4){
+                    $("#worktime_day4").prop("checked", true);
+                }if(data.worktime_day5){
+                    $("#worktime_day5").prop("checked", true);
+                }if(data.worktime_day6){
+                    $("#worktime_day6").prop("checked", true);
+                }
+                if(data.worktime_day7){
+                    $("#worktime_day7").prop("checked", true);
+                }
                 $("#department_id").val(data.department_id);
-                $("#worktime_day1").val(data.worktime_day1);
-                $("#worktime_day2").val(data.worktime_day2);
-                $("#worktime_day3").val(data.worktime_day3);
-                $("#worktime_day4").val(data.worktime_day4);
-                $("#worktime_day5").val(data.worktime_day5);
-                $("#worktime_day6").val(data.worktime_day6);
-                $("#worktime_day7").val(data.worktime_day7);
+                // $("#worktime_day1").val(data.worktime_day1);
+                // $("#worktime_day2").val(data.worktime_day2);
+                // $("#worktime_day3").val(data.worktime_day3);
+                // $("#worktime_day4").val(data.worktime_day4);
+                // $("#worktime_day5").val(data.worktime_day5);
+                // $("#worktime_day6").val(data.worktime_day6);
+                // $("#worktime_day7").val(data.worktime_day7);
                 $("#worktime_start").val(data.worktime_start);
                 $("#worktime_end").val(data.worktime_end);
             }

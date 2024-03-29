@@ -26,7 +26,7 @@
 
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i
                     class="fa-solid fa-plus"></i>
-                เพิ่มหมวดหมู่</button>
+                เพิ่มข้อมูล</button>
         </div>
     </div>
 
@@ -46,22 +46,23 @@
                             <label for="holiday_name" class="col-form-label text-color"><i
                                     class="fa-solid fa-calendar-days text-hr-orange"
                                     style="margin-right: 10px"></i>วันหยุด</label>
-                            <input type="text" class="form-control rounded-pill" id="holiday_name" name="holiday_name"
+                            <input type="text" class="form-control rounded-pill text-color" id="holiday_name" name="holiday_name"
                                 required>
                         </div>
                         <div class="mb-3">
                             <div class="row">
-                                <label for="holiday" class="col-form-label text-color"><i
-                                        class="fa-solid fa-calendar-days text-hr-orange"
-                                        style="margin-right: 10px"></i>เลือกวันที่เริ่มต้น / วันที่สิ้นสุด</label>
                                 <div class="col-6">
-                                    <b class="col-form-label text-color"> เลือกวันที่เริ่มต้น :</b>
+                                    <b class="col-form-label text-color"><i
+                                        class="fa-solid fa-calendar-days text-hr-orange"
+                                        style="margin-right: 10px"></i> เลือกวันที่เริ่มต้น :</b>
                                     <input type="date" class="form-control rounded-pill text-color" id="holiday_start"
                                         name="holiday_start" required>
 
                                 </div>
                                 <div class="col-6">
-                                    <b class="col-form-label text-color">วันที่สิ้นสุด :</b>
+                                    <b class="col-form-label text-color"><i
+                                        class="fa-solid fa-calendar-days text-hr-orange"
+                                        style="margin-right: 10px"></i>วันที่สิ้นสุด :</b>
                                     <input type="date" class="form-control rounded-pill text-color" id="holiday_end"
                                         name="holiday_end" required>
                                 </div>
@@ -69,9 +70,16 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn text-color" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-hr-confirm rounded-pill save-holiday">ยืนยัน</button>
+                <div class="button-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn card-text text-bold text-color btn-reset"
+                                data-bs-dismiss="modal">ยกเลิก</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-hr-confirm form-control rounded-pill save-holiday">ยืนยัน</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,13 +172,14 @@
                                     });
                                     holiday_modal.modal('hide');
                                     getHolidayCategory();
-                                } else {
+                                }  else if (response.duplicate == 'duplicate') {
                                     Swal.fire({
-                                        title: 'เกิดข้อผิดพลาด',
-                                        icon: 'warning',
+                                        position: 'center-center',
+                                        icon: 'error',
+                                        title: 'เพิ่มรายการไม่สำเร็จ',
+                                        text: 'มีวันหยุดนี้อยู่แล้ว',
                                         showConfirmButton: false,
-                                        timer: 2000,
-                                        toast: true
+                                        timer: 1500
                                     })
                                 }
                             }

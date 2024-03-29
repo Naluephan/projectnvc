@@ -8,5 +8,7 @@ use Illuminate\Support\Collection;
 interface WorktimeInterface extends BaseInterface
 {
     public function getAll();
+    public function findByDepartmentName($department_id);
+
 }
 

@@ -25,8 +25,8 @@ class WorktimeController extends Controller
     {
         DB::beginTransaction();
         $result = [];
+        $data = $request->all();
         try {
-            $data = $request->all();
             
             // สร้างข้อมูลที่จะบันทึกลงฐานข้อมูล
             $savedata = [
@@ -41,9 +41,15 @@ class WorktimeController extends Controller
                 'worktime_start' => $data['worktime_start'],
                 'worktime_end' => $data['worktime_end'],
             ];
+            $existingBuilding = $this->worktimeRepository->findByDepartmentName($savedata);
+        if ($existingBuilding) {
+            $result['status'] = "Failed";
+            $result['duplicate'] = "duplicate";
+            return $result;
+        }
     
             // บันทึกข้อมูลลงในฐานข้อมูล
-            $this->worktimeRepository->create($savedata);
+            $this->worktimeRepository->create($data);
     
             // สถานะการทำงานสำเร็จ
             $result['status'] = "success";

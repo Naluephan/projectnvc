@@ -104,11 +104,11 @@ public function create(Request $request)
             $building = $this->buildinglocationRepository->update($data['id'], $data);
             $building->save();
 
-            $location_id = array_column(array_filter($data['locations'], function ($location) {
-                return !empty($location['location_id']);
-            }), 'location_id');
+            // $location_id = array_column(array_filter($data['locations'], function ($location) {
+            //     return !empty($location['location_id']);
+            // }), 'location_id');
 
-            $this->locationRepository->deleteNotIn($location_id, $building->id);
+            // $this->locationRepository->deleteNotIn($location_id, $building->id);
             foreach ($data['locations'] as $locationdata) {
                 if ($locationdata['location_id'] == null) {
                     $locationdata['building_location_id'] = $building->id;
@@ -116,7 +116,7 @@ public function create(Request $request)
                     $locationdata['place_name'] = $locationdata['place_name'];
                     $this->locationRepository->create($locationdata);
                 } else {
-                    $this->buildinglocationRepository->update($locationdata['position_id'], $locationdata);
+                    $this->locationRepository->update($locationdata['location_id'], $locationdata);
                 }
             }
 

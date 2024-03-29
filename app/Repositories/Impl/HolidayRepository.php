@@ -43,6 +43,10 @@ class HolidayRepository extends MasterRepository implements HolidayInterface
             ->take($params['rowperpage'])
             ->get();
     }
+    public function findBy($holidayName)
+{
+    return $this->model->where('holiday_name', $holidayName)->exists();
+}
 
 
 }

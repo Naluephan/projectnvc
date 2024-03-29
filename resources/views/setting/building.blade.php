@@ -13,6 +13,7 @@
             <h6 class="text-bold"><i class="fa-solid fa-hotel"></i> อาคารและสถานที่</h6>
         </div>
         <div class="card-body">
+            <p class="mt-1 text-color">กำหนดอาคารและสถานที่</p>
             <div class="row list_building_location" id="list_building_location"></div>
 
             <button type="button" class="form-control btn btn-outline-success rounded-pill mt-3 btn-add"><i

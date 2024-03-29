@@ -21,5 +21,8 @@ class WorktimeRepository extends MasterRepository implements WorktimeInterface
         ->with('departments')
         ->get();
     }
-
+    public function findByDepartmentName($department_id)
+    {
+        return $this->model->where('department_id', $department_id)->exists();
+    }
 }

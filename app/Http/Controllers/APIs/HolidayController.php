@@ -24,7 +24,19 @@ class HolidayController extends Controller
     {
         DB::beginTransaction();
         $data = $request->all();
+        $result=[];
         try {
+            $check_dup = [
+                'holiday_name' => $data['holiday_name'],
+                'holiday_start' => $data['holiday_start'],
+                'holiday_end' => $data['holiday_end'],
+            ];
+            $existingBuilding = $this->holidayRepository->findBy($check_dup);
+        if ($existingBuilding) {
+            $result['status'] = "Failed";
+            $result['duplicate'] = "duplicate";
+            return $result;
+        }
             $this->holidayRepository->create($data);
             $result['status'] = "Success";
             DB::commit();
