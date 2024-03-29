@@ -11,6 +11,8 @@ interface LocationInterface extends BaseInterface
     public function getAll($params = null): Collection;
     public function paginate($params): Collection;
     public function all(): Collection;
+    public function deleteNotIn($ids, $location_id);
+
     // public function createMultiple(array $data);
 
 }

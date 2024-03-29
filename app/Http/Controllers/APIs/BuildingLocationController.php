@@ -101,12 +101,30 @@ public function create(Request $request)
             if ($request->file('location_img')) {
                 $data['location_img'] = save_image($request->file('location_img'), 500, '/images/setting/building/');
             }
-            $update = $this->buildinglocationRepository->update($data['id'], $data);
+            $building = $this->buildinglocationRepository->update($data['id'], $data);
+            $building->save();
+
+            $location_id = array_column(array_filter($data['locations'], function ($location) {
+                return !empty($location['location_id']);
+            }), 'location_id');
+
+            $this->locationRepository->deleteNotIn($location_id, $building->id);
+            foreach ($data['locations'] as $locationdata) {
+                if ($locationdata['location_id'] == null) {
+                    $locationdata['building_location_id'] = $building->id;
+                    $locationdata['floor'] = $locationdata['floor'];
+                    $locationdata['place_name'] = $locationdata['place_name'];
+                    $this->locationRepository->create($locationdata);
+                } else {
+                    $this->buildinglocationRepository->update($locationdata['position_id'], $locationdata);
+                }
+            }
+
             $result['status'] = "success";
             DB::commit();
         } catch (\Exception $ex) {
-            $result['status'] = "failed";
-            $result['message'] = $ex;
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
         return $result;

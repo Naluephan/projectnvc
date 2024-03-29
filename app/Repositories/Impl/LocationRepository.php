@@ -56,4 +56,14 @@ class LocationRepository extends BaseRepository implements LocationInterface
         return $this->model
             ->get();
     }
+    public function deleteNotIn($ids, $location_id)
+    {
+        $query = $this->model->where('location_id', $location_id);
+
+        if ($ids !== null) {
+            $query->whereNotIn('id', $ids);
+        }
+
+        return $query->delete();
+    }
 }
