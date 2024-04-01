@@ -238,6 +238,7 @@ Route::group(
                 //API Private Car
                 Route::post('/privatecar/list', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecar'])->name('privatecar.list');
                 Route::post('/privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'create'])->name('privatecar.create');
+                Route::post('/privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
 
                 //api maintenance setting
                 Route::post('maintenance/list', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceList'])->name('maintenance.list');

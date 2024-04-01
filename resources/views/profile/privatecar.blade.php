@@ -2,12 +2,6 @@
 @section('side-card-profile')
 
     <style>
-        .herder-icons .btn-list,
-        .btn-edit {
-            height: 40px;
-            width: 40px;
-        }
-
         .img {
             display: grid;
             place-items: center;
@@ -24,21 +18,57 @@
         .icon-color {
             color: #f99482;
         }
+
+        .toggle-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .content-edit {
+            display: none;
+        }
+
+        .toggle-radio {
+            width: 38px;
+            height: 38px;
+            cursor: pointer;
+        }
+
+        .herder-icons .btn-list {
+            color: #ffff;
+            background-color: #FA9583;
+            border-color: #FA9583;
+            width: 38px;
+            height: 38px;
+        }
+
+        .herder-icons .btn-edit {
+            color: #b9b9b9;
+            background-color: #ebebeb;
+            border-color: #ebebeb;
+            width: 38px;
+            height: 38px;
+        }
     </style>
+
     <div class="herder-icons d-flex align-items-center justify-content-end">
         <div class="list">
-            <button class="btn btn-sm rounded-pill btn-list"
-                style="color: #ffff; background-color: #FA9583; border-color: #FA9583;"><em class="fas fa-car"
-                    style="font-size: 20px;"></em></button>
+            <input type="radio" id="list-toggle" name="toggle-option" checked data-toggle="toggle" data-width="100"
+                class="toggle-radio">
+            <label for="list-toggle" class="btn btn-sm rounded-pill btn-list active"><i
+                    class="fas fa-car text-md pt-1"></i></label>
         </div>
         <div class="edit ml-2">
-            <button class="btn btn-sm rounded-pill btn-edit"
-                style="color: #b9b9b9; background-color: #ebebeb; border-color: #ebebeb;"><em class="fa-solid fa-car-burst"
-                    style="font-size: 20px;"></em></button>
+            <input type="radio" id="edit-toggle" name="toggle-option" data-toggle="toggle" data-width="100"
+                class="toggle-radio">
+            <label for="edit-toggle" class="btn btn-sm rounded-pill btn-edit"><i
+                    class="fa-solid fa-car-burst text-md pt-1"></i></label>
         </div>
     </div>
 
-    <div class="card rounded-4 mt-2 bg-hr-card">
+    <div class="card rounded-4 mt-2 bg-hr-card content-show">
         <div class="card-header border-0">
             <h6 class="text-bold"><i class="fas fa-car"></i> ข้อมูลรถส่วนตัว</h6>
         </div>
@@ -49,14 +79,14 @@
         </div>
     </div>
 
-    <div class="card rounded-4 bg-hr-card mt-3 card-list">
-        <div class="card-header border-0 pt-4">
+    <div class="card rounded-4 bg-hr-card mt-2 card-list content-edit">
+        <div class="card-header border-0 ">
             <h6 class="text-bold"><i class="fa-solid fa-car-burst"></i> แก้ไข - เพิ่มข้อมูลรถส่วนตัว</h6>
         </div>
         <div class="card-body pt-0 pl-4">
             <form id="privatecarForm">
                 <input type="hidden" name="id" id="id">
-                <div class="row mt-1 edit_privatecar" id="edit_privatecar">
+                <div class="row edit_privatecar" id="edit_privatecar">
                     <div class="col-12 pb-4">
                         <div class="row">
                             <div class="col-12 col-lg-6">
@@ -125,6 +155,48 @@
 @stop
 @section('js')
     <script>
+        $(document).ready(function() {
+            $('.toggle-radio').change(function() {
+                if ($(this).is(':checked')) {
+                    // เปลี่ยนสีของ label เมื่อ radio button ถูกเลือก
+                    $(this).siblings('label').addClass('active').css({
+                        'color': '#ffff',
+                        'background-color': '#FA9583',
+                        'border-color': '#FA9583'
+                    });
+                } else {
+                    // เปลี่ยนสีของ label เมื่อ radio button ไม่ถูกเลือก
+                    $(this).siblings('label').removeClass('active').css({
+                        'color': '#b9b9b9',
+                        'background-color': '#ebebeb',
+                        'border-color': '#ebebeb'
+                    });
+                }
+
+                // ตรวจสอบว่า radio button ที่เป็นอันอื่นถูกเลือกหรือไม่
+                $('.toggle-radio').not(this).prop('checked', false);
+
+                // เปลี่ยนสีของ label ของ radio button ที่ไม่ถูกเลือก
+                $('.toggle-radio').not(this).siblings('label').removeClass('active').css({
+                    'color': '#b9b9b9',
+                    'background-color': '#ebebeb',
+                    'border-color': '#ebebeb'
+                });
+            });
+
+            $('input[name="toggle-option"]').change(function() {
+                if ($(this).is(':checked')) {
+                    if ($(this).attr('id') === 'list-toggle') {
+                        $('.content-show').show();
+                        $('.content-edit').hide();
+                    } else if ($(this).attr('id') === 'edit-toggle') {
+                        $('.content-show').hide();
+                        $('.content-edit').show();
+                    }
+                }
+            });
+        });
+
         $(() => {
 
             $('.dropify').dropify({
@@ -207,15 +279,15 @@
                 });
             }
 
-            $(document).on('click', '.btn-reset', function() {
-                $('#id').val('');
-                $('#car_registration').val('')
-                $('#car_brand').val('')
-                $('#car_color').val('')
-                $('#image_file').val('');
-                $(".dropify-clear").trigger("click");
-                getPrivateCar();
-            });
+            // $(document).on('click', '.btn-reset', function() {
+            //     $('#id').val('');
+            //     $('#car_registration').val('')
+            //     $('#car_brand').val('')
+            //     $('#car_color').val('')
+            //     $('#image_file').val('');
+            //     $(".dropify-clear").trigger("click");
+            //     getPrivateCar();
+            // });
 
             $(document).on('click', '.save-privatecar', function() {
                 var id = $('#id').val();
@@ -272,6 +344,7 @@
                                             $('#image_file').val('');
                                             $(".dropify-clear").trigger("click");
                                             getPrivateCar();
+                                            location.reload();
                                         } else {
                                             Swal.fire({
                                                 position: 'center-center',
@@ -293,8 +366,7 @@
                 type: 'post',
                 url: "{{ route('api.v1.privatecar.list') }}",
                 data: {
-                    emp_id: {{ Auth::user()->id }} //ตัวเทส
-                    // emp_id: {{ Auth::user()->emp_id }} //ใช้งานจริง
+                    emp_id: {{ Auth::user()->id }}
                 },
                 dataType: "json",
                 success: function(response) {
@@ -318,6 +390,58 @@
                         $('#image_file').attr('src', img_url);
                     });
                 },
+            });
+
+            $(document).on('click', '.btn-reset', function() {
+                var emp_id = {{ Auth::user()->id }}
+                Swal.fire({
+                    title: 'ยืนยันการลบรายการ?',
+                    text: "ต้องการดำเนินการใช่หรือไม่!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FA9583',
+                    cancelButtonColor: 'transparent',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ปิด',
+                    customClass: {
+                        confirmButton: 'rounded-pill',
+                        cancelButton: 'text-hr-green rounded-pill',
+                        popup: 'modal-radius'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('api.v1.privatecar.delete') }}",
+                            data: {
+                                'id': emp_id,
+                                'record_status': 0
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                if (response) {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'success',
+                                        title: 'ลบรายการสำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    location.reload();
+                                } else {
+                                    Swal.fire({
+                                        position: 'center-center',
+                                        icon: 'error',
+                                        iconColor: '#FA9583',
+                                        title: 'ลบรายการไม่สำเร็จ',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            }
+                        });
+                    }
+                });
             });
 
         });

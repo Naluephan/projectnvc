@@ -32,7 +32,6 @@ class PrivateCarController extends Controller
         try {
             $search_criteria = [
                 'emp_id' => $data['emp_id'],
-                // 'car_category_id' => $data['car_category_id']
             ];
             $existing_car = $this->privateCarRepository->findBy($search_criteria);
 
@@ -42,7 +41,6 @@ class PrivateCarController extends Controller
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
                     'car_color' => $data['car_color'],
-                    'record_status' => 2,
                 ];
                 if ($request->file('car_image')) {
                     $update_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
@@ -70,5 +68,22 @@ class PrivateCarController extends Controller
             DB::rollBack();
         }
         return $result;
+    }
+
+    public function deleteUpdate(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        $id = $data['id'];
+        $result['status'] = "Success";
+        try {
+            $this->privateCarRepository->update($id, $data);
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return json_encode($result);
     }
 }
