@@ -14,11 +14,11 @@ class ProfilePersonalInformationController extends Controller
     {
         $this->PersonalInformationRepository = $PersonalInformationRepository;
     }
-    public function getById(Request $request)
-    {
-        // $id = $request->id;
-        // return $this->PersonalInformationRepository->find($id);
-        $getInfo  = $this->PersonalInformationRepository->selectCustomData(null, $whereOr);
+    // public function getById(Request $request)
+    // {
+    //     // $id = $request->id;
+    //     // return $this->PersonalInformationRepository->find($id);
+    //     $getInfo  = $this->PersonalInformationRepository->selectCustomData(null, $whereOr);
 
-    }
+    // }
 }
