@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
         $this->call(administrativeWorkCategoriesSeeder::class);
         $this->call(PrivateCarSeeder::class);
         $this->call(PositionCleanlineSeeder::class);
+        $this->call(ContractsCategoriesSeeder::class);
 
 
 

@@ -83,6 +83,8 @@ use App\Repositories\Impl\LocationRepository;
 use App\Repositories\Impl\WorktimeRepository;
 use App\Repositories\LocationInterface;
 use App\Repositories\WorktimeInterface;
+use App\Repositories\ContractsCategoriesInterface;
+use App\Repositories\Impl\ContractsCategoriesRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -135,6 +137,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(HolidayCategoryInterface::class,HolidayCategoryRepository::class);
         $this->app->bind(BuildingLocationInterface::class,BuildingLocationRepository::class);
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
+        $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
 
 
 
