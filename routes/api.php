@@ -248,6 +248,21 @@ Route::group(
 
                 //profile personal information
                 Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
+
+                //////////// contracts categories ////////////
+                Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
+                Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
+                Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
+                Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
+                Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
+                //contracts detail
+                Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
+                Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
+                Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
+                Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
+                Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
+
+
         }
 
 

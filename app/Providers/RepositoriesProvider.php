@@ -87,6 +87,8 @@ use App\Repositories\LocationInterface;
 use App\Repositories\SavingMoneyInterface;
 use App\Repositories\TransactionHistoryInterface;
 use App\Repositories\WorktimeInterface;
+use App\Repositories\ContractsCategoriesInterface;
+use App\Repositories\Impl\ContractsCategoriesRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -141,6 +143,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
         $this->app->bind(TransactionHistoryInterface::class,TransactionHistoryRepository::class);
         $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
+        $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
 
 
 
