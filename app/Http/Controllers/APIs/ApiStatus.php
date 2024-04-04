@@ -242,6 +242,18 @@ class ApiStatus
       public const reward_coin_history_error_statusCode = "500";
       public const reward_coin_history_error_status = "Reward Coin History Error";
       public const reward_coin_history_errDesc = "Please check the information again.";
+
+       /////////// Response Transaction Historie ///////////
+       public const transaction_history_success_status = "Send data successfully";
+       public const transaction_history_success_statusCode = "00";
+       // Unsuccessful
+       public const transaction_history_failed_status = "This information was not found in data.";
+       public const transaction_history_failed_statusCode = "200";
+       public const transaction_history_failed_Desc = "Please check the information again.";
+       //Catch
+       public const transaction_history_error_statusCode = "500";
+       public const transaction_history_error_status = "Transaction History Error";
+       public const transaction_history_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus

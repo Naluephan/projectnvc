@@ -80,8 +80,12 @@ use App\Repositories\Impl\BuildingLocationRepository;
 use App\Repositories\Impl\HolidayCategoryRepository;
 use App\Repositories\Impl\PersonalInformationRepository;
 use App\Repositories\Impl\LocationRepository;
+use App\Repositories\Impl\SavingMoneyRepository;
+use App\Repositories\Impl\TransactionHistoryRepository;
 use App\Repositories\Impl\WorktimeRepository;
 use App\Repositories\LocationInterface;
+use App\Repositories\SavingMoneyInterface;
+use App\Repositories\TransactionHistoryInterface;
 use App\Repositories\WorktimeInterface;
 
 class RepositoriesProvider extends ServiceProvider
@@ -135,6 +139,8 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(HolidayCategoryInterface::class,HolidayCategoryRepository::class);
         $this->app->bind(BuildingLocationInterface::class,BuildingLocationRepository::class);
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
+        $this->app->bind(TransactionHistoryInterface::class,TransactionHistoryRepository::class);
+        $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
 
 
 

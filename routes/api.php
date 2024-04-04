@@ -248,11 +248,30 @@ Route::group(
 
                 //profile personal information
                 Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
-
-
-
         }
 
 
 
+);
+
+
+Route::group(
+        [
+                'prefix' => 'app/v1', 'as' => 'api.app.v1.',
+                //        'middleware' => [ 'auth', ],
+        ],
+        function () {
+                Route::group(['middleware' => 'auth:sanctum'], function () {
+                        Route::post('/test/numbers', function () {
+                                return response()->json([1, 2, 3, 4, 5]);
+                        })->name('test.number');
+                });
+                // transaction history API APP
+                Route::post('get/transaction/by/id', [\App\Http\Controllers\APIs\TransactionHistoryController::class, 'transactionListApp'])->name('get.transaction.by.id');
+
+                // saving money API APP
+                Route::post('get/saving/money/by/id', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'savingMoneyListApp'])->name('get.saving.money.by.id');
+                Route::post('create/deposit/money', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'createDepositApp'])->name('create.deposit.money');
+                Route::post('create/withdraw/money', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'createWithdrawApp'])->name('create.withdraw.money');
+        }
 );
