@@ -220,8 +220,9 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        console.log(response);
                         var privatecarContainer = $(".list_privatecar");
-                        if (response.length == 0) {
+                        if (response.errCode == 200) {
                             var img_path =
                                 '{{ asset('uploads/images/content/privateCar/notPrivateCar.png') }}';
                             var Item = `
@@ -234,7 +235,7 @@
                                 `;
                             privatecarContainer.append(Item);
                         } else {
-                            response.forEach(function(privatecarInfo) {
+                            response.listPrivateCar.forEach(function(privatecarInfo) {
                                 var car_category = ''
                                 if (privatecarInfo.car_category_id == 1) {
                                     car_category = 'รถยนต์'
@@ -370,7 +371,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    response.forEach(function(coinsInfo) {
+                    response.listPrivateCar.forEach(function(coinsInfo) {
                         $(".car_category_id").val(coinsInfo.car_category_id);
                         $(".car_registration").val(coinsInfo.car_registration);
                         $(".car_brand").val(coinsInfo.car_brand);

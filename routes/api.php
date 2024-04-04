@@ -92,6 +92,9 @@ Route::group(
                 Route::post('employee/attendance/by/month/year', [\App\Http\Controllers\APIs\EmployeeTimeAttendanceController::class, 'empTimeByMonthAndYear'])->name('employee.attendance.by.month.year');
                 Route::post('employee/leaveQuotas', [\App\Http\Controllers\APIs\EmployeeLeaveQuotasController::class, 'employeeLeaveQuotas'])->name('employee.leave.quotas');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
+                Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');
+                Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
+                Route::post('organicsHero/listMission/employee', [\App\Http\Controllers\APIs\OrganicsHeroMissionEmployeeController::class, 'getListMissionEmployee'])->name('organic.hero.mission.list.mission.employee');
 
                 //API For Web
                 Route::post('employee/get/by/company/and/department', [\App\Http\Controllers\APIs\EmployeeController::class, 'getEmployeesByCompanyAndDepartment'])->name('employee.get.by.company.and.department');
@@ -236,9 +239,9 @@ Route::group(
                 Route::post('/worktime/by/id', [\App\Http\Controllers\APIs\WorktimeController::class, 'getById'])->name('worktime.by.id');
 
                 //API Private Car
-                Route::post('/privatecar/list', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecar'])->name('privatecar.list');
-                Route::post('/privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'create'])->name('privatecar.create');
-                Route::post('/privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
+                Route::post('privatecar/list', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list');
+                Route::post('privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'create'])->name('privatecar.create');
+                Route::post('privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
 
                 //api maintenance setting
                 Route::post('maintenance/list', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceList'])->name('maintenance.list');

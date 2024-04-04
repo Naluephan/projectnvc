@@ -254,6 +254,43 @@ class ApiStatus
        public const transaction_history_error_statusCode = "500";
        public const transaction_history_error_status = "Transaction History Error";
        public const transaction_history_errDesc = "Please check the information again.";
+
+      /////////// Private car ///////////
+      public const list_private_car_success_status = "Send data successfully";
+      public const list_private_car_success_statusCode = "00";
+      // Unsuccessful
+      public const list_private_car_failed_status = "This information was not found in data.";
+      public const list_private_car_failed_statusCode = "200";
+      public const list_private_car_failed_Desc = "Please check the information again.";
+      //Catch
+      public const list_private_car_error_statusCode = "500";
+      public const list_private_car_error_status = "Private car Error";
+      public const list_private_car_errDesc = "Please check the information again.";
+
+      /////////// Pickup Tools ///////////
+      public const list_pickup_tools_success_status = "Send data successfully";
+      public const list_pickup_tools_success_statusCode = "00";
+      // Unsuccessful
+      public const list_pickup_tools_failed_status = "This information was not found in data.";
+      public const list_pickup_tools_failed_statusCode = "200";
+      public const list_pickup_tools_failed_Desc = "Please check the information again.";
+      //Catch
+      public const list_pickup_tools_error_statusCode = "500";
+      public const list_pickup_tools_error_status = "Pickup Tools Error";
+      public const list_pickup_tools_errDesc = "Please check the information again.";
+
+      /////////// Organics Hero Mission ///////////
+      public const list_organics_hero_mission_success_status = "Send data successfully";
+      public const list_organics_hero_mission_success_statusCode = "00";
+      // Unsuccessful
+      public const list_organics_hero_mission_failed_status = "This information was not found in data.";
+      public const list_organics_hero_mission_failed_statusCode = "200";
+      public const list_organics_hero_mission_failed_Desc = "Please check the information again.";
+      //Catch
+      public const list_organics_hero_mission_error_statusCode = "500";
+      public const list_organics_hero_mission_error_status = "Organics Hero Mission Error";
+      public const list_organics_hero_mission_errDesc = "Please check the information again.";
+
 };
 
 //Error Code and Description empLogStatus

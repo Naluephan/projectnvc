@@ -17,11 +17,31 @@ class PrivateCarController extends Controller
         $this->privateCarRepository = $privateCarRepository;
     }
 
-    public function getPrivatecar(Request $request)
+    public function getPrivatecarEmployee(Request $request)
     {
-        $data = $request->all();
-        $getPrivatecar = $this->privateCarRepository->getPrivatecar($data);
-        return $getPrivatecar;
+        try {
+            $data = $request->all();
+            $getPrivatecar = $this->privateCarRepository->getPrivatecar($data);
+
+            if (count($getPrivatecar) > 0) {
+                $result['status'] = ApiStatus::list_private_car_success_status;
+                $result['statusCode'] = ApiStatus::list_private_car_success_statusCode;
+                $result['listPrivateCar'] = $getPrivatecar;
+            } else {
+                $result['status'] = ApiStatus::list_private_car_failed_status;
+                $result['errCode'] = ApiStatus::list_private_car_failed_statusCode;
+                $result['errDesc'] = ApiStatus::list_private_car_failed_Desc;
+                $result['message'] = $getPrivatecar;
+                DB::rollBack();
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::list_private_car_error_statusCode;
+            $result['errCode'] = ApiStatus::list_private_car_error_status;
+            $result['errDesc'] = ApiStatus::list_private_car_errDesc;
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
     }
 
     public function create(Request $request)

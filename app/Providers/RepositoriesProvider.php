@@ -89,6 +89,17 @@ use App\Repositories\TransactionHistoryInterface;
 use App\Repositories\WorktimeInterface;
 use App\Repositories\ContractsCategoriesInterface;
 use App\Repositories\Impl\ContractsCategoriesRepository;
+use App\Repositories\Impl\PickupToolsEmployeeRepository;
+use App\Repositories\PickupToolsEmployeeInterface;
+use App\Repositories\Impl\OrganicsHeroMissionRepository;
+use App\Repositories\OrganicsHeroMissionInterface;
+use App\Repositories\Impl\OrganicsHeroMissionTypeRepository;
+use App\Repositories\OrganicsHeroMissionTypeInterface;
+use App\Repositories\Impl\OrganicsHeroMissionCategoryRepository;
+use App\Repositories\OrganicsHeroMissionCategoryInterface;
+use App\Repositories\Impl\OrganicsHeroMissionEmployeeRepository;
+use App\Repositories\OrganicsHeroMissionEmployeeInterface;
+
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -144,6 +155,17 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(TransactionHistoryInterface::class,TransactionHistoryRepository::class);
         $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
         $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
+        $this->app->bind(PickupToolsEmployeeInterface::class,PickupToolsEmployeeRepository::class);
+        $this->app->bind(OrganicsHeroMissionInterface::class,OrganicsHeroMissionRepository::class);
+        $this->app->bind(OrganicsHeroMissionTypeInterface::class,OrganicsHeroMissionTypeRepository::class);
+        $this->app->bind(OrganicsHeroMissionCategoryInterface::class,OrganicsHeroMissionCategoryRepository::class);
+        $this->app->bind(OrganicsHeroMissionEmployeeInterface::class,OrganicsHeroMissionEmployeeRepository::class);
+
+
+
+
+
+
 
 
 

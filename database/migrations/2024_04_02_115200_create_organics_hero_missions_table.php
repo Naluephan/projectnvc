@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-
 return new class extends Migration
 {
     /**
@@ -15,14 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('private_cars', function (Blueprint $table) {
+        Schema::create('organics_hero_missions', function (Blueprint $table) {
             $table->id();
-            $table->integer("emp_id");
-            $table->tinyInteger('car_category_id')->comment('0=not active 1=car 2=motorcycle')->default(1);
-            $table->string("car_registration")->nullable();
-            $table->string("car_brand")->nullable();
-            $table->string("car_color")->nullable();
-            $table->string("car_image")->default(null);
+            $table->integer("mission_type_id");
+            $table->integer("mission_category_id")->nullable();
+            $table->string("mission_name")->nullable();
+            $table->integer("mission_exp");
+            $table->string("mission_details")->nullable();
+            $table->string("mission_image")->nullable();
+            $table->tinyInteger('mission_status')->comment('0=not active 1=active 2=pending')->default(1);
 
             $table->tinyInteger('record_status')->comment('0=not active 1=active 2=pending')->default(1);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('private_cars');
+        Schema::dropIfExists('organics_hero_missions');
     }
 };
