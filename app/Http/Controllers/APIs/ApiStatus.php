@@ -291,6 +291,61 @@ class ApiStatus
       public const list_organics_hero_mission_error_status = "Organics Hero Mission Error";
       public const list_organics_hero_mission_errDesc = "Please check the information again.";
 
+
+       /////////// Reverse Fund ///////////
+       public const reverse_fund_success_status = "Send data successfully";
+       public const reverse_fund_success_statusCode = "00";
+       // Unsuccessful
+       public const reverse_fund_failed_status = "This information was not found in data.";
+       public const reverse_fund_failed_statusCode = "200";
+       public const reverse_fund_failed_Desc = "Please check the information again.";
+       //Catch
+       public const reverse_fund_error_statusCode = "500";
+       public const reverse_fund_error_status = "Reverse Fund Error";
+       public const reverse_fund_errDesc = "Please check the information again.";
+
+
+       /////////// Honor ///////////
+       public const honor_success_status = "Send data successfully";
+       public const honor_success_statusCode = "00";
+       // Unsuccessful
+       public const honor_failed_status = "This information was not found in data.";
+       public const honor_failed_statusCode = "200";
+       public const honor_failed_Desc = "Please check the information again.";
+       //Catch
+       public const honor_error_statusCode = "500";
+       public const honor_error_status = "Honor Error";
+       public const honor_errDesc = "Please check the information again.";
+
+
+
+
+       /////////// Social Security ///////////
+       public const social_security_success_status = "Send data successfully";
+       public const social_security_success_statusCode = "00";
+       // Unsuccessful
+       public const social_security_failed_status = "This information was not found in data.";
+       public const social_security_failed_statusCode = "200";
+       public const social_security_failed_Desc = "Please check the information again.";
+       //Catch
+       public const social_security_error_statusCode = "500";
+       public const social_security_error_status = "Social Security Error";
+       public const social_security_errDesc = "Please check the information again.";
+
+
+
+
+        /////////// Group Insurance ///////////
+        public const group_insurance_success_status = "Send data successfully";
+        public const group_insurance_success_statusCode = "00";
+        // Unsuccessful
+        public const group_insurance_failed_status = "This information was not found in data.";
+        public const group_insurance_failed_statusCode = "200";
+        public const group_insurance_failed_Desc = "Please check the information again.";
+        //Catch
+        public const group_insurance_error_statusCode = "500";
+        public const group_insurance_error_status = "Group insurance Error";
+        public const group_insurance_errDesc = "Please check the information again.";
 };
 
 //Error Code and Description empLogStatus

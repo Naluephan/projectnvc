@@ -48,11 +48,13 @@ class DatabaseSeeder extends Seeder
         $this->call(administrativeWorkCategoriesSeeder::class);
         $this->call(PrivateCarSeeder::class);
         $this->call(PositionCleanlineSeeder::class);
-        $this->call(ContractsCategoriesSeeder::class);
+        // $this->call(ContractsCategoriesSeeder::class);
         $this->call(PickupToolsEmployeeSeeder::class);
         $this->call(OrganicsHeroMissionTypeSeeder::class);
         $this->call(OrganicsHeroMissionCategorySeeder::class);
         $this->call(OrganicsHeroMissionEmployeeSeeder::class);
+        // $this->call(ContractsCategoriesSeeder::class);
+        $this->call(SocialSecurityTypeSeeder::class);
 
 
 

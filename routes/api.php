@@ -253,11 +253,11 @@ Route::group(
                 Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
 
                 //////////// contracts categories ////////////
-                Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
-                Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
-                Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
-                Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
-                Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
+                // Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
+                // Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
+                // Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
+                // Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
+                // Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
                 //contracts detail
                 Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
                 Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
@@ -265,6 +265,9 @@ Route::group(
                 Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
                 Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
 
+
+
+               
 
         }
 
@@ -291,5 +294,25 @@ Route::group(
                 Route::post('get/saving/money/by/id', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'savingMoneyListApp'])->name('get.saving.money.by.id');
                 Route::post('create/deposit/money', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'createDepositApp'])->name('create.deposit.money');
                 Route::post('create/withdraw/money', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'createWithdrawApp'])->name('create.withdraw.money');
+
+
+                 //honor
+                Route::post('honor/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.list');
+                Route::post('honor/create', [\App\Http\Controllers\APIs\HonorController::class, 'create'])->name('honor.create');
+
+
+                //Social Security
+                Route::post('social/security/list',[\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
+                Route::post('social/security/create',[\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
+
+                //Reserve Fund
+                Route::post('reserve/fund/list',[\App\Http\Controllers\APIs\ReserveFundController::class,'getReserveFund'])->name('reserve.fund.list');
+                Route::post('reserve/fund/create',[\App\Http\Controllers\APIs\ReserveFundController::class,'create'])->name('reserve.fund.create');
+
+                 //Group Insurance
+                 Route::post('group/insurance/list',[\App\Http\Controllers\APIs\GroupInsuranceController::class,'getGroupInsurance'])->name('group.insurance.list');
+                 Route::post('group/insurance/create',[\App\Http\Controllers\APIs\GroupInsuranceController::class,'create'])->name('group.insurance.create');
+ 
+
         }
 );

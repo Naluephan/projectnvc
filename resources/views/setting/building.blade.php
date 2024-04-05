@@ -33,6 +33,7 @@
     <div class="card rounded-4 bg-hr-card">
         <div class="card-header border-0">
             <h6 class="text-bold"><i class="fa-solid fa-hotel"></i> อาคารและสถานที่</h6>
+            <p class="mt-3 mb-0">กำหนดอาคารและสถานที่</p>
         </div>
         <div class="card-body">
             <div class="row mt-n4 px-2 list_building_location" id="list_building_location">
@@ -57,7 +58,7 @@
                         <input type="hidden" name="id" id="id">
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-sm-6">
                                     <div class="mb-3">
                                         <label for="location_name" class="col-form-label text-color"><i
                                                 class="fa-solid fa-hotel"
@@ -79,14 +80,14 @@
                                     </div>
                                     <div class="mb-3">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-12 col-sm-6">
                                                 <label for="total_floors" class="col-form-label rounded-pill text-color"><i
                                                         class="fa-sharp fa-solid fa-stairs"
                                                         style="color:#e6896a; margin-right:10px"></i>จำนวนชั้นทั้งหมด</label>
                                                 <input type="number" class="form-control rounded-pill text-color"
                                                     id="total_floors" name="total_floors" required>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-12 col-sm-6">
                                                 <label for="total_rooms" class="col-form-label text-color"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                                         fill="#e6896a" viewBox="0 0 1024 1024">
@@ -103,7 +104,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-6 sm-6">
                                     <div>
                                         <label for="place_name" class="col-form-label text-color"><i
                                                 class="fa-solid fa-hotel"
@@ -112,14 +113,14 @@
                                     <div class="locations">
                                         <div class="mb-3 list-building">
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-12 col-sm-6">
                                                     <label for="floor" class="col-form-label text-color"><i
                                                             class="fa-sharp fa-solid fa-stairs"
                                                             style="color:#e6896a; margin-right:10px"></i>ชั้น</label>
                                                     <input type="text" class="form-control" id="floor" name="floor"
                                                         required>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-12 col-sm-6">
                                                     <label for="room" class="col-form-label text-color"><i
                                                             class="fa-solid fa-hotel"
                                                             style="color:#e6896a; margin-right:10px"></i>ชื่อห้อง/สถานที่</label>
@@ -511,8 +512,8 @@
                         $('#location_edit').data('building_img_url', img_url);
                         $('#location_edit').data('location_img', response.data
                             .location_img);
-                        $('#location_edit').data('floor', response.data.floor);
-                        $('#location_edit').data('place_name', response.data.place_name);
+                        $('#location_edit').data('location', response.data.location);
+                        // $('#location_edit').data('place_name', response.data.place_name);
                     }
                 });
             })
@@ -523,8 +524,9 @@
                 var total_rooms = $(this).data('total_rooms');
                 var building_img_url = $(this).data('building_img_url');
                 var location_img = $(this).data('location_img');
-                var floor = $(this).data('floor');
-                var place_name = $(this).data('place_name');
+                var location = $(this).data('location');
+                // var floor = $(this).data('floor');
+                // var place_name = $(this).data('place_name');
                 $('#buildinglocationDetailModal').modal('hide');
                 $('#buildinglocationModal').modal('show');
                 $('#id').val(id);
@@ -537,7 +539,9 @@
                 $('.dropify-preview').css('display', 'block');
                 $('.dropify-filename-inner').text(location_img);
                 $('.locations').empty();
-
+                $.each(location, function(index, item) {
+                    addLocation(item)
+                });
 
 
 
