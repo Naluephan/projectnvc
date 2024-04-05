@@ -10,6 +10,7 @@ class PickupToolsEmployee extends Model
     use HasFactory;
     protected $fillable = [
         'emp_id',
+        'department_id',
         'pickup_tools_id',
         'number_requested',
         'status_repair',

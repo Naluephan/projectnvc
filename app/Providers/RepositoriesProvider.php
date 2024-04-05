@@ -94,6 +94,10 @@ use App\Repositories\GroupInsuranceInterface;
 use App\Repositories\Impl\ContractsCategoriesRepository;
 use App\Repositories\ReportRepairInterface;
 use App\Repositories\Impl\ReportRepairRepository;
+use App\Repositories\ContractsDetailsInterface;
+use App\Repositories\Impl\ContractsDetailsRepository;
+use App\Repositories\CommentInterface;
+use App\Repositories\Impl\CommentRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -147,7 +151,9 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(BuildingLocationInterface::class,BuildingLocationRepository::class);
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
         $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
-        $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
+        // $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
+        $this->app->bind(ContractsDetailsInterface::class,ContractsDetailsRepository::class);
+        $this->app->bind(CommentInterface::class,CommentRepository::class);
 
 
 

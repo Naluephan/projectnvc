@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContractsCategoriesSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(ReportRepair::class);
+        $this->call(CommentSeeder::class);
 
     }
 }

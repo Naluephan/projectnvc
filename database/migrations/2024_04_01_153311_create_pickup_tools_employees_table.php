@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('pickup_tools_employees', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id")->nullable();
+            $table->integer("department_id")->nullable();
             $table->integer("pickup_tools_id")->nullable();
             $table->integer("number_requested")->nullable();
             $table->tinyInteger('status_repair')->comment('0=not active 1=succeed 2=normal 3=repair')->default(2);
