@@ -24,18 +24,18 @@ class SavingMoneyController extends Controller
 
             $saving_data = $this->savingMoneypository->savingMoneyListApp($data);
             if (count($saving_data) > 0) {
-                $result['status'] = ApiStatus::transaction_history_success_status;
-                $result['statusCode'] = ApiStatus::transaction_history_success_statusCode;
+                $result['status'] = ApiStatus::saving_money_success_status;
+                $result['statusCode'] = ApiStatus::saving_money_success_statusCode;
                 $result['data'] = $saving_data;
             } else {
-                $result['status'] = ApiStatus::transaction_history_failed_status;
-                $result['statusCode'] = ApiStatus::transaction_history_failed_statusCode;
-                $result['errDesc'] = ApiStatus::transaction_history_failed_Desc;
+                $result['status'] = ApiStatus::saving_money_failed_status;
+                $result['statusCode'] = ApiStatus::saving_money_failed_statusCode;
+                $result['errDesc'] = ApiStatus::saving_money_failed_Desc;
             }
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::transaction_history_error_statusCode;
-            $result['errCode'] = ApiStatus::transaction_history_error_status;
-            $result['errDesc'] = ApiStatus::transaction_history_errDesc;
+            $result['status'] = ApiStatus::saving_money_error_statusCode;
+            $result['errCode'] = ApiStatus::saving_money_error_status;
+            $result['errDesc'] = ApiStatus::saving_money_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;
@@ -57,16 +57,17 @@ class SavingMoneyController extends Controller
                 'month' => $now->month,
                 'year' => $now->year,
                 'save_date' => $now,
+                'approve_status' => 2,
                 'save_channel' => $postData['save_channel'],
                 'total_amount' => $total + $postData['amount'],
             ];
             $this->savingMoneypository->create($data);
-            $result['status'] = ApiStatus::transaction_history_success_status;
-            $result['statusCode'] = ApiStatus::transaction_history_success_statusCode;
+            $result['status'] = ApiStatus::saving_money_success_status;
+            $result['statusCode'] = ApiStatus::saving_money_success_statusCode;
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::transaction_history_error_statusCode;
-            $result['errCode'] = ApiStatus::transaction_history_error_status;
-            $result['errDesc'] = ApiStatus::transaction_history_errDesc;
+            $result['status'] = ApiStatus::saving_money_error_statusCode;
+            $result['errCode'] = ApiStatus::saving_money_error_status;
+            $result['errDesc'] = ApiStatus::saving_money_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;
@@ -80,24 +81,34 @@ class SavingMoneyController extends Controller
             $amount = $this->savingMoneypository->findAmountByEmpId($postData['user_id']);
 
             $total = $amount ? $amount->total_amount : 0;
+            if ($postData['amount'] < $total) {
+                $data = [
+                    'emp_id' => $postData['user_id'],
+                    'save_status' => 2,
+                    'amount' => $postData['amount'],
+                    'month' => $now->month,
+                    'year' => $now->year,
+                    'save_date' => $now,
+                    'approve_status' => 1,
+                    'save_channel' => $postData['save_channel'],
+                    'total_amount' => $total - $postData['amount'],
 
-            $data = [
-                'emp_id' => $postData['user_id'],
-                'save_status' => 2,
-                'amount' => $postData['amount'],
-                'month' => $now->month,
-                'year' => $now->year,
-                'save_date' => $now,
-                'save_channel' => $postData['save_channel'],
-                'total_amount' => $total - $postData['amount'],
-            ];
-            $this->savingMoneypository->create($data);
-            $result['status'] = ApiStatus::transaction_history_success_status;
-            $result['statusCode'] = ApiStatus::transaction_history_success_statusCode;
+                ];
+                if (isset($postData['remark'])) {
+                    $data['remark'] = $postData['remark'];
+                }
+                $this->savingMoneypository->create($data);
+                $result['status'] = ApiStatus::saving_money_success_status;
+                $result['statusCode'] = ApiStatus::saving_money_success_statusCode;
+            } else {
+                $result['status'] = ApiStatus::saving_money_failed_status;
+                $result['errCode'] = ApiStatus::saving_money_error_status;
+                $result['errDesc'] = ApiStatus::saving_money_errDesc;
+            }
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::transaction_history_error_statusCode;
-            $result['errCode'] = ApiStatus::transaction_history_error_status;
-            $result['errDesc'] = ApiStatus::transaction_history_errDesc;
+            $result['status'] = ApiStatus::saving_money_error_statusCode;
+            $result['errCode'] = ApiStatus::saving_money_error_status;
+            $result['errDesc'] = ApiStatus::saving_money_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;
