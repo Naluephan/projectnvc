@@ -17,6 +17,6 @@ class SavingMoney extends Model
         'year',
         'save_date',
         'save_channel',
-       
+        'approve_status'
     ];
 }
