@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialSecurityTypeSeeder::class);
         $this->call(ContractsCategoriesSeeder::class);
         $this->call(CommentSeeder::class);
+        $this->call(ReportRepair::class);
 
     }
 }
