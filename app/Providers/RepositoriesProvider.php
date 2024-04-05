@@ -92,21 +92,6 @@ use App\Repositories\WorktimeInterface;
 use App\Repositories\ContractsCategoriesInterface;
 use App\Repositories\GroupInsuranceInterface;
 use App\Repositories\Impl\ContractsCategoriesRepository;
-use App\Repositories\Impl\GroupInsuranceRepository;
-use App\Repositories\Impl\PickupToolsEmployeeRepository;
-use App\Repositories\PickupToolsEmployeeInterface;
-use App\Repositories\Impl\OrganicsHeroMissionRepository;
-use App\Repositories\OrganicsHeroMissionInterface;
-use App\Repositories\Impl\OrganicsHeroMissionTypeRepository;
-use App\Repositories\OrganicsHeroMissionTypeInterface;
-use App\Repositories\Impl\OrganicsHeroMissionCategoryRepository;
-use App\Repositories\OrganicsHeroMissionCategoryInterface;
-use App\Repositories\Impl\OrganicsHeroMissionEmployeeRepository;
-use App\Repositories\OrganicsHeroMissionEmployeeInterface;
-use App\Repositories\Impl\SocialSecurityRepository;
-use App\Repositories\SocialSecurityInterface;
-use App\Repositories\Impl\ReserveFundRepository;
-use App\Repositories\ReserveFundInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -159,18 +144,12 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(HolidayCategoryInterface::class,HolidayCategoryRepository::class);
         $this->app->bind(BuildingLocationInterface::class,BuildingLocationRepository::class);
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
-        $this->app->bind(TransactionHistoryInterface::class,TransactionHistoryRepository::class);
-        $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
-        // $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
-        $this->app->bind(PickupToolsEmployeeInterface::class,PickupToolsEmployeeRepository::class);
-        $this->app->bind(OrganicsHeroMissionInterface::class,OrganicsHeroMissionRepository::class);
-        $this->app->bind(OrganicsHeroMissionTypeInterface::class,OrganicsHeroMissionTypeRepository::class);
-        $this->app->bind(OrganicsHeroMissionCategoryInterface::class,OrganicsHeroMissionCategoryRepository::class);
-        $this->app->bind(OrganicsHeroMissionEmployeeInterface::class,OrganicsHeroMissionEmployeeRepository::class);
-        $this->app->bind(HonorInterface::class, HonorRepository::class);
-        $this->app->bind(SocialSecurityInterface::class,SocialSecurityRepository::class);
-        $this->app->bind(ReserveFundInterface::class,ReserveFundRepository::class);
-        $this->app->bind(GroupInsuranceInterface::class,GroupInsuranceRepository::class);
+        $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
+
+
+
+
+
 
     }
 
