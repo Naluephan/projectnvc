@@ -92,11 +92,15 @@ class SavingMoneyController extends Controller
                     'approve_status' => 1,
                     'save_channel' => $postData['save_channel'],
                     'total_amount' => $total - $postData['amount'],
+
                 ];
+                if (isset($postData['remark'])) {
+                    $data['remark'] = $postData['remark'];
+                }
                 $this->savingMoneypository->create($data);
                 $result['status'] = ApiStatus::saving_money_success_status;
                 $result['statusCode'] = ApiStatus::saving_money_success_statusCode;
-            }else{
+            } else {
                 $result['status'] = ApiStatus::saving_money_failed_status;
                 $result['errCode'] = ApiStatus::saving_money_error_status;
                 $result['errDesc'] = ApiStatus::saving_money_errDesc;
