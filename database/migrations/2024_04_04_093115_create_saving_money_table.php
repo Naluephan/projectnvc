@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('year');
             $table->dateTime('save_date')->nullable()->default(null);
             $table->tinyInteger('save_channel')->default(1);
+            $table->tinyInteger('approve_status')->comment('1=ขอถอน, 2=อนุมัติ , 3=ไม่อนุมัติ')->default(1);
+            $table->string("remark")->nullable();
             $table->timestamps();
         });
     }

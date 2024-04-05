@@ -346,6 +346,18 @@ class ApiStatus
         public const group_insurance_error_statusCode = "500";
         public const group_insurance_error_status = "Group insurance Error";
         public const group_insurance_errDesc = "Please check the information again.";
+       /////////// Response Saving Money ///////////
+       public const saving_money_success_status = "Send data successfully";
+       public const saving_money_success_statusCode = "00";
+       // Unsuccessful
+       public const saving_money_failed_status = "This information was not found in data.";
+       public const saving_money_failed_statusCode = "200";
+       public const saving_money_failed_Desc = "Please check the information again.";
+       //Catch
+       public const saving_money_error_statusCode = "500";
+       public const saving_money_error_status = "Saving Money Error";
+       public const saving_money_errDesc = "Please check the information again.";
+
 };
 
 //Error Code and Description empLogStatus
