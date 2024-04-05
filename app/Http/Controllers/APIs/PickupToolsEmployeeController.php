@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\PickupToolsEmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\PickupTools;
 
 
 class PickupToolsEmployeeController extends Controller
@@ -49,6 +50,7 @@ class PickupToolsEmployeeController extends Controller
         try {
             $search_criteria = [
                 'emp_id' => $data['emp_id'],
+                'department_id' => $data['department_id'],
             ];
             $this->pickupToolsEmployeeRepository->findBy($search_criteria);
 
@@ -65,22 +67,33 @@ class PickupToolsEmployeeController extends Controller
 
             //     $this->pickupToolsEmployeeRepository->createCondition($pickuptools_data);
             // }
-            $save_data = [
-                'emp_id' => $data['emp_id'],
-                'pickup_tools_id' => $data['pickup_tools_id'],
-                'number_requested' => $data['number_requested'],
-                'status_repair' => $data['status_repair'],
-                'status_requested' => $data['status_requested'],
-                'request_details' => $data['request_details'],
-                'approve_at' => $data['approve_at'],
-                'not_approved_at' => $data['not_approved_at'],
-                'cancel_at' => $data['cancel_at'],
-            ];
-            $this->pickupToolsEmployeeRepository->createCondition($save_data);
+            $departmentId = $data['department_id'];
+            $pickupTools = PickupTools::where('department_id', $departmentId)->exists();
 
-            $result['status'] = ApiStatus::list_pickup_tools_success_status;
-            $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
-            $result['listPrivateCar'] = 'Save Successfully.';
+            if ($pickupTools) {
+                $save_data = [
+                    'emp_id' => $data['emp_id'],
+                    'department_id' => $data['department_id'],
+                    'pickup_tools_id' => $data['pickup_tools_id'],
+                    'number_requested' => $data['number_requested'],
+                    'status_repair' => $data['status_repair'],
+                    'status_requested' => $data['status_requested'],
+                    'request_details' => $data['request_details'],
+                    'approve_at' => $data['approve_at'],
+                    'not_approved_at' => $data['not_approved_at'],
+                    'cancel_at' => $data['cancel_at'],
+                ];
+                $this->pickupToolsEmployeeRepository->createCondition($save_data);
+
+                $result['status'] = ApiStatus::list_pickup_tools_success_status;
+                $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
+                $result['listPrivateCar'] = 'Save Successfully.';
+            } else {
+                $result['status'] = ApiStatus::list_pickup_tools_failed_status;
+                $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
+                $result['errDesc'] = ApiStatus::list_pickup_tools_failed_Desc;
+                $result['message'] = 'Save failed!!';
+            }
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::list_pickup_tools_error_statusCode;
             $result['errCode'] = ApiStatus::list_pickup_tools_error_status;
