@@ -18,10 +18,15 @@ class NewsTopicCategoryRepository extends MasterRepository implements NewsTopicC
     }
     public function getAll(){
         return $this->model->get();
+<<<<<<< Updated upstream
 
     }
     public function findByNewsName($newsName)
     {
         return $this->model->where('news_name', $newsName)->exists();
     }
+=======
+    }
+
+>>>>>>> Stashed changes
 }

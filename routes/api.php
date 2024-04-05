@@ -291,7 +291,6 @@ Route::group(
                 Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
                 Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
                 Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
-
         }
 
 
@@ -320,22 +319,22 @@ Route::group(
                 Route::post('create/withdraw/money', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'createWithdrawApp'])->name('create.withdraw.money');
 
 
-                 //honor
+                //honor
                 Route::post('honor/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.list');
                 Route::post('honor/create', [\App\Http\Controllers\APIs\HonorController::class, 'create'])->name('honor.create');
 
 
                 //Social Security
-                Route::post('social/security/list',[\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
-                Route::post('social/security/create',[\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
+                Route::post('social/security/list', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
+                Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
 
                 //Reserve Fund
-                Route::post('reserve/fund/list',[\App\Http\Controllers\APIs\ReserveFundController::class,'getReserveFund'])->name('reserve.fund.list');
-                Route::post('reserve/fund/create',[\App\Http\Controllers\APIs\ReserveFundController::class,'create'])->name('reserve.fund.create');
+                Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');
+                Route::post('reserve/fund/create', [\App\Http\Controllers\APIs\ReserveFundController::class, 'create'])->name('reserve.fund.create');
 
-                 //Group Insurance
-                 Route::post('group/insurance/list',[\App\Http\Controllers\APIs\GroupInsuranceController::class,'getGroupInsurance'])->name('group.insurance.list');
-                 Route::post('group/insurance/create',[\App\Http\Controllers\APIs\GroupInsuranceController::class,'create'])->name('group.insurance.create');
+                //Group Insurance
+                Route::post('group/insurance/list', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getGroupInsurance'])->name('group.insurance.list');
+                Route::post('group/insurance/create', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'create'])->name('group.insurance.create');
 
                 //Private Car Employee
                 Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');
@@ -348,5 +347,12 @@ Route::group(
                 //Organics Hero
                 Route::post('organicsHero/listMission/employee', [\App\Http\Controllers\APIs\OrganicsHeroMissionEmployeeController::class, 'getListMissionEmployee'])->name('organic.hero.mission.list.mission.employee');
 
+
+                //API NewsCategory
+                Route::post('/news/category/list', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getNewsCategory'])->name('news.category.list');
+                Route::post('/news/category/create', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'create'])->name('news.category.create');
+                Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'updateCategory'])->name('news.category.update');
+                Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'delete'])->name('news.category.delete');
+                Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getById'])->name('news.category.by.id');
         }
 );
