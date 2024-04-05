@@ -42,4 +42,51 @@ class PickupToolsEmployeeController extends Controller
         }
         return $result;
     }
+
+    public function create(Request $request)
+    {
+        $data = $request->all();
+        try {
+            $search_criteria = [
+                'emp_id' => $data['emp_id'],
+            ];
+            $this->pickupToolsEmployeeRepository->findBy($search_criteria);
+
+            // foreach ($data['pickup_tools_employees'] as $pickuptools_data) {
+            //     $pickuptools_data['emp_id'] = $data['emp_id'];
+            //     $pickuptools_data['pickup_tools_id'] = $pickuptools_data['pickup_tools_id'];
+            //     $pickuptools_data['number_requested'] =  $pickuptools_data['number_requested'];
+            //     $pickuptools_data['status_repair'] =  $pickuptools_data['status_repair'];
+            //     $pickuptools_data['status_requested'] =  $pickuptools_data['status_requested'];
+            //     $pickuptools_data['request_details'] =  $pickuptools_data['request_details'];
+            //     $pickuptools_data['approve_at'] =  $pickuptools_data['approve_at'];
+            //     $pickuptools_data['not_approved_at'] =  $pickuptools_data['not_approved_at'];
+            //     $pickuptools_data['cancel_at'] =  $pickuptools_data['cancel_at'];
+
+            //     $this->pickupToolsEmployeeRepository->createCondition($pickuptools_data);
+            // }
+            $save_data = [
+                'emp_id' => $data['emp_id'],
+                'pickup_tools_id' => $data['pickup_tools_id'],
+                'number_requested' => $data['number_requested'],
+                'status_repair' => $data['status_repair'],
+                'status_requested' => $data['status_requested'],
+                'request_details' => $data['request_details'],
+                'approve_at' => $data['approve_at'],
+                'not_approved_at' => $data['not_approved_at'],
+                'cancel_at' => $data['cancel_at'],
+            ];
+            $this->pickupToolsEmployeeRepository->createCondition($save_data);
+
+            $result['status'] = ApiStatus::list_pickup_tools_success_status;
+            $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
+            $result['listPrivateCar'] = 'Save Successfully.';
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::list_pickup_tools_error_statusCode;
+            $result['errCode'] = ApiStatus::list_pickup_tools_error_status;
+            $result['errDesc'] = ApiStatus::list_pickup_tools_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
 }

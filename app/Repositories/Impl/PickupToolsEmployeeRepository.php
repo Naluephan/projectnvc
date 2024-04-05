@@ -36,4 +36,24 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
                 }
             ])->get();
     }
+
+    public function findBy(array $criteria)
+    {
+        return PickupToolsEmployee::where($criteria)->first();
+    }
+
+    public function createCondition($params)
+    {
+        $existingData = $this->model->where('pickup_tools_id', $params['pickup_tools_id'])
+            ->where('emp_id', $params['emp_id'])
+            ->first();
+
+        if ($existingData) {
+            $existingData->number_requested += $params['number_requested'];
+            $existingData->save();
+            return $existingData;
+        } else {
+            return $this->model->create($params);
+        }
+    }
 }
