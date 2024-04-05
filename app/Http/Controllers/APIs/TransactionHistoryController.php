@@ -16,11 +16,34 @@ class TransactionHistoryController extends Controller
         $this->transactionHistoriesRepository = $transactionHistoriesRepository;
     }
 
-    public function transactionListApp(Request $request)
+    public function transactionListAllApp(Request $request)
     {
         try {
             $data = $request->all();
-
+            $data['step_status'] = 0;
+            $transaction_data = $this->transactionHistoriesRepository->transactionListApp($data);
+            if (count($transaction_data) > 0) {
+                $result['status'] = ApiStatus::transaction_history_success_status;
+                $result['statusCode'] = ApiStatus::transaction_history_success_statusCode;
+                $result['data'] = $transaction_data;
+            }else{
+                $result['status'] = ApiStatus::transaction_history_failed_status;
+                $result['statusCode'] = ApiStatus::transaction_history_failed_statusCode;
+                $result['errDesc'] = ApiStatus::transaction_history_failed_Desc;
+            }
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::transaction_history_error_statusCode;
+            $result['errCode'] = ApiStatus::transaction_history_error_status;
+            $result['errDesc'] = ApiStatus::transaction_history_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
+    public function transactionSuccessListApp(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $data['step_status'] = 1;
             $transaction_data = $this->transactionHistoriesRepository->transactionListApp($data);
             if (count($transaction_data) > 0) {
                 $result['status'] = ApiStatus::transaction_history_success_status;

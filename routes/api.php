@@ -285,7 +285,8 @@ Route::group(
                         })->name('test.number');
                 });
                 // transaction history API APP
-                Route::post('get/transaction/by/id', [\App\Http\Controllers\APIs\TransactionHistoryController::class, 'transactionListApp'])->name('get.transaction.by.id');
+                Route::post('get/transaction/all/by/id', [\App\Http\Controllers\APIs\TransactionHistoryController::class, 'transactionListAllApp'])->name('get.transaction.all.by.id');
+                Route::post('get/transaction/success/by/id', [\App\Http\Controllers\APIs\TransactionHistoryController::class, 'transactionSuccessListApp'])->name('get.transaction.success.by.id');
 
                 // saving money API APP
                 Route::post('get/saving/money/by/id', [\App\Http\Controllers\APIs\SavingMoneyController::class, 'savingMoneyListApp'])->name('get.saving.money.by.id');
