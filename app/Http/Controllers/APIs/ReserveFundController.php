@@ -74,18 +74,18 @@ class ReserveFundController extends Controller
 
     public function deleteUpdate(Request $request)
     {
-        DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
             $this->reservefundRepository->update($id, $data);
-            DB::commit();
-        } catch (\Exception $ex) {
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
-            DB::rollBack();
+            $result['status'] = ApiStatus::reverse_fund_success_status;
+            $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::reverse_fund_error_statusCode;
+            $result['errCode'] = ApiStatus::reverse_fund_error_status;
+            $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
+            $result['message'] = $e->getMessage();
         }
-        return json_encode($result);
+        return $result;
     }
 }

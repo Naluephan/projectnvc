@@ -73,15 +73,16 @@ class HonorController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
             $this->honorRepository->update($id, $data);
-            DB::commit();
-        } catch (\Exception $ex) {
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
-            DB::rollBack();
+            $result['status'] = ApiStatus::honor_success_status;
+            $result['statusCode'] = ApiStatus::honor_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::honor_error_statusCode;
+            $result['errCode'] = ApiStatus::honor_error_status;
+            $result['errDesc'] = ApiStatus::honor_errDesc;
+            $result['message'] = $e->getMessage();
         }
-        return json_encode($result);
+        return $result;
     }
 }
