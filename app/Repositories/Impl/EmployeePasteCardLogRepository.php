@@ -49,11 +49,8 @@ class EmployeePasteCardLogRepository extends MasterRepository implements Employe
     //     $data = DB::select($query);
     //     return $data;
     // }
-<<<<<<< Updated upstream
     // }
-=======
-    }
->>>>>>> Stashed changes
+    // }
     public function empPasteCardLogApi($param)
     {
         $conditions = [];

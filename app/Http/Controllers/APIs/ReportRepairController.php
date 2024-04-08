@@ -24,10 +24,15 @@ class ReportRepairController extends Controller
         $data = $request->all();
         try {
             $data = [
-                'comments_id' => $data['comments_id'],
-                'comments_details' => $data['comments_details'],
+                'repair_id' => $data['repair_id'],
+                'repair_type' => $data['repair_type'],
+                'repair_equipment' => $data['repair_equipment'],
+                'repair_detail' => $data['repair_detail'],
+                'status' => 0,
             ];
-            if (isset($data) > 0) {
+            if ($request->file('images')) {
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/reportRepair/');
+
                 $this->reportRepairRepository->create($data);
                 $result = [
                     'status' => 'Success',
@@ -54,10 +59,14 @@ class ReportRepairController extends Controller
         $id = $data['id'];
         try {
             $data = [
-                'comments_id' => $data['comments_id'],
-                'comments_details' => $data['comments_details'],
+                'repair_id' => $data['repair_id'],
+                'repair_type' => $data['repair_type'],
+                'repair_equipment' => $data['repair_equipment'],
+                'repair_detail' => $data['repair_detail'],
+                'status' => $data['status'],
             ];
-            if (isset($data) > 0) {
+            if ($request->file('images')) {
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/');
                 $this->reportRepairRepository->update($id, $data);
                 $result = [
                     'status' => 'Success',
@@ -81,9 +90,16 @@ class ReportRepairController extends Controller
     {
         DB::beginTransaction();
         $id = $request->id;
-        $result['status'] = "Success";
         try {
-            $this->reportRepairRepository->delete($id);
+            $query =$this->reportRepairRepository->delete($id);
+            if (isset($query)) {
+                $result['status'] = 'Success';
+                $result['statusCode'] = '00';
+            } else {
+                $result['status'] = 'Delete Failed';
+                $result['statusCode'] = '01';
+                DB::rollBack();
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";

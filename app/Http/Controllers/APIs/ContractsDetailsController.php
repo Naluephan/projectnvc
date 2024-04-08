@@ -26,11 +26,10 @@ class ContractsDetailsController extends Controller
             $data = [
                 'contract_type_name' => $data['contract_type_name'],
                 'contract_details' => $data['contract_details'],
-                'images_url' => $data['images_url'],
             ];
-            if ($request->file('images_url')) {
+            if ($request->file('images')) {
 
-                $data['images_url'] = save_image($request->file('images_url'), 500, '/images/setting/contracts/');
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/');
 
                 $this->contractsDetailsRepository->create($data);
                 $result = [
@@ -60,11 +59,11 @@ class ContractsDetailsController extends Controller
             $data = [
                 'contract_type_name' => $data['contract_type_name'],
                 'contract_details' => $data['contract_details'],
-                'images_url' => $data['images_url'],
+                'images' => $data['images'],
             ];
-            if ($request->file('images_url')) {
+            if ($request->file('images')) {
 
-                $data['images_url'] = save_image($request->file('images_url'), 500, '/images/setting/contracts/');
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/');
 
                 $this->contractsDetailsRepository->update($id, $data);
                 $result = [
@@ -89,9 +88,16 @@ class ContractsDetailsController extends Controller
     {
         DB::beginTransaction();
         $id = $request->id;
-        $result['status'] = "Success";
         try {
             $this->contractsDetailsRepository->delete($id);
+            if (isset($query)) {
+                $result['status'] = 'Success';
+                $result['statusCode'] = '00';
+            } else {
+                $result['status'] = 'Delete Failed';
+                $result['statusCode'] = '01';
+                DB::rollBack();
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";

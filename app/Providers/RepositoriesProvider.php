@@ -160,7 +160,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(BuildingLocationInterface::class,BuildingLocationRepository::class);
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
         $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
-        // $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
+        $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
         $this->app->bind(ContractsDetailsInterface::class,ContractsDetailsRepository::class);
         $this->app->bind(CommentInterface::class,CommentRepository::class);
         $this->app->bind(GroupInsuranceInterface::class,GroupInsuranceRepository::class);
