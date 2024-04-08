@@ -104,6 +104,10 @@ use App\Repositories\Impl\SocialSecurityRepository;
 use App\Repositories\Impl\ReserveFundRepository;
 use App\Repositories\SocialSecurityInterface;
 use App\Repositories\ReserveFundInterface;
+use App\Repositories\Impl\PickupToolsEmployeeRepository;
+use App\Repositories\PickupToolsEmployeeInterface;
+use App\Repositories\Impl\OrganicsHeroMissionEmployeeRepository;
+use App\Repositories\OrganicsHeroMissionEmployeeInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -165,6 +169,10 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(ReserveFundInterface::class,ReserveFundRepository::class);
         $this->app->bind(TransactionHistoryInterface::class,TransactionHistoryRepository::class);
         $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
+        $this->app->bind(PickupToolsEmployeeInterface::class,PickupToolsEmployeeRepository::class);
+        $this->app->bind(OrganicsHeroMissionEmployeeInterface::class,OrganicsHeroMissionEmployeeRepository::class);
+
+
 
 
 
