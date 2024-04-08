@@ -163,6 +163,8 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SocialSecurityInterface::class,SocialSecurityRepository::class);
         $this->app->bind(HonorInterface::class,HonorRepository::class);
         $this->app->bind(ReserveFundInterface::class,ReserveFundRepository::class);
+        $this->app->bind(TransactionHistoryInterface::class,TransactionHistoryRepository::class);
+        $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
 
 
 
