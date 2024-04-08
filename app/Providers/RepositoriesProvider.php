@@ -99,6 +99,11 @@ use App\Repositories\ContractsDetailsInterface;
 use App\Repositories\Impl\ContractsDetailsRepository;
 use App\Repositories\CommentInterface;
 use App\Repositories\Impl\CommentRepository;
+use App\Repositories\Impl\GroupInsuranceRepository;
+use App\Repositories\Impl\SocialSecurityRepository;
+use App\Repositories\Impl\ReserveFundRepository;
+use App\Repositories\SocialSecurityInterface;
+use App\Repositories\ReserveFundInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -154,6 +159,10 @@ class RepositoriesProvider extends ServiceProvider
         // $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
         $this->app->bind(ContractsDetailsInterface::class,ContractsDetailsRepository::class);
         $this->app->bind(CommentInterface::class,CommentRepository::class);
+        $this->app->bind(GroupInsuranceInterface::class,GroupInsuranceRepository::class);
+        $this->app->bind(SocialSecurityInterface::class,SocialSecurityRepository::class);
+        $this->app->bind(HonorInterface::class,HonorRepository::class);
+        $this->app->bind(ReserveFundInterface::class,ReserveFundRepository::class);
 
 
 

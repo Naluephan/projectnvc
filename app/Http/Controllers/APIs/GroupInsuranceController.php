@@ -67,21 +67,21 @@ class GroupInsuranceController extends Controller
 
     public function deleteUpdate(Request $request)
     {
-        DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
             if ($request->file('group_insurance_img')) {
                 $data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/setting/building/');
             }
             $this->groupinsuranceRepository->update($id, $data);
-            DB::commit();
-        } catch (\Exception $ex) {
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
-            DB::rollBack();
+            $result['status'] = ApiStatus::group_insurance_success_status;
+            $result['statusCode'] = ApiStatus::group_insurance_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::group_insurance_error_statusCode;
+            $result['errCode'] = ApiStatus::group_insurance_error_status;
+            $result['errDesc'] = ApiStatus::group_insurance_errDesc;
+            $result['message'] = $e->getMessage();
         }
-        return json_encode($result);
+        return $result;
     }
 }

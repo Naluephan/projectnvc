@@ -608,7 +608,7 @@
                 let btn = $(event.relatedTarget);
                 let title = btn.data('ac') === 'edit' ? "แก้ไขข้อมูล" : "เพิ่มข้อมูล";
                 console.log(btn.data('ac'))
-                let obj = $(this);
+                let obj = $(this); 
                 obj.find('.modal-title').text(title)
             })
             buildinglocation_modal.on('hide.bs.modal', function() {
