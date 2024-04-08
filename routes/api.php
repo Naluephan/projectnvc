@@ -276,7 +276,7 @@ Route::group(
                 Route::post('report/repair/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.getAll');
                 Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
 
-                //comment 
+                //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
                 Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
                 Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
@@ -292,7 +292,7 @@ Route::group(
                 Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
 
 
-                //comment 
+                //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
                 Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
                 Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
@@ -350,6 +350,12 @@ Route::group(
                 //Pickup Tools Employee
                 Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
                 Route::post('pickup/tools/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
+                Route::post('pickup/tools/employee/update', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'update'])->name('pickup.tools.employee.update');
+
+                //API Reward Coin
+                Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'reward_list'])->name('reward.list');
+                Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
+                Route::post('employee/reward/coin/create', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'create'])->name('reward.coin.create');
 
                 //Organics Hero
                 Route::post('organicsHero/listMission/employee', [\App\Http\Controllers\APIs\OrganicsHeroMissionEmployeeController::class, 'getListMissionEmployee'])->name('organic.hero.mission.list.mission.employee');

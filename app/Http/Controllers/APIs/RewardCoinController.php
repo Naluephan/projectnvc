@@ -164,4 +164,29 @@ class RewardCoinController extends Controller
 
         return $result;
     }
+
+    public function reward_list(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $querys = $this->rewardCoinRepository->rewardCoin($data);
+
+            if (count($querys) > 0) {
+                $result['status'] = ApiStatus::reward_coin_history_success_status;
+                $result['statusCode'] = ApiStatus::reward_coin_history_success_statusCode;
+                $result['data'] = $querys;
+            } else {
+                $result['status'] = ApiStatus::reward_coin_history_failed_status;
+                $result['errCode'] = ApiStatus::reward_coin_history_failed_statusCode;
+                $result['errDesc'] = ApiStatus::reward_coin_history_failed_Desc;
+                $result['message'] = $querys;
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::reward_coin_history_error_statusCode;
+            $result['errCode'] = ApiStatus::reward_coin_history_error_status;
+            $result['errDesc'] = ApiStatus::reward_coin_history_errDesc;
+            $result['message'] = $ex->getMessage();
+        }
+        return $result;
+    }
 }

@@ -32,11 +32,12 @@ class PrivateCarController extends Controller
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
                     'car_color' => $data['car_color'],
-                    'car_image' => $data['car_image'],
+                    'record_status' => 1,
+                    // 'car_image' => $data['car_image'],
                 ];
-                // if ($request->file('car_image')) {
-                //     $update_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
-                // }
+                if ($request->file('car_image')) {
+                    $update_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                }
                 $this->privateCarRepository->update($existing_car->id, $update_data);
             } else {
                 $save_data = [
@@ -44,12 +45,12 @@ class PrivateCarController extends Controller
                     'car_category_id' => $data['car_category_id'],
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
-                    'car_color' => $data['car_color'],
-                    'car_image' => $data['car_image'],
+                    'record_status' => 1,
+                    // 'car_image' => $data['car_image'],
                 ];
-                // if ($request->file('car_image')) {
-                //     $save_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
-                // }
+                if ($request->file('car_image')) {
+                    $save_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                }
                 $this->privateCarRepository->create($save_data);
             }
 
