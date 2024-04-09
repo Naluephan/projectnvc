@@ -83,10 +83,10 @@ class NewsNoticeController extends Controller
             }
 
             DB::commit();
-            $noti_data =[
-                'device_key'=>'ez-Yt8l2RLWU1nZ8wrqnCm:APA91bGsV9aAa0gLNr5CHv2am3SO3x7OaYvZW1kNc811GCEL_CgO4ZLAV2B6RjntEmynW2yttQICaS49eTgVvO4yBZYaht6T1kBsP41RHb354jXhfiM7dnUKxgd668lshkpGEnWn48kK',
-                'title'=>'title',
-                'body'=>'body',
+            $noti_data = [
+                // 'device_key' => 'ez-Yt8l2RLWU1nZ8wrqnCm:APA91bGsV9aAa0gLNr5CHv2am3SO3x7OaYvZW1kNc811GCEL_CgO4ZLAV2B6RjntEmynW2yttQICaS49eTgVvO4yBZYaht6T1kBsP41RHb354jXhfiM7dnUKxgd668lshkpGEnWn48kK',
+                'title' => $data['news_notice_name'],
+                'body' => $data['news_notice_description'],
             ];
             $this->notify($noti_data);
         } catch (\Exception $ex) {
@@ -94,7 +94,7 @@ class NewsNoticeController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        
+
         return $result;
     }
 
@@ -172,49 +172,54 @@ class NewsNoticeController extends Controller
 
     public function news_list(Request $request)
     {
-        try{
+        try {
             $data = $request->all();
             $news_list = $this->newsNoticeRepository->getAll($data);
-            if($news_list != null ){
-             $result['status'] = ApiStatus::news_list_success_status;
-             $result['statusCode'] = ApiStatus::news_list_success_statusCode;
-             $result['news_list'] = $news_list;
-
-            }else{
-             $result['status'] = ApiStatus::news_list_failed_status;
-             $result['errCode'] = ApiStatus::news_list_failed_statusCode;
-             $result['errDesc'] = ApiStatus::news_list_failed_Desc;
-             $result['message'] = $news_list;
-             DB::rollBack();
+            if ($news_list != null) {
+                $result['status'] = ApiStatus::news_list_success_status;
+                $result['statusCode'] = ApiStatus::news_list_success_statusCode;
+                $result['news_list'] = $news_list;
+            } else {
+                $result['status'] = ApiStatus::news_list_failed_status;
+                $result['errCode'] = ApiStatus::news_list_failed_statusCode;
+                $result['errDesc'] = ApiStatus::news_list_failed_Desc;
+                $result['message'] = $news_list;
+                DB::rollBack();
             }
-         } catch (\Exception $ex) {
-             $result['status'] = ApiStatus::news_list_error_statusCode;
-             $result['errCode'] = ApiStatus::news_list_error_status;
-             $result['errDesc'] = ApiStatus::news_list_errDesc;
-             $result['message'] = $ex->getMessage();
-             DB::rollBack();
-         }
-         return $result;
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::news_list_error_statusCode;
+            $result['errCode'] = ApiStatus::news_list_error_status;
+            $result['errDesc'] = ApiStatus::news_list_errDesc;
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
     }
 
-        ////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////
     public function notify($data)
+    // public function notify(Request $request)
     {
+        // $data = $request->all();
         try {
 
-            if (!isset($data['device_key']) || !isset($data['title']) || !isset($data['body'])) {
+            if (!isset($data['title']) || !isset($data['body'])) {
                 throw new \Exception("Missing required parameters");
             }
 
-            $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
+            // $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
 
             $dataArr = [
                 "click_action" => "FLUTTER_NOTIFICATION_CLICK",
                 "status" => "done",
             ];
-
+            $rawFields = [
+                "device_key"
+            ];
+            $key = $this->employeeRepository->getDeviceKey()->pluck('device_key');
             $notificationData = [
-                "registration_ids" => $registrationIds,
+                // "registration_ids" => $registrationIds,
+                "registration_ids" => $key,
                 "notification" => [
                     "title" => $data['title'],
                     "body" => $data['body'],
@@ -229,10 +234,7 @@ class NewsNoticeController extends Controller
                 'Authorization' => 'key =' . $serverKey,
                 'Content-Type' => 'application/json',
             ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
-
-            $jsonData = $response->json();
-
-            return $response;
+            return $response ;
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }

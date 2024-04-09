@@ -322,4 +322,11 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     {
         return base64_encode(base64_encode(base64_encode($data)));
     }
+
+    public function getDeviceKey()
+    {
+        return $this->model
+            ->whereNotNull('device_key')
+            ->get();
+    }
 }

@@ -387,5 +387,9 @@ Route::group(
                 //API registration
                 Route::post('app/register/employee/create', [\App\Http\Controllers\APIs\EmployeeController::class, 'createRegister'])->name('app.register.employee.create');
 
+                //  notification Application
+                Route::post('notify/employee', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'notify'])->name('notify.employee');
+
+
         }
 );
