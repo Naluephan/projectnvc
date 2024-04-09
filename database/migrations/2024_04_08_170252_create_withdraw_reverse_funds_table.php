@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_security_types', function (Blueprint $table) {
+        Schema::create('withdraw_reverse_funds', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('detail');
-            $table->string('record_status')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_security_types');
+        Schema::dropIfExists('withdraw_reverse_funds');
     }
 };

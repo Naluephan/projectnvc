@@ -329,19 +329,31 @@ Route::group(
                 //honor
                 Route::post('honor/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.list');
                 Route::post('honor/create', [\App\Http\Controllers\APIs\HonorController::class, 'create'])->name('honor.create');
+                Route::post('honor/update', [\App\Http\Controllers\APIs\HonorController::class, 'update'])->name('honor.update');
+                Route::post('honor/delete', [\App\Http\Controllers\APIs\HonorController::class, 'delete'])->name('honor.delete');
+                Route::post('honor/by/id', [\App\Http\Controllers\APIs\HonorController::class, 'getById'])->name('honor.by.id');
 
 
                 //Social Security
                 Route::post('social/security/list', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
                 Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
+                Route::post('social/security/update', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'update'])->name('social.security.update');
+                Route::post('social/security/delete', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'delete'])->name('social.security.delete');
+                Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');
 
                 //Reserve Fund
                 Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');
                 Route::post('reserve/fund/create', [\App\Http\Controllers\APIs\ReserveFundController::class, 'create'])->name('reserve.fund.create');
+                Route::post('reserve/fund/update', [\App\Http\Controllers\APIs\ReserveFundController::class, 'update'])->name('reserve.fund.update');
+                Route::post('reserve/fund/delete', [\App\Http\Controllers\APIs\ReserveFundController::class, 'delete'])->name('reserve.fund.delete');
+                Route::post('reserve/fund/by/id', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getById'])->name('reserve.fund.by.id');
 
                 //Group Insurance
                 Route::post('group/insurance/list', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getGroupInsurance'])->name('group.insurance.list');
                 Route::post('group/insurance/create', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'create'])->name('group.insurance.create');
+                Route::post('group/insurance/update', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'update'])->name('group.insurance.update');
+                Route::post('group/insurance/delete', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'delete'])->name('group.insurance.delete');
+                Route::post('group/insurance/by/id', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getById'])->name('group.insurance.by.id');
 
                 //Private Car Employee
                 Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');

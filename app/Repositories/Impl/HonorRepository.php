@@ -21,7 +21,7 @@ class HonorRepository extends MasterRepository implements HonorInterface
     {
         return $this->model->where('record_status', 1)
             // ->where('emp_id', $params['emp_id'])
-            
+            ->with('emp')
             ->get();
     }
 
