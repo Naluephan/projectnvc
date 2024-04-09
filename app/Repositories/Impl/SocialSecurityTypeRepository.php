@@ -4,7 +4,8 @@
 namespace App\Repositories\Impl;
 
 
-use App\Models\SocialSecurity;
+// use App\Models\SocialSecurity;
+use App\Models\SocialSecurityType;
 use App\Repositories\SocialSecurityTypeInterface;
 use Illuminate\Support\Collection;
 
@@ -12,7 +13,7 @@ class SocialSecurityTypeRepository extends MasterRepository implements SocialSec
 {
     protected $model;
 
-    public function __construct(SocialSecurity $model)
+    public function __construct(SocialSecurityType $model)
     {
         parent::__construct($model);
     }
@@ -22,12 +23,12 @@ class SocialSecurityTypeRepository extends MasterRepository implements SocialSec
         return $this->model
             ->where('record_status', 1)
             // ->where('emp_id', $params['emp_id'])
-            ->with('emp')
+            ->with('socialdetail')
             ->get();
     }
 
     public function findBy(array $criteria)
     {
-        return SocialSecurity::where($criteria)->first();
+        return SocialSecurityType::where($criteria)->first();
     }
 }

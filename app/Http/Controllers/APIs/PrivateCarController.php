@@ -68,19 +68,24 @@ class PrivateCarController extends Controller
 
     public function deleteUpdate(Request $request)
     {
-        DB::beginTransaction();
         $data = $request->all();
         $id = $data['id'];
-        $result['status'] = "Success";
         try {
-            $this->privateCarRepository->update($id, $data);
-            DB::commit();
+            $save_data = [
+                'record_status' => 0
+            ];
+            $this->privateCarRepository->update($id, $save_data);
+
+            $result['status'] = ApiStatus::list_private_car_success_status;
+            $result['statusCode'] = ApiStatus::list_private_car_success_statusCode;
+            $result['listPrivateCar'] = 'Delete Successfully.';
         } catch (\Exception $ex) {
-            $result['status'] = "Failed";
+            $result['status'] = ApiStatus::list_private_car_error_statusCode;
+            $result['errCode'] = ApiStatus::list_private_car_error_status;
+            $result['errDesc'] = ApiStatus::list_private_car_errDesc;
             $result['message'] = $ex->getMessage();
-            DB::rollBack();
         }
-        return json_encode($result);
+        return $result;
     }
 
     public function getPrivatecarEmployee(Request $request)

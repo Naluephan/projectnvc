@@ -11,16 +11,18 @@ class SocialSecurity extends Model
     protected $fillable = [
         'emp_id',
         'social_security_type_id',
-        'child_certificate',
-        'saving_passbook',
-        'marriage_certificate',
+        // 'social_security_type_name',
+        'aprrove_status',
         'record_status',
 
     ];
     public function emp(){
         return $this->belongsTo(Employee::class,'emp_id','id');
     }
+    // public function socialfile(){
+    //     return $this->hasMany(SocialSecurityFile::class,'social_type_id','id');
+    // }
     public function socialsecurity(){
-        return $this->belongsTo(SocialSecurityType::class,'social_security_type_id','id');
+        return $this->hasMany(SocialSecurityType::class,'id','social_security_type_id');
     }
 }
