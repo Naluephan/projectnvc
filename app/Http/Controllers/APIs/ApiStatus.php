@@ -353,6 +353,7 @@ class ApiStatus
        public const saving_money_failed_status = "This information was not found in data.";
        public const saving_money_failed_statusCode = "200";
        public const saving_money_failed_Desc = "Please check the information again.";
+       
        //Catch
        public const saving_money_error_statusCode = "500";
        public const saving_money_error_status = "Saving Money Error";

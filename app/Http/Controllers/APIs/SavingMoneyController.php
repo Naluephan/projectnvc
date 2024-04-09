@@ -33,8 +33,8 @@ class SavingMoneyController extends Controller
                 $result['errDesc'] = ApiStatus::saving_money_failed_Desc;
             }
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::saving_money_error_statusCode;
-            $result['errCode'] = ApiStatus::saving_money_error_status;
+            $result['status'] = ApiStatus::saving_money_error_status;
+            $result['errCode'] = ApiStatus::saving_money_error_statusCode;
             $result['errDesc'] = ApiStatus::saving_money_errDesc;
             $result['message'] = $e->getMessage();
         }
@@ -65,8 +65,8 @@ class SavingMoneyController extends Controller
             $result['status'] = ApiStatus::saving_money_success_status;
             $result['statusCode'] = ApiStatus::saving_money_success_statusCode;
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::saving_money_error_statusCode;
-            $result['errCode'] = ApiStatus::saving_money_error_status;
+            $result['status'] = ApiStatus::saving_money_error_status;
+            $result['errCode'] = ApiStatus::saving_money_error_statusCode;
             $result['errDesc'] = ApiStatus::saving_money_errDesc;
             $result['message'] = $e->getMessage();
         }
@@ -101,13 +101,13 @@ class SavingMoneyController extends Controller
                 $result['status'] = ApiStatus::saving_money_success_status;
                 $result['statusCode'] = ApiStatus::saving_money_success_statusCode;
             } else {
-                $result['status'] = ApiStatus::saving_money_failed_status;
-                $result['errCode'] = ApiStatus::saving_money_error_status;
+                $result['status'] = ApiStatus::saving_money_error_status;
+                $result['errCode'] = ApiStatus::saving_money_failed_statusCode;
                 $result['errDesc'] = ApiStatus::saving_money_errDesc;
             }
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::saving_money_error_statusCode;
-            $result['errCode'] = ApiStatus::saving_money_error_status;
+            $result['status'] = ApiStatus::saving_money_error_status;
+            $result['errCode'] = ApiStatus::saving_money_error_statusCode;
             $result['errDesc'] = ApiStatus::saving_money_errDesc;
             $result['message'] = $e->getMessage();
         }

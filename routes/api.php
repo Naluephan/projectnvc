@@ -354,5 +354,8 @@ Route::group(
                 Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'updateCategory'])->name('news.category.update');
                 Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'delete'])->name('news.category.delete');
                 Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getById'])->name('news.category.by.id');
+        
+                // work attendance app
+                Route::post('employee/summary/work/attendance', [\App\Http\Controllers\APIs\EmployeePasteCardLogController::class, 'summaryWorkAttendance'])->name('employee.summary.work.attendance');
         }
 );

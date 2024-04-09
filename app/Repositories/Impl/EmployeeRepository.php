@@ -200,7 +200,7 @@ class EmployeeRepository extends MasterRepository implements EmployeeInterface
     public function getUserProfile($empId)
     {
         return $this->model->with('position', 'company')
-            ->where('employees.employee_card_id', '=', $empId)
+            ->where('employees.id', '=', $empId)
             ->first();
     }
 
