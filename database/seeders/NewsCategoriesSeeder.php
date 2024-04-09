@@ -17,9 +17,7 @@ class NewsCategoriesSeeder extends Seeder
     public function run()
     {
         DB::table('news_topic_categories')->insert([
-            'news_id' => 1,
-            'news_name' => 'news1',
-            // 'news_details' => 'news1Details news1Details',
+            
         ]);
     }
 }

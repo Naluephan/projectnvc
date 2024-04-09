@@ -251,11 +251,11 @@ Route::group(
                 Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
 
                 //////////// contracts categories ////////////
-                // Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
-                // Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
-                // Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
-                // Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
-                // Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
+                Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
+                Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
+                Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
+                Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
+                Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
                 //contracts detail
                 Route::post('contracts/details/create', [\App\Http\Controllers\APIs\ContractsDetailsController::class, 'create'])->name('contracts.details.create');
                 Route::post('contracts/details/update', [\App\Http\Controllers\APIs\ContractsDetailsController::class, 'update'])->name('contracts.details.update');
@@ -268,8 +268,15 @@ Route::group(
                 // Route::post('contracts/change/delete', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'delete'])->name('contracts.change.delete');
                 // Route::post('contracts/change/getAll', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getConCategory'])->name('contracts.change.getAll');
                 // Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
+                
+                //report repair
+                Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
+                Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
+                Route::post('report/repair/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.delete');
+                Route::post('report/repair/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.getAll');
+                Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
 
-                //comment 
+                //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
                 Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
                 Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
@@ -285,7 +292,7 @@ Route::group(
                 Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
 
 
-                //comment 
+                //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
                 Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
                 Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
@@ -322,19 +329,31 @@ Route::group(
                 //honor
                 Route::post('honor/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.list');
                 Route::post('honor/create', [\App\Http\Controllers\APIs\HonorController::class, 'create'])->name('honor.create');
+                Route::post('honor/update', [\App\Http\Controllers\APIs\HonorController::class, 'update'])->name('honor.update');
+                Route::post('honor/delete', [\App\Http\Controllers\APIs\HonorController::class, 'delete'])->name('honor.delete');
+                Route::post('honor/by/id', [\App\Http\Controllers\APIs\HonorController::class, 'getById'])->name('honor.by.id');
 
 
                 //Social Security
                 Route::post('social/security/list', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
                 Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
+                Route::post('social/security/update', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'update'])->name('social.security.update');
+                Route::post('social/security/delete', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'delete'])->name('social.security.delete');
+                Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');
 
                 //Reserve Fund
                 Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');
                 Route::post('reserve/fund/create', [\App\Http\Controllers\APIs\ReserveFundController::class, 'create'])->name('reserve.fund.create');
+                Route::post('reserve/fund/update', [\App\Http\Controllers\APIs\ReserveFundController::class, 'update'])->name('reserve.fund.update');
+                Route::post('reserve/fund/delete', [\App\Http\Controllers\APIs\ReserveFundController::class, 'delete'])->name('reserve.fund.delete');
+                Route::post('reserve/fund/by/id', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getById'])->name('reserve.fund.by.id');
 
                 //Group Insurance
                 Route::post('group/insurance/list', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getGroupInsurance'])->name('group.insurance.list');
                 Route::post('group/insurance/create', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'create'])->name('group.insurance.create');
+                Route::post('group/insurance/update', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'update'])->name('group.insurance.update');
+                Route::post('group/insurance/delete', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'delete'])->name('group.insurance.delete');
+                Route::post('group/insurance/by/id', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getById'])->name('group.insurance.by.id');
 
                 //Private Car Employee
                 Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');
@@ -343,6 +362,12 @@ Route::group(
                 //Pickup Tools Employee
                 Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
                 Route::post('pickup/tools/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
+                Route::post('pickup/tools/employee/update', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'update'])->name('pickup.tools.employee.update');
+
+                //API Reward Coin
+                Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'reward_list'])->name('reward.list');
+                Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
+                Route::post('employee/reward/coin/create', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'create'])->name('reward.coin.create');
 
                 //Organics Hero
                 Route::post('organicsHero/listMission/employee', [\App\Http\Controllers\APIs\OrganicsHeroMissionEmployeeController::class, 'getListMissionEmployee'])->name('organic.hero.mission.list.mission.employee');
@@ -357,5 +382,9 @@ Route::group(
         
                 // work attendance app
                 Route::post('employee/summary/work/attendance', [\App\Http\Controllers\APIs\EmployeePasteCardLogController::class, 'summaryWorkAttendance'])->name('employee.summary.work.attendance');
+
+                //API registration
+                Route::post('app/register/employee/create', [\App\Http\Controllers\APIs\EmployeeController::class, 'createRegister'])->name('app.register.employee.create');
+
         }
 );

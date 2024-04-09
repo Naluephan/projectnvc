@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('contract_type_name')->references('id')->on('contracts_categories');
             $table->string('contract_details');
-            $table->string('images');
+            $table->string('images')->default(null);
             $table->timestamps();
         });
     }

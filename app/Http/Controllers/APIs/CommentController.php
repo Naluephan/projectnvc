@@ -81,9 +81,16 @@ class CommentController extends Controller
     {
         DB::beginTransaction();
         $id = $request->id;
-        $result['status'] = "Success";
         try {
-            $this->commentRepository->delete($id);
+            $query = $this->commentRepository->delete($id);
+            if (isset($query)) {
+                $result['status'] = 'Success';
+                $result['statusCode'] = '00';
+            } else {
+                $result['status'] = 'Delete Failed';
+                $result['statusCode'] = '01';
+                DB::rollBack();
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";

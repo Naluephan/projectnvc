@@ -65,13 +65,13 @@ class GroupInsuranceController extends Controller
         return $result;
     }
 
-    public function deleteUpdate(Request $request)
+    public function update(Request $request)
     {
         $data = $request->all();
         $id = $data['id'];
         try {
             if ($request->file('group_insurance_img')) {
-                $data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/setting/building/');
+                $data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/');
             }
             $this->groupinsuranceRepository->update($id, $data);
             $result['status'] = ApiStatus::group_insurance_success_status;
@@ -83,5 +83,27 @@ class GroupInsuranceController extends Controller
             $result['message'] = $e->getMessage();
         }
         return $result;
+    }
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+       
+        try {
+            $this->groupinsuranceRepository->delete($id);
+            $result['status'] = ApiStatus::group_insurance_success_status;
+            $result['statusCode'] = ApiStatus::group_insurance_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::group_insurance_error_statusCode;
+            $result['errCode'] = ApiStatus::group_insurance_error_status;
+            $result['errDesc'] = ApiStatus::group_insurance_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
+    public function getById(Request $request)
+    {
+        $id = $request->id;
+        return $this->groupinsuranceRepository->find($id);
+  
     }
 }

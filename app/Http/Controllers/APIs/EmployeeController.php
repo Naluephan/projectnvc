@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
@@ -377,5 +378,43 @@ class EmployeeController extends Controller
             $result['message'] = $ex->getMessage();
         }
         return $result;
+    }
+
+    public function createRegister(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        try {
+            $data = [
+                'pre_name' => $data['pre_name'],
+                'f_name' => $data['f_name'],
+                'l_name' => $data['l_name'],
+                'n_name' => $data['n_name'] = data_get($data, 'n_name', 'nullRegis'),
+                'birthday' => $data['birthday'] = Carbon::now()->toDateString(),
+                'start_date' => $data['start_date'] = Carbon::now()->toDateString(),
+                'record_status' => 0,
+                'username' => $data['username'],
+                'password' => $data['password'],
+                'status' => 0,
+            ];
+            if (isset($data) > 0) {
+                $this->employeeRepository->create($data);
+                $result = [
+                    'status' => 'Success',
+                    'statusCode' => '00'
+                ];
+            } else {
+                $result = [
+                    'status' => 'Failed to create data',
+                    'statusCode' => '01'
+                ];
+            };
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return response()->json(["data" => $result]);
     }
 }

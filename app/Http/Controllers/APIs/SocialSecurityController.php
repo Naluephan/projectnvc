@@ -68,7 +68,7 @@ class SocialSecurityController extends Controller
             return $result;
         }
 
-    public function deleteUpdate(Request $request)
+    public function update(Request $request)
     {
         $data = $request->all();
         $id = $data['id'];
@@ -80,6 +80,27 @@ class SocialSecurityController extends Controller
             $result['status'] = ApiStatus::social_security_error_statusCode;
             $result['errCode'] = ApiStatus::social_security_error_status;
             $result['errDesc'] = ApiStatus::social_security_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
+    public function getById(Request $request)
+    {
+        $id = $request->id;
+        return $this->socialsecurityRepository->find($id);
+    }
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+       
+        try {
+            $this->socialsecurityRepository->delete($id);
+            $result['status'] = ApiStatus::group_insurance_success_status;
+            $result['statusCode'] = ApiStatus::group_insurance_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::group_insurance_error_statusCode;
+            $result['errCode'] = ApiStatus::group_insurance_error_status;
+            $result['errDesc'] = ApiStatus::group_insurance_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;

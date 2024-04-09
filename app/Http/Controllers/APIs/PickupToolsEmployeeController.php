@@ -102,4 +102,43 @@ class PickupToolsEmployeeController extends Controller
         }
         return $result;
     }
+
+    public function update(Request $request)
+    {
+        $data = $request->all();
+        $result = [];
+
+        try {
+            $search_criteria = [
+                'id' => $data['id'],
+                'emp_id' => $data['emp_id'],
+                'department_id' => $data['department_id'],
+            ];
+
+            $search_pickupTools = $this->pickupToolsEmployeeRepository->findBy($search_criteria);
+            $pickupTool = PickupTools::where('number_requested', '>=', $data['number_requested'])
+                ->where('department_id', $data['department_id'])
+                ->first();
+
+            if ($search_pickupTools && $pickupTool) {
+                $this->pickupToolsEmployeeRepository->update($search_pickupTools->id, $data);
+
+                $result['status'] = ApiStatus::list_pickup_tools_success_status;
+                $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
+                $result['message'] = 'Update Successfully.';
+            } else {
+                $result['status'] = ApiStatus::list_pickup_tools_failed_status;
+                $result['statusCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
+                $result['errDesc'] = ApiStatus::list_pickup_tools_failed_Desc;
+                $result['message'] = 'Update failed!!';
+            }
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::list_pickup_tools_error_statusCode;
+            $result['statusCode'] = ApiStatus::list_pickup_tools_error_status;
+            $result['errDesc'] = ApiStatus::list_pickup_tools_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+
+        return $result;
+    }
 }

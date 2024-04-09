@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->integer('pin')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

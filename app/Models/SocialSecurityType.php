@@ -9,6 +9,8 @@ class SocialSecurityType extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'social_security_type_name',
+        'name',
+        'detail',
+        'record_status',
     ];
 }

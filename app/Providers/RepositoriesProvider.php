@@ -107,7 +107,9 @@ use App\Repositories\ReserveFundInterface;
 use App\Repositories\Impl\PickupToolsEmployeeRepository;
 use App\Repositories\PickupToolsEmployeeInterface;
 use App\Repositories\Impl\OrganicsHeroMissionEmployeeRepository;
+use App\Repositories\Impl\SocialSecurityTypeRepository;
 use App\Repositories\OrganicsHeroMissionEmployeeInterface;
+use App\Repositories\SocialSecurityTypeInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -160,7 +162,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(BuildingLocationInterface::class,BuildingLocationRepository::class);
         $this->app->bind(PersonalInformationInterface::class,PersonalInformationRepository::class);
         $this->app->bind(ContractsCategoriesInterface::class,ContractsCategoriesRepository::class);
-        // $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
+        $this->app->bind(ReportRepairInterface::class,ReportRepairRepository::class);
         $this->app->bind(ContractsDetailsInterface::class,ContractsDetailsRepository::class);
         $this->app->bind(CommentInterface::class,CommentRepository::class);
         $this->app->bind(GroupInsuranceInterface::class,GroupInsuranceRepository::class);
@@ -171,6 +173,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SavingMoneyInterface::class,SavingMoneyRepository::class);
         $this->app->bind(PickupToolsEmployeeInterface::class,PickupToolsEmployeeRepository::class);
         $this->app->bind(OrganicsHeroMissionEmployeeInterface::class,OrganicsHeroMissionEmployeeRepository::class);
+        $this->app->bind(SocialSecurityTypeInterface::class,SocialSecurityTypeRepository::class);
 
 
 

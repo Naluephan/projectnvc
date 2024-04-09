@@ -11,6 +11,6 @@ class ContractsDetail extends Model
     protected $fillable = [
         'contract_type_name',
         'contract_details',
-        'images_url',
+        'images',
     ];
 }
