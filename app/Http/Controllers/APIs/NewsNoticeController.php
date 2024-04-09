@@ -88,7 +88,7 @@ class NewsNoticeController extends Controller
                 'title' => $data['news_notice_name'],
                 'body' => $data['news_notice_description'],
             ];
-            $this->notify($noti_data);
+            $this->createnotify($noti_data);
         } catch (\Exception $ex) {
             $result['status'] = "Create Failed";
             $result['message'] = $ex->getMessage();
@@ -197,7 +197,7 @@ class NewsNoticeController extends Controller
     }
 
     ////////////////////////////////////////////////////////
-    public function notify($data)
+    public function createnotify($data)
     // public function notify(Request $request)
     {
         // $data = $request->all();
@@ -220,6 +220,50 @@ class NewsNoticeController extends Controller
             $notificationData = [
                 // "registration_ids" => $registrationIds,
                 "registration_ids" => $key,
+                "notification" => [
+                    "title" => $data['title'],
+                    "body" => $data['body'],
+                    "sound" => 'default',
+                ],
+                "data" => $dataArr,
+                "priority" => "high"
+            ];
+
+            $serverKey = "AAAAz_Szn44:APA91bFBHEojfooGrM1xwMWo6_Kh1hpxcy16u66vtbEid4VHhf-T5_HfwyDOytu1libNQrqWZgidtRqgpEdR3MiumB80N_gsvYvzW02XCc4baCx7PSSpnlLkGGbYy0z5hPa9ztXtDqYN";
+            $response = Http::withHeaders([
+                'Authorization' => 'key =' . $serverKey,
+                'Content-Type' => 'application/json',
+            ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
+            return $response ;
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+
+    // public function notify($data)
+    public function notify(Request $request)
+    {
+        $data = $request->all();
+        try {
+
+            if (!isset($data['title']) || !isset($data['body'])) {
+                throw new \Exception("Missing required parameters");
+            }
+
+            $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
+
+            $dataArr = [
+                "click_action" => "FLUTTER_NOTIFICATION_CLICK",
+                "status" => "done",
+            ];
+            $rawFields = [
+                "device_key"
+            ];
+            // $key = $this->employeeRepository->getDeviceKey()->pluck('device_key');
+            $notificationData = [
+                // "registration_ids" => $registrationIds,
+                "registration_ids" => $registrationIds,
                 "notification" => [
                     "title" => $data['title'],
                     "body" => $data['body'],

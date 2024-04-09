@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('contracts_changes', function (Blueprint $table) {
             $table->id();
             $table->integer('employee_id')->references('id')->on('employees');
-            $table->string('con_type_name')->references('contract_type_name')->on('contracts_categories');
+            $table->string('con_type_name')->references('id')->on('contracts_categories');
             $table->string('change_details');
             $table->string('images');
             $table->timestamps();
