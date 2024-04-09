@@ -337,6 +337,7 @@ Route::group(
 
                 //Social Security
                 Route::post('social/security/list', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
+                Route::post('social/security/type/list', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getAll'])->name('social.security.type.list');
                 Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
                 Route::post('social/security/update', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'update'])->name('social.security.update');
                 Route::post('social/security/delete', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'delete'])->name('social.security.delete');

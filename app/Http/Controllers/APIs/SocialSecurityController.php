@@ -51,9 +51,6 @@ class SocialSecurityController extends Controller
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'social_security_type_id' => $data['social_security_type_id'],
-                    'child_certificate' => $data['child_certificate'],
-                    'saving_passbook' => $data['saving_passbook'],
-                    'marriage_certificate' => $data['marriage_certificate'],
                 ];
                 
                 $this->socialsecurityRepository->create($save_data);
