@@ -8,6 +8,7 @@ use App\Repositories\EmployeeInterface;
 use App\Repositories\NewsNoticeEmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class NewsNoticeController extends Controller
 {
@@ -62,22 +63,6 @@ class NewsNoticeController extends Controller
         $data = $request->all();
         $result['status'] = "Create Success";
 
-        if ($data['news_notice_description'] === null) {
-            $data['news_notice_description'] = '-';
-        }
-
-        if ($data['news_img1'] === null) {
-            $data['news_img1'] = '-';
-        }
-
-        if ($data['news_img2'] === null) {
-            $data['news_img2'] = '-';
-        }
-
-        if ($data['news_img3'] === null) {
-            $data['news_img3'] = '-';
-        }
-
         try {
             $newsNoticeId = $this->newsNoticeRepository->create($data);
 
@@ -98,6 +83,12 @@ class NewsNoticeController extends Controller
             }
 
             DB::commit();
+            $noti_data = [
+                // 'device_key' => 'ez-Yt8l2RLWU1nZ8wrqnCm:APA91bGsV9aAa0gLNr5CHv2am3SO3x7OaYvZW1kNc811GCEL_CgO4ZLAV2B6RjntEmynW2yttQICaS49eTgVvO4yBZYaht6T1kBsP41RHb354jXhfiM7dnUKxgd668lshkpGEnWn48kK',
+                'title' => $data['news_notice_name'],
+                'body' => $data['news_notice_description'],
+            ];
+            $this->createnotify($noti_data);
         } catch (\Exception $ex) {
             $result['status'] = "Create Failed";
             $result['message'] = $ex->getMessage();
@@ -181,28 +172,115 @@ class NewsNoticeController extends Controller
 
     public function news_list(Request $request)
     {
-        try{
+        try {
             $data = $request->all();
             $news_list = $this->newsNoticeRepository->getAll($data);
-            if($news_list != null ){
-             $result['status'] = ApiStatus::news_list_success_status;
-             $result['statusCode'] = ApiStatus::news_list_success_statusCode;
-             $result['news_list'] = $news_list;
-
-            }else{
-             $result['status'] = ApiStatus::news_list_failed_status;
-             $result['errCode'] = ApiStatus::news_list_failed_statusCode;
-             $result['errDesc'] = ApiStatus::news_list_failed_Desc;
-             $result['message'] = $news_list;
-             DB::rollBack();
+            if ($news_list != null) {
+                $result['status'] = ApiStatus::news_list_success_status;
+                $result['statusCode'] = ApiStatus::news_list_success_statusCode;
+                $result['news_list'] = $news_list;
+            } else {
+                $result['status'] = ApiStatus::news_list_failed_status;
+                $result['errCode'] = ApiStatus::news_list_failed_statusCode;
+                $result['errDesc'] = ApiStatus::news_list_failed_Desc;
+                $result['message'] = $news_list;
+                DB::rollBack();
             }
-         } catch (\Exception $ex) {
-             $result['status'] = ApiStatus::news_list_error_statusCode;
-             $result['errCode'] = ApiStatus::news_list_error_status;
-             $result['errDesc'] = ApiStatus::news_list_errDesc;
-             $result['message'] = $ex->getMessage();
-             DB::rollBack();
-         }
-         return $result;
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::news_list_error_statusCode;
+            $result['errCode'] = ApiStatus::news_list_error_status;
+            $result['errDesc'] = ApiStatus::news_list_errDesc;
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
+    }
+
+    ////////////////////////////////////////////////////////
+    public function createnotify($data)
+    // public function notify(Request $request)
+    {
+        // $data = $request->all();
+        try {
+
+            if (!isset($data['title']) || !isset($data['body'])) {
+                throw new \Exception("Missing required parameters");
+            }
+
+            // $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
+
+            $dataArr = [
+                "click_action" => "FLUTTER_NOTIFICATION_CLICK",
+                "status" => "done",
+            ];
+            $rawFields = [
+                "device_key"
+            ];
+            $key = $this->employeeRepository->getDeviceKey()->pluck('device_key');
+            $notificationData = [
+                // "registration_ids" => $registrationIds,
+                "registration_ids" => $key,
+                "notification" => [
+                    "title" => $data['title'],
+                    "body" => $data['body'],
+                    "sound" => 'default',
+                ],
+                "data" => $dataArr,
+                "priority" => "high"
+            ];
+
+            $serverKey = "AAAAz_Szn44:APA91bFBHEojfooGrM1xwMWo6_Kh1hpxcy16u66vtbEid4VHhf-T5_HfwyDOytu1libNQrqWZgidtRqgpEdR3MiumB80N_gsvYvzW02XCc4baCx7PSSpnlLkGGbYy0z5hPa9ztXtDqYN";
+            $response = Http::withHeaders([
+                'Authorization' => 'key =' . $serverKey,
+                'Content-Type' => 'application/json',
+            ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
+            return $response ;
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+
+    // public function notify($data)
+    public function notify(Request $request)
+    {
+        $data = $request->all();
+        try {
+
+            if (!isset($data['title']) || !isset($data['body'])) {
+                throw new \Exception("Missing required parameters");
+            }
+
+            $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
+
+            $dataArr = [
+                "click_action" => "FLUTTER_NOTIFICATION_CLICK",
+                "status" => "done",
+            ];
+            $rawFields = [
+                "device_key"
+            ];
+            // $key = $this->employeeRepository->getDeviceKey()->pluck('device_key');
+            $notificationData = [
+                // "registration_ids" => $registrationIds,
+                "registration_ids" => $registrationIds,
+                "notification" => [
+                    "title" => $data['title'],
+                    "body" => $data['body'],
+                    "sound" => 'default',
+                ],
+                "data" => $dataArr,
+                "priority" => "high"
+            ];
+
+            $serverKey = "AAAAz_Szn44:APA91bFBHEojfooGrM1xwMWo6_Kh1hpxcy16u66vtbEid4VHhf-T5_HfwyDOytu1libNQrqWZgidtRqgpEdR3MiumB80N_gsvYvzW02XCc4baCx7PSSpnlLkGGbYy0z5hPa9ztXtDqYN";
+            $response = Http::withHeaders([
+                'Authorization' => 'key =' . $serverKey,
+                'Content-Type' => 'application/json',
+            ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
+            return $response ;
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 }

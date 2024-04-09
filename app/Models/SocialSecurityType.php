@@ -13,4 +13,7 @@ class SocialSecurityType extends Model
         'detail',
         'record_status',
     ];
+    public function socialdetail(){
+        return $this->hasMany(SocialSecurityFile::class,'social_type_id','id');
+    }
 }

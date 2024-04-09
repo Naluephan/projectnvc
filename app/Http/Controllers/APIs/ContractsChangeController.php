@@ -3,20 +3,22 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\ContractsDetailsInterface;
+use App\Repositories\ContractsChangeInterface;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
-class ContractsDetailsController extends Controller
+class ContractsChangeController extends Controller
 {
-    private $contractsDetailsRepository;
-    public function __construct(ContractsDetailsInterface $contractsDetailsRepository)
+    private $contractsChangeRepository;
+    public function __construct(ContractsChangeInterface $contractsChangeRepository)
     {
-        $this->contractsDetailsRepository = $contractsDetailsRepository;
+        $this->contractsChangeRepository = $contractsChangeRepository;
     }
     public function getConCategory(Request $request)
     {
-        return $this->contractsDetailsRepository->getAll();
+        return $this->contractsChangeRepository->getAll();
     }
     public function create(Request $request)
     {
@@ -24,14 +26,15 @@ class ContractsDetailsController extends Controller
         $data = $request->all();
         try {
             $data = [
-                'contract_type_name' => $data['contract_type_name'],
-                'contract_details' => $data['contract_details'],
+                'employee_id' => $data['employee_id'],
+                'con_type_name' => $data['con_type_name'],
+                'change_details' => $data['change_details'],
             ];
             if ($request->file('images')) {
 
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsDetails/');
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsChange/');
 
-                $this->contractsDetailsRepository->create($data);
+                $this->contractsChangeRepository->create($data);
                 $result = [
                     'status' => 'Success',
                     'statusCode' => '00'
@@ -63,9 +66,9 @@ class ContractsDetailsController extends Controller
             ];
             if ($request->file('images')) {
 
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsDetails/');
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsChange/');
 
-                $this->contractsDetailsRepository->update($id, $data);
+                $this->contractsChangeRepository->update($id, $data);
                 $result = [
                     'status' => 'Success',
                     'statusCode' => '00'
@@ -89,7 +92,7 @@ class ContractsDetailsController extends Controller
         DB::beginTransaction();
         $id = $request->id;
         try {
-            $this->contractsDetailsRepository->delete($id);
+            $this->contractsChangeRepository->delete($id);
             if (isset($query)) {
                 $result['status'] = 'Success';
                 $result['statusCode'] = '00';
@@ -109,8 +112,49 @@ class ContractsDetailsController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        $contracts =  $this->contractsDetailsRepository->find($id);
+        $contracts =  $this->contractsChangeRepository->find($id);
 
         return response()->json(["data" => $contracts]);
     }
+    ////////////////////////////////////////////////////////
+    // public function notify(Request $request)
+    // {
+    //     try {
+    //         $data = $request->all();
+
+    //         if (!isset($data['device_key']) || !isset($data['title']) || !isset($data['body'])) {
+    //             throw new \Exception("Missing required parameters");
+    //         }
+
+    //         $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
+
+    //         $dataArr = [
+    //             "click_action" => "FLUTTER_NOTIFICATION_CLICK",
+    //             "status" => "done",
+    //         ];
+
+    //         $notificationData = [
+    //             "registration_ids" => $registrationIds,
+    //             "notification" => [
+    //                 "title" => $data['title'],
+    //                 "body" => $data['body'],
+    //                 "sound" => 'default',
+    //             ],
+    //             "data" => $dataArr,
+    //             "priority" => "high"
+    //         ];
+
+    //         $serverKey = "AAAAz_Szn44:APA91bFBHEojfooGrM1xwMWo6_Kh1hpxcy16u66vtbEid4VHhf-T5_HfwyDOytu1libNQrqWZgidtRqgpEdR3MiumB80N_gsvYvzW02XCc4baCx7PSSpnlLkGGbYy0z5hPa9ztXtDqYN";
+    //         $response = Http::withHeaders([
+    //             'Authorization' => 'key =' . $serverKey,
+    //             'Content-Type' => 'application/json',
+    //         ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
+
+    //         $jsonData = $response->json();
+
+    //         return $response;
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()], 400);
+    //     }
+    // }
 }

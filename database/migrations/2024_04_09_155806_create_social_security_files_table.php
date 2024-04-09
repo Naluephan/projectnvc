@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contracts_changes', function (Blueprint $table) {
+        Schema::create('social_security_files', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee_id')->references('id')->on('employees');
-            $table->string('con_type_name')->references('id')->on('contracts_categories');
-            $table->string('change_details');
-            $table->string('images');
+            $table->string('social_file_attach');
+            $table->string('social_type_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts_changes');
+        Schema::dropIfExists('social_security_files');
     }
 };

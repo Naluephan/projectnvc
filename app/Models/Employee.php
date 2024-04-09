@@ -36,6 +36,7 @@ class Employee extends Model
         'password',
         'pin',
         'status',
+        'device_key',
     ];
 
     public function company(){

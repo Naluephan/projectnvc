@@ -5,10 +5,12 @@ namespace App\Http\Controllers\APIs;
 use App\Http\Controllers\Controller;
 use App\Repositories\SocialSecurityTypeInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SocialSecurityTypeController extends Controller
 {
     private $socialsecuritytypeRepository;
+    // private $socialsecurityfileRepository;
     public function __construct(SocialSecurityTypeInterface $socialsecuritytypeRepository)
     {
         $this->socialsecuritytypeRepository = $socialsecuritytypeRepository;

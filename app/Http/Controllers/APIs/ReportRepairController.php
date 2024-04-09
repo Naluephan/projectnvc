@@ -66,7 +66,7 @@ class ReportRepairController extends Controller
                 'status' => $data['status'],
             ];
             if ($request->file('images')) {
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/');
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/reportRepair/');
                 $this->reportRepairRepository->update($id, $data);
                 $result = [
                     'status' => 'Success',
