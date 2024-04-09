@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string("news_notice_name")->nullable();
             $table->string("news_notice_description")->nullable();
             $table->tinyInteger('news_priority')->comment('1=important 2=general')->default(2);
-            $table->string('news_img1')->default('-');
-            $table->string('news_img2')->default('-');
-            $table->string('news_img3')->default('-');
+            $table->string('news_img1')->nullable();
+            $table->string('news_img2')->nullable();
+            $table->string('news_img3')->nullable();
             $table->date('published_at')->nullable();
             $table->date('cancelled_at')->nullable();
 

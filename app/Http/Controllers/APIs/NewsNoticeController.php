@@ -62,22 +62,6 @@ class NewsNoticeController extends Controller
         $data = $request->all();
         $result['status'] = "Create Success";
 
-        if ($data['news_notice_description'] === null) {
-            $data['news_notice_description'] = '-';
-        }
-
-        if ($data['news_img1'] === null) {
-            $data['news_img1'] = '-';
-        }
-
-        if ($data['news_img2'] === null) {
-            $data['news_img2'] = '-';
-        }
-
-        if ($data['news_img3'] === null) {
-            $data['news_img3'] = '-';
-        }
-
         try {
             $newsNoticeId = $this->newsNoticeRepository->create($data);
 
