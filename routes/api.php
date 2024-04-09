@@ -263,11 +263,12 @@ Route::group(
                 Route::post('contracts/details/getAll', [\App\Http\Controllers\APIs\ContractsDetailsController::class, 'getConCategory'])->name('contracts.details.getAll');
                 Route::post('contracts/details/get/by/id', [\App\Http\Controllers\APIs\ContractsDetailsController::class, 'getById'])->name('contracts.details.get.by.id');
                 //contracts change
-                // Route::post('contracts/change/create', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'create'])->name('contracts.change.create');
-                // Route::post('contracts/change/update', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'update'])->name('contracts.change.update');
-                // Route::post('contracts/change/delete', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'delete'])->name('contracts.change.delete');
-                // Route::post('contracts/change/getAll', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getConCategory'])->name('contracts.change.getAll');
-                // Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
+                Route::post('contracts/change/create', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'create'])->name('contracts.change.create');
+                Route::post('contracts/change/update', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'update'])->name('contracts.change.update');
+                Route::post('contracts/change/delete', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'delete'])->name('contracts.change.delete');
+                Route::post('contracts/change/getAll', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getConCategory'])->name('contracts.change.getAll');
+                Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
+                Route::post('contracts/change/notify', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'notify'])->name('contracts.change.notify');
                 
                 //report repair
                 Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');

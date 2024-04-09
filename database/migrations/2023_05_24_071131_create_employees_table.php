@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->integer('pin')->nullable();
             $table->integer('status')->default(1);
+            $table->integer('device_key')->nullable();
             $table->timestamps();
         });
     }
