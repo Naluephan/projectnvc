@@ -11,5 +11,7 @@ interface HolidayInterface extends BaseInterface
     public function getAll():Collection;
     public function findBy($holidayName);
 
+    public function holidayCount($param);
+
 }
 

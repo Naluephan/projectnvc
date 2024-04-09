@@ -115,6 +115,24 @@ class EmployeeLeaveRepository extends MasterRepository implements EmployeeLeaveI
         ->first();
         return $data;
     }
+
+    public function leaveCount($param)
+    {
+        return $this->model
+            ->where(function ($q) use ($param) {
+                if (isset($param['emp_id'])) {
+                    $q->where('emp_id', '=', $param['emp_id']);
+                }
+                if (isset($param['startDate']) && isset($param['endDate'])) {
+                    $q->whereBetween('leave_date_start', [$param['startDate'] . " 00:00:00", $param['endDate'] . " 23:59:59"]);
+                }
+                if (isset($param['leave_type_id'])) {
+                    $q->where('leave_type_id', '=', $param['leave_type_id']);
+                }
+            })
+            ->selectRaw('count(*) as count')
+            ->first();
+    }
 }
 
     

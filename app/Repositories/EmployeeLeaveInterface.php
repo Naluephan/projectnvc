@@ -14,5 +14,6 @@ interface EmployeeLeaveInterface extends BaseInterface
     public function paginate($param):Collection;
     public function getAll():Collection;
     public function getLeaveById($id);
+    public function leaveCount($param);
 }
 

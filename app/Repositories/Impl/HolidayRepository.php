@@ -17,36 +17,44 @@ class HolidayRepository extends MasterRepository implements HolidayInterface
         parent::__construct($model);
     }
 
-    public function getAll($params = null) : Collection
+    public function getAll($params = null): Collection
     {
 
         return $this->model
-            ->where(function($q) use ($params){
-                if(isset($params['searchValue'])){
-                    $q->where('holiday_name','like','%'.$params['searchValue'].'%');
+            ->where(function ($q) use ($params) {
+                if (isset($params['searchValue'])) {
+                    $q->where('holiday_name', 'like', '%' . $params['searchValue'] . '%');
                 }
-                
             })
             ->get();
-        }
-        public function paginate($params): Collection
+    }
+    public function paginate($params): Collection
     {
         return $this->model
-        ->where(function($q) use ($params){
-            if(isset($params['searchValue'])){
-                $q->where('holiday_name','like','%'.$params['searchValue'].'%');
-            }
-            
-        })
+            ->where(function ($q) use ($params) {
+                if (isset($params['searchValue'])) {
+                    $q->where('holiday_name', 'like', '%' . $params['searchValue'] . '%');
+                }
+            })
             ->select('*')
             ->skip($params['start'])
             ->take($params['rowperpage'])
             ->get();
     }
     public function findBy($holidayName)
-{
-    return $this->model->where('holiday_name', $holidayName)->exists();
-}
+    {
+        return $this->model->where('holiday_name', $holidayName)->exists();
+    }
 
-
+    public function holidayCount($param)
+    {
+        return $this->model
+            ->where(function ($q) use ($param) {
+                if (isset($param['startDate']) && isset($param['endDate'])) {
+                    $q->whereBetween('leave_date_start', [$param['startDate'], $param['endDate']]);
+                }
+            })
+            ->selectRaw('count(*) as count')
+            ->first();
+    }
 }

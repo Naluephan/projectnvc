@@ -61,6 +61,9 @@ class EmployeePasteCardLogRepository extends MasterRepository implements Employe
                 if (isset($param['emp_id'])) {
                     $q->where('emp_id', '=', $param['emp_id']);
                 }
+                if (isset($param['status'])) {
+                    $q->where('status', '=', $param['status']);
+                }
             })
             ->get();
     }
