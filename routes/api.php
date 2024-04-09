@@ -269,7 +269,7 @@ Route::group(
                 Route::post('contracts/change/getAll', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getConCategory'])->name('contracts.change.getAll');
                 Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
                 Route::post('contracts/change/notify', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'notify'])->name('contracts.change.notify');
-                
+
                 //report repair
                 Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
                 Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
@@ -359,6 +359,7 @@ Route::group(
                 //Private Car Employee
                 Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');
                 Route::post('privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'create'])->name('privatecar.create');
+                Route::post('privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
 
                 //Pickup Tools Employee
                 Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
@@ -380,7 +381,7 @@ Route::group(
                 Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'updateCategory'])->name('news.category.update');
                 Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'delete'])->name('news.category.delete');
                 Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsCategoryController::class, 'getById'])->name('news.category.by.id');
-        
+
                 // work attendance app
                 Route::post('employee/summary/work/attendance', [\App\Http\Controllers\APIs\EmployeePasteCardLogController::class, 'summaryWorkAttendance'])->name('employee.summary.work.attendance');
 
