@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('withdraw_reverse_funds', function (Blueprint $table) {
             $table->id();
+            $table->string('emp_id');
+            $table->string('reserse_fund_id');
+            $table->string('reserse_fund_detail');
+            $table->integer('reserve_request')->comment('0=รอดำเนินการ , 1=ดำเนินการเรียบร้อย')->default(0);
             $table->timestamps();
         });
     }

@@ -350,6 +350,9 @@ Route::group(
                 Route::post('reserve/fund/delete', [\App\Http\Controllers\APIs\ReserveFundController::class, 'delete'])->name('reserve.fund.delete');
                 Route::post('reserve/fund/by/id', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getById'])->name('reserve.fund.by.id');
 
+
+                Route::post('reserve/fund/withdraw', [\App\Http\Controllers\APIs\ReserveFundController::class, 'createWithdraw'])->name('reserve.fund.withdraw');
+
                 //Group Insurance
                 Route::post('group/insurance/list', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getGroupInsurance'])->name('group.insurance.list');
                 Route::post('group/insurance/create', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'create'])->name('group.insurance.create');

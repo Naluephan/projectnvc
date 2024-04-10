@@ -4,15 +4,19 @@ namespace App\Http\Controllers\APIs;
 
 use App\Repositories\ReserveFundInterface;
 use App\Http\Controllers\Controller;
+use App\Repositories\WithdrawReserveFundInterface;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ReserveFundController extends Controller
 {
     private $reservefundRepository;
-    public function __construct(ReserveFundInterface $reservefundRepository)
+    private $withdrawreservefundRepository;
+    public function __construct(ReserveFundInterface $reservefundRepository,WithdrawReserveFundInterface $withdrawreservefundRepository)
     {
         $this->reservefundRepository = $reservefundRepository;
+        $this->withdrawreservefundRepository = $withdrawreservefundRepository;
     }
 
     public function getReserveFund(Request $request)
@@ -99,15 +103,38 @@ class ReserveFundController extends Controller
        
         try {
             $this->reservefundRepository->delete($id);
-            $result['status'] = ApiStatus::group_insurance_success_status;
-            $result['statusCode'] = ApiStatus::group_insurance_success_statusCode;
+            $result['status'] = ApiStatus::reverse_fund_success_status;
+            $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::group_insurance_error_statusCode;
-            $result['errCode'] = ApiStatus::group_insurance_error_status;
-            $result['errDesc'] = ApiStatus::group_insurance_errDesc;
+            $result['status'] = ApiStatus::reverse_fund_error_statusCode;
+            $result['errCode'] = ApiStatus::reverse_fund_error_status;
+            $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;
     }
-    
+    public function  createWithdraw(Request $request)
+    {
+        $postData = $request->all();
+        try {
+            $this->withdrawreservefundRepository->findAmountByEmpId($postData['user_id']);
+
+                $data = [
+                    'emp_id' => $postData['user_id'],
+                    'reserse_fund_id' => $postData['reserse_fund_id'],
+                    'reserse_fund_detail' => $postData['reserse_fund_detail'],
+                    
+                ];
+                $this->withdrawreservefundRepository->create($data);
+                $result['status'] = ApiStatus::reverse_fund_success_status;
+                $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
+            
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::reverse_fund_error_status;
+            $result['errCode'] = ApiStatus::reverse_fund_error_statusCode;
+            $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
 }

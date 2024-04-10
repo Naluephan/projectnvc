@@ -14,7 +14,13 @@ class SocialSecurityInfo extends Model
         'doc_name',
         'doc_file',
     ];
-    public function socialfile(){
+    public function socialemp(){
         return $this->belongsTo(SocialSecurity::class,'social_security_id','id');
+    }
+    // public function socialfile(){
+    //     return $this->hasMany(SocialSecurityType::class,'social_security_file','id');
+    // }
+    public function socialsecurity(){
+        return $this->hasMany(SocialSecurityType::class,'id','social_security_file');
     }
 }

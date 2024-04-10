@@ -29,4 +29,12 @@ class ReserveFundRepository extends MasterRepository implements ReserveFundInter
     {
         return ReserveFund::where($criteria)->first();
     }
+    public function findAmountByEmpId($emp_id)
+    {
+        return $this->model
+            ->where('emp_id', $emp_id)
+            ->latest()
+            ->select('accumulate_balance')
+            ->first();
+    }
 }

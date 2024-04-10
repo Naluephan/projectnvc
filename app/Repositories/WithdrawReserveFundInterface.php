@@ -5,9 +5,9 @@ namespace App\Repositories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-interface ReserveFundInterface extends BaseInterface
+interface WithdrawReserveFundInterface extends BaseInterface
 {
-    public function getReserveFund($params);
+    // public function getReserveFund($params);
     public function findBy(array $criteria);
     public function findAmountByEmpId($emp_id);
 

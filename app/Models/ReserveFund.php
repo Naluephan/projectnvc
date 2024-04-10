@@ -15,7 +15,6 @@ class ReserveFund extends Model
         'day',
         'month',
         'year',
-        'date',
         'reserve',
         'contribution',
         'total_month',
@@ -24,6 +23,6 @@ class ReserveFund extends Model
 
     ];
     public function emp(){
-        return $this->belongsTo(Employee::class,'emp_id','id');
+        return $this->hasMany(WithdrawReverseFund::class,'id');
     }
 }

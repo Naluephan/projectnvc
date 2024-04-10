@@ -110,8 +110,10 @@ use App\Repositories\Impl\PickupToolsEmployeeRepository;
 use App\Repositories\PickupToolsEmployeeInterface;
 use App\Repositories\Impl\OrganicsHeroMissionEmployeeRepository;
 use App\Repositories\Impl\SocialSecurityTypeRepository;
+use App\Repositories\Impl\WithdrawReserveFundRepository;
 use App\Repositories\OrganicsHeroMissionEmployeeInterface;
 use App\Repositories\SocialSecurityTypeInterface;
+use App\Repositories\WithdrawReserveFundInterface;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -177,7 +179,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(PickupToolsEmployeeInterface::class,PickupToolsEmployeeRepository::class);
         $this->app->bind(OrganicsHeroMissionEmployeeInterface::class,OrganicsHeroMissionEmployeeRepository::class);
         $this->app->bind(SocialSecurityTypeInterface::class,SocialSecurityTypeRepository::class);
-
+        $this->app->bind(WithdrawReserveFundInterface::class,WithdrawReserveFundRepository::class);
 
 
 

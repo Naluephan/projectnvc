@@ -25,4 +25,5 @@ class SocialSecurity extends Model
     public function socialsecurity(){
         return $this->hasMany(SocialSecurityType::class,'id','social_security_type_id');
     }
+
 }
