@@ -27,19 +27,28 @@ class ContractsCategoriesController extends Controller
             $whereCon = "categories_contract_name = '" . $data['categories_contract_name']."'";
             
             $existingContracts  = $this->contractsCategoriesRepository->selectCustomData(null, $whereCon);
-            if (count($existingContracts) > 0) {
+            if (empty($data['categories_contract_name'])) {
                 $result = [
-                    'status' => 'Duplicate information',
-                    'statusCode' => '200',
-                    'message' => 'This contracts already exists.'
+                    'status' => 'Failed',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
                 ];
             } else {
-                $this->contractsCategoriesRepository->create($data);
-                $result = [
-                    'status' => 'Success',
-                    'statusCode' => '00'
-                ];
-            };
+                if (count($existingContracts) > 0){
+                    $result = [
+                        'status' => 'Duplicate information',
+                        'statusCode' => '200',
+                        'message' => 'This contracts already exists.'
+                    ];
+                    
+                }else {
+                    $this->contractsCategoriesRepository->create($data);
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00'
+                    ];
+                };
+            } 
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";

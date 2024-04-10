@@ -28,11 +28,19 @@ class CommentController extends Controller
                 'comments_details' => $data['comments_details'],
             ];
             if (isset($data) > 0) {
-                $this->commentRepository->create($data);
-                $result = [
-                    'status' => 'Success',
-                    'statusCode' => '00'
-                ];
+                if (empty($data['comments_id']) || empty($data['comments_details'])) {
+                    $result = [
+                        'status' => 'Failed',
+                        'statusCode' => '03',
+                        'message' => 'Data empty. Check the information again.'
+                    ];
+                } else {
+                    $this->commentRepository->create($data);
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00'
+                    ];
+                }
             } else {
                 $result = [
                     'status' => 'Failed to save data',

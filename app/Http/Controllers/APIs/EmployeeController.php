@@ -100,6 +100,7 @@ class EmployeeController extends Controller
         // dd($data->leadOrders[0]->orderDetails);
 
     }
+
     public function empLogin(Request $request)
     {
         try {
@@ -159,6 +160,7 @@ class EmployeeController extends Controller
                 'updated_at' => $query['updated_at'],
                 'pin' => $query['pin'],
                 'access_token' => $query['access_token'],
+                'user_status' => $query['status'],
 
             ];
 
@@ -394,14 +396,19 @@ class EmployeeController extends Controller
                 'start_date' => $data['start_date'] = Carbon::now()->toDateString(),
                 'record_status' => 0,
                 'username' => $data['username'],
-                'password' => $data['password'],
+                'password' => $this->encode64($data['password']),
                 'status' => 0,
             ];
             if (isset($data) > 0) {
                 $this->employeeRepository->create($data);
                 $result = [
                     'status' => 'Success',
-                    'statusCode' => '00'
+                    'statusCode' => '00',
+                    'f_name' => $data['f_name'],
+                    'l_name' => $data['l_name'],
+                    'username' => $data['username'],
+                    'password' => $data['password'],
+
                 ];
             } else {
                 $result = [

@@ -4,7 +4,7 @@
 namespace App\Repositories\Impl;
 
 
-use App\Models\User;
+use App\Models\PersonalInformation;
 use App\Repositories\PersonalInformationInterface;
 use Illuminate\Support\Collection;
 
@@ -12,7 +12,7 @@ class PersonalInformationRepository extends MasterRepository implements Personal
 {
     protected $model;
 
-    public function __construct(User $model)
+    public function __construct(PersonalInformation $model)
     {
         parent::__construct($model);
     }

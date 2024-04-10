@@ -37,10 +37,10 @@
     }
 
     .form-control {
-        background-color: #fff !important;
+        /* background-color: #fff !important; */
         color: #136E68 !important;
         border-color: #c0e7e7 !important;
-        height: 45px !important;
+        /* height: 45px !important; */
     }
 
     .addNews {
@@ -56,6 +56,10 @@
         border-color: #136E68 !important;
         color: #fff !important;
         background-color: #136E68 !important;
+    }
+
+    input {
+        background-color: #fff !important;
     }
 </style>
 
@@ -114,14 +118,16 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="address_th" class="col-form-label"><i class="fa-solid fa-location-dot"></i> ที่อยู่
+                            <label for="address_th" class="col-form-label"><i class="fa-solid fa-location-dot"></i>
+                                ที่อยู่
                                 (TH)</label>
-                            <textarea class="form-control rounded-pill" id="address_th" name="address_th" required></textarea>
+                            <textarea class="form-control rounded-3" id="address_th" name="address_th" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="address_en" class="col-form-label"><i class="fa-solid fa-location-dot"></i> ที่อยู่
+                            <label for="address_en" class="col-form-label"><i class="fa-solid fa-location-dot"></i>
+                                ที่อยู่
                                 (EN)</label>
-                            <textarea class="form-control rounded-pill" id="address_en" name="address_en" required></textarea>
+                            <textarea class="form-control rounded-3" id="address_en" name="address_en" required></textarea>
                         </div>
                         <div class="mb-3">
                             <div class="row">
@@ -140,7 +146,8 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="website" class="col-form-label"><i class="fa-solid fa-globe"></i> เว็ปไซต์</label>
+                            <label for="website" class="col-form-label"><i class="fa-solid fa-globe"></i>
+                                เว็ปไซต์</label>
                             <input class="form-control rounded-pill" id="website" name="website" required></input>
                         </div>
                         <div class="mb-3 pr-3 pl-3">

@@ -30,7 +30,13 @@ class ContractsChangeController extends Controller
                 'con_type_name' => $data['con_type_name'],
                 'change_details' => $data['change_details'],
             ];
-            if ($request->file('images')) {
+            if (empty($data['employee_id']) || empty($data['con_type_name']) || empty($data['change_details'])) {
+                $result = [
+                    'status' => 'Failed',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
+                ];
+            } else if ($request->file('images')) {
 
                 $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsChange/');
 
@@ -60,9 +66,9 @@ class ContractsChangeController extends Controller
         $id = $data['id'];
         try {
             $data = [
-                'contract_type_name' => $data['contract_type_name'],
-                'contract_details' => $data['contract_details'],
-                'images' => $data['images'],
+                'employee_id' => $data['employee_id'],
+                'con_type_name' => $data['con_type_name'],
+                'change_details' => $data['change_details'],
             ];
             if ($request->file('images')) {
 
@@ -92,7 +98,7 @@ class ContractsChangeController extends Controller
         DB::beginTransaction();
         $id = $request->id;
         try {
-            $this->contractsChangeRepository->delete($id);
+            $query = $this->contractsChangeRepository->delete($id);
             if (isset($query)) {
                 $result['status'] = 'Success';
                 $result['statusCode'] = '00';
@@ -116,45 +122,4 @@ class ContractsChangeController extends Controller
 
         return response()->json(["data" => $contracts]);
     }
-    ////////////////////////////////////////////////////////
-    // public function notify(Request $request)
-    // {
-    //     try {
-    //         $data = $request->all();
-
-    //         if (!isset($data['device_key']) || !isset($data['title']) || !isset($data['body'])) {
-    //             throw new \Exception("Missing required parameters");
-    //         }
-
-    //         $registrationIds = is_array($data['device_key']) ? $data['device_key'] : [$data['device_key']];
-
-    //         $dataArr = [
-    //             "click_action" => "FLUTTER_NOTIFICATION_CLICK",
-    //             "status" => "done",
-    //         ];
-
-    //         $notificationData = [
-    //             "registration_ids" => $registrationIds,
-    //             "notification" => [
-    //                 "title" => $data['title'],
-    //                 "body" => $data['body'],
-    //                 "sound" => 'default',
-    //             ],
-    //             "data" => $dataArr,
-    //             "priority" => "high"
-    //         ];
-
-    //         $serverKey = "AAAAz_Szn44:APA91bFBHEojfooGrM1xwMWo6_Kh1hpxcy16u66vtbEid4VHhf-T5_HfwyDOytu1libNQrqWZgidtRqgpEdR3MiumB80N_gsvYvzW02XCc4baCx7PSSpnlLkGGbYy0z5hPa9ztXtDqYN";
-    //         $response = Http::withHeaders([
-    //             'Authorization' => 'key =' . $serverKey,
-    //             'Content-Type' => 'application/json',
-    //         ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
-
-    //         $jsonData = $response->json();
-
-    //         return $response;
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => $e->getMessage()], 400);
-    //     }
-    // }
 }

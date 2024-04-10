@@ -1,48 +1,58 @@
 @extends('setting_menu')
 <style>
-    .btn-danger  {
+    .btn-danger {
         color: #fff !important;
         border-color: #FA9583 !important;
         background-color: #FA9583 !important;
     }
+
     .btn-danger:hover {
         color: #FA9583 !important;
         background-color: #fff !important;
         border-color: #FA9583 !important;
     }
-    .btn-success  {
+
+    .btn-success {
         color: #fff !important;
         border-color: #77c6c5 !important;
         background-color: #77c6c5 !important;
     }
+
     .btn-success:hover {
         color: #77c6c5 !important;
         background-color: #fff !important;
         border-color: #77c6c5 !important;
     }
+
     div {
         color: #136E68;
     }
+
     .modal-body i {
         color: #FA9583;
         font-size: 1.2rem;
         margin: 0.5rem;
     }
+
     .form-control {
-        background-color: #fff !important;
         color: #136E68 !important;
         border-color: #77c6c5 !important;
     }
+
     .btn-outline-successful {
         border-color: none !important;
         color: #136E68 !important;
     }
+
     .btn-outline-successful:hover {
         border-color: #136E68 !important;
         color: #fff !important;
         background-color: #136E68 !important;
     }
 
+    input {
+        background-color: #fff !important;
+    }
 </style>
 
 @section('side-card')
@@ -52,63 +62,76 @@
                 <div class="row">
                     <h6><i class="fa-solid fa-file-circle-plus"></i> สร้างประเภทงานอำนวยการ</h6>
                     <div class="row list_administ" id="list_administ">
-                    </div> 
+                    </div>
                 </div>
-                <button type="button" class="form-control btn btn-outline-success rounded-pill add-administ" id="add-administ" data-bs-toggle="modal" data-bs-target="#administModal" style="width: 100%; "><i class="fa-solid fa-plus"></i> เพิ่มประเภทงาน</button> 
+                <div class="button p-2 mt-2">
+                    <button type="button" class="form-control btn btn-outline-success rounded-pill add-administ"
+                        id="add-administ" data-bs-toggle="modal" data-bs-target="#administModal" style="width: 100%; "><i
+                            class="fa-solid fa-plus"></i> เพิ่มประเภทงาน</button>
+                </div>
             </div>
         </div>
     </div>
 
     {{-- modal --}}
-    <div class="modal fade" id="administModal" tabindex="-1" aria-labelledby="administModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content modal-radius">
-        <div class="modal-header bg-hr-green-app modal-header-radius">
-            <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fa-solid fa-file-circle-plus"></i> เพิ่มประเภทงาน</h5>
-            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-        </div>
-        <div class="modal-body">
-            <form id ="administ_FromModal">
-                <input type="hidden" name="id" id="id">
-                <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i> หัวข้อประเภทงาน</label>
-                    <input type="text" class="form-control rounded-pill" id="administ_name" name="administ_name" required>
+    <div class="modal fade" id="administModal" tabindex="-1" aria-labelledby="administModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content modal-radius">
+                <div class="modal-header bg-hr-green-app modal-header-radius">
+                    <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fa-solid fa-file-circle-plus"></i>
+                        เพิ่มประเภทงาน</h5>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-            </form>
-        </div>
-        <div class="row p-4 ">
-            <div class="row">
-                <button type="button" class="btn btn-outline-successful rounded-pill col-5 mx-auto p-2" data-bs-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-danger rounded-pill save-administ col-5 mx-auto p-2" id="save-administ">ยืนยัน</button>
+                <div class="modal-body">
+                    <form id ="administ_FromModal">
+                        <input type="hidden" name="id" id="id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"><i class="fa-regular fa-newspaper"></i>
+                                หัวข้อประเภทงาน</label>
+                            <input type="text" class="form-control rounded-pill" id="administ_name" name="administ_name"
+                                required>
+                        </div>
+                    </form>
+                </div>
+                <div class="row p-4 ">
+                    <div class="row">
+                        <button type="button" class="btn btn-outline-successful rounded-pill col-5 mx-auto p-2"
+                            data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-danger rounded-pill save-administ col-5 mx-auto p-2"
+                            id="save-administ">ยืนยัน</button>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
     </div>
 @stop
 
 
 @section('js')
-<script>
-    $(() => {
-        getAdministWorkCategories();
-        function getAdministWorkCategories() {
-            let id = "{{ Auth::user()->id }}";
-            const listAdminist = document.getElementById('list_administ');
-            listAdminist.innerHTML = '';
-            $.ajax({
-                type: "POST",
-                url: "{{ route('api.v1.administrative.work.categories.list') }}",
-                data: {'id': id,},
-                datatype: "JSON",
-                success: function (response) {
-                    var administContainer = $('.list_administ');
-                    response.forEach(function(administ) {
-                        var administ_id = administ.id;
-                        var administ_name = administ.administ_name;
-                        // console.log('name = ' + $(administ_name));
-                        var Item =`
-                            <div class="test pt-2 mb-3">
+    <script>
+        $(() => {
+            getAdministWorkCategories();
+
+            function getAdministWorkCategories() {
+                let id = "{{ Auth::user()->id }}";
+                const listAdminist = document.getElementById('list_administ');
+                listAdminist.innerHTML = '';
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('api.v1.administrative.work.categories.list') }}",
+                    data: {
+                        'id': id,
+                    },
+                    datatype: "JSON",
+                    success: function(response) {
+                        var administContainer = $('.list_administ');
+                        response.forEach(function(administ) {
+                            var administ_id = administ.id;
+                            var administ_name = administ.administ_name;
+                            // console.log('name = ' + $(administ_name));
+                            var Item = `
+                            <div class="test pt-2 mb-1">
                                 <div class="row">
                                     <div class="col-12 d-flex">
                                         <div class="input-group">
@@ -130,19 +153,19 @@
                                 </div>
                             </div>
                         `;
-                        administContainer.append(Item);
-                    });
-                },
-            });
-        }
+                            administContainer.append(Item);
+                        });
+                    },
+                });
+            }
 
-        var administ_model = $('#administModal');
-        $(document).on('click', '.add-administ', function() {
-            administ_model.modal('show')
-        })
+            var administ_model = $('#administModal');
+            $(document).on('click', '.add-administ', function() {
+                administ_model.modal('show')
+            })
 
-         ////// save news //////
-        $(document).on('click', '.save-administ', function() {
+            ////// save news //////
+            $(document).on('click', '.save-administ', function() {
                 let id = $('#id').val();
                 let administ_FromModal = $('#administ_FromModal');
 
@@ -155,7 +178,7 @@
                             url: "{{ route('api.v1.administrative.work.categories.create') }}",
                             data: data,
                             dataType: "json",
-                            success: function (response) {
+                            success: function(response) {
                                 if (response.data.status == 'Success') {
                                     Swal.fire({
                                         title: 'ดำเนินการเรียบร้อยแล้ว',
@@ -166,7 +189,7 @@
                                     });
                                     administ_model.modal('hide');
                                     getAdministWorkCategories();
-                                }else if ((response.data.statusCode == '200')){
+                                } else if ((response.data.statusCode == '200')) {
                                     Swal.fire({
                                         title: 'หมวดหมูงานนี้มีอยู่แล้ว',
                                         icon: 'warning',
@@ -182,10 +205,10 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                } 
+                                }
                             }
                         });
-                    }else {
+                    } else {
                         $.ajax({
                             type: 'post',
                             url: "{{ route('api.v1.administrative.work.categories.update') }}",
@@ -203,7 +226,7 @@
                                     administ_model.modal('hide');
                                     getAdministWorkCategories();
 
-                                } else if ((response.data.statusCode == '200')){
+                                } else if ((response.data.statusCode == '200')) {
                                     Swal.fire({
                                         title: 'หมวดหมูงานนี้มีอยู่แล้ว',
                                         icon: 'warning',
@@ -211,7 +234,7 @@
                                         timer: 2000,
                                         toast: true
                                     });
-                                }else {
+                                } else {
                                     Swal.fire({
                                         title: 'เกิดข้อผิดพลาด',
                                         icon: 'warning',
@@ -227,8 +250,8 @@
             });
 
 
-        ////// edit news //////
-        $(document).on('click', '.btn-edit', function() {
+            ////// edit news //////
+            $(document).on('click', '.btn-edit', function() {
                 let id = $(this).data('id');
                 $.ajax({
                     type: 'post',
@@ -245,22 +268,23 @@
                     }
                 });
             })
+
             function setNewsCategoryFormData(data) {
                 $("#administ_name").val(data.data.administ_name);
             }
             administ_model.on('show.bs.modal', function(event) {
                 let btn = $(event.relatedTarget);
-                let title = btn.data('ac') === 'edit' ? 'แก้ไขหัวข้อข่าว':'เพิ่มหัวข้อข่าว';
+                let title = btn.data('ac') === 'edit' ? 'แก้ไขหัวข้อข่าว' : 'เพิ่มหัวข้อข่าว';
                 let obj = $(this);
                 obj.find('.modal-title').text(title)
             })
             administ_model.on('hide.bs.modal', function() {
-            let obj = $(this);
-            obj.find('#administ_name').val("");
+                let obj = $(this);
+                obj.find('#administ_name').val("");
             })
 
-        ////// delete news //////
-        $(document).on('click', '.btn-delete', function() {
+            ////// delete news //////
+            $(document).on('click', '.btn-delete', function() {
                 let obj = $(this);
                 let id = obj.data('id');
                 Swal.fire({
@@ -312,6 +336,6 @@
                 })
             })
 
-    });
-</script>
+        });
+    </script>
 @stop

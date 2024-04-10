@@ -391,6 +391,12 @@ Route::group(
 
                 //  notification Application
                 Route::post('notify/employee', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'notify'])->name('notify.employee');
+                Route::post('notify/employee/all', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'notifyAll'])->name('notify.employee.all');
+
+                // personal Information
+                Route::post('personal/information/getAll', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getAll'])->name('personal.information.getAll');
+                Route::post('personal/information/create', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'create'])->name('personal.information.create');
+
 
 
         }

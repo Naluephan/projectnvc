@@ -27,7 +27,13 @@ class ContractsDetailsController extends Controller
                 'contract_type_name' => $data['contract_type_name'],
                 'contract_details' => $data['contract_details'],
             ];
-            if ($request->file('images')) {
+            if (empty($data['contract_type_name']) || empty($data['contract_details'])) {
+                $result = [
+                    'status' => 'Failed',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
+                ];
+            } else if ($request->file('images')) {
 
                 $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsDetails/');
 
@@ -89,7 +95,7 @@ class ContractsDetailsController extends Controller
         DB::beginTransaction();
         $id = $request->id;
         try {
-            $this->contractsDetailsRepository->delete($id);
+            $query = $this->contractsDetailsRepository->delete($id);
             if (isset($query)) {
                 $result['status'] = 'Success';
                 $result['statusCode'] = '00';

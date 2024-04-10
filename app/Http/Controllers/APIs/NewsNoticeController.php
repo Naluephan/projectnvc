@@ -283,4 +283,42 @@ class NewsNoticeController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
+ public function notifyAll(Request $request)
+{
+    $data = $request->all();
+    try {
+        if (!isset($data['title']) || !isset($data['body']) || !isset($data['topic'])) {
+            throw new \Exception("Missing required parameters");
+        }
+
+        $topic = $data['topic'];
+
+        $dataArr = [
+            "click_action" => "FLUTTER_NOTIFICATION_CLICK",
+            "status" => "done",
+        ];
+
+        $notificationData = [
+            "to" => "/topics/{$topic}",
+            "notification" => [
+                "title" => $data['title'],
+                "body" => $data['body'],
+                "sound" => 'default',
+            ],
+            "data" => $dataArr,
+            "priority" => "high"
+        ];
+
+        $serverKey = "AAAAz_Szn44:APA91bFBHEojfooGrM1xwMWo6_Kh1hpxcy16u66vtbEid4VHhf-T5_HfwyDOytu1libNQrqWZgidtRqgpEdR3MiumB80N_gsvYvzW02XCc4baCx7PSSpnlLkGGbYy0z5hPa9ztXtDqYN";
+        $response = Http::withHeaders([
+            'Authorization' => 'key =' . $serverKey,
+            'Content-Type' => 'application/json',
+        ])->post('https://fcm.googleapis.com/fcm/send', $notificationData);
+
+        return $response;
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+    }
+}
 }
