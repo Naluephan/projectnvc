@@ -16,14 +16,14 @@ class WithdrawReserveFundRepository extends MasterRepository implements Withdraw
         parent::__construct($model);
     }
 
-    // public function getReserveFund($params)
-    // {
-    //     return $this->model
-    //         ->where('record_status', 1)
-    //         // ->where('emp_id', $params['emp_id'])
-    //         ->with('emp')
-    //         ->get();
-    // }
+    public function getWithdraw($params)
+    {
+        return $this->model
+            // ->where('record_status', 1)
+            // ->where('emp_id', $params['emp_id'])
+            ->with('withdraw')
+            ->get();
+    }
 
     public function findBy(array $criteria)
     {
