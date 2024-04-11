@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('personal_information', function (Blueprint $table) {
             $table->id();
+            $table->integer('emp_changed_id');
             $table->string('info_changed');
             $table->string('details_changed');
             $table->string('images')->nullable();
+            $table->string('change_status')->default(1)-> comment('1 = pending, 2 = approved, 3 = rejected' );
             $table->timestamps();
         });
     }

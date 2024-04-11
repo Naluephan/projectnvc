@@ -398,8 +398,11 @@ Route::group(
                 Route::post('notify/employee/all', [\App\Http\Controllers\APIs\NewsNoticeController::class, 'notifyAll'])->name('notify.employee.all');
 
                 // personal Information
-                Route::post('personal/information/getAll', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getAll'])->name('personal.information.getAll');
+                Route::post('personal/information/get/all', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getAll'])->name('personal.information.getAll');
                 Route::post('personal/information/create', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'create'])->name('personal.information.create');
+                Route::post('personal/information/update', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'update'])->name('personal.information.update');
+                Route::post('personal/information/delete', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'delete'])->name('personal.information.delete');
+                Route::post('personal/information/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('personal.information.get.By.Id');
 
 
 
