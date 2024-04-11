@@ -11,10 +11,10 @@ class RewardCoinHistory extends Model
 
     protected $fillable = [
         'emp_id',
-        'type_reward',
+        'type_reward_id',
         'reward_name',
         'reward_image',
         'reward_coins_change',
-        'record_status'
+        'status_display'
     ];
 }
