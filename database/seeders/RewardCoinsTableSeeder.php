@@ -19,6 +19,12 @@ class RewardCoinsTableSeeder extends Seeder
                 'reward_name' => 'Gold Rose',
                 'reward_image' => 'Gold-Rose.jpg',
                 'reward_description' => '',
+                'reward_coins_change' => '100',
+            ],
+            [
+                'reward_name' => 'Gold Rose Amazing',
+                'reward_image' => 'Gold-Rose.jpg',
+                'reward_description' => '',
                 'reward_coins_change' => '5000',
             ],
         ]);
