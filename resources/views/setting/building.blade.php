@@ -482,7 +482,7 @@
                         $('#detail-total_rooms').text(response.data.total_rooms);
                         $('#building_location_id').val(response.data.id);
                         $("#location_detail").empty();
-                        $.each(response.data.location, function(index, item) {
+                        $.each(response.data.location, function(index, locationInfo) {
                             var item = `
                             <div class="card card-content border-0">
                                     <div class="card-body">
@@ -494,10 +494,10 @@
                                                 </svg>
                                             </div>
                                             <div class="col-8 mt-3">
-                                                <p class="room text-color"> ${item.place_name}</p>
+                                                <p class="room text-color"> ${locationInfo.place_name}</p>
                                             </div>
                                             <div class="col-2 mt-3">
-                                                <p class="floor text-color">ชั้นที่  ${item.floor}</p> 
+                                                <p class="floor text-color">ชั้นที่  ${locationInfo.floor}</p> 
                                             </div>
                                         </div>
                                     </div>
@@ -507,7 +507,7 @@
                         })
                         $('#location_edit').val(response.data.id);
                         $('#location_edit').data('location_name', response.data.location_name);
-                        $('#location_edit').data('total_floors', response.data.total_floor);
+                        $('#location_edit').data('total_floors', response.data.total_floors);
                         $('#location_edit').data('total_rooms', response.data.total_rooms);
                         $('#location_edit').data('building_img_url', img_url);
                         $('#location_edit').data('location_img', response.data
@@ -553,7 +553,7 @@
                     var currentRooms = $('.list-building').length;
                     if (totalRooms < currentRooms) {
                         var diff = currentRooms - totalRooms;
-                        $('.list-building').slice(-diff).remove();
+                        $('.list-building').slice(-diff).removeLocation(item);
                     }
                 });
 
@@ -562,39 +562,39 @@
 
 
 
-                $.ajax({
-                    type: 'post',
-                    url: "{{ route('api.v1.building.location.detail.by.id') }}",
-                    data: {
-                        'id': id
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        setbuildinglocationFormData(response);
-                        $('#buildinglocationModal').modal('show')
-                        $("#building_location_id").val(response.id);
-                        $("#location_name").val(response.data.location_name);
-                        $("#total_floors").val(response.data.total_floors);
-                        $("#total_rooms").val(response.data.total_rooms);
-                        var floors = response.data.location;
-                        // console.log(floors)
-                        // floors.forEach(element => {
-                        //     $("#floor").val(element.floor);
-                        //     $("#place_name").val(element.place_name);
-                        //     console.log(response.data.location)
-                        //     var locationFormData = new FormData();
-                        //     locationFormData.append('floor', element.floor);
-                        //     locationFormData.append('place_name', element.place_name);
-                        // });
-                        $(".locations").empty();
-                        $.each(floors, function(index, item) {
-                            addLocation(item)
-                        });
+                // $.ajax({
+                //     type: 'post',
+                //     url: "{{ route('api.v1.building.location.detail.by.id') }}",
+                //     data: {
+                //         'id': id
+                //     },
+                //     dataType: "json",
+                //     success: function(response) {
+                //         setbuildinglocationFormData(response);
+                //         $('#buildinglocationModal').modal('show')
+                //         $("#building_location_id").val(response.id);
+                //         $("#location_name").val(response.data.location_name);
+                //         $("#total_floors").val(response.data.total_floors);
+                //         $("#total_rooms").val(response.data.total_rooms);
+                //         var floors = response.data.location;
+                //         // console.log(floors)
+                //         // floors.forEach(element => {
+                //         //     $("#floor").val(element.floor);
+                //         //     $("#place_name").val(element.place_name);
+                //         //     console.log(response.data.location)
+                //         //     var locationFormData = new FormData();
+                //         //     locationFormData.append('floor', element.floor);
+                //         //     locationFormData.append('place_name', element.place_name);
+                //         // });
+                //         $(".locations").empty();
+                //         $.each(floors, function(index, item) {
+                //             addLocation(item)
+                //         });
 
 
-                        console.log(response)
-                    }
-                });
+                //         console.log(response)
+                //     }
+                // });
             })
 
             function setbuildinglocationFormData(data) {

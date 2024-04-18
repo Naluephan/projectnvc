@@ -102,8 +102,8 @@ public function create(Request $request)
                 $data['location_img'] = save_image($request->file('location_img'), 500, '/images/setting/building/');
             }
             $building = $this->buildinglocationRepository->update($data['id'], $data);
+            
             $building->save();
-
             // $location_id = array_column(array_filter($data['locations'], function ($location) {
             //     return !empty($location['location_id']);
             // }), 'location_id');
@@ -116,7 +116,8 @@ public function create(Request $request)
                     $locationdata['place_name'] = $locationdata['place_name'];
                     $this->locationRepository->create($locationdata);
                 } else {
-                    $this->locationRepository->update($locationdata['location_id'], $locationdata);
+                    $location = $this->locationRepository->update($locationdata['location_id'], $locationdata);
+                    $location->save();
                 }
             }
 

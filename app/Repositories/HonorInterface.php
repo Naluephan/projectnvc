@@ -9,4 +9,5 @@ interface HonorInterface extends BaseInterface
 {
     public function getHonor($params);
     public function findBy(array $criteria);
+    public function getHonorById($id);
 }

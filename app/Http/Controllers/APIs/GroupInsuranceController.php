@@ -103,7 +103,7 @@ class GroupInsuranceController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        return $this->groupinsuranceRepository->find($id);
+        return $this->groupinsuranceRepository->getInsuranceById($id);
   
     }
 }

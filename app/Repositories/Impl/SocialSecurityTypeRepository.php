@@ -31,4 +31,11 @@ class SocialSecurityTypeRepository extends MasterRepository implements SocialSec
     {
         return SocialSecurityType::where($criteria)->first();
     }
+
+    public function getTypeById($id)
+    {
+        return $this->model->where('id', $id)
+        ->with('socialdetail')
+        ->get();
+    }
 }

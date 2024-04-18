@@ -9,4 +9,6 @@ interface GroupInsuranceInterface extends BaseInterface
 {
     public function getGroupInsurance($params);
     public function findBy(array $criteria);
+    public function getInsuranceById($id);
+
 }

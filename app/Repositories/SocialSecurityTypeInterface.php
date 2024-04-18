@@ -9,4 +9,6 @@ interface SocialSecurityTypeInterface extends BaseInterface
 {
     public function getSocial($params);
     public function findBy(array $criteria);
+    public function getTypeById($id);
+
 }

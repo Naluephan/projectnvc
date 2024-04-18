@@ -89,6 +89,6 @@ class SocialSecurityTypeController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        return $this->socialsecuritytypeRepository->find($id);
+        return $this->socialsecuritytypeRepository->getTypeById($id);
     }
 }

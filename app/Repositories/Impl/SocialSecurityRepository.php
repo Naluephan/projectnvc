@@ -23,7 +23,7 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
             ->where('record_status', 1)
             // ->where('emp_id', $params['emp_id'])
      
-            ->with('emp','socialsecurity.socialdetail.socialfile')
+            ->with('emp.company','emp.position','emp.department','socialsecurity.socialdetail.socialfile')
             // ->with('socialemp.emp','socialsecurity.socialdetail')
             ->get();
     }

@@ -29,4 +29,11 @@ class GroupInsuranceRepository extends MasterRepository implements GroupInsuranc
     {
         return GroupInsurance::where($criteria)->first();
     }
+
+    public function getInsuranceById($id)
+    {
+        return $this->model->where('emp_id', $id)
+        ->with('emp')
+        ->get();
+    }
 }

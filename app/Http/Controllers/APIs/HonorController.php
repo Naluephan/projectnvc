@@ -88,7 +88,8 @@ class HonorController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        return $this->honorRepository->find($id);
+        return $this->honorRepository->getHonorById($id);
+    
     }
     public function delete(Request $request)
     {

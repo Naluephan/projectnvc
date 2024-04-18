@@ -11,12 +11,15 @@ class Honor extends Model
     protected $fillable = [
         'emp_id',
         'honor_category_id',
+        //  'company_id',
+        // 'department_id',
+        // 'position_id',
         'honor_img',
         'honor_detail',
         'record_status',
 
     ];
     public function emp(){
-        return $this->belongsTo(Employee::class,'emp_id','id');
+        return $this->hasOne(Employee::class,'id','emp_id');
     }
 }

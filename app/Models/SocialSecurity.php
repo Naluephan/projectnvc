@@ -12,12 +12,15 @@ class SocialSecurity extends Model
         'emp_id',
         'social_security_type_id',
         // 'social_security_type_name',
+        // 'company_id',
+        // 'department_id',
+        // 'position_id',
         'aprrove_status',
         'record_status',
 
     ];
     public function emp(){
-        return $this->belongsTo(Employee::class,'emp_id','id');
+        return $this->hasOne(Employee::class,'id','emp_id');
     }
     // public function socialfile(){
     //     return $this->hasMany(SocialSecurityFile::class,'social_type_id','id');
