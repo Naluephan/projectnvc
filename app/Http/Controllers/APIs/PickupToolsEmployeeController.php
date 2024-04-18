@@ -73,6 +73,7 @@ class PickupToolsEmployeeController extends Controller
             if ($pickupTools) {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
+                    'company_id' => $data['company_id'],
                     'department_id' => $data['department_id'],
                     'pickup_tools_id' => $data['pickup_tools_id'],
                     'number_requested' => $data['number_requested'],
@@ -98,6 +99,24 @@ class PickupToolsEmployeeController extends Controller
             $result['status'] = ApiStatus::list_pickup_tools_error_statusCode;
             $result['errCode'] = ApiStatus::list_pickup_tools_error_status;
             $result['errDesc'] = ApiStatus::list_pickup_tools_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
+
+    public function approve(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        try {
+            $this->pickupToolsEmployeeRepository->update($id, $data);
+            $result['status'] = ApiStatus::list_pickup_tools_success_status;
+            $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
+            $result['message'] = 'Transaction approved successfully.';
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::list_pickup_tools_failed_status;
+            $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
+            $result['errDesc'] = ApiStatus::list_pickup_tools_failed_Desc;
             $result['message'] = $e->getMessage();
         }
         return $result;

@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('pickup_tools_employees', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id")->nullable();
+            $table->integer("company_id")->nullable();
             $table->integer("department_id")->nullable();
             $table->integer("pickup_tools_id")->nullable();
             $table->integer("number_requested")->nullable();

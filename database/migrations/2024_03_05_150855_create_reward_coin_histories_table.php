@@ -17,6 +17,8 @@ return new class extends Migration
         Schema::create('reward_coin_histories', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id")->nullable();
+            $table->integer("company_id")->nullable();
+            $table->integer("department_id")->nullable();
             $table->tinyInteger('type_reward_id')->comment('0=not active 1=automatic 2=request')->default(1);
             $table->string("reward_name")->nullable();
             $table->string("reward_image")->nullable();

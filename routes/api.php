@@ -372,11 +372,13 @@ Route::group(
                 Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
                 Route::post('pickup/tools/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
                 Route::post('pickup/tools/employee/update', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'update'])->name('pickup.tools.employee.update');
+                Route::post('pickup/tools/approve', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'approve'])->name('pickup.tools.approve');
 
                 //API Reward Coin
                 Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'reward_list'])->name('reward.list');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
                 Route::post('employee/reward/coin/create', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'create'])->name('reward.coin.create');
+                Route::post('employee/reward/coin/approve', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'approve'])->name('reward.coin.approve');
 
                 //Organics Hero
                 Route::post('organicsHero/listMission/employee', [\App\Http\Controllers\APIs\OrganicsHeroMissionEmployeeController::class, 'getListMissionEmployee'])->name('organic.hero.mission.list.mission.employee');

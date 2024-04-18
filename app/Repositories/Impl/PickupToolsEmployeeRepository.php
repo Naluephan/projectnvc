@@ -21,20 +21,37 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
 
     public function pickupToolsList($params)
     {
-        $empId = $params['emp_id'];
+        $query = $this->model->query();
 
-        return $this->model->where('emp_id', $empId)
-            ->with([
-                'pickupTools' => function ($query) {
-                    $query->select('id', 'department_id', 'device_types_id','number_requested AS limit_number_requested');
-                },
-                'pickupTools.pickupToolsDeviceType' => function ($query) {
-                    $query->select('id', 'device_types_name', 'unit');
-                },
-                'pickupTools.department' => function ($query) {
-                    $query->select('id', 'name_th');
-                }
-            ])->get();
+        if (isset($params['emp_id'])) {
+            $query->where('emp_id', $params['emp_id']);
+        }
+
+        if (isset($params['company_id'])) {
+            $query->where('company_id', $params['company_id']);
+        }
+
+        if (isset($params['department_id'])) {
+            $query->where('department_id', $params['department_id']);
+        }
+
+        $query->with([
+            'company' => function ($query) {
+                $query->select('id', 'name_th', 'name_en');
+            },
+            'department' => function ($query) {
+                $query->select('id', 'name_th', 'name_en');
+            },
+            'pickupTools.pickupToolsDeviceType' => function ($query) {
+                $query->select('id', 'device_types_name', 'unit');
+            }
+        ]);
+
+        if (!empty($params)) {
+            return $query->get();
+        } else {
+            return null;
+        }
     }
 
     public function findBy(array $criteria)
