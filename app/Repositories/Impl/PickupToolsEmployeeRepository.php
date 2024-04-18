@@ -47,11 +47,7 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
             }
         ]);
 
-        if (!empty($params)) {
-            return $query->get();
-        } else {
-            return null;
-        }
+        return $query->get();
     }
 
     public function findBy(array $criteria)
