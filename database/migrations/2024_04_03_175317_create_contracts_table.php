@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contracts_details', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('contract_type_name')->references('id')->on('contracts_categories');
+            $table->string('contract_category_id')->references('id')->on('contracts_categories');
+            $table->string('emp_id')->references('id')->on('employees');
             $table->string('contract_details');
             $table->string('images')->default(null);
             $table->timestamps();
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts_details');
+        Schema::dropIfExists('contracts');
     }
 };

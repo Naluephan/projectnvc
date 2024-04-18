@@ -83,7 +83,7 @@ class EmployeeLeaveController extends Controller
             
             if(isset($data['leave_imgs'])){
                 foreach ($data['leave_imgs'] as $index => $image) {
-                    $file = save_image($image, 2000, '/images/leave_emp/');
+                    $file = save_image($image, 500, '/images/leave_emp/');
                     $data['leave_img' . $index + 1] = $file;
                 }
             }
@@ -163,6 +163,11 @@ class EmployeeLeaveController extends Controller
         return json_encode($result);
     }
 
+    public function getLeaveAll(Request $request)
+    {
+        return $this->employeeLeaveRepository->getAll();
+    }
+
     public function getById(Request $request)
     {
         $id = $request->id;
@@ -175,6 +180,24 @@ class EmployeeLeaveController extends Controller
         $id = $request->id;
         $data = [
             'status_hr__approve' => 1,
+        ];
+        try {
+            $this->employeeLeaveRepository->update($id,$data);
+            $result['status'] = "Success";
+            DB::commit();
+        } catch (\Exception $ex){
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return json_encode($result);
+    }
+    public function approveManager(Request $request)
+    {
+        DB::beginTransaction();
+        $id = $request->id;
+        $data = [
+            'status_manager_approve' => $request['status_manager_approve'],
         ];
         try {
             $this->employeeLeaveRepository->update($id,$data);
