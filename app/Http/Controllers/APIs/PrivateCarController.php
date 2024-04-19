@@ -32,7 +32,7 @@ class PrivateCarController extends Controller
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
                     'car_color' => $data['car_color'],
-                    'record_status' => 1,
+                    'record_status' => 2,
                     // 'car_image' => $data['car_image'],
                 ];
                 if ($request->file('car_image')) {
@@ -45,7 +45,7 @@ class PrivateCarController extends Controller
                     'car_category_id' => $data['car_category_id'],
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
-                    'record_status' => 1,
+                    'record_status' => 2,
                     // 'car_image' => $data['car_image'],
                 ];
                 if ($request->file('car_image')) {
@@ -111,6 +111,24 @@ class PrivateCarController extends Controller
             $result['errDesc'] = ApiStatus::list_private_car_errDesc;
             $result['message'] = $ex->getMessage();
             DB::rollBack();
+        }
+        return $result;
+    }
+
+    public function approve(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        try {
+            $this->privateCarRepository->update($id, $data);
+            $result['status'] = ApiStatus::list_private_car_success_status;
+            $result['statusCode'] = ApiStatus::list_private_car_success_statusCode;
+            $result['message'] = 'Transaction approved successfully.';
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::list_private_car_failed_status;
+            $result['errCode'] = ApiStatus::list_private_car_failed_statusCode;
+            $result['errDesc'] = ApiStatus::list_private_car_failed_Desc;
+            $result['message'] = $e->getMessage();
         }
         return $result;
     }

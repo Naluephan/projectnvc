@@ -70,7 +70,11 @@ class PickupToolsEmployeeController extends Controller
             $departmentId = $data['department_id'];
             $pickupTools = PickupTools::where('department_id', $departmentId)->exists();
 
-            if ($pickupTools) {
+            $pickupTool = PickupTools::where('number_requested', '>=', $data['number_requested'])
+                ->where('department_id', $data['department_id'])
+                ->first();
+
+            if ($pickupTools && $pickupTool) {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'company_id' => $data['company_id'],
