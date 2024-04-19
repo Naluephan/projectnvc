@@ -95,6 +95,8 @@ use App\Repositories\GroupInsuranceInterface;
 use App\Repositories\Impl\ContractsCategoriesRepository;
 use App\Repositories\ReportRepairInterface;
 use App\Repositories\Impl\ReportRepairRepository;
+use App\Repositories\ReportRepairCategoriesInterface;
+use App\Repositories\Impl\ReportRepairCategoriesRepository;
 use App\Repositories\ContractsDetailsInterface;
 use App\Repositories\Impl\ContractsDetailsRepository;
 use App\Repositories\Impl\ContractsChangeRepository;
@@ -180,6 +182,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(OrganicsHeroMissionEmployeeInterface::class,OrganicsHeroMissionEmployeeRepository::class);
         $this->app->bind(SocialSecurityTypeInterface::class,SocialSecurityTypeRepository::class);
         $this->app->bind(WithdrawReserveFundInterface::class,WithdrawReserveFundRepository::class);
+        $this->app->bind(ReportRepairCategoriesInterface::class,ReportRepairCategoriesRepository::class);
 
 
 

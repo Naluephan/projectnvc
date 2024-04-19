@@ -226,12 +226,6 @@ Route::group(
                 Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
                 Route::post('contracts/change/notify', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'notify'])->name('contracts.change.notify');
 
-                //report repair
-                Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
-                Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
-                Route::post('report/repair/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.delete');
-                Route::post('report/repair/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.getAll');
-                Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
 
                 //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
@@ -430,11 +424,11 @@ Route::group(
                 Route::post('personal/information/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('personal.information.get.By.Id');
 
                 //report repair
-                Route::post('report/repair/categories/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.categories.create');
-                Route::post('report/repair/categories/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.categories.update');
-                Route::post('report/repair/categories/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.categories.delete');
-                Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.categories.getAll');
-                Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.categories.get.by.id');
+                Route::post('report/repair/categories/create', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'create'])->name('report.repair.categories.create');
+                Route::post('report/repair/categories/update', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'update'])->name('report.repair.categories.update');
+                Route::post('report/repair/categories/delete', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'delete'])->name('report.repair.categories.delete');
+                Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getAll'])->name('report.repair.categories.getAll');
+                Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getById'])->name('report.repair.categories.get.by.id');
 
                 Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
                 Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
