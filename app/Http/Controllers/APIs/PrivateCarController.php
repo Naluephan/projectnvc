@@ -42,9 +42,12 @@ class PrivateCarController extends Controller
             } else {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
+                    'company_id' => $data['company_id'],
+                    'department_id' => $data['department_id'],
                     'car_category_id' => $data['car_category_id'],
                     'car_registration' => $data['car_registration'],
                     'car_brand' => $data['car_brand'],
+                    'car_color' => $data['car_color'],
                     'record_status' => 2,
                     // 'car_image' => $data['car_image'],
                 ];

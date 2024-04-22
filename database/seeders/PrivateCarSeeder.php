@@ -18,6 +18,8 @@ class PrivateCarSeeder extends Seeder
         DB::table('private_cars')->insert([
             [
                 'emp_id' => 1,
+                'company_id' => 1,
+                'department_id' => 1,
                 'car_category_id' => 1,
                 'car_registration' => '9กย 1234',
                 'car_brand' => 'Toyota Yaris ATIV',

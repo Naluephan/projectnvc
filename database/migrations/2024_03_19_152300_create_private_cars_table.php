@@ -18,6 +18,8 @@ return new class extends Migration
         Schema::create('private_cars', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id");
+            $table->integer("company_id");
+            $table->integer("department_id");
             $table->tinyInteger('car_category_id')->comment('0=not active 1=car 2=motorcycle')->default(1);
             $table->string("car_registration")->nullable();
             $table->string("car_brand")->nullable();
