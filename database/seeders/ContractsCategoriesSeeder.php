@@ -23,6 +23,12 @@ class ContractsCategoriesSeeder extends Seeder
             [
                 'categories_contract_name' => 'สัญญายืมทรัพย์สิน',
             ],
+            [
+                'categories_contract_name' => 'สัญญารักษาความลับ',
+            ],
+            [
+                'categories_contract_name' => 'สัญญาอนุญาติเปิดเผยข้อมูลส่วนบุลคล',
+            ],
         ]);
     }
 }

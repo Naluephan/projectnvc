@@ -50,7 +50,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OrganicsHeroMissionEmployeeSeeder::class);
         $this->call(ContractsCategoriesSeeder::class);
         $this->call(SocialSecurityTypeSeeder::class);
-        $this->call(ContractsCategoriesSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(ReportRepair::class);
         $this->call(CommentSeeder::class);

@@ -9,9 +9,10 @@ class ContractsChange extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'employee_id',
-        'con_type_name',
+        'emp_id',
+        'contract_category_id',
         'change_details',
+        'contract_status',
         'images',
     ];
 }

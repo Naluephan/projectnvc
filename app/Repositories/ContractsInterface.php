@@ -5,7 +5,7 @@ namespace App\Repositories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-interface ContractsDetailsInterface extends BaseInterface
+interface ContractsInterface extends BaseInterface
 {
     public function getAll();
 }

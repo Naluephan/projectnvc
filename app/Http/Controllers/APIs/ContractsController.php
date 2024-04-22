@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\ContractsDetailsInterface;
+use App\Repositories\ContractsInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ContractsDetailsController extends Controller
+class ContractsController extends Controller
 {
-    private $contractsDetailsRepository;
-    public function __construct(ContractsDetailsInterface $contractsDetailsRepository)
+    private $contractsRepository;
+    public function __construct(ContractsInterface $contractsRepository)
     {
-        $this->contractsDetailsRepository = $contractsDetailsRepository;
+        $this->contractsRepository = $contractsRepository;
     }
-    public function getConCategory(Request $request)
+    public function getAll(Request $request)
     {
-        return $this->contractsDetailsRepository->getAll();
+        return $this->contractsRepository->getAll();
     }
     public function create(Request $request)
     {
@@ -24,10 +24,11 @@ class ContractsDetailsController extends Controller
         $data = $request->all();
         try {
             $data = [
-                'contract_type_name' => $data['contract_type_name'],
+                'contract_category_id' => $data['contract_category_id'],
+                'emp_id' => $data['emp_id'],
                 'contract_details' => $data['contract_details'],
             ];
-            if (empty($data['contract_type_name']) || empty($data['contract_details'])) {
+            if (empty($data['contract_category_id']) || empty($data['emp_id']) || empty($data['contract_details'])) {
                 $result = [
                     'status' => 'Failed',
                     'statusCode' => '03',
@@ -35,9 +36,9 @@ class ContractsDetailsController extends Controller
                 ];
             } else if ($request->file('images')) {
 
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsDetails/');
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contracts/');
 
-                $this->contractsDetailsRepository->create($data);
+                $this->contractsRepository->create($data);
                 $result = [
                     'status' => 'Success',
                     'statusCode' => '00'
@@ -62,26 +63,24 @@ class ContractsDetailsController extends Controller
         $data = $request->all();
         $id = $data['id'];
         try {
+            $existingData = $this->contractsRepository->find($id);
             $data = [
-                'contract_type_name' => $data['contract_type_name'],
+                'contract_category_id' => $data['contract_category_id'],
+                'emp_id' => $data['emp_id'],
                 'contract_details' => $data['contract_details'],
-                'images' => $data['images'],
             ];
             if ($request->file('images')) {
 
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsDetails/');
-
-                $this->contractsDetailsRepository->update($id, $data);
-                $result = [
-                    'status' => 'Success',
-                    'statusCode' => '00'
-                ];
+                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contracts/');
             } else {
-                $result = [
-                    'status' => 'Failed to save data',
-                    'statusCode' => '01'
-                ];
+                $data['images'] = $existingData->images;
             };
+            $this->contractsRepository->update($id, $data);
+            $result = [
+                'status' => 'Success',
+                'statusCode' => '00'
+            ];
+
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
@@ -95,7 +94,7 @@ class ContractsDetailsController extends Controller
         DB::beginTransaction();
         $id = $request->id;
         try {
-            $query = $this->contractsDetailsRepository->delete($id);
+            $query = $this->contractsRepository->delete($id);
             if (isset($query)) {
                 $result['status'] = 'Success';
                 $result['statusCode'] = '00';
@@ -115,7 +114,7 @@ class ContractsDetailsController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        $contracts =  $this->contractsDetailsRepository->find($id);
+        $contracts =  $this->contractsRepository->find($id);
 
         return response()->json(["data" => $contracts]);
     }

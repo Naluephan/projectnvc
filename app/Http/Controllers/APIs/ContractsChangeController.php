@@ -26,13 +26,13 @@ class ContractsChangeController extends Controller
         $data = $request->all();
         try {
             $data = [
-                'employee_id' => $data['employee_id'],
-                'con_type_name' => $data['con_type_name'],
+                'emp_id' => $data['emp_id'],
+                'contract_category_id' => $data['contract_category_id'],
                 'change_details' => $data['change_details'],
             ];
-            if (empty($data['employee_id']) || empty($data['con_type_name']) || empty($data['change_details'])) {
+            if (empty($data['emp_id']) || empty($data['contract_category_id']) || empty($data['change_details'])) {
                 $result = [
-                    'status' => 'Failed',
+                    'status' => 'Data empty',
                     'statusCode' => '03',
                     'message' => 'Data empty. Check the information again.'
                 ];
@@ -66,7 +66,7 @@ class ContractsChangeController extends Controller
         $id = $data['id'];
         try {
             $data = [
-                'employee_id' => $data['employee_id'],
+                'emp_id' => $data['emp_id'],
                 'con_type_name' => $data['con_type_name'],
                 'change_details' => $data['change_details'],
             ];
@@ -121,5 +121,40 @@ class ContractsChangeController extends Controller
         $contracts =  $this->contractsChangeRepository->find($id);
 
         return response()->json(["data" => $contracts]);
+    }
+    public function getEmpId(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        try {
+            $whereCon = "emp_id = '" . $data['emp_id'] . "'";
+            $getConId  = $this->contractsChangeRepository->selectCustomData(null, $whereCon);
+            if (empty($data['emp_id'])) {
+                $result = [
+                    'status' => 'Data empty.',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
+                ];
+            } else {
+                if (count($getConId) > 0) {
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00',
+                        'contracts' => $getConId
+                    ];
+                }else {
+                    $result = [
+                        'status' => 'Not Exists',
+                        'statusCode' => '05',
+                    ];
+                }
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+
+        return response()->json(["data" => $result]);
     }
 }
