@@ -28,7 +28,8 @@ class PrivateCarController extends Controller
 
             if ($existing_car) {
                 if ($request->file('car_image')) {
-                    $data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                    // $data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                    $save_data['car_image'] = 'https://newhr.organicscosme.com/uploads/images/content/privateCar/' . basename(save_image($request->file('car_image'), 500, '/images/content/privateCar/'));
                 }
                 $data = [
                     'record_status' => 2,
@@ -47,7 +48,8 @@ class PrivateCarController extends Controller
                     // 'car_image' => $data['car_image'],
                 ];
                 if ($request->file('car_image')) {
-                    $save_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                    // $save_data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                    $save_data['car_image'] = 'https://newhr.organicscosme.com/uploads/images/content/privateCar/' . basename(save_image($request->file('car_image'), 500, '/images/content/privateCar/'));
                 }
                 $this->privateCarRepository->create($save_data);
             }
