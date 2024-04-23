@@ -45,32 +45,34 @@ class HonorController extends Controller
         $result = [];
         $data = $request->all();
         try {
-            // $search_criteria = [
-            //     'emp_id' => $data['emp_id'],
-            // ];
-            // $this->honorRepository->findBy($search_criteria);
             if ($request->file('honor_img')) {
                 $data['honor_img'] = save_image($request->file('honor_img'), 500, '/images/content/honor/');
             }
-                $save_data = [
-                    'emp_id' => $data['emp_id'],
-                    'honor_category_id' => $data['honor_category_id'],
-                    'honor_category_type_id' => $data['honor_category_type_id'],
-                    'honor_detail' => $data['honor_detail'],
-                ];
-              
-                $this->honorRepository->create($data,$save_data);
-                $result['status'] = ApiStatus::honor_success_status;
-                $result['statusCode'] = ApiStatus::honor_success_statusCode;
-            } catch (\Exception $e) {
-                $result['status'] = ApiStatus::honor_error_statusCode;
-                $result['errCode'] = ApiStatus::honor_error_status;
-                $result['errDesc'] = ApiStatus::honor_errDesc;
-                $result['message'] = $e->getMessage();
-            }
-            return $result;
+    
+            $save_data = [
+                'emp_id' => $data['emp_id'],
+                'honor_category_id' => $data['honor_category_id'],
+                // 'honor_category_type_id' => $data['honor_category_type_id'],
+                'honor_detail' => $data['honor_detail'],
+            ];
+    
+            // เพิ่มเงื่อนไขเพื่อตั้งค่า honor_detail_type_id เป็น NULL หาก honor_category_id เท่ากับ 2
+            // if ($data['honor_category_id'] == 2) {
+            //     $save_data['honor_detail_type_id'] = null;
+            // }
+    
+            $this->honorRepository->create($data, $save_data);
+            $result['status'] = ApiStatus::honor_success_status;
+            $result['statusCode'] = ApiStatus::honor_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::honor_error_statusCode;
+            $result['errCode'] = ApiStatus::honor_error_status;
+            $result['errDesc'] = ApiStatus::honor_errDesc;
+            $result['message'] = $e->getMessage();
         }
-            
+        return $result;
+    }
+      
     public function update(Request $request)
     {
         DB::beginTransaction();
