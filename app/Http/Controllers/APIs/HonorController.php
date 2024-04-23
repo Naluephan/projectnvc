@@ -59,7 +59,7 @@ class HonorController extends Controller
                     'honor_detail' => $data['honor_detail'],
                 ];
               
-                $this->honorRepository->create($data);
+                $this->honorRepository->create($data,$save_data);
                 $result['status'] = ApiStatus::honor_success_status;
                 $result['statusCode'] = ApiStatus::honor_success_statusCode;
             } catch (\Exception $e) {

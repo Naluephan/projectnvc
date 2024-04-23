@@ -20,9 +20,9 @@ class Honor extends Model
         'record_status',
 
     ];
-    // public function emp(){
-    //     return $this->hasOne(Employee::class,'id','emp_id');
-    // }
+    public function emp(){
+        return $this->hasOne(Employee::class,'id','emp_id');
+    }
     public function honortype(){
         return $this->belongsTo(HonorType::class,'honor_category_type_id');
     }

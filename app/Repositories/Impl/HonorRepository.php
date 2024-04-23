@@ -33,7 +33,7 @@ class HonorRepository extends MasterRepository implements HonorInterface
     public function getHonorById($id)
     {
         return $this->model->where('emp_id', $id)
-        ->with('emp')
+        ->with('honortype')
         ->get();
     }
 }
