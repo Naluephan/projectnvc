@@ -97,7 +97,8 @@ class RewardCoinController extends Controller
                 'reward_coins_change' => $data['reward_coins_change'],
             ];
             if ($request->file('reward_image')) {
-                $save_data['reward_image'] = save_image($request->file('reward_image'), 500, '/images/setting/itemOrganicsCoins/');
+                // $save_data['reward_image'] = save_image($request->file('reward_image'), 500, '/images/setting/itemOrganicsCoins/');
+                $save_data['reward_image'] = 'https://newhr.organicscosme.com/uploads/images/content/itemOrganicsCoins/' . basename(save_image($request->file('reward_image'), 500, '/images/setting/itemOrganicsCoins/'));
             }
             $this->rewardCoinRepository->create($save_data);
 
@@ -118,7 +119,8 @@ class RewardCoinController extends Controller
         $data = $request->all();
         try {
             if ($request->file('reward_image')) {
-                $data['reward_image'] = save_image($request->file('reward_image'), 500, '/images/setting/itemOrganicsCoins/');
+                // $data['reward_image'] = save_image($request->file('reward_image'), 500, '/images/setting/itemOrganicsCoins/');
+                $save_data['reward_image'] = 'https://newhr.organicscosme.com/uploads/images/content/itemOrganicsCoins/' . basename(save_image($request->file('reward_image'), 500, '/images/setting/itemOrganicsCoins/'));
             }
             $update = $this->rewardCoinRepository->update($data['id'], $data);
             $result['status'] = "success";
