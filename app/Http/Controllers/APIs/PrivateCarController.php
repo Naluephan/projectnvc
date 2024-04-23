@@ -30,6 +30,9 @@ class PrivateCarController extends Controller
                 if ($request->file('car_image')) {
                     $data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
                 }
+                $data = [
+                    'record_status' => 2,
+                ];
                 $this->privateCarRepository->update($existing_car->id, $data);
             } else {
                 $save_data = [
