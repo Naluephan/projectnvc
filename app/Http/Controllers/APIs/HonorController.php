@@ -90,7 +90,7 @@ class HonorController extends Controller
     }
     public function getById(Request $request)
     {
-        $id = $request->id;
+        $id = $request->emp_id;
         return $this->honorRepository->getHonorById($id);
     
     }

@@ -365,6 +365,7 @@ Route::group(
                 Route::post('group/insurance/update', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'update'])->name('group.insurance.update');
                 Route::post('group/insurance/delete', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'delete'])->name('group.insurance.delete');
                 Route::post('group/insurance/by/id', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getById'])->name('group.insurance.by.id');
+                Route::post('group/insurance/filter', [\App\Http\Controllers\APIs\GroupInsuranceController::class, 'getGroupInsuranceByFilter'])->name('group.insurance.filter');
 
                 //Private Car Employee
                 Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');

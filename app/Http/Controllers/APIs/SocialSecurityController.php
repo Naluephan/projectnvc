@@ -86,8 +86,8 @@ class SocialSecurityController extends Controller
     }
     public function getById(Request $request)
     {
-        $id = $request->id;
-        return $this->socialsecurityRepository->find($id);
+        $id = $request->emp_id;
+        return $this->socialsecurityRepository->getSocialSecurityById($id);
     }
     public function delete(Request $request)
     {

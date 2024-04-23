@@ -74,5 +74,10 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
     //         ->get();
     // }
     
-
+    public function getSocialSecurityById($id)
+    {
+        return $this->model->where('emp_id', $id)
+        ->with('emp')
+        ->get();
+    }
 }

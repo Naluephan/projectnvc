@@ -36,4 +36,26 @@ class GroupInsuranceRepository extends MasterRepository implements GroupInsuranc
         ->with('emp')
         ->get();
     }
+
+    public function getGroupInsuranceByFilter($param)
+    {
+        return $this->model
+        ->where(function ($q) use ($param) {
+            if(isset($param['position_id'])) {
+                $q->where('position_id', "=", $param['position_id']);
+            }
+            if(isset($param['company_id'])) {
+                $q->where('company_id', "=", $param['company_id']);
+            }
+            if(isset($param['department_id'])) {
+                $q->where('department_id', "=", $param['department_id']);
+            }
+        })
+        ->with('emp')
+        ->with('position')
+        ->with('department')
+        ->with('company')
+
+        ->get();
+    }
 }
