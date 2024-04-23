@@ -10,5 +10,9 @@ interface ReserveFundInterface extends BaseInterface
     public function getReserveFund($params);
     public function findBy(array $criteria);
     public function findAmountByEmpId($emp_id);
+    // public function getAll($params = null): Collection;
+    public function getReserveFundByFilter($param);
+
+
 
 }

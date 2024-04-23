@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
+use App\Models\SocialSecurity;
 use Illuminate\Http\Request;
 use App\Repositories\SocialSecurityInterface;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +53,7 @@ class SocialSecurityController extends Controller
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'social_security_type_id' => $data['social_security_type_id'],
+                    // 'company_id' => $data['company_id'],
                 ];
                 
                 $this->socialsecurityRepository->create($save_data);
@@ -102,4 +105,49 @@ class SocialSecurityController extends Controller
         }
         return $result;
     }
+
+    public function getSocialSecurityByFilter(Request $request)
+    // {
+    //     // $emp_id = $request->id;
+    //     $postion = $request->postion;
+    //     $company = $request->company;
+    //     $department = $request->department;
+    //     $param = [
+    //         // 'emp_id'=>$emp_id,
+    //         'position_id'=>$postion,
+    //         'company_id'=>$company,
+    //         'deaprtment_id' =>$department,
+    //     ];
+    //     return $this->socialsecurityRepository->getSocialSecurityByFilter($param);
+    // }
+    {
+        // $empId = $request->id;
+        // $data = Employee::where($empId)->first();
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            
+        if (isset($postData['company_id'])) {
+            $param['company_id'] = $postData['company_id'];
+        }
+        if (isset($postData['position_id'])) {
+            $param['position_id'] = $postData['position_id'];
+        }
+        if (isset($postData['department_id'])) {
+            $param['department_id'] = $postData['department_id'];
+        }
+            $departments = $this->socialsecurityRepository->getSocialSecurityByFilter($param);
+
+            $result['status'] = "success";
+            $result['data'] = $departments;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
+    }
+
+
 }

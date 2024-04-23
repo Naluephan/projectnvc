@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('emp_id');
             $table->string('honor_category_id')->default(1);
+            $table->string('honor_category_type_id');
             $table->string('honor_img')->nullable();
             $table->string('honor_detail')->nullable();
             $table->string('record_status')->default(1);

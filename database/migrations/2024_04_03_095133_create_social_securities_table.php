@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('emp_id');
             $table->string('social_security_type_id');
+            $table->string('company_id');
+            $table->string('position_id');
+            $table->string('department_id');
             // $table->string('social_security_type_name');
             $table->string('aprrove_status')->comment('1=รอรับเรื่อง, 2=รับเรื่องแล้ว , 3=ไม่รับเรื่อง , 4=ยกเลิก')->default(1);
             $table->string('record_status')->default(1);

@@ -15,6 +15,9 @@ class ReserveFund extends Model
         'day',
         'month',
         'year',
+        'company_id',
+        'department_id',
+        'position_id',
         'reserve',
         'contribution',
         'total_month',
@@ -23,6 +26,15 @@ class ReserveFund extends Model
 
     ];
     public function emp(){
-        return $this->hasMany(WithdrawReverseFund::class,'id');
+        return $this->hasOne(Employee::class,'id','emp_id');
     }
+    // public function company(){
+    //     return $this->hasOne(Company::class,'id','company_id');
+    // }
+    // public function position(){
+    //     return $this->hasOne(Position::class,'id','position_id');
+    // }
+    // public function department(){
+    //     return $this->hasOne(Department::class,'id','department_id');
+    // }
 }

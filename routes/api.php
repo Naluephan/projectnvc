@@ -343,6 +343,9 @@ Route::group(
                 Route::post('social/security/update', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'update'])->name('social.security.update');
                 Route::post('social/security/delete', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'delete'])->name('social.security.delete');
                 Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');
+                Route::post('social/security/filter', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurityByFilter'])->name('social.security.filter');
+                Route::post('social/security/type/filter', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getSocialSecurityTypeByFilter'])->name('social.security.type.filter');
+                
 
                 //Reserve Fund
                 Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');
@@ -350,8 +353,9 @@ Route::group(
                 Route::post('reserve/fund/update', [\App\Http\Controllers\APIs\ReserveFundController::class, 'update'])->name('reserve.fund.update');
                 Route::post('reserve/fund/delete', [\App\Http\Controllers\APIs\ReserveFundController::class, 'delete'])->name('reserve.fund.delete');
                 Route::post('reserve/fund/by/id', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getById'])->name('reserve.fund.by.id');
+                Route::post('reserve/fund/filter', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFundByFilter'])->name('reserve.fund.filter');
 
-
+                
                 Route::post('reserve/fund/withdraw', [\App\Http\Controllers\APIs\ReserveFundController::class, 'createWithdraw'])->name('reserve.fund.withdraw');
                 Route::post('reserve/fund/list/withdraw', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getWithdraw'])->name('reserve.fund.list.withdraw');
 

@@ -91,4 +91,32 @@ class SocialSecurityTypeController extends Controller
         $id = $request->id;
         return $this->socialsecuritytypeRepository->getTypeById($id);
     }
+
+    public function getSocialSecurityTypeByFilter(Request $request)
+    {
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            
+        if (isset($postData['company_id'])) {
+            $param['company_id'] = $postData['company_id'];
+        }
+        if (isset($postData['position_id'])) {
+            $param['position_id'] = $postData['position_id'];
+        }
+        if (isset($postData['department_id'])) {
+            $param['department_id'] = $postData['department_id'];
+        }
+            $departments = $this->socialsecuritytypeRepository->getSocialSecurityTypeByFilter($param);
+
+            $result['status'] = "success";
+            $result['data'] = $departments;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
+    }
 }

@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('day');
             $table->string('month');
             $table->string('year');
+            $table->string('company_id');
+            $table->string('position_id');
+            $table->string('department_id');
             // $table->string('date');
             $table->string('reserve');
             $table->string('contribution');

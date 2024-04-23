@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_security_types', function (Blueprint $table) {
+        Schema::create('honor_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('detail');
-            $table->string('company_id');
-            $table->string('position_id');
-            $table->string('department_id');
             $table->string('record_status')->default(1);
             $table->timestamps();
         });
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_security_types');
+        Schema::dropIfExists('honor_types');
     }
 };

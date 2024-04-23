@@ -11,6 +11,7 @@ class Honor extends Model
     protected $fillable = [
         'emp_id',
         'honor_category_id',
+        'honor_category_type_id',
         //  'company_id',
         // 'department_id',
         // 'position_id',
@@ -19,7 +20,10 @@ class Honor extends Model
         'record_status',
 
     ];
-    public function emp(){
-        return $this->hasOne(Employee::class,'id','emp_id');
+    // public function emp(){
+    //     return $this->hasOne(Employee::class,'id','emp_id');
+    // }
+    public function honortype(){
+        return $this->belongsTo(HonorType::class,'honor_category_type_id');
     }
 }

@@ -42,21 +42,24 @@ class HonorController extends Controller
 
     public function create(Request $request)
     {
+        $result = [];
         $data = $request->all();
         try {
-            $search_criteria = [
-                'emp_id' => $data['emp_id'],
-            ];
-            $this->honorRepository->findBy($search_criteria);
+            // $search_criteria = [
+            //     'emp_id' => $data['emp_id'],
+            // ];
+            // $this->honorRepository->findBy($search_criteria);
+            if ($request->file('honor_img')) {
+                $data['honor_img'] = save_image($request->file('honor_img'), 500, '/images/content/honor/');
+            }
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'honor_category_id' => $data['honor_category_id'],
+                    'honor_category_type_id' => $data['honor_category_type_id'],
                     'honor_detail' => $data['honor_detail'],
                 ];
-                if ($request->file('honor_img')) {
-                    $save_data['honor_img'] = save_image($request->file('honor_img'), 500, '/images/content/honor/');
-                }
-                $this->honorRepository->create($save_data);
+              
+                $this->honorRepository->create($data);
                 $result['status'] = ApiStatus::honor_success_status;
                 $result['statusCode'] = ApiStatus::honor_success_statusCode;
             } catch (\Exception $e) {
