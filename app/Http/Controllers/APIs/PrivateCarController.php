@@ -53,7 +53,6 @@ class PrivateCarController extends Controller
 
             $result['status'] = ApiStatus::list_private_car_success_status;
             $result['statusCode'] = ApiStatus::list_private_car_success_statusCode;
-            $result['listPrivateCar'] = 'Save Successfully.';
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::list_private_car_error_statusCode;
             $result['errCode'] = ApiStatus::list_private_car_error_status;

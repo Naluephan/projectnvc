@@ -96,7 +96,6 @@ class PickupToolsEmployeeController extends Controller
 
                 $result['status'] = ApiStatus::list_pickup_tools_success_status;
                 $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
-                $result['listPrivateCar'] = 'Save Successfully.';
             } else {
                 $result['status'] = ApiStatus::list_pickup_tools_failed_status;
                 $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
@@ -153,7 +152,6 @@ class PickupToolsEmployeeController extends Controller
 
                 $result['status'] = ApiStatus::list_pickup_tools_success_status;
                 $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
-                $result['message'] = 'Update Successfully.';
             } else {
                 $result['status'] = ApiStatus::list_pickup_tools_failed_status;
                 $result['statusCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
