@@ -7,7 +7,7 @@ use App\Repositories\PickupToolsEmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\PickupTools;
-
+use App\Models\Employee;
 
 class PickupToolsEmployeeController extends Controller
 {
@@ -48,11 +48,11 @@ class PickupToolsEmployeeController extends Controller
     {
         $data = $request->all();
         try {
-            $search_criteria = [
-                'emp_id' => $data['emp_id'],
-                'department_id' => $data['department_id'],
-            ];
-            $this->pickupToolsEmployeeRepository->findBy($search_criteria);
+            // $search_criteria = [
+            //     'emp_id' => $data['emp_id'],
+            //     'department_id' => $data['department_id'],
+            // ];
+            // $this->pickupToolsEmployeeRepository->findBy($search_criteria);
 
             // foreach ($data['pickup_tools_employees'] as $pickuptools_data) {
             //     $pickuptools_data['emp_id'] = $data['emp_id'];
@@ -67,18 +67,19 @@ class PickupToolsEmployeeController extends Controller
 
             //     $this->pickupToolsEmployeeRepository->createCondition($pickuptools_data);
             // }
-            $departmentId = $data['department_id'];
-            $pickupTools = PickupTools::where('department_id', $departmentId)->exists();
+            $employeeData = Employee::find($data['emp_id']);
+            // $departmentId = $data['department_id'];
+            $pickupTools = PickupTools::where('department_id', $employeeData->department_id)->exists();
 
             $pickupTool = PickupTools::where('number_requested', '>=', $data['number_requested'])
-                ->where('department_id', $data['department_id'])
+                // ->where('department_id', $data['department_id'])
                 ->first();
 
             if ($pickupTools && $pickupTool) {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
-                    'company_id' => $data['company_id'],
-                    'department_id' => $data['department_id'],
+                    'company_id' => $employeeData->company_id,
+                    'department_id' => $employeeData->department_id,
                     'pickup_tools_id' => $data['pickup_tools_id'],
                     'number_requested' => $data['number_requested'],
                     'status_repair' => $data['status_repair'],
@@ -134,13 +135,13 @@ class PickupToolsEmployeeController extends Controller
         try {
             $search_criteria = [
                 'id' => $data['id'],
-                'emp_id' => $data['emp_id'],
-                'department_id' => $data['department_id'],
+                // 'emp_id' => $data['emp_id'],
+                // 'pickup_tools_id' => $data['pickup_tools_id'],
             ];
 
             $search_pickupTools = $this->pickupToolsEmployeeRepository->findBy($search_criteria);
             $pickupTool = PickupTools::where('number_requested', '>=', $data['number_requested'])
-                ->where('department_id', $data['department_id'])
+                // ->where('department_id', $data['department_id'])
                 ->first();
 
             if ($search_pickupTools && $pickupTool) {

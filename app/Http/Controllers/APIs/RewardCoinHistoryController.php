@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\RewardCoinHistoryInterface;
 use Illuminate\Http\Request;
 use App\Models\RewardCoin;
+use App\Models\Employee;
 
 class RewardCoinHistoryController extends Controller
 {
@@ -72,13 +73,15 @@ class RewardCoinHistoryController extends Controller
 
             $rewardCoin = RewardCoin::find($data['reward_coin_id']);
 
+            $employeeData = Employee::find($data['emp_id']);
+
             if ($rewardCoin) {
 
                 if ($rewardCoin->reward_coins_change <= 1000) {
                     $save_data = [
                         'emp_id' => $data['emp_id'],
-                        'company_id' => $data['company_id'],
-                        'department_id' => $data['department_id'],
+                        'company_id' => $employeeData->company_id,
+                        'department_id' => $employeeData->department_id,
                         'reward_name' => $rewardCoin->reward_name,
                         'reward_coins_change' => $rewardCoin->reward_coins_change,
                         'reward_image' => $rewardCoin->reward_image,
@@ -91,8 +94,8 @@ class RewardCoinHistoryController extends Controller
                 } elseif ($rewardCoin->reward_coins_change > 1000) {
                     $save_data = [
                         'emp_id' => $data['emp_id'],
-                        'company_id' => $data['company_id'],
-                        'department_id' => $data['department_id'],
+                        'company_id' => $employeeData->company_id,
+                        'department_id' => $employeeData->department_id,
                         'reward_name' => $rewardCoin->reward_name,
                         'reward_coins_change' => $rewardCoin->reward_coins_change,
                         'reward_image' => $rewardCoin->reward_image,
