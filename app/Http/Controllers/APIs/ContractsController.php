@@ -23,11 +23,21 @@ class ContractsController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         try {
+            $whereCon = "contract_category_id = '" . $data['contract_category_id'] . "' AND " . "emp_id = '" . $data['emp_id'] . "'";
+            $empExists  = $this->contractsRepository->selectCustomData(null, $whereCon);
+
             $data = [
                 'contract_category_id' => $data['contract_category_id'],
                 'emp_id' => $data['emp_id'],
                 'contract_details' => $data['contract_details'],
             ];
+            if (count($empExists) >0) {
+                $result = [
+                    'status' => 'Duplicate information',
+                    'statusCode' => '200',
+                    'message' => 'This company already exists.'
+                ];
+            }else {
             if (empty($data['contract_category_id']) || empty($data['emp_id']) || empty($data['contract_details'])) {
                 $result = [
                     'status' => 'Failed',
@@ -49,6 +59,7 @@ class ContractsController extends Controller
                     'statusCode' => '01'
                 ];
             };
+        }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";

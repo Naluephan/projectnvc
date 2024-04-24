@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('repair_equipment');
             $table->string('repair_detail');
             $table->string('images')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('report_status')->default(0)->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject');
             $table->timestamps();
         });
     }
