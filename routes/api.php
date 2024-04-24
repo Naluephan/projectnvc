@@ -345,7 +345,7 @@ Route::group(
                 Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');
                 Route::post('social/security/filter', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurityByFilter'])->name('social.security.filter');
                 Route::post('social/security/type/filter', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getSocialSecurityTypeByFilter'])->name('social.security.type.filter');
-                
+
 
                 //Reserve Fund
                 Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');
@@ -355,7 +355,7 @@ Route::group(
                 Route::post('reserve/fund/by/id', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getById'])->name('reserve.fund.by.id');
                 Route::post('reserve/fund/filter', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFundByFilter'])->name('reserve.fund.filter');
 
-                
+
                 Route::post('reserve/fund/withdraw', [\App\Http\Controllers\APIs\ReserveFundController::class, 'createWithdraw'])->name('reserve.fund.withdraw');
                 Route::post('reserve/fund/list/withdraw', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getWithdraw'])->name('reserve.fund.list.withdraw');
 
@@ -369,7 +369,7 @@ Route::group(
 
                 //Private Car Employee
                 Route::post('privatecar/list/employee', [\App\Http\Controllers\APIs\PrivateCarController::class, 'getPrivatecarEmployee'])->name('privatecar.list.employee');
-                Route::post('privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'create'])->name('privatecar.create');
+                Route::post('privatecar/create', [\App\Http\Controllers\APIs\PrivateCarController::class, 'createAndUpdate'])->name('privatecar.create');
                 Route::post('privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
 
                 //Pickup Tools Employee

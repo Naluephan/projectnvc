@@ -18,7 +18,7 @@ class PrivateCarController extends Controller
         $this->privateCarRepository = $privateCarRepository;
     }
 
-    public function create(Request $request)
+    public function createAndUpdate(Request $request)
     {
         $data = $request->all();
         try {
@@ -30,15 +30,15 @@ class PrivateCarController extends Controller
             $employeeData = Employee::find($data['emp_id']);
 
             if ($existing_car) {
-                $data = [
-                    'company_id' => $employeeData->company_id,
-                    'department_id' => $employeeData->department_id,
-                    'car_category_id' => $data['car_category_id'],
-                    'car_registration' => $data['car_registration'],
-                    'car_brand' => $data['car_brand'],
-                    'car_color' => $data['car_color'],
-                    'record_status' => 2,
-                ];
+                // $data = [
+                //     'company_id' => $employeeData->company_id,
+                //     'department_id' => $employeeData->department_id,
+                //     'car_category_id' => $data['car_category_id'],
+                //     'car_registration' => $data['car_registration'],
+                //     'car_brand' => $data['car_brand'],
+                //     'car_color' => $data['car_color'],
+                //     'record_status' => 2,
+                // ];
 
                 if ($request->file('car_image')) {
                     // $data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
