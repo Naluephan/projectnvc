@@ -18,7 +18,7 @@ class PrivateCar extends Model
         'car_brand',
         'car_color',
         'car_image',
-        'record_status',
+        'status_approved',
 
     ];
 

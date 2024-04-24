@@ -4,16 +4,17 @@ namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\RewardCoinHistoryInterface;
+use App\Repositories\EmployeeInterface;
 use Illuminate\Http\Request;
 use App\Models\RewardCoin;
-use App\Models\Employee;
 
 class RewardCoinHistoryController extends Controller
 {
-    private $rewardCoinHistoryRepository;
-    public function __construct(RewardCoinHistoryInterface $rewardCoinHistoryRepository)
+    private $rewardCoinHistoryRepository, $employeeRepository;
+    public function __construct(RewardCoinHistoryInterface $rewardCoinHistoryRepository, EmployeeInterface $employeeRepository)
     {
         $this->rewardCoinHistoryRepository = $rewardCoinHistoryRepository;
+        $this->employeeRepository = $employeeRepository;
     }
 
     public function reward_history(Request $request)
@@ -65,7 +66,6 @@ class RewardCoinHistoryController extends Controller
         return $result;
     }
 
-
     public function create(Request $request)
     {
         try {
@@ -73,18 +73,19 @@ class RewardCoinHistoryController extends Controller
 
             $rewardCoin = RewardCoin::find($data['reward_coin_id']);
 
-            $employeeData = Employee::find($data['emp_id']);
+            $employeeData = $this->employeeRepository->findById($data);
 
             if ($rewardCoin) {
 
                 if ($rewardCoin->reward_coins_change <= 1000) {
                     $save_data = [
                         'emp_id' => $data['emp_id'],
-                        'company_id' => $employeeData->company_id,
-                        'department_id' => $employeeData->department_id,
+                        'company_id' => $employeeData['company_id'],
+                        'department_id' => $employeeData['department_id'],
                         'reward_name' => $rewardCoin->reward_name,
                         'reward_coins_change' => $rewardCoin->reward_coins_change,
                         'reward_image' => $rewardCoin->reward_image,
+                        'status_approved' => 0,
                     ];
                     $this->rewardCoinHistoryRepository->create($save_data);
 
@@ -94,13 +95,12 @@ class RewardCoinHistoryController extends Controller
                 } elseif ($rewardCoin->reward_coins_change > 1000) {
                     $save_data = [
                         'emp_id' => $data['emp_id'],
-                        'company_id' => $employeeData->company_id,
-                        'department_id' => $employeeData->department_id,
+                        'company_id' => $employeeData['company_id'],
+                        'department_id' => $employeeData['department_id'],
                         'reward_name' => $rewardCoin->reward_name,
                         'reward_coins_change' => $rewardCoin->reward_coins_change,
                         'reward_image' => $rewardCoin->reward_image,
                         'type_reward_id' => 2,
-                        'status_display' => 3,
                     ];
                     $this->rewardCoinHistoryRepository->create($save_data);
 

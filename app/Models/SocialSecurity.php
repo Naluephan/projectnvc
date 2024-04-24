@@ -25,15 +25,15 @@ class SocialSecurity extends Model
     // public function socialfile(){
     //     return $this->hasMany(SocialSecurityFile::class,'social_type_id','id');
     // }
-    // public function company(){
-    //     return $this->hasOne(Employee::class,'id','company_id');
-    // }
-    // public function position(){
-    //     return $this->hasOne(Position::class,'id','position_id');
-    // }
-    // public function department(){
-    //     return $this->hasOne(Department::class,'id','department_id');
-    // }
+    public function company(){
+        return $this->hasOne(Company::class,'id','company_id');
+    }
+    public function position(){
+        return $this->hasOne(Position::class,'id','position_id');
+    }
+    public function department(){
+        return $this->hasOne(Department::class,'id','department_id');
+    }
     public function socialsecurity(){
         return $this->hasMany(SocialSecurityType::class,'id','social_security_type_id');
     }

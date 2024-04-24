@@ -24,12 +24,12 @@ return new class extends Migration
             $table->string("reward_image")->nullable();
             $table->integer("reward_coins_change")->nullable();
 
-            $table->tinyInteger('status_display')->comment('0=not active 1=active 2=complate 3=pending 4=cancel')->default(1);
+            $table->tinyInteger('status_approved')->comment('0=pending 1=edit 2=approve 3=cancel 4=reject')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('approve_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('not_approved_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('cancel_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('approve_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('cancel_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('reject_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

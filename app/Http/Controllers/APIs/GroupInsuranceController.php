@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Repositories\GroupInsuranceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,15 +46,15 @@ class GroupInsuranceController extends Controller
                 'emp_id' => $data['emp_id'],
             ];
             $this->groupinsuranceRepository->findBy($search_criteria);
-
+            $emp = Employee::find($data['emp_id']);
                 $save_data = [
                     'emp_id' => $data['emp_id'],
-                    'position_id' => $data['position_id'],
-                    'company_id' => $data['company_id'],
-                    'department_id' => $data['department_id'],
+                    'position_id' => $emp->position_id,
+                    'company_id' => $emp->company_id,
+                    'department_id' => $emp->department_id,
                 ];
                 if ($request->file('group_insurance_img')) {
-                    $save_data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/');
+                    $save_data['group_insurance_img'] = 'https://newhr.organicscosme.com/uploads/images/content/insurance/' . basename(save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/'));
                 }
                 $this->groupinsuranceRepository->create($save_data);
 
@@ -74,7 +75,7 @@ class GroupInsuranceController extends Controller
         $id = $data['id'];
         try {
             if ($request->file('group_insurance_img')) {
-                $data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/');
+                    $data['group_insurance_img'] = 'https://newhr.organicscosme.com/uploads/images/content/insurance/' . basename(save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/'));
             }
             $this->groupinsuranceRepository->update($id, $data);
             $result['status'] = ApiStatus::group_insurance_success_status;

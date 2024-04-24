@@ -19,13 +19,35 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
 
     public function getSocialSecurity($params)
     {
-        return $this->model
-            ->where('record_status', 1)
-            // ->where('emp_id', $params['emp_id'])
-     
-            ->with('emp','company','emp.position','emp.department','socialsecurity.socialdetail.socialfile')
-            // ->with('socialemp.emp','socialsecurity.socialdetail')
-            ->get();
+        $query = $this->model->query();
+
+        if (isset($params['emp_id'])) {
+            $query->where('emp_id', $params['emp_id']);
+        }
+
+        if (isset($params['company_id'])) {
+            $query->where('company_id', $params['company_id']);
+        }
+
+        if (isset($params['department_id'])) {
+            $query->where('department_id', $params['department_id']);
+        }
+        if (isset($params['position_id'])) {
+            $query->where('position_id', $params['position_id']);
+        }
+        $query->where('record_status', 1)->with([
+            'company' => function ($query) {
+                $query->select('id', 'name_th', 'name_en');
+            },
+            'department' => function ($query) {
+                $query->select('id', 'name_th', 'name_en');
+            },
+            'position' => function ($query) {
+                $query->select('id', 'name_th');
+            },
+        ]);
+        $query->where('record_status', 1)->with('socialsecurity.socialdetail.socialfile');
+       return $query->get();
     }
 
     public function findBy(array $criteria)

@@ -47,7 +47,7 @@ class RewardCoinHistoryRepository extends MasterRepository implements RewardCoin
             $query->where('department_id', $params['department_id']);
         }
 
-        $query->with([
+        $query->where('status_approved', 2)->with([
             'company' => function ($query) {
                 $query->select('id', 'name_th', 'name_en');
             },

@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('reserve_funds', function (Blueprint $table) {
             $table->id();
-            $table->string('emp_id');
+            $table->integer('emp_id');
             $table->string('reserve_fund_number');
             $table->string('saving_rate');
             $table->string('day');
             $table->string('month');
             $table->string('year');
-            $table->string('company_id');
-            $table->string('position_id');
-            $table->string('department_id');
+            $table->integer('company_id');
+            $table->integer('position_id');
+            $table->integer('department_id');
             // $table->string('date');
             $table->string('reserve');
             $table->string('contribution');
