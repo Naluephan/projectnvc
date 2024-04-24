@@ -4,6 +4,7 @@ namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\PickupToolsEmployeeInterface;
+use App\Repositories\EmployeeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\PickupTools;
@@ -11,10 +12,11 @@ use App\Models\Employee;
 
 class PickupToolsEmployeeController extends Controller
 {
-    private $pickupToolsEmployeeRepository;
-    public function __construct(PickupToolsEmployeeInterface $pickupToolsEmployeeRepository)
+    private $pickupToolsEmployeeRepository, $employeeRepository;
+    public function __construct(PickupToolsEmployeeInterface $pickupToolsEmployeeRepository, EmployeeInterface $employeeRepository)
     {
         $this->pickupToolsEmployeeRepository = $pickupToolsEmployeeRepository;
+        $this->employeeRepository = $employeeRepository;
     }
 
     public function pickupToolsListEmployee(Request $request)
@@ -59,7 +61,7 @@ class PickupToolsEmployeeController extends Controller
             //     $pickuptools_data['pickup_tools_id'] = $pickuptools_data['pickup_tools_id'];
             //     $pickuptools_data['number_requested'] =  $pickuptools_data['number_requested'];
             //     $pickuptools_data['status_repair'] =  $pickuptools_data['status_repair'];
-            //     $pickuptools_data['status_requested'] =  $pickuptools_data['status_requested'];
+            //     $pickuptools_data['status_approved'] =  $pickuptools_data['status_approved'];
             //     $pickuptools_data['request_details'] =  $pickuptools_data['request_details'];
             //     $pickuptools_data['approve_at'] =  $pickuptools_data['approve_at'];
             //     $pickuptools_data['not_approved_at'] =  $pickuptools_data['not_approved_at'];
@@ -67,8 +69,9 @@ class PickupToolsEmployeeController extends Controller
 
             //     $this->pickupToolsEmployeeRepository->createCondition($pickuptools_data);
             // }
-            $employeeData = Employee::find($data['emp_id']);
-            // $departmentId = $data['department_id'];
+
+            $employeeData = $this->employeeRepository->findById($data);
+
             $pickupTools = PickupTools::where('department_id', $employeeData->department_id)->exists();
 
             $pickupTool = PickupTools::where('number_requested', '>=', $data['number_requested'])
@@ -78,16 +81,16 @@ class PickupToolsEmployeeController extends Controller
             if ($pickupTools && $pickupTool) {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
-                    'company_id' => $employeeData->company_id,
-                    'department_id' => $employeeData->department_id,
+                    'company_id' => $employeeData['company_id'],
+                    'department_id' => $employeeData['department_id'],
                     'pickup_tools_id' => $data['pickup_tools_id'],
                     'number_requested' => $data['number_requested'],
-                    'status_repair' => $data['status_repair'],
-                    'status_requested' => $data['status_requested'],
+                    'status_repair' => 2,
+                    'status_approved' => 0,
                     'request_details' => $data['request_details'],
-                    'approve_at' => $data['approve_at'],
-                    'not_approved_at' => $data['not_approved_at'],
-                    'cancel_at' => $data['cancel_at'],
+                    // 'approve_at' => $data['approve_at'],
+                    // 'not_approved_at' => $data['not_approved_at'],
+                    // 'cancel_at' => $data['cancel_at'],
                 ];
                 $this->pickupToolsEmployeeRepository->createCondition($save_data);
 
@@ -145,6 +148,7 @@ class PickupToolsEmployeeController extends Controller
                 ->first();
 
             if ($search_pickupTools && $pickupTool) {
+                $data['status_approved'] = 0;
                 $this->pickupToolsEmployeeRepository->update($search_pickupTools->id, $data);
 
                 $result['status'] = ApiStatus::list_pickup_tools_success_status;

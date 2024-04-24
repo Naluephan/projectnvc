@@ -15,13 +15,13 @@ class PickupToolsEmployee extends Model
         'pickup_tools_id',
         'number_requested',
         'status_repair',
-        'status_requested',
+        'status_approved',
         'request_details',
         'created_at',
+        'edit_at',
         'approve_at',
-        'not_approved_at',
         'cancel_at',
-        'updated_at',
+        'reject_at',
     ];
 
     public function pickupTools(){

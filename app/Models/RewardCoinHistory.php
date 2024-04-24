@@ -17,7 +17,7 @@ class RewardCoinHistory extends Model
         'reward_name',
         'reward_image',
         'reward_coins_change',
-        'status_display'
+        'status_approved'
     ];
 
     public function company(){

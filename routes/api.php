@@ -159,7 +159,12 @@ Route::group(
                 Route::post('pickup/tools/approve', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'approve'])->name('pickup.tools.approve');
                 Route::post('pickup/tools/list/by/id', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.by.id');
 
-
+                //API Reward Coin
+                Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getAll'])->name('reward.list');
+                Route::post('reward/create', [\App\Http\Controllers\APIs\RewardCoinController::class, 'create'])->name('reward.create');
+                Route::post('reward/update', [\App\Http\Controllers\APIs\RewardCoinController::class, 'update'])->name('reward.update');
+                Route::post('reward/get/by/id', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getById'])->name('reward.get.by.id');
+                Route::post('reward/delete', [\App\Http\Controllers\APIs\RewardCoinController::class, 'delete'])->name('reward.delete');
 
                 //api security setting
                 Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
@@ -255,13 +260,6 @@ Route::group(
                 Route::post('employee/attendance/by/month/year', [\App\Http\Controllers\APIs\EmployeeTimeAttendanceController::class, 'empTimeByMonthAndYear'])->name('employee.attendance.by.month.year');
                 Route::post('employee/leaveQuotas', [\App\Http\Controllers\APIs\EmployeeLeaveQuotasController::class, 'employeeLeaveQuotas'])->name('employee.leave.quotas');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
-
-                //API Reward Coin
-                Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getAll'])->name('reward.list');
-                Route::post('reward/create', [\App\Http\Controllers\APIs\RewardCoinController::class, 'create'])->name('reward.create');
-                Route::post('reward/update', [\App\Http\Controllers\APIs\RewardCoinController::class, 'update'])->name('reward.update');
-                Route::post('reward/get/by/id', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getById'])->name('reward.get.by.id');
-                Route::post('reward/delete', [\App\Http\Controllers\APIs\RewardCoinController::class, 'delete'])->name('reward.delete');
 
                 //API Reward Coin Employee
                 Route::post('employee/reward/coin/approve', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'approve'])->name('reward.coin.approve');

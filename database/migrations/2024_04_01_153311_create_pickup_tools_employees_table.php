@@ -22,14 +22,14 @@ return new class extends Migration
             $table->integer("department_id")->nullable();
             $table->integer("pickup_tools_id")->nullable();
             $table->integer("number_requested")->nullable();
-            $table->tinyInteger('status_repair')->comment('0=not active 1=succeed 2=normal 3=repair')->default(2);
-            $table->tinyInteger('status_requested')->comment('0=not active 1=approve 2=notapproved 3=pending 4=cancel')->default(3);
+            $table->tinyInteger('status_repair')->comment('1=succeed 2=normal 3=repair')->default(2);
+            $table->tinyInteger('status_approved')->comment('0=pending 1=edit 2=approve 3=cancel 4=reject')->default(0);
             $table->string('request_details')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('approve_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('not_approved_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('cancel_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('approve_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('cancel_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('reject_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
