@@ -16,8 +16,11 @@ return new class extends Migration
     {
         Schema::create('honors', function (Blueprint $table) {
             $table->id();
-            $table->string('emp_id');
+            $table->integer('emp_id');
             $table->string('honor_category_id')->default(1);
+            $table->integer('company_id');
+            $table->integer('position_id');
+            $table->integer('department_id');
             // $table->string('honor_category_type_id')->nullable();
             $table->string('honor_img')->nullable();
             $table->string('honor_detail')->nullable();

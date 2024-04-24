@@ -50,10 +50,13 @@ class SocialSecurityController extends Controller
                 'emp_id' => $data['emp_id'],
             ];
             $this->socialsecurityRepository->findBy($search_criteria);
+            $emp = Employee::find($data['emp_id']);
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'social_security_type_id' => $data['social_security_type_id'],
-                    // 'company_id' => $data['company_id'],
+                    'position_id' => $emp->position_id,
+                    'company_id' => $emp->company_id,
+                    'department_id' => $emp->department_id,
                 ];
                 
                 $this->socialsecurityRepository->create($save_data);

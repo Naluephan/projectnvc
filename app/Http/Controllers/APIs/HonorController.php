@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Repositories\HonorInterface;
 use Illuminate\Support\Facades\DB;
@@ -42,26 +43,28 @@ class HonorController extends Controller
 
     public function create(Request $request)
     {
-        $result = [];
         $data = $request->all();
         try {
-            if ($request->file('honor_img')) {
-                $data['honor_img'] = save_image($request->file('honor_img'), 500, '/images/content/honor/');
-            }
+            $emp = Employee::find($data['emp_id']);
     
             $save_data = [
                 'emp_id' => $data['emp_id'],
                 'honor_category_id' => $data['honor_category_id'],
-                // 'honor_category_type_id' => $data['honor_category_type_id'],
+                'position_id' => $emp->position_id,
+                'company_id' => $emp->company_id,
+                'department_id' => $emp->department_id,
                 'honor_detail' => $data['honor_detail'],
             ];
-    
+            if ($request->file('honor_img')) {
+                $save_data['honor_img'] = 'https://newhr.organicscosme.com/uploads/images/content/honor/' . basename(save_image($request->file('honor_img'), 500, '/images/content/honor/'));
+
+            }
             // เพิ่มเงื่อนไขเพื่อตั้งค่า honor_detail_type_id เป็น NULL หาก honor_category_id เท่ากับ 2
             // if ($data['honor_category_id'] == 2) {
             //     $save_data['honor_detail_type_id'] = null;
             // }
     
-            $this->honorRepository->create($data, $save_data);
+            $this->honorRepository->create($save_data);
             $result['status'] = ApiStatus::honor_success_status;
             $result['statusCode'] = ApiStatus::honor_success_statusCode;
         } catch (\Exception $e) {

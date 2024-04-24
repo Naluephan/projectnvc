@@ -4,6 +4,7 @@ namespace App\Http\Controllers\APIs;
 
 use App\Repositories\ReserveFundInterface;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Repositories\WithdrawReserveFundInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,10 +51,14 @@ class ReserveFundController extends Controller
                 'emp_id' => $data['emp_id'],
             ];
             $this->reservefundRepository->findBy($search_criteria);
+            $emp = Employee::find($data['emp_id']);
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'reserve_fund_number' => $data['reserve_fund_number'],
                     'saving_rate' => $data['saving_rate'],
+                    'position_id' => $emp->position_id,
+                    'company_id' => $emp->company_id,
+                    'department_id' => $emp->department_id,
                     'day' => $data['day'],
                     'month' => $data['month'],
                     'year' => $data['year'],
