@@ -30,13 +30,21 @@ class PrivateCarController extends Controller
             $employeeData = Employee::find($data['emp_id']);
 
             if ($existing_car) {
-                if ($request->file('car_image')) {
-                    // $data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
-                    $save_data['car_image'] = 'https://newhr.organicscosme.com/uploads/images/content/privateCar/' . basename(save_image($request->file('car_image'), 500, '/images/content/privateCar/'));
-                }
                 $data = [
+                    'company_id' => $employeeData->company_id,
+                    'department_id' => $employeeData->department_id,
+                    'car_category_id' => $data['car_category_id'],
+                    'car_registration' => $data['car_registration'],
+                    'car_brand' => $data['car_brand'],
+                    'car_color' => $data['car_color'],
                     'record_status' => 2,
                 ];
+
+                if ($request->file('car_image')) {
+                    // $data['car_image'] = save_image($request->file('car_image'), 500, '/images/content/privateCar/');
+                    $data['car_image'] = 'https://newhr.organicscosme.com/uploads/images/content/privateCar/' . basename(save_image($request->file('car_image'), 500, '/images/content/privateCar/'));
+                }
+
                 $this->privateCarRepository->update($existing_car->id, $data);
             } else {
                 $save_data = [
