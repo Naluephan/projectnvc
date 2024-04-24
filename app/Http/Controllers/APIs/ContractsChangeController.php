@@ -36,21 +36,17 @@ class ContractsChangeController extends Controller
                     'statusCode' => '03',
                     'message' => 'Data empty. Check the information again.'
                 ];
-            } else if ($request->file('images')) {
-
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsChange/');
+            } else {
+                if ($request->hasFile('images')) {
+                    $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsChange/');
+                }
 
                 $this->contractsChangeRepository->create($data);
                 $result = [
                     'status' => 'Success',
                     'statusCode' => '00'
                 ];
-            } else {
-                $result = [
-                    'status' => 'Failed to save data',
-                    'statusCode' => '01'
-                ];
-            };
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
@@ -59,6 +55,7 @@ class ContractsChangeController extends Controller
         }
         return response()->json(["data" => $result]);
     }
+
     public function update(Request $request)
     {
         DB::beginTransaction();
@@ -142,7 +139,7 @@ class ContractsChangeController extends Controller
                         'statusCode' => '00',
                         'contracts' => $getConId
                     ];
-                }else {
+                } else {
                     $result = [
                         'status' => 'Not Exists',
                         'statusCode' => '05',
