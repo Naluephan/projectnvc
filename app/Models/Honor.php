@@ -17,6 +17,7 @@ class Honor extends Model
         'position_id',
         'honor_img',
         'honor_detail',
+        'approve_status',
         'record_status',
 
     ];

@@ -330,6 +330,7 @@ Route::group(
                 Route::post('honor/update', [\App\Http\Controllers\APIs\HonorController::class, 'update'])->name('honor.update');
                 Route::post('honor/delete', [\App\Http\Controllers\APIs\HonorController::class, 'delete'])->name('honor.delete');
                 Route::post('honor/by/id', [\App\Http\Controllers\APIs\HonorController::class, 'getById'])->name('honor.by.id');
+                Route::post('honor/approve', [\App\Http\Controllers\APIs\HonorController::class, 'approve'])->name('honor.approve');
 
 
                 //Social Security

@@ -19,7 +19,7 @@ class WithdrawReserveFundRepository extends MasterRepository implements Withdraw
     public function getWithdraw($params)
     {
         return $this->model
-            // ->where('record_status', 1)
+            ->where('reserve_request', 1)
             // ->where('emp_id', $params['emp_id'])
             ->with('withdraw')
             ->get();

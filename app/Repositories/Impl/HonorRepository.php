@@ -36,7 +36,7 @@ class HonorRepository extends MasterRepository implements HonorInterface
             $query->where('position_id', $params['position_id']);
         }
 
-        $query->where('record_status', 1)->with([
+        $query->where('approve_status', 2)->with([
             'company' => function ($query) {
                 $query->select('id', 'name_th', 'name_en');
             },

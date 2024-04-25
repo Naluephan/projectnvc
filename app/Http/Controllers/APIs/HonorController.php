@@ -105,12 +105,32 @@ class HonorController extends Controller
        
         try {
             $this->honorRepository->delete($id);
-            $result['status'] = ApiStatus::group_insurance_success_status;
-            $result['statusCode'] = ApiStatus::group_insurance_success_statusCode;
+            $result['status'] = ApiStatus::honor_success_status;
+            $result['statusCode'] = ApiStatus::honor_success_statusCode;
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::group_insurance_error_statusCode;
-            $result['errCode'] = ApiStatus::group_insurance_error_status;
-            $result['errDesc'] = ApiStatus::group_insurance_errDesc;
+            $result['status'] = ApiStatus::honor_error_statusCode;
+            $result['errCode'] = ApiStatus::honor_error_status;
+            $result['errDesc'] = ApiStatus::honor_errDesc;
+            $result['message'] = $e->getMessage();
+        }
+        return $result;
+    }
+
+    public function approve(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        try {
+            $data = [
+                'approve_status' => $data['approve_status']
+            ];
+            $this->honorRepository->update($id, $data);
+            $result['status'] = ApiStatus::honor_success_status;
+            $result['statusCode'] = ApiStatus::honor_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::honor_error_statusCode;
+            $result['errCode'] = ApiStatus::honor_error_status;
+            $result['errDesc'] = ApiStatus::honor_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;

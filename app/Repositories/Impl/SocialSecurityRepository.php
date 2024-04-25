@@ -35,7 +35,7 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
         if (isset($params['position_id'])) {
             $query->where('position_id', $params['position_id']);
         }
-        $query->where('record_status', 1)->with([
+        $query->where('approve_status', 2)->with([
             'company' => function ($query) {
                 $query->select('id', 'name_th', 'name_en');
             },
@@ -46,7 +46,7 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
                 $query->select('id', 'name_th');
             },
         ]);
-        $query->where('record_status', 1)->with('socialsecurity.socialdetail.socialfile');
+        $query->where('approve_status', 2)->with('socialsecurity.socialdetail.socialfile');
        return $query->get();
     }
 

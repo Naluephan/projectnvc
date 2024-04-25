@@ -98,12 +98,12 @@ class SocialSecurityController extends Controller
        
         try {
             $this->socialsecurityRepository->delete($id);
-            $result['status'] = ApiStatus::group_insurance_success_status;
-            $result['statusCode'] = ApiStatus::group_insurance_success_statusCode;
+            $result['status'] = ApiStatus::social_security_success_status;
+            $result['statusCode'] = ApiStatus::social_security_success_statusCode;
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::group_insurance_error_statusCode;
-            $result['errCode'] = ApiStatus::group_insurance_error_status;
-            $result['errDesc'] = ApiStatus::group_insurance_errDesc;
+            $result['status'] = ApiStatus::social_security_error_statusCode;
+            $result['errCode'] = ApiStatus::social_security_error_status;
+            $result['errDesc'] = ApiStatus::social_security_errDesc;
             $result['message'] = $e->getMessage();
         }
         return $result;
@@ -149,6 +149,27 @@ class SocialSecurityController extends Controller
             $result['message'] = $ex->getMessage();
         }
 
+        return $result;
+    }
+
+    
+    public function approve(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        try {
+            $data = [
+                'approve_status' => $data['approve_status']
+            ];
+            $this->socialsecurityRepository->update($id, $data);
+            $result['status'] = ApiStatus::social_security_success_status;
+            $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::social_security_error_statusCode;
+            $result['errCode'] = ApiStatus::social_security_error_status;
+            $result['errDesc'] = ApiStatus::social_security_errDesc;
+            $result['message'] = $e->getMessage();
+        }
         return $result;
     }
 

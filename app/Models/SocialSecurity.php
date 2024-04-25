@@ -15,7 +15,7 @@ class SocialSecurity extends Model
         'company_id',
         'department_id',
         'position_id',
-        'aprrove_status',
+        'approve_status',
         'record_status',
 
     ];
