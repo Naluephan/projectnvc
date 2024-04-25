@@ -54,18 +54,18 @@ class RewardCoinHistoryController extends Controller
     {
         try {
             $data = $request->all();
+            $id = $request->id;
 
-            $rewardCoinHistory = $this->rewardCoinHistoryRepository->findById($data['id']);
-
-            $employeeData = $this->employeeRepository->findById($data['emp_id']);
-
-            $saveData = [
-                'status_approved' => 2,
+            $data_save = [
+                'status_approved' => $data['status_approved']
             ];
-            $this->rewardCoinHistoryRepository->update($data['id'], $saveData);
+            $this->rewardCoinHistoryRepository->update($id, $data_save);
 
-            $employeeData->coins -= $rewardCoinHistory->reward_coins_change;
-            $employeeData->save();
+            if ($data_save['status_approved'] == 2) {
+                $rewardCoinHistory = $this->rewardCoinHistoryRepository->findById($id);
+                $employeeData = $this->employeeRepository->findById($rewardCoinHistory->emp_id);
+                $employeeData->decrement('coins', $rewardCoinHistory->reward_coins_change);
+            }
 
             $result = [
                 'status' => ApiStatus::reward_coin_history_success_status,
@@ -81,7 +81,6 @@ class RewardCoinHistoryController extends Controller
         return $result;
     }
 
-
     public function create(Request $request)
     {
         $result = [];
@@ -94,6 +93,8 @@ class RewardCoinHistoryController extends Controller
             $employeeData = $this->employeeRepository->findById($data['emp_id']);
             $hasEnoughCoins = $employeeData->coins >= $rewardCoin->reward_coins_change;
 
+            $image = 'https://newhr.organicscosme.com/uploads/images/content/itemOrganicsCoins/' .$rewardCoin->reward_image;
+
             if ($hasEnoughCoins) {
                 $saveData = [
                     'emp_id' => $data['emp_id'],
@@ -101,14 +102,11 @@ class RewardCoinHistoryController extends Controller
                     'department_id' => $employeeData->department_id,
                     'reward_name' => $rewardCoin->reward_name,
                     'reward_coins_change' => $rewardCoin->reward_coins_change,
-                    'reward_image' => $rewardCoin->reward_image,
+                    'reward_image' => $image,
                     'status_approved' => 0,
                 ];
 
                 $this->rewardCoinHistoryRepository->create($saveData);
-
-                // $employeeData->coins -= $rewardCoin->reward_coins_change;
-                // $employeeData->save();
 
                 $result['status'] = ApiStatus::reward_coin_history_success_status;
                 $result['statusCode'] = ApiStatus::reward_coin_history_success_statusCode;
