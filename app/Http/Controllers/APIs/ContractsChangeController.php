@@ -53,7 +53,7 @@ class ContractsChangeController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return response()->json(["data" => $result]);
+        return response()->json($result);
     }
 
     public function update(Request $request)

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class DepartmentSeeder extends Seeder
 {
@@ -14,9 +16,9 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('departments')->delete();
+        DB::table('departments')->delete();
 
-        \DB::table('departments')->insert(array (
+        DB::table('departments')->insert(array (
             0 =>
             array (
                 'id' => 1,

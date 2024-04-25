@@ -221,17 +221,15 @@ Route::group(
                 Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
                 Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
 
-                Route::post('comment/categories/create', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'create'])->name('comment.categories.create');
-                Route::post('comment/categories/update', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'update'])->name('comment.categories.update');
-                Route::post('comment/categories/delete', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'delete'])->name('comment.categories.delete');
-                Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
-                Route::post('comment/categories/get/by/id', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getById'])->name('comment.categories.get.by.id');
 
-                Route::post('comment/topic/create', [\App\Http\Controllers\APIs\CommentTopicController::class, 'create'])->name('comment.categories.create');
-                Route::post('comment/topic/update', [\App\Http\Controllers\APIs\CommentTopicController::class, 'update'])->name('comment.topic.update');
-                Route::post('comment/topic/delete', [\App\Http\Controllers\APIs\CommentTopicController::class, 'delete'])->name('comment.topic.delete');
-                Route::post('comment/topic/getAll', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getComTopic'])->name('comment.topic.getAll');
-                Route::post('comment/topic/get/by/id', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getById'])->name('comment.topic.get.by.id');
+
+
+                //comment
+                Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
+                Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
+                Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
+                Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
+                Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
         }
 
 
@@ -332,7 +330,6 @@ Route::group(
                 Route::post('honor/update', [\App\Http\Controllers\APIs\HonorController::class, 'update'])->name('honor.update');
                 Route::post('honor/delete', [\App\Http\Controllers\APIs\HonorController::class, 'delete'])->name('honor.delete');
                 Route::post('honor/by/id', [\App\Http\Controllers\APIs\HonorController::class, 'getById'])->name('honor.by.id');
-                Route::post('honor/approve', [\App\Http\Controllers\APIs\HonorController::class, 'approve'])->name('honor.approve');
 
 
                 //Social Security
@@ -423,7 +420,6 @@ Route::group(
                 Route::post('contracts/delete', [\App\Http\Controllers\APIs\ContractsController::class, 'delete'])->name('contracts.delete');
                 Route::post('contracts/getAll', [\App\Http\Controllers\APIs\ContractsController::class, 'getAll'])->name('contracts.getAll');
                 Route::post('contracts/get/by/id', [\App\Http\Controllers\APIs\ContractsController::class, 'getById'])->name('contracts.get.by.id');
-                Route::post('contracts/get/emp/id/con', [\App\Http\Controllers\APIs\ContractsController::class, 'getEmpIdCon'])->name('contracts.get.emp.id.con');
                 //contracts change
                 Route::post('contracts/change/create', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'create'])->name('contracts.change.create');
                 Route::post('contracts/change/update', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'update'])->name('contracts.change.update');
@@ -445,9 +441,5 @@ Route::group(
                 Route::post('report/repair/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.delete');
                 Route::post('report/repair/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.getAll');
                 Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
-
-                //comment
-                Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
-
         }
 );

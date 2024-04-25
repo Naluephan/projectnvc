@@ -52,7 +52,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialSecurityTypeSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(ReportRepair::class);
-        $this->call(CommentSeeder::class);
+        $this->call(CommentCategoriesSeeder::class);
+        $this->call(CommentTopicSeeder::class);
         $this->call(SocialSecurityFileSeeder::class);
         $this->call(SocialSecurityInfoSeeder::class);
         $this->call(SocialSecuritySeeder::class);
