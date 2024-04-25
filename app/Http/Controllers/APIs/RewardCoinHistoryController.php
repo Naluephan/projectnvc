@@ -52,13 +52,26 @@ class RewardCoinHistoryController extends Controller
 
     public function approve(Request $request)
     {
-        $data = $request->all();
-        $id = $data['id'];
         try {
-            $this->rewardCoinHistoryRepository->update($id, $data);
-            $result['status'] = ApiStatus::reward_coin_history_success_status;
-            $result['statusCode'] = ApiStatus::reward_coin_history_success_statusCode;
-            $result['message'] = 'Transaction approved successfully.';
+            $data = $request->all();
+
+            $rewardCoinHistory = $this->rewardCoinHistoryRepository->findById($data['id']);
+
+            $employeeData = $this->employeeRepository->findById($data['emp_id']);
+
+            $saveData = [
+                'status_approved' => 2,
+            ];
+            $this->rewardCoinHistoryRepository->update($data['id'], $saveData);
+
+            $employeeData->coins -= $rewardCoinHistory->reward_coins_change;
+            $employeeData->save();
+
+            $result = [
+                'status' => ApiStatus::reward_coin_history_success_status,
+                'statusCode' => ApiStatus::reward_coin_history_success_statusCode,
+                'message' => 'Transaction approved successfully.'
+            ];
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::reward_coin_history_failed_status;
             $result['errCode'] = ApiStatus::reward_coin_history_failed_statusCode;
@@ -67,6 +80,7 @@ class RewardCoinHistoryController extends Controller
         }
         return $result;
     }
+
 
     public function create(Request $request)
     {
@@ -93,8 +107,8 @@ class RewardCoinHistoryController extends Controller
 
                 $this->rewardCoinHistoryRepository->create($saveData);
 
-                $employeeData->coins -= $rewardCoin->reward_coins_change;
-                $employeeData->save();
+                // $employeeData->coins -= $rewardCoin->reward_coins_change;
+                // $employeeData->save();
 
                 $result['status'] = ApiStatus::reward_coin_history_success_status;
                 $result['statusCode'] = ApiStatus::reward_coin_history_success_statusCode;
