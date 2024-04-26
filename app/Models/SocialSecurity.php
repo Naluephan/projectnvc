@@ -11,7 +11,7 @@ class SocialSecurity extends Model
     protected $fillable = [
         'emp_id',
         'social_security_type_id',
-        // 'social_security_type_name',
+        'social_security_type_name',
         'company_id',
         'department_id',
         'position_id',

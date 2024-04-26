@@ -5,6 +5,7 @@ namespace App\Http\Controllers\APIs;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\SocialSecurity;
+use App\Models\SocialSecurityType;
 use Illuminate\Http\Request;
 use App\Repositories\SocialSecurityInterface;
 use Illuminate\Support\Facades\DB;
@@ -51,9 +52,12 @@ class SocialSecurityController extends Controller
             ];
             $this->socialsecurityRepository->findBy($search_criteria);
             $emp = Employee::find($data['emp_id']);
+            $socialtype = SocialSecurityType::find($data['social_security_type_id']);
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'social_security_type_id' => $data['social_security_type_id'],
+                    'social_security_type_name' => $socialtype->name,
+                    // 'social_security_type_detail' => $socialtype->social_security_type_detail,
                     'position_id' => $emp->position_id,
                     'company_id' => $emp->company_id,
                     'department_id' => $emp->department_id,
