@@ -24,17 +24,26 @@ class CommentController extends Controller
         $data = $request->all();
         try {
             $data = [
-                'comments_id' => $data['comments_id'],
+                'emp_id' => $data['emp_id'],
+                'categories_comment_id' => $data['categories_comment_id'],
+                'topic_comment_name' => $data['topic_comment_name'],
                 'comments_details' => $data['comments_details'],
+                'images' => $data['images'],
             ];
+            $whereCom = "topic_comment_name = '" . $data['topic_comment_name'] . "'";
+            $existingTopics  = $this->commentRepository->selectCustomData(null, $whereCom);
+
             if (isset($data) > 0) {
-                if (empty($data['comments_id']) || empty($data['comments_details'])) {
+                if (empty($data['emp_id']) || empty($data['categories_comment_id']) || empty($data['topic_comment_name'])) {
                     $result = [
                         'status' => 'Failed',
                         'statusCode' => '03',
                         'message' => 'Data empty. Check the information again.'
                     ];
                 } else {
+                    if  ($request->File('images'))  {
+                        $data['images'] = save_image($request->file('images'), 500, '/images/setting/comment/');
+                    };
                     $this->commentRepository->create($data);
                     $result = [
                         'status' => 'Success',
@@ -53,7 +62,7 @@ class CommentController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return response()->json(["data" => $result]);
+        return response()->json( [$result]);
     }
     public function update(Request $request)
     {

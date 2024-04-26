@@ -37,7 +37,7 @@ class ContractsChangeController extends Controller
                     'message' => 'Data empty. Check the information again.'
                 ];
             } else {
-                if ($request->hasFile('images')) {
+                if ($request->File('images')) {
                     $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contractsChange/');
                 }
 

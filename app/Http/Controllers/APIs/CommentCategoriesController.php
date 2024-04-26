@@ -26,7 +26,7 @@ class CommentCategoriesController extends Controller
         try {
             $whereCon = "categories_comment_name = '" . $data['categories_comment_name']."'";
             
-            $existingContracts  = $this->commentCategoriesRepository->selectCustomData(null, $whereCon);
+            $existingComment  = $this->commentCategoriesRepository->selectCustomData(null, $whereCon);
             if (empty($data['categories_comment_name'])) {
                 $result = [
                     'status' => 'Failed',
@@ -34,7 +34,7 @@ class CommentCategoriesController extends Controller
                     'message' => 'Data empty. Check the information again.'
                 ];
             } else {
-                if (count($existingContracts) > 0){
+                if (count($existingComment) > 0){
                     $result = [
                         'status' => 'Duplicate information',
                         'statusCode' => '200',
@@ -65,8 +65,8 @@ class CommentCategoriesController extends Controller
         try {
             $whereCon = "categories_comment_name = '" . $data['categories_comment_name']."'";
             
-            $existingContracts  = $this->commentCategoriesRepository->selectCustomData(null, $whereCon);
-            if (count($existingContracts) > 0) {
+            $existingComment  = $this->commentCategoriesRepository->selectCustomData(null, $whereCon);
+            if (count($existingComment) > 0) {
                 $result = [
                     'status' => 'Duplicate information',
                     'statusCode' => '200',

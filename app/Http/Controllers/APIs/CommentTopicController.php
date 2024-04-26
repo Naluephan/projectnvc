@@ -25,19 +25,19 @@ class CommentTopicController extends Controller
         try {
             $whereCom = "topic_comment_name = '" . $data['topic_comment_name']."' AND " . "categories_comment_id = '" . $data['categories_comment_id'] . "'";
             
-            $existingContracts  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
-            if (empty($existingContracts)) {
+            $existingTopics  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
+            if (empty($existingTopics)) {
                 $result = [
                     'status' => 'Failed',
                     'statusCode' => '03',
                     'message' => 'Data empty. Check the information again.'
                 ];
             } else {
-                if (count($existingContracts) > 0){
+                if (count($existingTopics) > 0){
                     $result = [
                         'status' => 'Duplicate information',
                         'statusCode' => '200',
-                        'message' => 'This contracts already exists.'
+                        'message' => 'This Topics already exists.'
                     ];
                     
                 }else {
@@ -62,14 +62,13 @@ class CommentTopicController extends Controller
         $data = $request->all();
         $id = $data['id'];
         try {
-            $whereCom = "topic_comment_name = '" . $data['topic_comment_name']."'";
-            
-            $existingContracts  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
-            if (count($existingContracts) > 0) {
+            $whereCom = "topic_comment_name = '" . $data['topic_comment_name']."'";          
+            $existingTopics  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
+            if (count($existingTopics) > 0) {
                 $result = [
                     'status' => 'Duplicate information',
                     'statusCode' => '200',
-                    'message' => 'This contracts already exists.'
+                    'message' => 'This Topics already exists.'
                 ];
             } else {
                 $this->commentTopicRepository->update($id, $data);
@@ -104,13 +103,59 @@ class CommentTopicController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        $contracts =  $this->commentTopicRepository->find($id);
+        $Topics =  $this->commentTopicRepository->find($id);
         $result = [
             'status' => 'Success',
             'statusCode' => '00',
-            'data'  => [$contracts]
+            'data'  => $Topics
         ];
         return response()->json( $result);
 
+    }
+    public function getTopicCom(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        try {
+            $whereCon = "categories_comment_id = '" . $data['categories_comment_id'] . "'";
+            $getTopic  = $this->commentTopicRepository->selectCustomData(null, $whereCon);
+            if (empty($data['categories_comment_id'] || empty($data['topic_comment_name']))) {
+                $result = [
+                    'status' => 'Data empty.',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
+                ];
+            } else {
+                if (count($getTopic) > 0) {
+                    foreach ($getTopic as $CategoriesCom) {
+                        $categories = [
+                            '1' => 'กิจกรรม',
+                            '2' => 'การทำงาน',
+                            '3' => 'ปัญหาที่พบในบริษัท',
+                            '4' => 'อุปกรณ์การใช้งาน',
+                            '5' => 'สวัสดิการ',
+                            '6' => 'อื่นๆ'
+                        ];
+                        $CategoriesCom->categories_comment_name = $categories[$CategoriesCom->categories_comment_id];
+                    };
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00',
+                        'topicsCom' => $getTopic,
+                    ];
+                } else {
+                    $result = [
+                        'status' => 'Not Exists',
+                        'statusCode' => '05',
+                    ];
+                }
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+
+        return response()->json( $result);
     }
 }

@@ -157,12 +157,18 @@ class ContractsController extends Controller
                 if (count($getConId) > 0) {
                     foreach ($getConId as $contract) {
                         $contract->images = 'https://newhr.organicscosme.com/uploads/images/setting/contracts/contracts' . $contract->images;
-                    }
-                    
+                        $categories = [
+                            '1' => 'สัญญาจ้าง',
+                            '2' => 'สัญญายืมทรัพย์สิน',
+                            '3' => 'สัญญารักษาความลับ',
+                            '4' => 'สัญญาอนุญาติเปิดเผยข้อมูลส่วนบุคคล'
+                        ];
+                        $contract->contracts_name = $categories[$contract->contract_category_id];
+                    };
                     $result = [
                         'status' => 'Success',
                         'statusCode' => '00',
-                        'contracts' => $getConId
+                        'contracts' => $getConId,
                     ];
                 } else {
                     $result = [
