@@ -23,9 +23,9 @@ class TransactionHistoryRepository extends MasterRepository implements Transacti
             ->where('emp_id', '=', $params['emp_id'])
             ->where(function ($q) use ($params) {
                 if (isset($params['step_status']) && $params['step_status'] == 1) {
-                    $q->where('step_status', '=', 4);
+                    $q->where('step_status', '=', 5);
                 }else{
-                    $q->where('step_status', '!=', 4);
+                    $q->where('step_status', '!=', 5);
                 }
             })
             ->get();
