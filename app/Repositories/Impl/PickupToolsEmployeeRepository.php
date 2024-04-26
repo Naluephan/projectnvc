@@ -19,7 +19,7 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
         parent::__construct($model);
     }
 
-    public function pickupToolsList($params)
+    public function option($params)
     {
         $query = $this->model->query();
 
@@ -35,19 +35,48 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
             $query->where('department_id', $params['department_id']);
         }
 
-        $query->with([
+        $query->where('status_approved', 2)->with([
             'company' => function ($query) {
                 $query->select('id', 'name_th', 'name_en');
             },
             'department' => function ($query) {
                 $query->select('id', 'name_th', 'name_en');
-            },
-            'pickupTools.pickupToolsDeviceType' => function ($query) {
-                $query->select('id', 'device_types_name', 'unit');
             }
         ]);
 
         return $query->get();
+    }
+
+    public function pickupToolsList($params)
+    {
+        $empId = $params['emp_id'];
+
+        $listPickup_tools = DB::table('pickup_tools_employees AS pte')
+            ->join('pickup_tools AS pt', 'pt.id', '=', 'pte.pickup_tools_id')
+            ->join('pickup_tools_device_types AS ptt', 'ptt.id', '=', 'pt.device_types_id')
+            ->join('employees AS e', 'e.id', '=', 'pte.emp_id')
+            ->join('departments AS d', 'd.id', '=', 'e.department_id')
+            ->join('companies AS c', 'c.id', '=', 'e.company_id')
+            ->select(
+                'pte.id',
+                'pte.emp_id',
+                'pte.pickup_tools_id',
+                'ptt.device_types_name',
+                'ptt.unit',
+                'ptt.image',
+                'pt.number_requested AS number_requested_limit',
+                'pte.number_requested',
+                'pte.status_approved',
+                'pte.created_at',
+                'pte.updated_at',
+                'pte.approve_at',
+                'pte.cancel_at',
+                'pte.reject_at'
+            )
+            ->where('pte.emp_id', '=', $empId)
+            ->get();
+
+        return $listPickup_tools;
     }
 
     public function findBy(array $criteria)
@@ -55,18 +84,68 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
         return PickupToolsEmployee::where($criteria)->first();
     }
 
-    public function createCondition($params)
+    public function myPickupToolsList($params)
     {
-        $existingData = $this->model->where('pickup_tools_id', $params['pickup_tools_id'])
-            ->where('emp_id', $params['emp_id'])
-            ->first();
+        $empId = $params['emp_id'];
 
-        if ($existingData) {
-            $existingData->number_requested += $params['number_requested'];
-            $existingData->save();
-            return $existingData;
-        } else {
-            return $this->model->create($params);
-        }
+        $listPickup_tools = DB::table('pickup_tools_employees AS pte')
+            ->join('pickup_tools AS pt', 'pt.id', '=', 'pte.pickup_tools_id')
+            ->join('pickup_tools_device_types AS ptt', 'ptt.id', '=', 'pt.device_types_id')
+            ->join('employees AS e', 'e.id', '=', 'pte.emp_id')
+            ->join('departments AS d', 'd.id', '=', 'e.department_id')
+            ->join('companies AS c', 'c.id', '=', 'e.company_id')
+            ->select(
+                'pte.id',
+                'pte.emp_id',
+                'pte.pickup_tools_id',
+                'ptt.device_types_name',
+                'ptt.unit',
+                'ptt.image',
+                'pt.number_requested AS number_requested_limit',
+                'pte.number_requested',
+                'pte.status_repair',
+                'pte.created_at',
+                'pte.updated_at',
+                'pte.approve_at',
+                'pte.cancel_at',
+                'pte.reject_at'
+            )
+            ->where('pte.emp_id', '=', $empId)
+            ->where('pte.status_repair', 2)
+            ->get();
+
+        return $listPickup_tools;
+    }
+
+    public function allMyPickupToolsList($params)
+    {
+        $empId = $params['emp_id'];
+
+        $listPickup_tools = DB::table('pickup_tools_employees AS pte')
+            ->join('pickup_tools AS pt', 'pt.id', '=', 'pte.pickup_tools_id')
+            ->join('pickup_tools_device_types AS ptt', 'ptt.id', '=', 'pt.device_types_id')
+            ->join('employees AS e', 'e.id', '=', 'pte.emp_id')
+            ->join('departments AS d', 'd.id', '=', 'e.department_id')
+            ->join('companies AS c', 'c.id', '=', 'e.company_id')
+            ->select(
+                'pte.id',
+                'pte.emp_id',
+                'pte.pickup_tools_id',
+                'ptt.device_types_name',
+                'ptt.unit',
+                'ptt.image',
+                'pt.number_requested AS number_requested_limit',
+                'pte.number_requested',
+                'pte.status_repair',
+                'pte.created_at',
+                'pte.updated_at',
+                'pte.approve_at',
+                'pte.cancel_at',
+                'pte.reject_at'
+            )
+            ->where('pte.emp_id', '=', $empId)
+            ->get();
+
+        return $listPickup_tools;
     }
 }

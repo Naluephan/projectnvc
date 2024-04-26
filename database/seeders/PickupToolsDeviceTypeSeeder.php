@@ -18,14 +18,17 @@ class PickupToolsDeviceTypeSeeder extends Seeder
             [
                 'device_types_name' => 'กระดาษ A4',
                 'unit' => 'รีม',
+                'image' => 'A4_paper.jpg',
             ],
             [
-                'name_category' => 'ปากกาไวท์บอร์ด',
+                'device_types_name' => 'ปากกาไวท์บอร์ด',
                 'unit' => 'แท่ง',
+                'image' => 'whiteboard_pen.jpg',
             ],
             [
-                'name_category' => 'หมึกสำหรับตรายาง',
+                'device_types_name' => 'หมึกสำหรับตรายาง',
                 'unit' => 'ตลับ',
+                'image' => 'Ink_for_rubber_stamps.jpg',
             ]
         ]);
     }
