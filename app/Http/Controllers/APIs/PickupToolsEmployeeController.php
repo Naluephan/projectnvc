@@ -31,7 +31,7 @@ class PickupToolsEmployeeController extends Controller
 
             $querys = $this->pickupToolsEmployeeRepository->pickupToolsList($request);
             foreach ($querys as $query) {
-                $query->image = "https://newhr.organicscosme.com/uploads/images/rewardcoin/" . $query->image;
+                $query->image = "https://newhr.organicscosme.com/uploads/images/pickuptools/" . $query->image;
             }
 
             if (count($querys) > 0) {
@@ -61,7 +61,7 @@ class PickupToolsEmployeeController extends Controller
 
             $querys = $this->pickupToolsEmployeeRepository->myPickupToolsList($request);
             foreach ($querys as $query) {
-                $query->image = "https://newhr.organicscosme.com/uploads/images/rewardcoin/" . $query->image;
+                $query->image = "https://newhr.organicscosme.com/uploads/images/pickuptools/" . $query->image;
             }
 
             if (count($querys) > 0) {
@@ -90,7 +90,7 @@ class PickupToolsEmployeeController extends Controller
         try {
             $querys = $this->pickupToolsEmployeeRepository->allMyPickupToolsList($request);
             foreach ($querys as $query) {
-                $query->image = "https://newhr.organicscosme.com/uploads/images/rewardcoin/" . $query->image;
+                $query->image = "https://newhr.organicscosme.com/uploads/images/pickuptools/" . $query->image;
             }
             if (count($querys) > 0) {
                 $result['status'] = ApiStatus::list_pickup_tools_success_status;
