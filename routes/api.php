@@ -375,10 +375,10 @@ Route::group(
                 Route::post('privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
 
                 //Pickup Tools Employee
-                Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
-                Route::post('pickup/tools/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
-                Route::post('pickup/tools/my/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'myPickupToolsList'])->name('pickup.tools.my.list.employee');
-                Route::post('pickup/tools/my/history/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'historyPickupToolsList'])->name('pickup.tools.history.list.employee');
+                Route::post('pickup/tools/withdraw/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
+                Route::post('pickup/tools/withdraw/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
+                Route::post('pickup/tools/maintain/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'myPickupToolsList'])->name('pickup.tools.maintain.list.employee');
+                Route::post('pickup/tools/maintain/history/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'historyPickupToolsList'])->name('pickup.tools.history.list.employee');
 
                 //API Reward Coin
                 Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'reward_list'])->name('reward.list');
