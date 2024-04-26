@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transaction_histories', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id");
-            $table->integer("titel_id");
+            $table->string("title_name");
             $table->string("detail")->nullable();
             $table->tinyInteger('step_status')->comment('1=send,2=approve,3=not approve,4=success,5=cancel')->default(1);
             $table->date('send_date')->nullable();
