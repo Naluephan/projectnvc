@@ -12,10 +12,11 @@ class WithdrawReverseFund extends Model
         'emp_id',
         'reserse_fund_id',
         'reserse_fund_detail',
+        'withdraw_balance',
         'reserve_request',
     ];
     public function withdraw(){
-        return $this->belongsTo(ReserveFund::class,'reserse_fund_id','id');
+        return $this->hasOne(ReserveFund::class,'id','reserse_fund_id');
     }
     public function empsalary(){
         return $this->belongsTo(SalaryEmployees::class,'emp_id','emp_id');

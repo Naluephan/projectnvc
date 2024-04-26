@@ -46,7 +46,7 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
                 $query->select('id', 'name_th');
             },
         ]);
-        $query->where('approve_status', 2)->with('socialsecurity.socialdetail.socialfile');
+        // $query->where('approve_status', 2)->with('socialsecurity.socialdetail.socialfile');
        return $query->get();
     }
 

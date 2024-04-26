@@ -18,4 +18,8 @@ class ContractsRepository extends MasterRepository implements ContractsInterface
     {
         return $this->model->get();
     }
+    public function selectData()
+    {
+        return $this->model->selectCustomData();
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\APIs;
 use App\Repositories\ReserveFundInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\ReserveFund;
 use App\Repositories\WithdrawReserveFundInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -52,6 +53,8 @@ class ReserveFundController extends Controller
             ];
             $this->reservefundRepository->findBy($search_criteria);
             $emp = Employee::find($data['emp_id']);
+            $total_m =  $data['reserve']+$data['contribution'];
+            $balace =  $total_m + $data['accumulate_balance'];
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'reserve_fund_number' => $data['reserve_fund_number'],
@@ -64,8 +67,8 @@ class ReserveFundController extends Controller
                     'year' => $data['year'],
                     'reserve' => $data['reserve'],
                     'contribution' => $data['contribution'],
-                    'total_month' => $data['total_month'],
-                    'accumulate_balance' => $data['accumulate_balance'],
+                    'total_month' => $total_m,
+                    'accumulate_balance' =>$balace,
 
                 ];
                 $this->reservefundRepository->create($save_data); 
@@ -122,15 +125,20 @@ class ReserveFundController extends Controller
     {
         $postData = $request->all();
         try {
-            $this->withdrawreservefundRepository->findAmountByEmpId($postData['user_id']);
-
+            $reserve = ReserveFund::find($postData['reserse_fund_id']);
+            $amount = $this->withdrawreservefundRepository->findAmountByEmpId($postData['user_id']);
+            $total = $amount ? $amount->accumulate_balance : 0;
+            $withdraw_balance = $reserve['accumulate_balance'] - $total;
                 $data = [
-                    'emp_id' => $postData['user_id'],
+                    'emp_id' =>$postData['user_id'],
                     'reserse_fund_id' => $postData['reserse_fund_id'],
                     'reserse_fund_detail' => $postData['reserse_fund_detail'],
+                    'withdraw_balance' => $withdraw_balance,
                     
                 ];
                 $this->withdrawreservefundRepository->create($data);
+                $reserve->accumulate_balance -= $withdraw_balance;
+                $reserve->save();
                 $result['status'] = ApiStatus::reverse_fund_success_status;
                 $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
             

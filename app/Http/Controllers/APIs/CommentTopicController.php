@@ -3,31 +3,30 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\ContractsCategoriesInterface;
+use App\Repositories\CommentTopicInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ContractsCategoriesController extends Controller
+class CommentTopicController extends Controller 
 {
-    private $contractsCategoriesRepository;
-    public function __construct(ContractsCategoriesInterface $contractsCategoriesRepository)
+    private $commentTopicRepository;
+    public function __construct(CommentTopicInterface $commentTopicRepository)
     {
-        $this->contractsCategoriesRepository = $contractsCategoriesRepository;
+        $this->commentTopicRepository = $commentTopicRepository;
     }
-    public function getConCategory(Request $request)
+    public function getComTopic(Request $request)
     {
-        return $this->contractsCategoriesRepository->getAll();
+        return $this->commentTopicRepository->getAll();
     }
     public function create(Request $request)
     {
         DB::beginTransaction();
         $data = $request->all();
-        // $nameCon = $request->categories_contract_name;
         try {
-            $whereCon = "categories_contract_name = '" . $data['categories_contract_name']."'";
+            $whereCom = "topic_comment_name = '" . $data['topic_comment_name']."' AND " . "categories_comment_id = '" . $data['categories_comment_id'] . "'";
             
-            $existingContracts  = $this->contractsCategoriesRepository->selectCustomData(null, $whereCon);
-            if (empty($data['categories_contract_name'])) {
+            $existingContracts  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
+            if (empty($existingContracts)) {
                 $result = [
                     'status' => 'Failed',
                     'statusCode' => '03',
@@ -42,7 +41,7 @@ class ContractsCategoriesController extends Controller
                     ];
                     
                 }else {
-                    $this->contractsCategoriesRepository->create($data);
+                    $this->commentTopicRepository->create($data);
                     $result = [
                         'status' => 'Success',
                         'statusCode' => '00'
@@ -63,9 +62,9 @@ class ContractsCategoriesController extends Controller
         $data = $request->all();
         $id = $data['id'];
         try {
-            $whereCon = "categories_contract_name = '" . $data['categories_contract_name']."'";
+            $whereCom = "topic_comment_name = '" . $data['topic_comment_name']."'";
             
-            $existingContracts  = $this->contractsCategoriesRepository->selectCustomData(null, $whereCon);
+            $existingContracts  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
             if (count($existingContracts) > 0) {
                 $result = [
                     'status' => 'Duplicate information',
@@ -73,7 +72,7 @@ class ContractsCategoriesController extends Controller
                     'message' => 'This contracts already exists.'
                 ];
             } else {
-                $this->contractsCategoriesRepository->update($id, $data);
+                $this->commentTopicRepository->update($id, $data);
                 $result = [
                     'status' => 'Success',
                     'statusCode' => '00'
@@ -93,7 +92,7 @@ class ContractsCategoriesController extends Controller
         $id = $request->id;
         $result['status'] = "Success";
         try {
-            $this->contractsCategoriesRepository->delete($id);
+            $this->commentTopicRepository->delete($id);
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
@@ -105,7 +104,7 @@ class ContractsCategoriesController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        $contracts =  $this->contractsCategoriesRepository->find($id);
+        $contracts =  $this->commentTopicRepository->find($id);
         $result = [
             'status' => 'Success',
             'statusCode' => '00',

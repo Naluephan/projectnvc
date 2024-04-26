@@ -31,35 +31,32 @@ class ContractsController extends Controller
                 'emp_id' => $data['emp_id'],
                 'contract_details' => $data['contract_details'],
             ];
-            if (count($empExists) >0) {
+            if (count($empExists) > 0) {
                 $result = [
                     'status' => 'Duplicate information',
                     'statusCode' => '200',
                     'message' => 'This company already exists.'
                 ];
-            }else {
-            if (empty($data['contract_category_id']) || empty($data['emp_id']) || empty($data['contract_details'])) {
-                $result = [
-                    'status' => 'Failed',
-                    'statusCode' => '03',
-                    'message' => 'Data empty. Check the information again.'
-                ];
-            } else if ($request->file('images')) {
-
-                $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contracts/');
-
-                $this->contractsRepository->create($data);
-                $result = [
-                    'status' => 'Success',
-                    'statusCode' => '00'
-                ];
             } else {
-                $result = [
-                    'status' => 'Failed to save data',
-                    'statusCode' => '01'
-                ];
-            };
-        }
+                if (empty($data['contract_category_id']) || empty($data['emp_id']) || empty($data['contract_details'])) {
+                    $result = [
+                        'status' => 'Failed',
+                        'statusCode' => '03',
+                        'message' => 'Data empty. Check the information again.'
+                    ];
+                } else {
+                    if ($request->file('images')) {
+
+                        $data['images'] = save_image($request->file('images'), 500, '/images/setting/contracts/contracts/');
+
+                        $this->contractsRepository->create($data);
+                        $result = [
+                            'status' => 'Success',
+                            'statusCode' => '00'
+                        ];
+                    }
+                }
+            }
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
@@ -122,11 +119,64 @@ class ContractsController extends Controller
         }
         return response()->json(["data" => $result]);
     }
+    // public function getById(Request $request)
+    // {
+    //     $id = $request->id;
+    //     $contracts =  $this->contractsRepository->find($id);
+
+    //     return response()->json([$contracts]);
+    // }
     public function getById(Request $request)
     {
         $id = $request->id;
-        $contracts =  $this->contractsRepository->find($id);
+        $contract =  $this->contractsRepository->find($id);
 
-        return response()->json(["data" => $contracts]);
+        if ($contract) {
+            $contract->images = 'https://newhr.organicscosme.com/' . $contract->images;
+
+            return response()->json([$contract]);
+        } else {
+            return response()->json(['error' => 'Contract not found'], 404);
+        }
+    }
+    
+    public function getEmpIdCon(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        try {
+            $whereCon = "emp_id = '" . $data['emp_id'] . "'";
+            $getConId  = $this->contractsRepository->selectCustomData(null, $whereCon, null, ['contract_category_id' => 'asc']);
+            if (empty($data['emp_id'])) {
+                $result = [
+                    'status' => 'Data empty.',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
+                ];
+            } else {
+                if (count($getConId) > 0) {
+                    foreach ($getConId as $contract) {
+                        $contract->images = 'https://newhr.organicscosme.com/uploads/images/setting/contracts/contracts' . $contract->images;
+                    }
+                    
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00',
+                        'contracts' => $getConId
+                    ];
+                } else {
+                    $result = [
+                        'status' => 'Not Exists',
+                        'statusCode' => '05',
+                    ];
+                }
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+
+        return response()->json( $result);
     }
 }

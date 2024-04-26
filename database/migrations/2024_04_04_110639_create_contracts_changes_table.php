@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('emp_id')->references('id')->on('employees');
             $table->string('contract_category_id')->references('id')->on('contracts_categories');
             $table->string('change_details');
-            $table->string('contract_status')->default(0)->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject');
+            $table->integer('contract_status')->default(0)->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject');
             $table->string('images')->nullable();
             $table->timestamps();
         });

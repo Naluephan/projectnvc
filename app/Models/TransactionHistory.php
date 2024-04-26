@@ -10,7 +10,7 @@ class TransactionHistory extends Model
     use HasFactory;
     protected $fillable = [
         'emp_id',
-        'titel_id',
+        'title_name',
         'detail',
         'step_status',
         'send_date',
