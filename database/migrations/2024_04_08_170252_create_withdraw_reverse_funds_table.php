@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('emp_id');
             $table->string('reserse_fund_id');
             $table->string('reserse_fund_detail');
+            $table->string('withdraw_balance');
             $table->integer('reserve_request')->comment('0=รอดำเนินการ , 1=ดำเนินการเรียบร้อย')->default(0);
             $table->timestamps();
         });
