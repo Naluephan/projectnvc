@@ -5,18 +5,19 @@ namespace App\Http\Controllers\APIs;
 use App\Http\Controllers\Controller;
 use App\Repositories\PickupToolsEmployeeInterface;
 use App\Repositories\EmployeeInterface;
+use App\Repositories\PickupToolsInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\PickupTools;
-use App\Models\Employee;
 
 class PickupToolsEmployeeController extends Controller
 {
-    private $pickupToolsEmployeeRepository, $employeeRepository;
-    public function __construct(PickupToolsEmployeeInterface $pickupToolsEmployeeRepository, EmployeeInterface $employeeRepository)
+    private $pickupToolsEmployeeRepository, $employeeRepository, $pickupToolsRepository;
+    public function __construct(PickupToolsEmployeeInterface $pickupToolsEmployeeRepository, EmployeeInterface $employeeRepository, PickupToolsInterface $pickupToolsRepository)
     {
         $this->pickupToolsEmployeeRepository = $pickupToolsEmployeeRepository;
         $this->employeeRepository = $employeeRepository;
+        $this->pickupToolsRepository = $pickupToolsRepository;
     }
 
     public function option(Request $request)
@@ -162,9 +163,18 @@ class PickupToolsEmployeeController extends Controller
             ];
             $this->pickupToolsEmployeeRepository->update($id, $data_save);
 
-            $result['status'] = ApiStatus::list_pickup_tools_success_status;
-            $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
-            $result['message'] = 'Transaction approved successfully.';
+            if ($data_save['status_approved'] == 2) {
+                $pickup_tools = $this->pickupToolsRepository->find($id);
+                $pickup_tools_employees = $this->pickupToolsEmployeeRepository->find($id);
+                $pickup_tools->decrement('number_requested', $pickup_tools_employees->number_requested);
+            }
+
+            $result = [
+                'status' => ApiStatus::list_pickup_tools_success_status,
+                'statusCode' => ApiStatus::list_pickup_tools_success_statusCode,
+                'message' => 'Transaction approved successfully.'
+            ];
+
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::list_pickup_tools_failed_status;
             $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;

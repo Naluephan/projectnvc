@@ -158,6 +158,7 @@ Route::group(
                 //API Pickup Tools Employee
                 Route::post('pickup/tools/approve', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'approve'])->name('pickup.tools.approve');
                 Route::post('pickup/tools/list/option', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'option'])->name('pickup.tools.option');
+                Route::post('pickup/tools/device/type/create', [\App\Http\Controllers\APIs\PickupToolsDeviceTypeController::class, 'create'])->name('pickup.tools.device.type.create');
 
                 //API Reward Coin
                 Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getAll'])->name('reward.list');
