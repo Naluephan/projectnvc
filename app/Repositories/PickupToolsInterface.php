@@ -13,4 +13,6 @@ interface PickupToolsInterface extends BaseInterface
     public function deleteCondition($params);
     public function deleteNotIn($ids,$department_id);
     public function updateCondition($params);
+
+    public function find($id): ?Model;
 }

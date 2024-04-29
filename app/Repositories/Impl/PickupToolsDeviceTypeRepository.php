@@ -22,4 +22,12 @@ class PickupToolsDeviceTypeRepository extends BaseRepository implements PickupTo
             ->get();
     }
 
+    public function findById($id)
+    {
+        $lead =  $this->model
+            ->select('*')
+            ->where('id', '=', $id)->first();
+        return $lead;
+    }
+
 }

@@ -8,16 +8,17 @@ use App\Repositories\EmployeeInterface;
 use App\Repositories\PickupToolsInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\PickupTools;
+use App\Repositories\PickupToolsDeviceTypeInterface;
 
 class PickupToolsEmployeeController extends Controller
 {
-    private $pickupToolsEmployeeRepository, $employeeRepository, $pickupToolsRepository;
-    public function __construct(PickupToolsEmployeeInterface $pickupToolsEmployeeRepository, EmployeeInterface $employeeRepository, PickupToolsInterface $pickupToolsRepository)
+    private $pickupToolsEmployeeRepository, $employeeRepository, $pickupToolsRepository, $pickupToolsDeviceTypeRepository;
+    public function __construct(PickupToolsEmployeeInterface $pickupToolsEmployeeRepository, EmployeeInterface $employeeRepository, PickupToolsInterface $pickupToolsRepository, PickupToolsDeviceTypeInterface $pickupToolsDeviceTypeRepository)
     {
         $this->pickupToolsEmployeeRepository = $pickupToolsEmployeeRepository;
         $this->employeeRepository = $employeeRepository;
         $this->pickupToolsRepository = $pickupToolsRepository;
+        $this->pickupToolsDeviceTypeRepository = $pickupToolsDeviceTypeRepository;
     }
 
     public function option(Request $request)
@@ -116,41 +117,54 @@ class PickupToolsEmployeeController extends Controller
     {
         $data = $request->all();
         try {
-            $employeeData = $this->employeeRepository->findById($data);
+            $employeeData = $this->employeeRepository->find($data['emp_id']);
 
-            $pickupTools = PickupTools::where('department_id', $employeeData->department_id)->exists();
+            $deviceTypes = $this->pickupToolsDeviceTypeRepository->find($data['pickup_tools_id']);
 
-            $pickupTool = PickupTools::where('number_requested', '>=', $data['number_requested'])
-                ->first();
+            $pickup_tools = $this->pickupToolsRepository->find($data['pickup_tools_id']);
 
-            if ($pickupTools && $pickupTool) {
+            if ($data['number_requested'] <= $pickup_tools->number_requested) {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
-                    'company_id' => $employeeData['company_id'],
-                    'department_id' => $employeeData['department_id'],
+                    'company_id' => $employeeData->company_id,
+                    'department_id' => $employeeData->department_id,
                     'pickup_tools_id' => $data['pickup_tools_id'],
                     'number_requested' => $data['number_requested'],
-                    'status_repair' => 2,
+                    'type_device' => $deviceTypes->type_device,
                     'status_approved' => 0,
                     'request_details' => $data['request_details'],
                 ];
-                $this->pickupToolsEmployeeRepository->create($save_data);
 
-                $result['status'] = ApiStatus::list_pickup_tools_success_status;
-                $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
+                if ($deviceTypes->type_device == 2 && $deviceTypes->type_device == 3) {
+                    $save_data['status_repair'] = 2;
+                }
+
+                $create = $this->pickupToolsEmployeeRepository->create($save_data);
+
+                return [
+                    'status' => ApiStatus::list_pickup_tools_success_status,
+                    'statusCode' => ApiStatus::list_pickup_tools_success_statusCode,
+                ];
             } else {
-                $result['status'] = ApiStatus::list_pickup_tools_failed_status;
-                $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
-                $result['message'] = 'Save failed!!';
+                return [
+                    'status' => ApiStatus::list_pickup_tools_failed_status,
+                    'errCode' => ApiStatus::list_pickup_tools_failed_statusCode,
+                    'message' => 'Save failed due to invalid pickup tools or request details.',
+                ];
             }
         } catch (\Exception $e) {
-            $result['status'] = ApiStatus::list_pickup_tools_error_statusCode;
-            $result['errCode'] = ApiStatus::list_pickup_tools_error_status;
-            $result['errDesc'] = ApiStatus::list_pickup_tools_errDesc;
-            $result['message'] = $e->getMessage();
+            return [
+                'status' => ApiStatus::list_pickup_tools_error_statusCode,
+                'errCode' => ApiStatus::list_pickup_tools_error_status,
+                'errDesc' => ApiStatus::list_pickup_tools_errDesc,
+                'message' => $e->getMessage(),
+            ];
         }
-        return $result;
     }
+
+
+
+
 
     public function approve(Request $request)
     {
@@ -164,17 +178,27 @@ class PickupToolsEmployeeController extends Controller
             $this->pickupToolsEmployeeRepository->update($id, $data_save);
 
             if ($data_save['status_approved'] == 2) {
-                $pickup_tools = $this->pickupToolsRepository->find($id);
                 $pickup_tools_employees = $this->pickupToolsEmployeeRepository->find($id);
+                $pickup_tools = $this->pickupToolsRepository->find($pickup_tools_employees->pickup_tools_id);
                 $pickup_tools->decrement('number_requested', $pickup_tools_employees->number_requested);
+
+                $result = [
+                    'status' => ApiStatus::list_pickup_tools_success_status,
+                    'statusCode' => ApiStatus::list_pickup_tools_success_statusCode,
+                    'message' => 'Transaction approved successfully.'
+                ];
             }
+            if ($data_save['status_approved'] == 4) {
+                $pickup_tools_employees = $this->pickupToolsEmployeeRepository->find($id);
+                $pickup_tools = $this->pickupToolsRepository->find($pickup_tools_employees->pickup_tools_id);
+                $pickup_tools->increment('number_requested', $pickup_tools_employees->number_requested);
 
-            $result = [
-                'status' => ApiStatus::list_pickup_tools_success_status,
-                'statusCode' => ApiStatus::list_pickup_tools_success_statusCode,
-                'message' => 'Transaction approved successfully.'
-            ];
-
+                $result = [
+                    'status' => ApiStatus::list_pickup_tools_success_status,
+                    'statusCode' => ApiStatus::list_pickup_tools_success_statusCode,
+                    'message' => 'Transaction return successfully.'
+                ];
+            }
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::list_pickup_tools_failed_status;
             $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;

@@ -15,6 +15,7 @@ class PickupToolsEmployee extends Model
         'pickup_tools_id',
         'number_requested',
         'status_repair',
+        'type_device',
         'status_approved',
         'request_details',
         'created_at',

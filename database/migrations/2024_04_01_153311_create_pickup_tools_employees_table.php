@@ -22,8 +22,9 @@ return new class extends Migration
             $table->integer("department_id")->nullable();
             $table->integer("pickup_tools_id")->nullable();
             $table->integer("number_requested")->nullable();
-            $table->tinyInteger('status_repair')->comment('1=succeed 2=normal 3=repair')->default(2);
-            $table->tinyInteger('status_approved')->comment('0=pending 1=edit 2=approve 3=cancel 4=reject')->default(0);
+            $table->tinyInteger('status_repair')->comment('0=not 1=success 2=normal 3=repair')->default(0);
+            $table->tinyInteger('type_device')->comment('1=temporary 2=permanent 3=all')->default(1);
+            $table->tinyInteger('status_approved')->comment('0=pending 1=edit 2=approved 3=cancel 4=reject 5=success')->default(0);
             $table->string('request_details')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

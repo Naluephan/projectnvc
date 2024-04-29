@@ -8,5 +8,6 @@ use Illuminate\Support\Collection;
 interface PickupToolsDeviceTypeInterface extends BaseInterface
 {
     public function all() : Collection;
+    public function findById($id);
 
 }

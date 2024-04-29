@@ -11,6 +11,8 @@ class PickupToolsDeviceType extends Model
     protected $fillable = [
         'device_types_name',
         'unit',
-        'image'
+        'image',
+        'type_device',
+        'registration_number'
     ];
 }
