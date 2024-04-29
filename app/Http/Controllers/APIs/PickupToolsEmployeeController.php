@@ -135,7 +135,7 @@ class PickupToolsEmployeeController extends Controller
                     'request_details' => $data['request_details'],
                 ];
 
-                if ($deviceTypes->type_device == 2 && $deviceTypes->type_device == 3) {
+                if ($deviceTypes->type_device == 2 || $deviceTypes->type_device == 3) {
                     $save_data['status_repair'] = 2;
                 }
 
