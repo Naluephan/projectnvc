@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('categories_comment_id');
             $table->string('topic_comment_name');
             $table->string('comments_details');
-            $table->string('comments_status')->default(0)->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject');
+            $table->integer('comments_status')->default(0)->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject');
             $table->string('images')->nullable();       
             $table->timestamps();
         });

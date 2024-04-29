@@ -16,5 +16,11 @@ class Comment extends Model
         'comments_status',
         'images',
     ];
+    public function commentType()
+    {
+        return $this->belongsTo(CommentTopic::class, 'categories_comment_id', 'categories_comment_id');
+
+         
+    }
 
 }

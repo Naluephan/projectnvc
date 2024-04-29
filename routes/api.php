@@ -110,11 +110,8 @@ Route::group(
                 Route::post('salary/template/detail/create', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'create'])->name('salary.template.detail.create');
                 Route::post('salary/template/detail/get/by/id/template', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'getByTemplateId'])->name('salary.template.detail.get.by.id.template');
 
-
-
-
-                //API Check Token
-                Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
+                // //API Check Token
+                // Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
 
                 //API emp leave
                 Route::post('emp/leave/list', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'getAll'])->name('emp.leave.list');
@@ -284,6 +281,7 @@ Route::group(
                 Route::post('employee/leaveQuotas', [\App\Http\Controllers\APIs\EmployeeLeaveQuotasController::class, 'employeeLeaveQuotas'])->name('employee.leave.quotas');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
 
+
                 //API Reward Coin Employee
                 Route::post('employee/reward/coin/approve', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'approve'])->name('reward.coin.approve');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
@@ -292,6 +290,9 @@ Route::group(
                 Route::post('salary/request/slip/list', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'getAll'])->name('salary.request.slip.list');
                 Route::post('salary/request/slip/approve', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'approve'])->name('salary.request.slip.approve');
                 Route::post('salary/request/slip/create', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'salary_create_request_slip'])->name('salary.create.request.slip');
+
+                //API Check Token
+                Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
 
 
                 //API News
@@ -461,5 +462,8 @@ Route::group(
                 //comment
                 Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
                 Route::post('comment/get/topic/com', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getTopicCom'])->name('comment.get.topic.com');
+                Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
+                Route::post('comment/get/com/id', [\App\Http\Controllers\APIs\CommentController::class, 'getTopicCom'])->name('comment.get.com.id');
+
         }
 );

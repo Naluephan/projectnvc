@@ -127,17 +127,17 @@ class CommentTopicController extends Controller
                 ];
             } else {
                 if (count($getTopic) > 0) {
-                    foreach ($getTopic as $CategoriesCom) {
-                        $categories = [
-                            '1' => 'กิจกรรม',
-                            '2' => 'การทำงาน',
-                            '3' => 'ปัญหาที่พบในบริษัท',
-                            '4' => 'อุปกรณ์การใช้งาน',
-                            '5' => 'สวัสดิการ',
-                            '6' => 'อื่นๆ'
-                        ];
-                        $CategoriesCom->categories_comment_name = $categories[$CategoriesCom->categories_comment_id];
-                    };
+                    // foreach ($getTopic as $CategoriesCom) {
+                    //     $categories = [
+                    //         '1' => 'กิจกรรม',
+                    //         '2' => 'การทำงาน',
+                    //         '3' => 'ปัญหาที่พบในบริษัท',
+                    //         '4' => 'อุปกรณ์การใช้งาน',
+                    //         '5' => 'สวัสดิการ',
+                    //         '6' => 'อื่นๆ'
+                    //     ];
+                    //     $CategoriesCom->categories_comment_name = $categories[$CategoriesCom->categories_comment_id];
+                    // };
                     $result = [
                         'status' => 'Success',
                         'statusCode' => '00',

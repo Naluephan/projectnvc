@@ -12,4 +12,12 @@ class CommentTopic extends Model
         'categories_comment_id',
         'topic_comment_name',
     ];
+    public function categories()
+    {
+        return $this->belongsTo(CommentCategories::class, 'categories_comment_id', 'id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'categories_comment_id', 'categories_comment_id');
+    }
 }

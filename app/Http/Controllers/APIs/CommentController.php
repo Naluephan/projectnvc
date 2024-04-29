@@ -64,36 +64,36 @@ class CommentController extends Controller
         }
         return response()->json( [$result]);
     }
-    public function update(Request $request)
-    {
-        DB::beginTransaction();
-        $data = $request->all();
-        $id = $data['id'];
-        try {
-            $data = [
-                'comments_id' => $data['comments_id'],
-                'comments_details' => $data['comments_details'],
-            ];
-            if (isset($data) > 0) {
-                $this->commentRepository->update($id, $data);
-                $result = [
-                    'status' => 'Success',
-                    'statusCode' => '00'
-                ];
-            } else {
-                $result = [
-                    'status' => 'Failed to save data',
-                    'statusCode' => '01'
-                ];
-            };
-            DB::commit();
-        } catch (\Exception $ex) {
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
-            DB::rollBack();
-        }
-        return response()->json(["data" => $result]);
-    }
+    // public function update(Request $request)
+    // {
+    //     DB::beginTransaction();
+    //     $data = $request->all();
+    //     $id = $data['id'];
+    //     try {
+    //         $data = [
+    //             'comments_id' => $data['comments_id'],
+    //             'comments_details' => $data['comments_details'],
+    //         ];
+    //         if (isset($data) > 0) {
+    //             $this->commentRepository->update($id, $data);
+    //             $result = [
+    //                 'status' => 'Success',
+    //                 'statusCode' => '00'
+    //             ];
+    //         } else {
+    //             $result = [
+    //                 'status' => 'Failed to save data',
+    //                 'statusCode' => '01'
+    //             ];
+    //         };
+    //         DB::commit();
+    //     } catch (\Exception $ex) {
+    //         $result['status'] = "Failed";
+    //         $result['message'] = $ex->getMessage();
+    //         DB::rollBack();
+    //     }
+    //     return response()->json(["data" => $result]);
+    // }
     public function delete(Request $request)
     {
         DB::beginTransaction();
@@ -122,5 +122,51 @@ class CommentController extends Controller
         $contracts =  $this->commentRepository->find($id);
 
         return response()->json(["data" => $contracts]);
+    }
+    public function getTopicCom(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        try {
+            $whereCon = "emp_id = '" . $data['emp_id'] . "'";
+            $getTopic  = $this->commentRepository->selectCustomData(null, $whereCon);
+            if (empty($data['emp_id'])) {
+                $result = [
+                    'status' => 'Data empty.',
+                    'statusCode' => '03',
+                    'message' => 'Data empty. Check the information again.'
+                ];
+            } else {
+                if (count($getTopic) > 0) {
+                    // foreach ($getTopic as $CategoriesCom) {
+                    //     $categories = [
+                    //         '1' => 'กิจกรรม',
+                    //         '2' => 'การทำงาน',
+                    //         '3' => 'ปัญหาที่พบในบริษัท',
+                    //         '4' => 'อุปกรณ์การใช้งาน',
+                    //         '5' => 'สวัสดิการ',
+                    //         '6' => 'อื่นๆ'
+                    //     ];
+                    //     $CategoriesCom->categories_comment_name = $categories[$CategoriesCom->categories_comment_id];
+                    // };
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00',
+                        'topicsCom' => $getTopic,
+                    ];
+                } else {
+                    $result = [
+                        'status' => 'Not Exists',
+                        'statusCode' => '05',
+                    ];
+                }
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+
+        return response()->json( $result);
     }
 }

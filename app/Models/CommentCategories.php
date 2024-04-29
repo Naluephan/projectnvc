@@ -11,4 +11,8 @@ class CommentCategories extends Model
     protected $fillable = [
         'categories_comment_name',
     ];
+    public function categories()
+    {
+        return $this->hasMany(Comment::class, 'categories_comment_id', 'id');
+    }
 }
