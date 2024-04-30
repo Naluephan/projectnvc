@@ -115,9 +115,11 @@ use App\Repositories\ReserveFundInterface;
 use App\Repositories\Impl\PickupToolsEmployeeRepository;
 use App\Repositories\PickupToolsEmployeeInterface;
 use App\Repositories\Impl\OrganicsHeroMissionEmployeeRepository;
+use App\Repositories\Impl\SocialSecurityFileRepository;
 use App\Repositories\Impl\SocialSecurityTypeRepository;
 use App\Repositories\Impl\WithdrawReserveFundRepository;
 use App\Repositories\OrganicsHeroMissionEmployeeInterface;
+use App\Repositories\SocialSecurityFileInterface;
 use App\Repositories\SocialSecurityTypeInterface;
 use App\Repositories\WithdrawReserveFundInterface;
 
@@ -189,6 +191,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(SocialSecurityTypeInterface::class,SocialSecurityTypeRepository::class);
         $this->app->bind(WithdrawReserveFundInterface::class,WithdrawReserveFundRepository::class);
         $this->app->bind(ReportRepairCategoriesInterface::class,ReportRepairCategoriesRepository::class);
+        $this->app->bind(SocialSecurityFileInterface::class,SocialSecurityFileRepository::class);
 
 
 

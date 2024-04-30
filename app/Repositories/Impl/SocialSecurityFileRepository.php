@@ -5,49 +5,24 @@ namespace App\Repositories\Impl;
 
 
 use App\Models\SocialSecurity;
-use App\Repositories\SocialSecurityInterface;
+use App\Models\SocialSecurityInfo;
+use App\Repositories\SocialSecurityFileInterface;
 use Illuminate\Support\Collection;
 
-class SocialSecurityRepository extends MasterRepository implements SocialSecurityInterface
+class SocialSecurityFileRepository extends MasterRepository implements SocialSecurityFileInterface
 {
     protected $model;
 
-    public function __construct(SocialSecurity $model)
+    public function __construct(SocialSecurityInfo $model)
     {
         parent::__construct($model);
     }
 
     public function getSocialSecurity($params)
     {
-        $query = $this->model->query();
-
-        if (isset($params['emp_id'])) {
-            $query->where('emp_id', $params['emp_id']);
-        }
-
-        if (isset($params['company_id'])) {
-            $query->where('company_id', $params['company_id']);
-        }
-
-        if (isset($params['department_id'])) {
-            $query->where('department_id', $params['department_id']);
-        }
-        if (isset($params['position_id'])) {
-            $query->where('position_id', $params['position_id']);
-        }
-        $query->where('approve_status', 2)->with([
-            'company' => function ($query) {
-                $query->select('id', 'name_th', 'name_en');
-            },
-            'department' => function ($query) {
-                $query->select('id', 'name_th', 'name_en');
-            },
-            'position' => function ($query) {
-                $query->select('id', 'name_th');
-            },
-        ]);
-        $query->where('approve_status', 2)->with('socialsecurity.socialdetail.socialfile');
-       return $query->get();
+        return $this->model
+        
+        ->get();
     }
 
     public function findBy(array $criteria)

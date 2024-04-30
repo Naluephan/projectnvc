@@ -75,6 +75,7 @@ class SocialSecurityController extends Controller
             return $result;
         }
 
+
     public function update(Request $request)
     {
         $data = $request->all();

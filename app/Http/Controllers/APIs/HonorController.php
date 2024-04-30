@@ -22,6 +22,7 @@ class HonorController extends Controller
     {
         try {
         $data = $request->all();
+        $data['honor_category_id'] = 1;
         $getHonor = $this->honorRepository->getHonor($data);
         if (count($getHonor) > 0) {
             $result['status'] = ApiStatus::honor_success_status;
@@ -40,6 +41,30 @@ class HonorController extends Controller
     }
     return $result;
     }
+    public function getHonorSpecial(Request $request)
+    {
+        try {
+        $data = $request->all();
+        $data['honor_category_id'] = 2;
+        $getHonor = $this->honorRepository->getHonor($data);
+        if (count($getHonor) > 0) {
+            $result['status'] = ApiStatus::honor_success_status;
+            $result['statusCode'] = ApiStatus::honor_success_statusCode;
+            $result['data'] = $getHonor;
+        } else {
+            $result['status'] = ApiStatus::honor_failed_status;
+            $result['statusCode'] = ApiStatus::honor_failed_statusCode;
+            $result['errDesc'] = ApiStatus::honor_failed_Desc;
+        }
+    } catch (\Exception $e) {
+        $result['status'] = ApiStatus::honor_error_statusCode;
+        $result['errCode'] = ApiStatus::honor_error_status;
+        $result['errDesc'] = ApiStatus::honor_errDesc;
+        $result['message'] = $e->getMessage();
+    }
+    return $result;
+    }
+
 
     public function create(Request $request)
     {

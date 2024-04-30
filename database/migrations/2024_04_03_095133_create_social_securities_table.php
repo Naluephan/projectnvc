@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('company_id');
             $table->integer('position_id');
             $table->integer('department_id');
-            $table->string('approve_status')->comment('0=create/pending ,1=edit, 2=approve , 3=cancel , 4=reject')->default(0);
+            $table->string('approve_status')->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject, 5=success')->default(0);
             $table->string('record_status')->default(1);
             $table->timestamps();
         });

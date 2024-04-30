@@ -349,7 +349,8 @@ Route::group(
 
 
                 //honor
-                Route::post('honor/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.list');
+                Route::post('honor/standard/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.standard.list');
+                Route::post('honor/special/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonorSpecial'])->name('honor.special.list');
                 Route::post('honor/create', [\App\Http\Controllers\APIs\HonorController::class, 'create'])->name('honor.create');
                 Route::post('honor/update', [\App\Http\Controllers\APIs\HonorController::class, 'update'])->name('honor.update');
                 Route::post('honor/delete', [\App\Http\Controllers\APIs\HonorController::class, 'delete'])->name('honor.delete');
@@ -363,6 +364,7 @@ Route::group(
                 Route::post('social/security/type/update', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'update'])->name('social.security.type.update');
                 Route::post('social/security/type/by/id', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getById'])->name('social.security.type.by.id');
                 Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
+                Route::post('social/security/upload/file', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'createfile'])->name('social.security.upload.file');
                 Route::post('social/security/update', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'update'])->name('social.security.update');
                 Route::post('social/security/delete', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'delete'])->name('social.security.delete');
                 Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');

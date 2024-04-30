@@ -75,7 +75,7 @@ public function create(Request $request)
             return $result;
         }
         $building = $this->buildinglocationRepository->create($data);
-
+    
         foreach ($data['locations'] as $location_data) {
             $location_data['building_location_id'] = $building->id;
             $location_data['floor'] = $location_data['floor'];
