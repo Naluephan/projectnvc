@@ -13,6 +13,6 @@ class CommentCategories extends Model
     ];
     public function categories()
     {
-        return $this->hasMany(Comment::class, 'categories_comment_id', 'id');
+        return $this->hasMany(CommentTopic::class, 'categories_comment_id', 'id');
     }
 }

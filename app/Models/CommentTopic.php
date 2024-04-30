@@ -18,6 +18,6 @@ class CommentTopic extends Model
     }
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'categories_comment_id', 'categories_comment_id');
+        return $this->hasMany(Comment::class, 'comment_id', 'id');
     }
 }

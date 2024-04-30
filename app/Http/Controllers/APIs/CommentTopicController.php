@@ -62,7 +62,7 @@ class CommentTopicController extends Controller
         $data = $request->all();
         $id = $data['id'];
         try {
-            $whereCom = "topic_comment_name = '" . $data['topic_comment_name']."'";          
+            $whereCom = "categories_comment_id = '" . $data['categories_comment_id']."' AND " . "topic_comment_name = '" . $data['topic_comment_name']."'";          
             $existingTopics  = $this->commentTopicRepository->selectCustomData(null, $whereCom);
             if (count($existingTopics) > 0) {
                 $result = [
@@ -117,27 +117,18 @@ class CommentTopicController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         try {
-            $whereCon = "categories_comment_id = '" . $data['categories_comment_id'] . "'";
-            $getTopic  = $this->commentTopicRepository->selectCustomData(null, $whereCon);
-            if (empty($data['categories_comment_id'] || empty($data['topic_comment_name']))) {
+            if (empty($data['categories_comment_id'])) {
                 $result = [
                     'status' => 'Data empty.',
                     'statusCode' => '03',
                     'message' => 'Data empty. Check the information again.'
                 ];
             } else {
+                $whereCom = ['categories_comment_id' => $data['categories_comment_id']];
+                $withRelations = ['categories']; //Setting relation on CommentTopic Model in function categories
+    
+                $getTopic  = $this->commentTopicRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelations);
                 if (count($getTopic) > 0) {
-                    // foreach ($getTopic as $CategoriesCom) {
-                    //     $categories = [
-                    //         '1' => 'กิจกรรม',
-                    //         '2' => 'การทำงาน',
-                    //         '3' => 'ปัญหาที่พบในบริษัท',
-                    //         '4' => 'อุปกรณ์การใช้งาน',
-                    //         '5' => 'สวัสดิการ',
-                    //         '6' => 'อื่นๆ'
-                    //     ];
-                    //     $CategoriesCom->categories_comment_name = $categories[$CategoriesCom->categories_comment_id];
-                    // };
                     $result = [
                         'status' => 'Success',
                         'statusCode' => '00',

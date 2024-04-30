@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->integer('emp_id')->references('id')->on('employees');
-            $table->integer('categories_comment_id');
-            $table->string('topic_comment_name');
+            $table->integer('comment_id')->references('id')->on('comment_topics');
             $table->string('comments_details');
             $table->integer('comments_status')->default(0)->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject');
             $table->string('images')->nullable();       

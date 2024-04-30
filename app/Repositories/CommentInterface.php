@@ -8,5 +8,6 @@ use Illuminate\Support\Collection;
 interface CommentInterface extends BaseInterface
 {
     public function getAll();
+    // public function getComId();
 }
 

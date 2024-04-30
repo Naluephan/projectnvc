@@ -18,8 +18,12 @@ class CommentRepository extends MasterRepository implements CommentInterface
     {
         return $this->model->get();
     }
-    // public function getAll()
+    
+    // public function getComId()
     // {
-    //     return $this->model->with(['commentType'])->get();
+    //     return $this->model
+    //     ->with(['commentType'])
+    //     ->orderBy('categories_comment_id', 'asc')
+    //     ->get();
     // }
 }

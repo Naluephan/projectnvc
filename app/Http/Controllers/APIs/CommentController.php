@@ -25,23 +25,23 @@ class CommentController extends Controller
         try {
             $data = [
                 'emp_id' => $data['emp_id'],
-                'categories_comment_id' => $data['categories_comment_id'],
-                'topic_comment_name' => $data['topic_comment_name'],
+                'comment_id' => $data['comment_id'],
                 'comments_details' => $data['comments_details'],
-                'images' => $data['images'],
+                // 'comments_status' => $data['comments_status'],
+                // 'images' => $data['images'],
             ];
-            $whereCom = "topic_comment_name = '" . $data['topic_comment_name'] . "'";
+            $whereCom = "comment_id = '" . $data['comment_id'] . "'";
             $existingTopics  = $this->commentRepository->selectCustomData(null, $whereCom);
 
             if (isset($data) > 0) {
-                if (empty($data['emp_id']) || empty($data['categories_comment_id']) || empty($data['topic_comment_name'])) {
+                if (empty($data['emp_id']) || empty($data['comment_id']) || empty($data['comments_details'])) {
                     $result = [
                         'status' => 'Failed',
                         'statusCode' => '03',
                         'message' => 'Data empty. Check the information again.'
                     ];
                 } else {
-                    if  ($request->File('images'))  {
+                    if ($request->hasFile('images')) {
                         $data['images'] = save_image($request->file('images'), 500, '/images/setting/comment/');
                     };
                     $this->commentRepository->create($data);
@@ -62,7 +62,7 @@ class CommentController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return response()->json( [$result]);
+        return response()->json([$result]);
     }
     // public function update(Request $request)
     // {
@@ -123,13 +123,13 @@ class CommentController extends Controller
 
         return response()->json(["data" => $contracts]);
     }
-    public function getTopicCom(Request $request)
+    public function getComId(Request $request)
     {
-        DB::beginTransaction();
         $data = $request->all();
         try {
-            $whereCon = "emp_id = '" . $data['emp_id'] . "'";
-            $getTopic  = $this->commentRepository->selectCustomData(null, $whereCon);
+            $whereCom = ['emp_id' => $data['emp_id']];
+            $withRelationsCom = ['commentId.categories'];
+            $getTopic  = $this->commentRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelationsCom);
             if (empty($data['emp_id'])) {
                 $result = [
                     'status' => 'Data empty.',
@@ -138,21 +138,17 @@ class CommentController extends Controller
                 ];
             } else {
                 if (count($getTopic) > 0) {
-                    // foreach ($getTopic as $CategoriesCom) {
-                    //     $categories = [
-                    //         '1' => 'กิจกรรม',
-                    //         '2' => 'การทำงาน',
-                    //         '3' => 'ปัญหาที่พบในบริษัท',
-                    //         '4' => 'อุปกรณ์การใช้งาน',
-                    //         '5' => 'สวัสดิการ',
-                    //         '6' => 'อื่นๆ'
-                    //     ];
-                    //     $CategoriesCom->categories_comment_name = $categories[$CategoriesCom->categories_comment_id];
-                    // };
+                    foreach ($getTopic as $comImage) {
+
+                        // $comImage->categories_comment_name = $comImage->commentId->categories->categories_comment_name;
+
+                        $comImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/comment/' . $comImage['images'];
+                    };
                     $result = [
                         'status' => 'Success',
                         'statusCode' => '00',
                         'topicsCom' => $getTopic,
+                        // 'topicCom' => $contracts,
                     ];
                 } else {
                     $result = [
@@ -164,9 +160,8 @@ class CommentController extends Controller
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
-            DB::rollBack();
         }
 
-        return response()->json( $result);
+        return response()->json($result);
     }
 }

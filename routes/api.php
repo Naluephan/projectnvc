@@ -465,7 +465,7 @@ Route::group(
                 Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
                 Route::post('comment/get/topic/com', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getTopicCom'])->name('comment.get.topic.com');
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
-                Route::post('comment/get/com/id', [\App\Http\Controllers\APIs\CommentController::class, 'getTopicCom'])->name('comment.get.com.id');
+                Route::post('comment/get/com/id', [\App\Http\Controllers\APIs\CommentController::class, 'getComId'])->name('comment.get.com.id');
 
         }
 );

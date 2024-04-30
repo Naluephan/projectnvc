@@ -145,8 +145,9 @@ class ContractsController extends Controller
         DB::beginTransaction();
         $data = $request->all();
         try {
-            $whereCon = "emp_id = '" . $data['emp_id'] . "'";
-            $getConId  = $this->contractsRepository->selectCustomData(null, $whereCon, null, ['contract_category_id' => 'asc']);
+            $whereCom = "emp_id = '" . $data['emp_id'] . "'";
+            $orderByCom = ['contract_category_id' => 'asc'];
+            $getConId  = $this->contractsRepository->selectCustomData(null, $whereCom, null, $orderByCom);
             if (empty($data['emp_id'])) {
                 $result = [
                     'status' => 'Data empty.',
