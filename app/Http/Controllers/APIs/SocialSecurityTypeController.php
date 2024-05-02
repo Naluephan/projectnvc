@@ -28,9 +28,7 @@ class SocialSecurityTypeController extends Controller
 
     public function createfile(Request $request)
     {
-        DB::beginTransaction();
         $data = $request->all();
-        $result=[];
         try {
         //     $check_dup = [
         //         'name' => $data['name'],
@@ -56,18 +54,16 @@ class SocialSecurityTypeController extends Controller
             'doc_name' => $original_doc_file_name,
             'doc_file' => $doc_file
         ];
-    
-           
-        
             $this->socialsecurityfileRepository->create($save_data);
-            $result['status'] = "Success";
-            DB::commit();
-        } catch (\Exception $ex){
-            $result['status'] = "Failed";
-            $result['message'] = $ex->getMessage();
-            DB::rollBack();
-        }
-        return json_encode($result);
+            $result['status'] = ApiStatus::social_security_success_status;
+                $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+            } catch (\Exception $e) {
+                $result['status'] = ApiStatus::social_security_error_statusCode;
+                $result['errCode'] = ApiStatus::social_security_error_status;
+                $result['errDesc'] = ApiStatus::social_security_errDesc;
+                $result['message'] = $e->getMessage();
+            }
+            return $result;
     }
 
     public function update(Request $request)

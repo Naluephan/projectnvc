@@ -126,6 +126,9 @@
                                                             style="color:#e6896a; margin-right:10px"></i>ชื่อห้อง/สถานที่</label>
                                                     <input type="text" class="form-control" id="place_name"
                                                         name="place_name" required>
+                                                        <button class="btn rounded-pill btn-remove-location" type="button"
+                                            style="position: absolute;right: -15px;top: 5px;"><em
+                                                class="fas fa-times-circle text-hr-orange text-lg"></em></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -281,7 +284,7 @@
                         showConfirmButton: false,
                         timer: 1000
                     });
-                    return; 
+                    return;
                 }
 
                 if (roomCount < total_rooms) {
@@ -553,7 +556,9 @@
                     var currentRooms = $('.list-building').length;
                     if (totalRooms < currentRooms) {
                         var diff = currentRooms - totalRooms;
-                        $('.list-building').slice(-diff).removeLocation(item);
+                        $('.list-building').slice(-diff).each(function() {
+                            removeLocation($(this));
+                        });
                     }
                 });
 
@@ -608,7 +613,7 @@
                 let btn = $(event.relatedTarget);
                 let title = btn.data('ac') === 'edit' ? "แก้ไขข้อมูล" : "เพิ่มข้อมูล";
                 console.log(btn.data('ac'))
-                let obj = $(this); 
+                let obj = $(this);
                 obj.find('.modal-title').text(title)
             })
             buildinglocation_modal.on('hide.bs.modal', function() {
@@ -643,7 +648,8 @@
                             type: 'post',
                             url: "{{ route('api.v1.building.location.delete') }}",
                             data: {
-                                'id': id
+                                'id': id,
+                                'record_status': 0
                             },
                             dataType: "json",
                             success: function(response) {

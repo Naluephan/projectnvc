@@ -92,7 +92,7 @@ public function create(Request $request)
     return $result;
 }
        
-    public function update(Request $request)
+    public function updateLocation(Request $request)
     {
         DB::beginTransaction();
         $result = [];
@@ -112,8 +112,8 @@ public function create(Request $request)
             foreach ($data['locations'] as $locationdata) {
                 if ($locationdata['location_id'] == null) {
                     $locationdata['building_location_id'] = $building->id;
-                    $locationdata['floor'] = $locationdata['floor'];
-                    $locationdata['place_name'] = $locationdata['place_name'];
+                    $locationdata['floor'] = $data['floor'];
+                    $locationdata['place_name'] = $data['place_name'];
                     $this->locationRepository->create($locationdata);
                 } else {
                     $location = $this->locationRepository->update($locationdata['location_id'], $locationdata);
@@ -147,6 +147,23 @@ public function create(Request $request)
         }
         return json_encode($result);
     }
+    public function update(Request $request)
+    {
+        DB::beginTransaction();
+        $data = $request->all();
+        $id = $data['id'];
+        $result['status'] = "Success";
+        try {
+            $this->buildinglocationRepository->update($id, $data);
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "Failed";
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return json_encode($result);
+    }
+
 
     public function getById(Request $request)
     {

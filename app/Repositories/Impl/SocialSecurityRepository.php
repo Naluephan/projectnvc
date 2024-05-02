@@ -99,7 +99,7 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
     public function getSocialSecurityById($id)
     {
         return $this->model->where('emp_id', $id)
-        ->with('emp')
+        ->with('socialsecurity.socialdetail.socialfile')
         ->get();
     }
 }

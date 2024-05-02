@@ -38,16 +38,6 @@ class SocialSecurityTypeSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => 'เงินสนับสนุนคลอดบุตร',
-                'detail' => 'ค่าคลอดครั้งละ 15,000 บาท ไม่จำกัดจำนวนครั้ง',
-                'company_id' => 1,
-                'position_id' => 38,
-                'department_id'=>35,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ],
-            [
-                'id' => 4,
                 'name' => 'ว่างงาน',
                 'detail' => 'เงินทดแทน 30% ของค่าจ้างครั้งละไม่เกิน 90 วัน',
                 'company_id' => 1,
@@ -57,7 +47,7 @@ class SocialSecurityTypeSeeder extends Seeder
                 'updated_at' => NULL,
             ],
             [
-                'id' => 5,
+                'id' => 4,
                 'name' => 'เจ็บป่วยฉุกเฉิน/อุบัติเหตุ',
                 'detail' => 'ค่ารักษาพยาบาลจะจ่ายให้เท่าที่จ่ายจริงไม่เกิน ครั้งละ 1,000 บาท และจ่ายเพิ่มตามรายการการรักษาที่กําหนด',
                 'company_id' => 1,
@@ -67,7 +57,7 @@ class SocialSecurityTypeSeeder extends Seeder
                 'updated_at' => NULL,
             ],
             [
-                'id' => 6,
+                'id' => 5,
                 'name' => 'ทันตกรรม',
                 'detail' => 'รักษาฟันฟรี ปีละ 900 บาท',
                 'company_id' => 1,
