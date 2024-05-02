@@ -16,6 +16,8 @@ class ReportRepairRepository extends MasterRepository implements ReportRepairInt
     }
     public function getAll()
     {
-        return $this->model->get();
+        return $this->model->with('categoriesId')
+        // ->orderBy('categories_id', 'asc')
+        ->get();
     }
 }

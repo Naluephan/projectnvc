@@ -11,4 +11,8 @@ class ReportRepairCategories extends Model
     protected $fillable = [
         'categories_name',
     ];
+    public function categoryName()
+    {
+        return $this->hasMany(ReportRepair::class, 'categories_id', 'id');
+    }
 }

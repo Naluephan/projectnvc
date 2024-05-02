@@ -55,5 +55,9 @@ class Employee extends Model
     {
         return $this->hasMany(Comment::class, 'emp_id', 'id');
     }
+    public function reportRepair()
+    {
+        return $this->hasMany(ReportRepair::class, 'emp_id', 'id');
+    }
     
 }

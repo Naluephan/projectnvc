@@ -164,6 +164,14 @@ Route::group(
                 Route::post('reward/get/by/id', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getById'])->name('reward.get.by.id');
                 Route::post('reward/delete', [\App\Http\Controllers\APIs\RewardCoinController::class, 'delete'])->name('reward.delete');
 
+                //report repair
+                Route::post('report/repair/categories/create', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'create'])->name('report.repair.categories.create');
+                Route::post('report/repair/categories/update', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'update'])->name('report.repair.categories.update');
+                Route::post('report/repair/categories/delete', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'delete'])->name('report.repair.categories.delete');
+                Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getAll'])->name('report.repair.categories.getAll');
+                Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getById'])->name('report.repair.categories.get.by.id');
+
+
                 //api security setting
                 Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
                 Route::post('security/create', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'create'])->name('security.create');
@@ -448,24 +456,18 @@ Route::group(
                 Route::post('contracts/change/notify', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'notify'])->name('contracts.change.notify');
                 Route::post('contracts/change/get/emp/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getEmpId'])->name('contracts.change.get.emp.id');
 
-                //report repair
-                Route::post('report/repair/categories/create', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'create'])->name('report.repair.categories.create');
-                Route::post('report/repair/categories/update', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'update'])->name('report.repair.categories.update');
-                Route::post('report/repair/categories/delete', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'delete'])->name('report.repair.categories.delete');
+                //////////// Report Repair ////////////
                 Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getAll'])->name('report.repair.categories.getAll');
-                Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getById'])->name('report.repair.categories.get.by.id');
-
                 Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
                 Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
                 Route::post('report/repair/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.delete');
                 Route::post('report/repair/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.getAll');
-                Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
+                Route::post('report/repair/get/emp/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getReportRepairId'])->name('report.repair.get.emp.id');
 
-                //comment
+                //////////// comment ////////////
                 Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
                 Route::post('comment/get/topic/com', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getTopicCom'])->name('comment.get.topic.com');
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
                 Route::post('comment/get/com/id', [\App\Http\Controllers\APIs\CommentController::class, 'getComId'])->name('comment.get.com.id');
-
         }
 );

@@ -9,11 +9,19 @@ class ReportRepair extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'repair_id',
-        'repair_type',
-        'repair_equipment',
+        'categories_id',
+        'emp_id',
+        'equipment_name',
         'repair_detail',
         'images',
-        'status',
+        'report_status',
     ];
+    public function repairEmpId()
+    {
+        return $this->belongsTo(Employee::class, 'emp_id', 'id');
+    }
+    public function categoriesId()
+    {
+        return $this->belongsTo(ReportRepairCategories::class, 'categories_id', 'id');
+    }
 }
