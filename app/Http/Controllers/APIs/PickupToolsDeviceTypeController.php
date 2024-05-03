@@ -22,6 +22,8 @@ class PickupToolsDeviceTypeController extends Controller
             $save_data = [
                 'device_types_name' => $data['device_types_name'],
                 'unit' => $data['unit'],
+                'type_device' => $data['type_device'],
+                'registration_number' => $data['registration_number']
             ];
             if ($request->file('image')) {
                 $save_data['image'] = save_image($request->file('image'), 500, '/images/setting/pickuptools/');
