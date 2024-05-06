@@ -46,12 +46,12 @@ class SavingMoneyController extends Controller
         $postData = $request->all();
         $now = Carbon::now();
         try {
-            $amount = $this->savingMoneypository->findAmountByEmpId($postData['user_id']);
+            $amount = $this->savingMoneypository->findAmountByEmpId($postData['emp_id']);
 
             $total = $amount ? $amount->total_amount : 0;
 
             $data = [
-                'emp_id' => $postData['user_id'],
+                'emp_id' => $postData['emp_id'],
                 'save_status' => 1,
                 'amount' => $postData['amount'],
                 'month' => $now->month,
@@ -78,12 +78,12 @@ class SavingMoneyController extends Controller
         $postData = $request->all();
         $now = Carbon::now();
         try {
-            $amount = $this->savingMoneypository->findAmountByEmpId($postData['user_id']);
+            $amount = $this->savingMoneypository->findAmountByEmpId($postData['emp_id']);
 
             $total = $amount ? $amount->total_amount : 0;
             if ($postData['amount'] < $total) {
                 $data = [
-                    'emp_id' => $postData['user_id'],
+                    'emp_id' => $postData['emp_id'],
                     'save_status' => 2,
                     'amount' => $postData['amount'],
                     'month' => $now->month,

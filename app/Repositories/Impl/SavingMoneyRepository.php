@@ -21,9 +21,14 @@ class SavingMoneyRepository extends MasterRepository implements SavingMoneyInter
     {
         return $this->model
             ->where('emp_id', '=', $params['emp_id'])
-            // ->where(function ($q) use ($params) {
-                
-            // })
+            ->where(function ($q) use ($params) {
+                if(isset($param['save_status'])) {
+                    $q->where('save_status', "=", $param['save_status']);
+                }
+                if(isset($param['approve_status'])) {
+                    $q->where('approve_status', "=", $param['approve_status']);
+                }
+            })
             ->get();
     }
 
