@@ -128,7 +128,7 @@ class CommentController extends Controller
         $data = $request->all();
         try {
             $whereCom = ['emp_id' => $data['emp_id']];
-            $withRelationsCom = ['commentId.categories'];
+            $withRelationsCom = ['commentId.categoriesCommentId'];
             $getTopic  = $this->commentRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelationsCom);
             if (empty($data['emp_id'])) {
                 $result = [
@@ -141,8 +141,13 @@ class CommentController extends Controller
                     foreach ($getTopic as $comImage) {
 
                         // $comImage->categories_comment_name = $comImage->commentId->categories->categories_comment_name;
-
-                        $comImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/comment/' . $comImage['images'];
+                        if ($comImage['images'] > 0) {
+                            $comImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/comment/' . $comImage['images'];
+                        } else {
+                            $result = [
+                                'status' => 'null',
+                            ];
+                        }
                     };
                     $result = [
                         'status' => 'Success',

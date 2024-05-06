@@ -19,11 +19,11 @@ class CommentTopicRepository extends MasterRepository implements CommentTopicInt
     {
         return $this->model->get();
     }
-    public function getCategoriesName()
-    {
-        return $this->model->with('categories')
-        // ->where('id','asc')
-        ->orderBy('categories_comment_id', 'asc')
-        ->get();
-    }
+    // public function getCategoriesName()
+    // {
+    //     return $this->model->with('CommentCategories')
+    //     // ->where('id','asc')
+    //     ->orderBy('categories_comment_id', 'asc')
+    //     ->get();
+    // }
 }

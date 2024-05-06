@@ -12,7 +12,7 @@ class CommentTopic extends Model
         'categories_comment_id',
         'topic_comment_name',
     ];
-    public function categories()
+    public function categoriesCommentId()
     {
         return $this->belongsTo(CommentCategories::class, 'categories_comment_id', 'id');
     }

@@ -125,7 +125,7 @@ class CommentTopicController extends Controller
                 ];
             } else {
                 $whereCom = ['categories_comment_id' => $data['categories_comment_id']];
-                $withRelations = ['categories']; //Setting relation on CommentTopic Model in function categories
+                $withRelations = ['categoriesCommentId']; //Setting relation on CommentTopic Model in function categories
     
                 $getTopic  = $this->commentTopicRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelations);
                 if (count($getTopic) > 0) {
