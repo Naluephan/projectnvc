@@ -72,7 +72,9 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
                 'pte.updated_at',
                 'pte.approve_at',
                 'pte.cancel_at',
-                'pte.reject_at'
+                'pte.reject_at',
+                'ptt.registration_number',
+                'pte.status_repair',
             )
             ->where('pte.emp_id', '=', $empId)
             ->whereIn('pte.type_device', [1, 3])
@@ -102,10 +104,19 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
                 'pte.emp_id',
                 'pte.pickup_tools_id',
                 'ptt.device_types_name',
+                'ptt.unit',
                 'ptt.image',
+                'pte.request_details',
+                'pt.number_requested AS number_requested_limit',
+                'pte.number_requested',
+                'pte.status_approved',
+                'pte.created_at',
+                'pte.updated_at',
+                'pte.approve_at',
+                'pte.cancel_at',
+                'pte.reject_at',
                 'ptt.registration_number',
                 'pte.status_repair',
-                'pte.created_at',
             )
             ->where('pte.emp_id', '=', $empId)
             ->where('pte.status_approved', 2)
@@ -132,11 +143,19 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
                 'pte.emp_id',
                 'pte.pickup_tools_id',
                 'ptt.device_types_name',
+                'ptt.unit',
                 'ptt.image',
-                'ptt.registration_number',
-                'pte.status_repair',
+                'pte.request_details',
+                'pt.number_requested AS number_requested_limit',
+                'pte.number_requested',
                 'pte.status_approved',
                 'pte.created_at',
+                'pte.updated_at',
+                'pte.approve_at',
+                'pte.cancel_at',
+                'pte.reject_at',
+                'ptt.registration_number',
+                'pte.status_repair',
             )
             ->where('pte.emp_id', '=', $empId)
             ->whereIn('pte.type_device', [2, 3])
