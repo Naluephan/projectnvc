@@ -207,4 +207,31 @@ class PickupToolsEmployeeController extends Controller
         }
         return $result;
     }
+
+
+    public function pickupToolsType(Request $request)
+    {
+        try {
+            $querys = $this->pickupToolsDeviceTypeRepository->all($request);
+            foreach ($querys as $query) {
+                $query->image = "https://newhr.organicscosme.com/uploads/images/setting/pickuptools/" . $query->image;
+            }
+            if (count($querys) > 0) {
+                $result['status'] = ApiStatus::list_pickup_tools_success_status;
+                $result['statusCode'] = ApiStatus::list_pickup_tools_success_statusCode;
+                $result['data'] = $querys;
+            } else {
+                $result['status'] = ApiStatus::list_pickup_tools_failed_status;
+                $result['errCode'] = ApiStatus::list_pickup_tools_failed_statusCode;
+                $result['errDesc'] = ApiStatus::list_pickup_tools_failed_Desc;
+                $result['message'] = $querys;
+            }
+        } catch (\Exception $ex) {
+            $result['status'] = ApiStatus::list_pickup_tools_error_statusCode;
+            $result['errCode'] = ApiStatus::list_pickup_tools_error_status;
+            $result['errDesc'] = ApiStatus::list_pickup_tools_errDesc;
+            $result['message'] = $ex->getMessage();
+        }
+        return $result;
+    }
 }

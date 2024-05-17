@@ -225,7 +225,7 @@ Route::group(
                 Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
                 Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
                 Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
-                //contracts 
+                //contracts
                 Route::post('contracts/create', [\App\Http\Controllers\APIs\ContractsController::class, 'create'])->name('contracts.create');
                 Route::post('contracts/update', [\App\Http\Controllers\APIs\ContractsController::class, 'update'])->name('contracts.update');
                 Route::post('contracts/delete', [\App\Http\Controllers\APIs\ContractsController::class, 'delete'])->name('contracts.delete');
@@ -411,6 +411,7 @@ Route::group(
                 Route::post('pickup/tools/withdraw/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
                 Route::post('pickup/tools/maintain/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'myPickupToolsList'])->name('pickup.tools.maintain.list.employee');
                 Route::post('pickup/tools/maintain/history/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'historyPickupToolsList'])->name('pickup.tools.history.list.employee');
+                Route::post('pickup/tools/type', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsType'])->name('pickup.tools.type');
 
                 //API Reward Coin
                 Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'reward_list'])->name('reward.list');
@@ -448,7 +449,7 @@ Route::group(
                 //////////// contracts categories ////////////
                 Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
                 Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
-                //contracts 
+                //contracts
                 Route::post('contracts/getAll', [\App\Http\Controllers\APIs\ContractsController::class, 'getAll'])->name('contracts.getAll');
                 Route::post('contracts/get/emp/id/con', [\App\Http\Controllers\APIs\ContractsController::class, 'getEmpIdCon'])->name('contracts.get.emp.id.con');
                 //contracts change

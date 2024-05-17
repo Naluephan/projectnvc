@@ -19,8 +19,10 @@ class PickupToolsDeviceTypeRepository extends BaseRepository implements PickupTo
     public function all(): Collection
     {
         return $this->model
+            ->orderBy('id', 'asc')
             ->get();
     }
+
 
     public function findById($id)
     {
@@ -29,5 +31,4 @@ class PickupToolsDeviceTypeRepository extends BaseRepository implements PickupTo
             ->where('id', '=', $id)->first();
         return $lead;
     }
-
 }
