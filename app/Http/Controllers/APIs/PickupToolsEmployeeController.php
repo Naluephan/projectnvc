@@ -149,7 +149,7 @@ class PickupToolsEmployeeController extends Controller
                 return [
                     'status' => ApiStatus::list_pickup_tools_failed_status,
                     'errCode' => ApiStatus::list_pickup_tools_failed_statusCode,
-                    'message' => 'Save failed due to invalid pickup tools or request details.',
+                    'message' => 'Error withdrawn is not . Please see number withdrawn.',
                 ];
             }
         } catch (\Exception $e) {
