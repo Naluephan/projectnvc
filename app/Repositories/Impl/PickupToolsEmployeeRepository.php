@@ -164,4 +164,13 @@ class PickupToolsEmployeeRepository extends MasterRepository implements PickupTo
 
         return $listPickup_tools;
     }
+
+    public function findExistingRequest($empId, $pickupToolsId)
+    {
+        return $this->model
+            ->where('emp_id', $empId)
+            ->where('pickup_tools_id', $pickupToolsId)
+            ->where('status_approved', 0)
+            ->first();
+    }
 }

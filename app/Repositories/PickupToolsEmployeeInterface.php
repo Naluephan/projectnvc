@@ -12,4 +12,5 @@ interface PickupToolsEmployeeInterface extends BaseInterface
     public function myPickupToolsList($params);
     public function allMyPickupToolsList($params);
     public function option($params);
+    public function findExistingRequest($empId, $pickupToolsId);
 }

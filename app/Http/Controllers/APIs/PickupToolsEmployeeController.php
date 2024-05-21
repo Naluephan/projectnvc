@@ -123,6 +123,18 @@ class PickupToolsEmployeeController extends Controller
 
             $pickup_tools = $this->pickupToolsRepository->find($data['pickup_tools_id']);
 
+
+            // Use the custom method to check for an existing request
+            $existingRequest = $this->pickupToolsEmployeeRepository->findExistingRequest($data['emp_id'], $data['pickup_tools_id']);
+
+            if ($existingRequest) {
+                return [
+                    'status' => ApiStatus::list_pickup_tools_failed_status,
+                    'errCode' => ApiStatus::list_pickup_tools_failed_statusCode,
+                    'message' => 'Already requested withdrawal Please wait for action.',
+                ];
+            }
+
             if ($data['number_requested'] <= $pickup_tools->number_requested) {
                 $save_data = [
                     'emp_id' => $data['emp_id'],
@@ -161,10 +173,6 @@ class PickupToolsEmployeeController extends Controller
             ];
         }
     }
-
-
-
-
 
     public function approve(Request $request)
     {
