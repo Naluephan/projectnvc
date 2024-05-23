@@ -121,28 +121,71 @@ class ReserveFundController extends Controller
         }
         return $result;
     }
-    public function  createWithdraw(Request $request)
+    // public function  createWithdraw(Request $request)
+    // {
+    //     $postData = $request->all();
+    //     try {
+    //         $reserve = ReserveFund::find($postData['reserse_fund_id']);
+    //         $amount = $this->withdrawreservefundRepository->findAmountByEmpId($postData['emp_id']);
+    //         $total = $amount ? $amount->accumulate_balance : 0;
+    //         $withdraw_balance = $reserve['accumulate_balance'] - $total;
+    //             $data = [
+    //                 'emp_id' =>$postData['emp_id'],
+    //                 'reserse_fund_id' => $postData['reserse_fund_id'],
+    //                 'reserse_fund_detail' => $postData['reserse_fund_detail'],
+    //                 'withdraw_balance' => $withdraw_balance,
+                    
+    //             ];
+    //             $this->withdrawreservefundRepository->create($data);
+    //             $reserve->accumulate_balance -= $withdraw_balance;
+    //             $reserve->save();
+    //             $result['status'] = ApiStatus::reverse_fund_success_status;
+    //             $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
+            
+    //     } catch (\Exception $e) {
+    //         $result['status'] = ApiStatus::reverse_fund_error_status;
+    //         $result['errCode'] = ApiStatus::reverse_fund_error_statusCode;
+    //         $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
+    //         $result['message'] = $e->getMessage();
+    //     }
+    //     return $result;
+    // }
+    public function createWithdraw(Request $request)
     {
         $postData = $request->all();
         try {
+            // Find the reserve fund by its ID
             $reserve = ReserveFund::find($postData['reserse_fund_id']);
-            $amount = $this->withdrawreservefundRepository->findAmountByEmpId($postData['user_id']);
-            $total = $amount ? $amount->accumulate_balance : 0;
-            $withdraw_balance = $reserve['accumulate_balance'] - $total;
-                $data = [
-                    'emp_id' =>$postData['user_id'],
-                    'reserse_fund_id' => $postData['reserse_fund_id'],
-                    'reserse_fund_detail' => $postData['reserse_fund_detail'],
-                    'withdraw_balance' => $withdraw_balance,
-                    
-                ];
-                $this->withdrawreservefundRepository->create($data);
-                $reserve->accumulate_balance -= $withdraw_balance;
-                $reserve->save();
-                $result['status'] = ApiStatus::reverse_fund_success_status;
-                $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
             
+            // Check if the reserve fund is found
+            if (!$reserve) {
+                throw new \Exception("Reserve Fund not found");
+            }
+    
+            // Get the accumulate balance from the ReserveFund model
+            $accumulate_balance = $reserve->accumulate_balance;
+    
+            // Prepare data for creation with the entire accumulate balance as withdraw balance
+            $data = [
+                'emp_id' => $postData['emp_id'],
+                'reserse_fund_id' => $postData['reserse_fund_id'],
+                'reserse_fund_detail' => $postData['reserse_fund_detail'],
+                'withdraw_balance' => $accumulate_balance,
+            ];
+    
+            // Create the withdraw reserve fund record
+            $this->withdrawreservefundRepository->create($data);
+    
+            // Reset the accumulate balance in the reserve fund to 0
+            $reserve->accumulate_balance = 0;
+            $reserve->save();
+    
+            // Set success result
+            $result['status'] = ApiStatus::reverse_fund_success_status;
+            $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
+    
         } catch (\Exception $e) {
+            // Handle exceptions and set error result
             $result['status'] = ApiStatus::reverse_fund_error_status;
             $result['errCode'] = ApiStatus::reverse_fund_error_statusCode;
             $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
