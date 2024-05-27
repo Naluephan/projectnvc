@@ -89,8 +89,8 @@ class SavingMoneyController extends Controller
                     'month' => $now->month,
                     'year' => $now->year,
                     'save_date' => $now,
-                    'approve_status' => 1,
-                    'save_channel' => $postData['save_channel'],
+                    'approve_status' => 0,
+                    'save_channel' => 1,
                     'total_amount' => $total - $postData['amount'],
 
                 ];
