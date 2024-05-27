@@ -129,8 +129,8 @@ class PickupToolsEmployeeController extends Controller
 
             if ($existingRequest) {
                 return [
-                    'status' => ApiStatus::list_pickup_tools_failed_status,
-                    'errCode' => ApiStatus::list_pickup_tools_failed_statusCode,
+                    'status' => ApiStatus::list_pickup_tools_success_status,
+                    'statusCode' => ApiStatus::list_pickup_tools_success_statusCode,
                     'message' => 'Already requested withdrawal Please wait for action.',
                 ];
             }
