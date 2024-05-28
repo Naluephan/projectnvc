@@ -34,8 +34,11 @@ class SavingMoneyRepository extends MasterRepository implements SavingMoneyInter
                 if(isset($params['year']) &&  $params['year'] > 0) {
                     $q->where('year', "=", $params['year']);
                 }
+                // if (isset($params['from_date']) && isset($params['to_date'])) {
+                //     $q->whereBetween('save_date', [$params['from_date'] . " 00:00:00", $params['to_date'] . " 23:59:59"]);
+                // }
                 if (isset($params['from_date']) && isset($params['to_date'])) {
-                    $q->whereBetween('save_date', [$params['from_date'] . " 00:00:00", $params['to_date'] . " 23:59:59"]);
+                    $q->whereRaw("DATE_FORMAT(save_date, '%Y-%m') BETWEEN '{$params['from_date']}' AND '{$params['to_date']}'");
                 }
                 
             })
