@@ -23,6 +23,7 @@ class SocialSecurityTypeRepository extends MasterRepository implements SocialSec
         return $this->model
             ->where('record_status', 1)
             // ->where('emp_id', $params['emp_id'])
+            // ->select('name')
             ->with('socialdetail')
             ->get();
     }

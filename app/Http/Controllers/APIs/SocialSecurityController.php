@@ -6,6 +6,7 @@ use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\SocialSecurity;
+use App\Models\SocialSecurityFile;
 use App\Models\SocialSecurityType;
 use Illuminate\Http\Request;
 use App\Repositories\SocialSecurityInterface;
@@ -21,30 +22,30 @@ class SocialSecurityController extends Controller
     public function __construct(SocialSecurityInterface $socialsecurityRepository, SocialSecurityFileInterface $socialsecurityfileRepository)
     {
         $this->socialsecurityRepository = $socialsecurityRepository;
-        $this->socialsecurityfileRepository =$socialsecurityfileRepository;
+        $this->socialsecurityfileRepository = $socialsecurityfileRepository;
     }
 
     public function getSocialSecurity(Request $request)
     {
         try {
-        $data = $request->all();
-        $getsocial_security = $this->socialsecurityRepository->getSocialSecurity($data);
-        if (count($getsocial_security) > 0) {
-            $result['status'] = ApiStatus::social_security_success_status;
-            $result['statusCode'] = ApiStatus::social_security_success_statusCode;
-            $result['data'] = $getsocial_security;
-        } else {
-            $result['status'] = ApiStatus::social_security_failed_status;
-            $result['statusCode'] = ApiStatus::social_security_failed_statusCode;
-            $result['errDesc'] = ApiStatus::social_security_failed_Desc;
+            $data = $request->all();
+            $getsocial_security = $this->socialsecurityRepository->getSocialSecurity($data);
+            if (count($getsocial_security) > 0) {
+                $result['status'] = ApiStatus::social_security_success_status;
+                $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+                $result['data'] = $getsocial_security;
+            } else {
+                $result['status'] = ApiStatus::social_security_failed_status;
+                $result['statusCode'] = ApiStatus::social_security_failed_statusCode;
+                $result['errDesc'] = ApiStatus::social_security_failed_Desc;
+            }
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::social_security_error_statusCode;
+            $result['errCode'] = ApiStatus::social_security_error_status;
+            $result['errDesc'] = ApiStatus::social_security_errDesc;
+            $result['message'] = $e->getMessage();
         }
-    } catch (\Exception $e) {
-        $result['status'] = ApiStatus::social_security_error_statusCode;
-        $result['errCode'] = ApiStatus::social_security_error_status;
-        $result['errDesc'] = ApiStatus::social_security_errDesc;
-        $result['message'] = $e->getMessage();
-    }
-    return $result;
+        return $result;
     }
 
     public function create(Request $request)
@@ -72,8 +73,10 @@ class SocialSecurityController extends Controller
                     'company_id' => $emp->company_id,
                     'department_id' => $emp->department_id,
                 ];
-                
+
                 $this->socialsecurityRepository->create($save_data);
+                $result['status'] = ApiStatus::social_security_success_status;
+                $result['statusCode'] = ApiStatus::social_security_success_statusCode;
             }
 
             // Upload and save social security file
@@ -87,17 +90,26 @@ class SocialSecurityController extends Controller
             $doc_file = $fileName;
             $original_doc_file_name = $originalFileName;
 
-            $save_file =[
-                'social_security_file' => $data['social_security_file'],
-                'social_security_id' => $socialSecurity->id,
-                'doc_name' => $original_doc_file_name,
-                'doc_file' => $doc_file
-            ];
+            // Get the id from SocialSecurityFiles where social_type_id matches
+            $socialSecurityFile = SocialSecurityFile::where('social_type_id', $data['social_security_type_id'])->first();
 
-            $this->socialsecurityfileRepository->create($save_file);
+            if ($socialSecurityFile) {
+                $save_file = [
+                    'social_security_file' => $socialSecurityFile->id,
+                    'social_security_id' => $socialSecurity->id,
+                    'doc_name' => $original_doc_file_name,
+                    'doc_file' => $doc_file
+                ];
 
-            $result['status'] = ApiStatus::social_security_success_status;
-            $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+                $this->socialsecurityfileRepository->create($save_file);
+
+                $result['status'] = ApiStatus::social_security_success_status;
+                $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+            } else {
+                $result['status'] = ApiStatus::social_security_error_statusCode;
+                $result['errCode'] = ApiStatus::social_security_error_status;
+                $result['errDesc'] = "No matching social security file found.";
+            }
         } else {
             // Social security ID doesn't exist
             $result['status'] = ApiStatus::social_security_error_statusCode;
@@ -123,7 +135,7 @@ class SocialSecurityController extends Controller
             $this->socialsecurityRepository->update($id, $data);
             $result['status'] = ApiStatus::social_security_success_status;
             $result['statusCode'] = ApiStatus::social_security_success_statusCode;
-        }  catch (\Exception $e) {
+        } catch (\Exception $e) {
             $result['status'] = ApiStatus::social_security_error_statusCode;
             $result['errCode'] = ApiStatus::social_security_error_status;
             $result['errDesc'] = ApiStatus::social_security_errDesc;
@@ -139,7 +151,7 @@ class SocialSecurityController extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-       
+
         try {
             $this->socialsecurityRepository->delete($id);
             $result['status'] = ApiStatus::social_security_success_status;
@@ -174,16 +186,16 @@ class SocialSecurityController extends Controller
         $result = [];
 
         try {
-            
-        if (isset($postData['company_id'])) {
-            $param['company_id'] = $postData['company_id'];
-        }
-        if (isset($postData['position_id'])) {
-            $param['position_id'] = $postData['position_id'];
-        }
-        if (isset($postData['department_id'])) {
-            $param['department_id'] = $postData['department_id'];
-        }
+
+            if (isset($postData['company_id'])) {
+                $param['company_id'] = $postData['company_id'];
+            }
+            if (isset($postData['position_id'])) {
+                $param['position_id'] = $postData['position_id'];
+            }
+            if (isset($postData['department_id'])) {
+                $param['department_id'] = $postData['department_id'];
+            }
             $departments = $this->socialsecurityRepository->getSocialSecurityByFilter($param);
 
             $result['status'] = "success";
@@ -196,7 +208,7 @@ class SocialSecurityController extends Controller
         return $result;
     }
 
-    
+
     public function approve(Request $request)
     {
         $data = $request->all();
@@ -216,6 +228,4 @@ class SocialSecurityController extends Controller
         }
         return $result;
     }
-
-
 }

@@ -6,6 +6,7 @@ namespace App\Repositories\Impl;
 
 use App\Models\SocialSecurity;
 use App\Models\SocialSecurityInfo;
+use App\Models\SocialSecurityType;
 use App\Repositories\SocialSecurityFileInterface;
 use Illuminate\Support\Collection;
 
@@ -27,7 +28,8 @@ class SocialSecurityFileRepository extends MasterRepository implements SocialSec
 
     public function findBy(array $criteria)
     {
-        return SocialSecurity::where($criteria)->first();
+        
+        return SocialSecurityType::where($criteria)->first();
     }
     public function getSocialSecurityByFilter($param)
     {

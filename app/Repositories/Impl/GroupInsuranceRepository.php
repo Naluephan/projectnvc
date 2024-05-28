@@ -59,7 +59,7 @@ class GroupInsuranceRepository extends MasterRepository implements GroupInsuranc
     public function getInsuranceById($id)
     {
         return $this->model->where('emp_id', $id)
-        ->with('emp')
+        // ->with('emp')
         ->get();
     }
 

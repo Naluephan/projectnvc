@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Repositories\GroupInsuranceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Ignition\Solutions\OpenAi\OpenAiPromptViewModel;
 
 class GroupInsuranceController extends Controller
 {
@@ -54,7 +55,7 @@ class GroupInsuranceController extends Controller
                     'department_id' => $emp->department_id,
                 ];
                 if ($request->file('group_insurance_img')) {
-                    $save_data['group_insurance_img'] = 'https://newhr.organicscosme.com/uploads/images/content/insurance/' . basename(save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/'));
+                    $save_data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/');
                 }
                 $this->groupinsuranceRepository->create($save_data);
 
@@ -75,7 +76,7 @@ class GroupInsuranceController extends Controller
         $id = $data['id'];
         try {
             if ($request->file('group_insurance_img')) {
-                    $data['group_insurance_img'] = 'https://newhr.organicscosme.com/uploads/images/content/insurance/' . basename(save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/'));
+                $save_data['group_insurance_img'] = save_image($request->file('group_insurance_img'), 500, '/images/content/insurance/');
             }
             $this->groupinsuranceRepository->update($id, $data);
             $result['status'] = ApiStatus::group_insurance_success_status;
@@ -91,7 +92,7 @@ class GroupInsuranceController extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-       
+
         try {
             $this->groupinsuranceRepository->delete($id);
             $result['status'] = ApiStatus::group_insurance_success_status;
@@ -108,7 +109,7 @@ class GroupInsuranceController extends Controller
     {
         $id = $request->emp_id;
         return $this->groupinsuranceRepository->getInsuranceById($id);
-  
+
     }
 
     public function getGroupInsuranceByFilter(Request $request)
@@ -117,7 +118,7 @@ class GroupInsuranceController extends Controller
         $result = [];
 
         try {
-            
+
         if (isset($postData['company_id'])) {
             $param['company_id'] = $postData['company_id'];
         }
