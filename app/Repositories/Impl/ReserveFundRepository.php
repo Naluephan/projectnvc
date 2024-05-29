@@ -101,8 +101,17 @@ class ReserveFundRepository extends MasterRepository implements ReserveFundInter
             if(isset($param['year'])) {
                 $q->where('year', "=", $param['year']);
             }
+            if (isset($params['create_at']) && isset($params['updated_at'])) {
+                $q->whereRaw("DATE_FORMAT(save_date, '%Y-%m') BETWEEN '{$params['create_at']}' AND '{$params['updated_at']}'");
+            }
         })
 
+        ->get();
+    }
+
+    public function getById($id)
+    {
+        return $this->model->where('emp_id', $id)
         ->get();
     }
 }

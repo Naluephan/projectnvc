@@ -105,8 +105,29 @@ class ReserveFundController extends Controller
     public function getById(Request $request)
     {
         $id = $request->emp_id;
-        return $this->reservefundRepository->find($id);
+        try {
+         $reserve = $this->reservefundRepository->getById($id);
+         if (count($reserve) > 0) {
+            $result['status'] = ApiStatus::reverse_fund_success_status;
+            $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
+            $result['data'] = $reserve;
+        } else {
+            $result['status'] = ApiStatus::reverse_fund_failed_status;
+            $result['statusCode'] = ApiStatus::reverse_fund_failed_statusCode;
+            $result['errDesc'] = ApiStatus::reverse_fund_failed_Desc;
+            $result['message'] = $reserve;
+            DB::rollBack();
+        }
+    } catch (\Exception $ex) {
+        $result['status'] = ApiStatus::reverse_fund_error_statusCode;
+        $result['errCode'] = ApiStatus::reverse_fund_error_status;
+        $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
+        $result['message'] = $ex->getMessage();
+        DB::rollBack();
     }
+    return $result;
+}
+
     public function delete(Request $request)
     {
         $id = $request->id;
@@ -218,6 +239,9 @@ class ReserveFundController extends Controller
             'year' => $year,
         ];
         try {
+            // if (isset($params['from_date']) && isset($params['to_date'])) {
+            //     $q->whereRaw("DATE_FORMAT(save_date, '%Y-%m') BETWEEN '{$params['from_date']}' AND '{$params['to_date']}'");
+            // }
             $reserve = $this->reservefundRepository->getReserveFundByFilter($param);
 
             $result['status'] = "success";
@@ -227,6 +251,27 @@ class ReserveFundController extends Controller
             $result['message'] = $ex->getMessage();
         }
 
+        return $result;
+    }
+
+
+    public function approve(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        try {
+            $data = [
+                'reserve_request' => $data['reserve_request']
+            ];
+            $this->withdrawreservefundRepository->update($id, $data);
+            $result['status'] = ApiStatus::social_security_success_status;
+            $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::social_security_error_statusCode;
+            $result['errCode'] = ApiStatus::social_security_error_status;
+            $result['errDesc'] = ApiStatus::social_security_errDesc;
+            $result['message'] = $e->getMessage();
+        }
         return $result;
     }
 
