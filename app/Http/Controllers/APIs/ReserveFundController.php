@@ -51,10 +51,12 @@ class ReserveFundController extends Controller
             $search_criteria = [
                 'emp_id' => $data['emp_id'],
             ];
-            $this->reservefundRepository->findBy($search_criteria);
+            $old_reserve =$this->reservefundRepository->findAmountByEmpId($search_criteria);
             $emp = Employee::find($data['emp_id']);
             $total_m =  $data['reserve']+$data['contribution'];
-            $balace =  $total_m + $data['accumulate_balance'];
+            $total_reserve =  $data['reserve']+$data['accumulate_balance'];
+            $existing_balance = $old_reserve ? $old_reserve->accumulate_balance : 0;
+            $new_accumulate_balance = $existing_balance + $total_reserve + $data['accumulate_balance'];
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'reserve_fund_number' => $data['reserve_fund_number'],
@@ -68,7 +70,7 @@ class ReserveFundController extends Controller
                     'reserve' => $data['reserve'],
                     'contribution' => $data['contribution'],
                     'total_month' => $total_m,
-                    'accumulate_balance' =>$balace,
+                    'accumulate_balance' =>$new_accumulate_balance,
 
                 ];
                 $this->reservefundRepository->create($save_data);

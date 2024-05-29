@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('withdraw_reverse_funds', function (Blueprint $table) {
             $table->id();
             $table->string('emp_id');
-            $table->string('reserse_fund_id');
+            // $table->string('reserse_fund_id');
             $table->string('reserse_fund_detail');
             $table->string('withdraw_balance');
             $table->integer('reserve_request')->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject, 5=success')->default(0);
