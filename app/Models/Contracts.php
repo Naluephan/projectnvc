@@ -14,4 +14,8 @@ class Contracts extends Model
         'contract_details',
         'images',
     ];
+    public function categoriesContractsId()
+    {
+        return $this->belongsTo(ContractsCategories::class, 'contract_category_id', 'id');
+    }
 }

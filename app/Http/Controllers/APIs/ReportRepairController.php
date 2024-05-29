@@ -112,32 +112,52 @@ class ReportRepairController extends Controller
     public function getReportRepairId(Request $request)
     {
         $data = $request->all();
+        if (empty($data['emp_id'])) {
+            return response()->json([
+                'status' => 'Data empty.',
+                'statusCode' => '03',
+                'message' => 'Data empty. Check the information again.'
+            ]);
+        }
         try {
             $whereReport = ['emp_id' => $data['emp_id']];
             $withRelationsCateId = ['categoriesId'];
-            $getTopic  = $this->reportRepairRepository->selectCustomData($whereReport, null, null, null, null, null, $withRelationsCateId);
-            if (empty($data['emp_id'])) {
+            $getRepairId  = $this->reportRepairRepository->selectCustomData($whereReport, null, null, null, null, null, $withRelationsCateId);
+
+
+            if (count($getRepairId) > 0) {
+                $resultData = [];
+                foreach ($getRepairId as $reportData) {
+                    $dataApp = [
+                        'emp_id' => $reportData->emp_id,
+                        'id_report' => $reportData->id,
+                        'equipment_name' => $reportData->equipment_name,
+                        'repair_detail' => $reportData->repair_detail,
+                        'images' => $reportData->images ? 'https://newhr.organicscosme.com/uploads/images/reportRepair' . $reportData->images : null,
+                        'id_categories' => $reportData->categories_id,
+                        'categories_name' => $reportData->categoriesId->categories_name,
+                        'report_status' => $reportData->report_status,
+                    ];
+                    $resultData[] = $dataApp;
+
+                    // if ($reportImage['images'] > 0) {
+                    //     $reportImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/reprotRepair/' . $reportImage['images'];
+                    // }else{
+                    //     $result = [
+                    //         'status' => 'null',
+                    //     ];
+                    // };
+                };
                 $result = [
-                    'status' => 'Data empty.',
-                    'statusCode' => '03',
-                    'message' => 'Data empty. Check the information again.'
+                    'status' => 'Success',
+                    'statusCode' => '00',
+                    'reportRepair' => $resultData,
                 ];
             } else {
-                if (count($getTopic) > 0) {
-                    foreach ($getTopic as $reportImage) {
-                        $reportImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/reprotRepair/' . $reportImage['images'];
-                    };
-                    $result = [
-                        'status' => 'Success',
-                        'statusCode' => '00',
-                        'topicsCom' => $getTopic,
-                    ];
-                } else {
-                    $result = [
-                        'status' => 'Not Exists',
-                        'statusCode' => '05',
-                    ];
-                }
+                $result = [
+                    'status' => 'Not Exists',
+                    'statusCode' => '05',
+                ];
             }
         } catch (\Exception $ex) {
             $result['status'] = "Failed";

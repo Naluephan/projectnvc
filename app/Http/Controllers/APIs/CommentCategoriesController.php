@@ -38,7 +38,7 @@ class CommentCategoriesController extends Controller
                     $result = [
                         'status' => 'Duplicate information',
                         'statusCode' => '200',
-                        'message' => 'This contracts already exists.'
+                        'message' => 'This comment already exists.'
                     ];
                     
                 }else {
@@ -70,7 +70,7 @@ class CommentCategoriesController extends Controller
                 $result = [
                     'status' => 'Duplicate information',
                     'statusCode' => '200',
-                    'message' => 'This contracts already exists.'
+                    'message' => 'This comment already exists.'
                 ];
             } else {
                 $this->commentCategoriesRepository->update($id, $data);
@@ -105,11 +105,11 @@ class CommentCategoriesController extends Controller
     public function getById(Request $request)
     {
         $id = $request->id;
-        $contracts =  $this->commentCategoriesRepository->find($id);
+        $comment =  $this->commentCategoriesRepository->find($id);
         $result = [
             'status' => 'Success',
             'statusCode' => '00',
-            'data'  => [$contracts]
+            'categories'  => [$comment]
         ];
         return response()->json( $result);
 

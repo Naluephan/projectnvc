@@ -62,7 +62,7 @@ class CommentController extends Controller
             $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
-        return response()->json([$result]);
+        return response()->json($result);
     }
     // public function update(Request $request)
     // {
@@ -123,50 +123,103 @@ class CommentController extends Controller
 
         return response()->json(["data" => $contracts]);
     }
+    // public function getComId(Request $request)
+    // {
+    //     $data = $request->all();
+    //     try {
+    //         $whereCom = ['emp_id' => $data['emp_id']];
+    //         $withRelationsCom = ['commentId.categoriesCommentId'];
+    //         $getTopic  = $this->commentRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelationsCom);
+    //         if (empty($data['emp_id'])) {
+    //             $result = [
+    //                 'status' => 'Data empty.',
+    //                 'statusCode' => '03',
+    //                 'message' => 'Data empty. Check the information again.'
+    //             ];
+    //         } else {
+    //             if (count($getTopic) > 0) {
+    //                 foreach ($getTopic as $comImage) {
+
+    //                     // $comImage->categories_comment_name = $comImage->commentId->categories->categories_comment_name;
+    //                     if ($comImage['images'] > 0) {
+    //                         $comImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/comment/' . $comImage['images'];
+    //                     } else {
+    //                         $result = [
+    //                             'status' => 'null',
+    //                         ];
+    //                     }
+    //                 };
+    //                 $result = [
+    //                     'status' => 'Success',
+    //                     'statusCode' => '00',
+    //                     'topicsCom' => $getTopic,
+    //                     // 'topicCom' => $contracts,
+    //                 ];
+    //             } else {
+    //                 $result = [
+    //                     'status' => 'Not Exists',
+    //                     'statusCode' => '05',
+    //                 ];
+    //             }
+    //         }
+    //     } catch (\Exception $ex) {
+    //         $result['status'] = "Failed";
+    //         $result['message'] = $ex->getMessage();
+    //     }
+
+    //     return response()->json($result);
+    // }
     public function getComId(Request $request)
     {
         $data = $request->all();
+    
+        if (empty($data['emp_id'])) {
+            return response()->json([
+                'status' => 'Data empty.',
+                'statusCode' => '03',
+                'message' => 'Data empty. Check the information again.'
+            ]);
+        }
+    
         try {
             $whereCom = ['emp_id' => $data['emp_id']];
             $withRelationsCom = ['commentId.categoriesCommentId'];
-            $getTopic  = $this->commentRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelationsCom);
-            if (empty($data['emp_id'])) {
+            $getTopic = $this->commentRepository->selectCustomData($whereCom, null, null, null, null, null, $withRelationsCom);
+    
+            if (count($getTopic) > 0) {
+                $resultData = [];
+                foreach ($getTopic as $comImage) {
+                    $topicData = [
+                        'id' => $comImage->id,
+                        'emp_id' => $comImage->emp_id,
+                        'comments_details' => $comImage->comments_details,
+                        'comments_status' => $comImage->comments_status,
+                        'images' => $comImage->images ? 'https://newhr.organicscosme.com/uploads/images/setting/comment/' . $comImage->images : null,
+                        'created_at' => $comImage->created_at,
+                        'updated_at' => $comImage->updated_at,
+                        'categories_comment_name' => $comImage->commentId->categoriesCommentId->categories_comment_name,
+                        'topic_comment_name' => $comImage->commentId->topic_comment_name,
+                    ];
+                    $resultData[] = $topicData;
+                }
+    
                 $result = [
-                    'status' => 'Data empty.',
-                    'statusCode' => '03',
-                    'message' => 'Data empty. Check the information again.'
+                    'status' => 'Success',
+                    'statusCode' => '00',
+                    'topicsCom' => $resultData,
                 ];
             } else {
-                if (count($getTopic) > 0) {
-                    foreach ($getTopic as $comImage) {
-
-                        // $comImage->categories_comment_name = $comImage->commentId->categories->categories_comment_name;
-                        if ($comImage['images'] > 0) {
-                            $comImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/comment/' . $comImage['images'];
-                        } else {
-                            $result = [
-                                'status' => 'null',
-                            ];
-                        }
-                    };
-                    $result = [
-                        'status' => 'Success',
-                        'statusCode' => '00',
-                        'topicsCom' => $getTopic,
-                        // 'topicCom' => $contracts,
-                    ];
-                } else {
-                    $result = [
-                        'status' => 'Not Exists',
-                        'statusCode' => '05',
-                    ];
-                }
+                $result = [
+                    'status' => 'Not Exists',
+                    'statusCode' => '05',
+                ];
             }
         } catch (\Exception $ex) {
             $result['status'] = "Failed";
             $result['message'] = $ex->getMessage();
         }
-
+    
         return response()->json($result);
     }
+    
 }

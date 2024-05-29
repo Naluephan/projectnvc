@@ -15,4 +15,8 @@ class ContractsChange extends Model
         'contract_status',
         'images',
     ];
+    public function contractsCategoriesId()
+    {
+        return $this->belongsTo(ContractsCategories::class, 'contract_category_id', 'id');
+    }
 }

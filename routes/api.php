@@ -460,6 +460,7 @@ Route::group(
 
                 //////////// Report Repair ////////////
                 Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getAll'])->name('report.repair.categories.getAll');
+                Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getById'])->name('report.repair.categories.get.by.id');
                 Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
                 Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
                 Route::post('report/repair/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.delete');
@@ -467,6 +468,7 @@ Route::group(
                 Route::post('report/repair/get/emp/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getReportRepairId'])->name('report.repair.get.emp.id');
 
                 //////////// comment ////////////
+                Route::post('comment/categories/get/by/id', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getById'])->name('comment.categories.get.by.id');
                 Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
                 Route::post('comment/get/topic/com', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getTopicCom'])->name('comment.get.topic.com');
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');

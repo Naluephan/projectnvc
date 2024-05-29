@@ -139,7 +139,7 @@ class ContractsController extends Controller
             return response()->json(['error' => 'Contract not found'], 404);
         }
     }
-    
+
     public function getEmpIdCon(Request $request)
     {
         DB::beginTransaction();
@@ -147,7 +147,9 @@ class ContractsController extends Controller
         try {
             $whereCom = "emp_id = '" . $data['emp_id'] . "'";
             $orderByCom = ['contract_category_id' => 'asc'];
-            $getConId  = $this->contractsRepository->selectCustomData(null, $whereCom, null, $orderByCom);
+            $withRelations = ['categoriesContractsId']; //Setting relation on Contracts Model in function categoriesContractsId
+
+            $getConId  = $this->contractsRepository->selectCustomData(null, $whereCom, null, $orderByCom, null, null, $withRelations);
             if (empty($data['emp_id'])) {
                 $result = [
                     'status' => 'Data empty.',
@@ -184,6 +186,6 @@ class ContractsController extends Controller
             DB::rollBack();
         }
 
-        return response()->json( $result);
+        return response()->json($result);
     }
 }
