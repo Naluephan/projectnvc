@@ -12,6 +12,7 @@ interface ReserveFundInterface extends BaseInterface
     public function findAmountByEmpId($emp_id);
     // public function getAll($params = null): Collection;
     public function getReserveFundByFilter($param);
+    public function updateAccumulateBalance($empId, $newBalance);
 
 
 

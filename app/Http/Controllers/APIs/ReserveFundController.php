@@ -71,7 +71,7 @@ class ReserveFundController extends Controller
                     'accumulate_balance' =>$balace,
 
                 ];
-                $this->reservefundRepository->create($save_data); 
+                $this->reservefundRepository->create($save_data);
             $result['status'] = ApiStatus::reverse_fund_success_status;
             $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
         } catch (\Exception $e) {
@@ -82,7 +82,7 @@ class ReserveFundController extends Controller
         }
         return $result;
     }
-      
+
 
     public function update(Request $request)
     {
@@ -102,13 +102,13 @@ class ReserveFundController extends Controller
     }
     public function getById(Request $request)
     {
-        $id = $request->id;
+        $id = $request->emp_id;
         return $this->reservefundRepository->find($id);
     }
     public function delete(Request $request)
     {
         $id = $request->id;
-       
+
         try {
             $this->reservefundRepository->delete($id);
             $result['status'] = ApiStatus::reverse_fund_success_status;
@@ -134,14 +134,14 @@ class ReserveFundController extends Controller
     //                 'reserse_fund_id' => $postData['reserse_fund_id'],
     //                 'reserse_fund_detail' => $postData['reserse_fund_detail'],
     //                 'withdraw_balance' => $withdraw_balance,
-                    
+
     //             ];
     //             $this->withdrawreservefundRepository->create($data);
     //             $reserve->accumulate_balance -= $withdraw_balance;
     //             $reserve->save();
     //             $result['status'] = ApiStatus::reverse_fund_success_status;
     //             $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
-            
+
     //     } catch (\Exception $e) {
     //         $result['status'] = ApiStatus::reverse_fund_error_status;
     //         $result['errCode'] = ApiStatus::reverse_fund_error_statusCode;
@@ -154,36 +154,23 @@ class ReserveFundController extends Controller
     {
         $postData = $request->all();
         try {
-            // Find the reserve fund by its ID
-            $reserve = ReserveFund::find($postData['reserse_fund_id']);
-            
-            // Check if the reserve fund is found
-            if (!$reserve) {
-                throw new \Exception("Reserve Fund not found");
-            }
-    
-            // Get the accumulate balance from the ReserveFund model
-            $accumulate_balance = $reserve->accumulate_balance;
-    
-            // Prepare data for creation with the entire accumulate balance as withdraw balance
+
+            $amount = $this->withdrawreservefundRepository->findAmountByEmpId($postData['emp_id']);
+            // $total = $amount ? $amount->accumulate_balance;
+            $withdraw_balance = $amount->accumulate_balance;
             $data = [
                 'emp_id' => $postData['emp_id'],
-                'reserse_fund_id' => $postData['reserse_fund_id'],
+                // 'reserse_fund_id' =>  $reserve->id,
                 'reserse_fund_detail' => $postData['reserse_fund_detail'],
-                'withdraw_balance' => $accumulate_balance,
+                'withdraw_balance' => $withdraw_balance,
             ];
-    
+
             // Create the withdraw reserve fund record
             $this->withdrawreservefundRepository->create($data);
-    
-            // Reset the accumulate balance in the reserve fund to 0
-            $reserve->accumulate_balance = 0;
-            $reserve->save();
-    
-            // Set success result
+            $this->reservefundRepository->updateAccumulateBalance($postData['emp_id'], 0);
             $result['status'] = ApiStatus::reverse_fund_success_status;
             $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
-    
+
         } catch (\Exception $e) {
             // Handle exceptions and set error result
             $result['status'] = ApiStatus::reverse_fund_error_status;
@@ -195,8 +182,8 @@ class ReserveFundController extends Controller
     }
     public function getwithdraw(Request $request)
     {
+        $data = $request->all();
         try {
-            $data = $request->all();
         $getreserve_fund = $this->withdrawreservefundRepository->getWithdraw($data);
         if (count($getreserve_fund) > 0) {
             $result['status'] = ApiStatus::reverse_fund_success_status;
@@ -218,24 +205,21 @@ class ReserveFundController extends Controller
 
     public function getReserveFundByFilter(Request $request)
     {
-        $postData = $request->all();
-        $result = [];
-
+        // $postData = $request->all();
+        // $result = [];
+        $day = $request->day;
+        $month = $request->month;
+        $year = $request->year;
+        $param = [
+            'day'=>$day,
+            'month' =>$month,
+            'year' => $year,
+        ];
         try {
-            
-        if (isset($postData['company_id'])) {
-            $param['company_id'] = $postData['company_id'];
-        }
-        if (isset($postData['position_id'])) {
-            $param['position_id'] = $postData['position_id'];
-        }
-        if (isset($postData['department_id'])) {
-            $param['department_id'] = $postData['department_id'];
-        }
-            $departments = $this->reservefundRepository->getReserveFundByFilter($param);
+            $reserve = $this->reservefundRepository->getReserveFundByFilter($param);
 
             $result['status'] = "success";
-            $result['data'] = $departments;
+            $result['data'] = $reserve;
         } catch (\Exception $ex) {
             $result['status'] = "failed";
             $result['message'] = $ex->getMessage();

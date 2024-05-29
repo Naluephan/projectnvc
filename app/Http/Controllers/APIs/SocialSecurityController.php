@@ -49,22 +49,31 @@ class SocialSecurityController extends Controller
     }
 
     public function create(Request $request)
-{
-    $data = $request->all();
-    try {
-        // Check if the social_security_id exists in the SocialSecurity table
-        $socialSecurity = SocialSecurity::find($data['social_security_id']);
+    {
+        $data = $request->all();
+        $result = [];
 
-        if ($socialSecurity) {
-            // Social security exists, proceed to create SocialSecurityInfos only if it's not a duplicate entry
+        try {
+            // Check if the social_security_id exists in the data array
+            if (!isset($data['social_security_id'])) {
+                throw new \Exception("Social security ID is required.");
+            }
+
+            // Check if the social_security_id exists in the SocialSecurity table
+            $socialSecurity = SocialSecurity::find($data['social_security_id']);
+            if (!$socialSecurity) {
+                throw new \Exception("Social security ID not found.");
+            }
+
+            // Proceed to create SocialSecurityInfos only if it's not a duplicate entry
             $existingInfo = $this->socialsecurityRepository->findBy([
                 'emp_id' => $data['emp_id'],
-                'social_security_type_id' => $data['social_security_type_id'],
             ]);
 
             if (!$existingInfo) {
                 $emp = Employee::find($data['emp_id']);
                 $socialtype = SocialSecurityType::find($data['social_security_type_id']);
+
                 $save_data = [
                     'emp_id' => $data['emp_id'],
                     'social_security_type_id' => $data['social_security_type_id'],
@@ -74,57 +83,54 @@ class SocialSecurityController extends Controller
                     'department_id' => $emp->department_id,
                 ];
 
-                $this->socialsecurityRepository->create($save_data);
-                $result['status'] = ApiStatus::social_security_success_status;
-                $result['statusCode'] = ApiStatus::social_security_success_statusCode;
-            }
+                // Create the SocialSecurityInfos entry
+                $newSocialSecurityInfo = $this->socialsecurityRepository->create($save_data);
 
-            // Upload and save social security file
-            $file = $request->file('doc_file');
-            $originalFileName = $file->getClientOriginalName();
-            $fileName = 'P' . date('YmdHis') . '' . uniqid() . '.pdf';
-            $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
-            $file->move($path_file, $fileName);
+                // Fetch records from SocialSecurityFiles with matching social_security_type_id
+                $socialSecurityFiles = SocialSecurityFile::where('social_type_id', $data['social_security_type_id'])->get();
 
-            // Add the image filename to the data object before updating the user
-            $doc_file = $fileName;
-            $original_doc_file_name = $originalFileName;
+                // Upload and save social security file
+                $file = $request->file('doc_file');
+                $originalFileName = $file->getClientOriginalName();
+                $fileName = 'P' . date('YmdHis') . uniqid() . '.pdf';
+                $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                $file->move($path_file, $fileName);
 
-            // Get the id from SocialSecurityFiles where social_type_id matches
-            $socialSecurityFile = SocialSecurityFile::where('social_type_id', $data['social_security_type_id'])->first();
+                // Add the image filename to the data object before updating the user
+                $doc_file = $fileName;
+                $original_doc_file_name = $originalFileName;
 
-            if ($socialSecurityFile) {
-                $save_file = [
-                    'social_security_file' => $socialSecurityFile->id,
-                    'social_security_id' => $socialSecurity->id,
-                    'doc_name' => $original_doc_file_name,
-                    'doc_file' => $doc_file
-                ];
+                // Loop through fetched SocialSecurityFiles and perform the required operations
+                foreach ($socialSecurityFiles as $socialSecurityFile) {
+                    $save_file = [
+                        'social_security_file' => $socialSecurityFile->id,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
 
-                $this->socialsecurityfileRepository->create($save_file);
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
 
                 $result['status'] = ApiStatus::social_security_success_status;
                 $result['statusCode'] = ApiStatus::social_security_success_statusCode;
             } else {
+                // Existing info found, handle accordingly
                 $result['status'] = ApiStatus::social_security_error_statusCode;
                 $result['errCode'] = ApiStatus::social_security_error_status;
-                $result['errDesc'] = "No matching social security file found.";
+                $result['errDesc'] = ApiStatus::social_security_errDesc;
+                $result['message'] = "Duplicate entry found.";
             }
-        } else {
-            // Social security ID doesn't exist
+        } catch (\Exception $e) {
             $result['status'] = ApiStatus::social_security_error_statusCode;
             $result['errCode'] = ApiStatus::social_security_error_status;
             $result['errDesc'] = ApiStatus::social_security_errDesc;
-            $result['message'] = "Social security ID not found.";
+            $result['message'] = $e->getMessage();
         }
-    } catch (\Exception $e) {
-        $result['status'] = ApiStatus::social_security_error_statusCode;
-        $result['errCode'] = ApiStatus::social_security_error_status;
-        $result['errDesc'] = ApiStatus::social_security_errDesc;
-        $result['message'] = $e->getMessage();
+
+        return $result;
     }
-    return $result;
-}
+
 
 
     public function update(Request $request)

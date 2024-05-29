@@ -56,12 +56,16 @@ class ReserveFundRepository extends MasterRepository implements ReserveFundInter
     }
     public function findAmountByEmpId($emp_id)
     {
-        return $this->model
-            ->where('emp_id', $emp_id)
+        return ReserveFund::where('emp_id', $emp_id)
             ->latest()
             ->select('accumulate_balance')
             ->first();
     }
+    public function updateAccumulateBalance($empId, $newBalance)
+{
+    return ReserveFund::where('emp_id', $empId)
+                      ->update(['accumulate_balance' => $newBalance]);
+}
 
     // public function getAll($params = null): Collection
     // {
@@ -88,19 +92,16 @@ class ReserveFundRepository extends MasterRepository implements ReserveFundInter
     {
         return $this->model
         ->where(function ($q) use ($param) {
-            if(isset($param['position_id'])) {
-                $q->where('position_id', "=", $param['position_id']);
+            if(isset($param['day'])) {
+                $q->where('day', "=", $param['day']);
             }
-            if(isset($param['company_id'])) {
-                $q->where('company_id', "=", $param['company_id']);
+            if(isset($param['month'])) {
+                $q->where('month', "=", $param['month']);
             }
-            if(isset($param['department_id'])) {
-                $q->where('department_id', "=", $param['department_id']);
+            if(isset($param['year'])) {
+                $q->where('year', "=", $param['year']);
             }
         })
-        ->with('emp.company')
-        ->with('emp.position')
-        ->with('emp.department')
 
         ->get();
     }
