@@ -91,18 +91,19 @@ class ReserveFundRepository extends MasterRepository implements ReserveFundInter
     public function getReserveFundByFilter($param)
     {
         return $this->model
+        ->where('emp_id', '=', $param['emp_id'])
         ->where(function ($q) use ($param) {
-            if(isset($param['day'])) {
+            if(isset($param['day']) &&  $param['day'] > 0) {
                 $q->where('day', "=", $param['day']);
             }
-            if(isset($param['month'])) {
+            if(isset($param['month']) &&  $param['month'] > 0) {
                 $q->where('month', "=", $param['month']);
             }
-            if(isset($param['year'])) {
+            if(isset($param['year']) &&  $param['year'] > 0) {
                 $q->where('year', "=", $param['year']);
             }
-            if (isset($params['create_at']) && isset($params['updated_at'])) {
-                $q->whereRaw("DATE_FORMAT(save_date, '%Y-%m') BETWEEN '{$params['create_at']}' AND '{$params['updated_at']}'");
+            if (isset($param['startDate']) && isset($param['endDate'])) {
+                $q->whereRaw("DATE_FORMAT(created_at, '%Y-%m') BETWEEN '{$param['startDate']}' AND '{$param['endDate']}'");
             }
         })
 

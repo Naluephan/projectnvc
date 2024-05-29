@@ -228,32 +228,28 @@ class ReserveFundController extends Controller
 
     public function getReserveFundByFilter(Request $request)
     {
-        // $postData = $request->all();
-        // $result = [];
-        $day = $request->day;
-        $month = $request->month;
-        $year = $request->year;
-        $param = [
-            'day'=>$day,
-            'month' =>$month,
-            'year' => $year,
-        ];
+
         try {
-            // if (isset($params['from_date']) && isset($params['to_date'])) {
-            //     $q->whereRaw("DATE_FORMAT(save_date, '%Y-%m') BETWEEN '{$params['from_date']}' AND '{$params['to_date']}'");
-            // }
-            $reserve = $this->reservefundRepository->getReserveFundByFilter($param);
+            $data = $request->all();
 
-            $result['status'] = "success";
-            $result['data'] = $reserve;
-        } catch (\Exception $ex) {
-            $result['status'] = "failed";
-            $result['message'] = $ex->getMessage();
+            $reserve = $this->reservefundRepository->getReserveFundByFilter($data);
+            if (count($reserve) > 0) {
+                $result['status'] = ApiStatus::reverse_fund_success_status;
+                $result['statusCode'] = ApiStatus::reverse_fund_success_statusCode;
+                $result['data'] = $reserve;
+            } else {
+                $result['status'] = ApiStatus::reverse_fund_failed_status;
+                $result['statusCode'] = ApiStatus::reverse_fund_failed_statusCode;
+                $result['errDesc'] = ApiStatus::reverse_fund_failed_Desc;
+            }
+        } catch (\Exception $e) {
+            $result['status'] = ApiStatus::reverse_fund_error_statusCode;
+            $result['errCode'] = ApiStatus::reverse_fund_error_status;
+            $result['errDesc'] = ApiStatus::reverse_fund_errDesc;
+            $result['message'] = $e->getMessage();
         }
-
         return $result;
-    }
-
+        }
 
     public function approve(Request $request)
     {

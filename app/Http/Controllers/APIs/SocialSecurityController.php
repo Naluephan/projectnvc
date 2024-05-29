@@ -89,31 +89,33 @@ class SocialSecurityController extends Controller
                 // Fetch records from SocialSecurityFiles with matching social_security_type_id
                 $socialSecurityFiles = SocialSecurityFile::where('social_type_id', $data['social_security_type_id'])->get();
 
-                // Handle file uploads
+                // Check if the number of uploaded files matches the number of social security files
                 $files = $request->file('doc_file');
-                if (is_array($files)) {
-                    foreach ($files as $file) {
-                        $originalFileName = $file->getClientOriginalName();
-                        $fileName = 'P' . date('YmdHis') . uniqid() . '.pdf';
-                        $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
-                        $file->move($path_file, $fileName);
+                if (count($files) != count($socialSecurityFiles)) {
+                    throw new \Exception("The number of uploaded files does not match the required number.");
+                }
 
-                        // Add the image filename to the data object before updating the user
-                        $doc_file = $fileName;
-                        $original_doc_file_name = $originalFileName;
+                // Upload and save each file
+                foreach ($files as $key => $file) {
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid() . '.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
 
-                        // Loop through fetched SocialSecurityFiles and perform the required operations
-                        foreach ($socialSecurityFiles as $socialSecurityFile) {
-                            $save_file = [
-                                'social_security_file' => $socialSecurityFile->id,
-                                'social_security_id' => $newSocialSecurityInfo->id,
-                                'doc_name' => $original_doc_file_name,
-                                'doc_file' => $doc_file
-                            ];
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
 
-                            $this->socialsecurityfileRepository->create($save_file);
-                        }
-                    }
+                    // Associate the file with the corresponding social security file entry
+                    $socialSecurityFile = $socialSecurityFiles[$key];
+
+                    $save_file = [
+                        'social_security_file' => $socialSecurityFile->id,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
                 }
 
                 $result['status'] = ApiStatus::social_security_success_status;
@@ -134,7 +136,6 @@ class SocialSecurityController extends Controller
 
         return $result;
     }
-
 
 
 
