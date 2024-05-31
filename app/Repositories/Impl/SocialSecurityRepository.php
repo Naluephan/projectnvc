@@ -6,6 +6,7 @@ namespace App\Repositories\Impl;
 
 use App\Models\SocialSecurity;
 use App\Repositories\SocialSecurityInterface;
+use Collator;
 use Illuminate\Support\Collection;
 
 class SocialSecurityRepository extends MasterRepository implements SocialSecurityInterface
@@ -96,7 +97,7 @@ class SocialSecurityRepository extends MasterRepository implements SocialSecurit
     //         ->get();
     // }
 
-    public function getSocialSecurityById($id)
+    public function getSocialSecurityById($id = null): Collection
     {
         return $this->model->where('emp_id', $id)
         ->with('socialsecurity.socialdetail.socialfile')

@@ -13,10 +13,10 @@ class SocialSecurityFile extends Model
         'social_type_id',
 
     ];
-    // public function socialfile(){
-    //     return $this->belongsTo(SocialSecurityType::class,'id','social_security_file');
+    // public function socialtype(){
+    //     return $this->belongsTo(SocialSecurityType::class,'social_type_id','id');
     // }
     public function socialfile(){
-        return $this->hasMany(SocialSecurityInfo::class,'social_security_file','id');
+        return $this->hasOne(SocialSecurityInfo::class,'social_security_file','id');
     }
 }

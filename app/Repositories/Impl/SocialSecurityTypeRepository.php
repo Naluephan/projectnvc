@@ -82,5 +82,5 @@ class SocialSecurityTypeRepository extends MasterRepository implements SocialSec
 
         ->get();
     }
-    
+
 }

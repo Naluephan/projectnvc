@@ -21,6 +21,6 @@ class SocialSecurityInfo extends Model
     //     return $this->hasMany(SocialSecurityType::class,'social_security_file','id');
     // }
     public function socialsecurity(){
-        return $this->hasMany(SocialSecurityType::class,'id','social_security_file');
+        return $this->hasMany(SocialSecurityType::class,'social_security_id','id');
     }
 }

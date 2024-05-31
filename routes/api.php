@@ -183,8 +183,8 @@ Route::group(
                 Route::post('/building/location/detail/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingById'])->name('building.location.detail.by.id');
                 Route::post('/building/location/list', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingLocation'])->name('building.location.list');
                 Route::post('/building/location/create', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'create'])->name('building.location.create');
-                Route::post('/building/location/update/location', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'updateLocation'])->name('building.location.update.location');
-                Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.location.update');
+                Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'updateLocation'])->name('building.location.update');
+                Route::post('/building/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.update');
                 Route::post('/building/location/delete', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'delete'])->name('building.location.delete');
                 Route::post('/building/location/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getById'])->name('building.location.by.id');
 

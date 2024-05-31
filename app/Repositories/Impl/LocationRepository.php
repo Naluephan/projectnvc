@@ -66,4 +66,6 @@ class LocationRepository extends BaseRepository implements LocationInterface
 
         return $query->delete();
     }
+
+    
 }

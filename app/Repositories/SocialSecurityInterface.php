@@ -10,7 +10,7 @@ interface SocialSecurityInterface extends BaseInterface
     public function getSocialSecurity($params);
     public function findBy(array $criteria);
     public function getSocialSecurityByFilter($param);
-    public function getSocialSecurityById($id);
+    public function getSocialSecurityById($id = null): Collection;
     // public function getAll($params = null): Collection;
 
 

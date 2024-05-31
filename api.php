@@ -335,6 +335,7 @@ Route::group(
                 //Social Security
                 Route::post('social/security/list', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
                 Route::post('social/security/type/list', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getAll'])->name('social.security.type.list');
+                Route::post('social/security/type/upload/list', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getUploadName'])->name('social.security.type.upload.list');
                 Route::post('social/security/type/update', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'update'])->name('social.security.type.update');
                 Route::post('social/security/type/by/id', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getById'])->name('social.security.type.by.id');
                 Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
@@ -343,7 +344,6 @@ Route::group(
                 Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');
                 Route::post('social/security/filter', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurityByFilter'])->name('social.security.filter');
                 Route::post('social/security/type/filter', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getSocialSecurityTypeByFilter'])->name('social.security.type.filter');
-
 
                 //Reserve Fund
                 Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');

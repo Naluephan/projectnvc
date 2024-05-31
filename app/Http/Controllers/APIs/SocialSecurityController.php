@@ -409,9 +409,26 @@ class SocialSecurityController extends Controller
     }
     public function getById(Request $request)
     {
+        try{
         $id = $request->emp_id;
-        return $this->socialsecurityRepository->getSocialSecurityById($id);
+        $getsocial_security = $this->socialsecurityRepository->getSocialSecurityById($id);
+        if (count($getsocial_security) > 0) {
+            $result['status'] = ApiStatus::social_security_success_status;
+            $result['statusCode'] = ApiStatus::social_security_success_statusCode;
+            $result['data'] = $getsocial_security;
+        } else {
+            $result['status'] = ApiStatus::social_security_failed_status;
+            $result['statusCode'] = ApiStatus::social_security_failed_statusCode;
+            $result['errDesc'] = ApiStatus::social_security_failed_Desc;
+        }
+    } catch (\Exception $e) {
+        $result['status'] = ApiStatus::social_security_error_statusCode;
+        $result['errCode'] = ApiStatus::social_security_error_status;
+        $result['errDesc'] = ApiStatus::social_security_errDesc;
+        $result['message'] = $e->getMessage();
     }
+    return $result;
+}
     public function delete(Request $request)
     {
         $id = $request->id;

@@ -59,5 +59,5 @@ class Employee extends Model
     {
         return $this->hasMany(ReportRepair::class, 'emp_id', 'id');
     }
-    
+
 }

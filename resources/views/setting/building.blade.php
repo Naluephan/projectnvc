@@ -228,7 +228,7 @@
                             var locationImg = img_path + '/' + locationInfo
                                 .location_img;
                             var Item = `
-                            <div class="card border border-2 p-0 rounded-4 detail" data-id="${id}">
+                            <div class="card border border-2 p-0 rounded-4 detail cursor-pointer" data-id="${id}">
                                 <div class="row">
                                     <div class="col-5">
                                         <div style="width: 100%; ">
@@ -430,7 +430,6 @@
                                                 timer: 1500
                                             })
                                             $('#location_name').val('');
-
                                             $('#location_img').val('');
                                             $('#total_floors').val('');
                                             $('#total_rooms').val('');
@@ -545,28 +544,6 @@
                 $.each(location, function(index, item) {
                     addLocation(item)
                 });
-
-
-
-
-
-
-                $('#total_rooms').on('input', function() {
-                    var totalRooms = parseInt($(this).val());
-                    var currentRooms = $('.list-building').length;
-                    if (totalRooms < currentRooms) {
-                        var diff = currentRooms - totalRooms;
-                        $('.list-building').slice(-diff).each(function() {
-                            removeLocation($(this));
-                        });
-                    }
-                });
-
-
-
-
-
-
                 // $.ajax({
                 //     type: 'post',
                 //     url: "{{ route('api.v1.building.location.detail.by.id') }}",
@@ -601,6 +578,18 @@
                 //     }
                 // });
             })
+
+            $('#total_rooms').on('input', function() {
+                    var totalRooms = parseInt($(this).val());
+                    var currentRooms = $('.list-building').length;
+                    if (totalRooms < currentRooms) {
+                        var diff = currentRooms - totalRooms;
+                        $('.list-building').slice(-diff).each(function() {
+                            removeLocation($(this));
+                        });
+                    }
+                });
+
 
             function setbuildinglocationFormData(data) {
                 $("#location_name").val(data.location_name);
@@ -682,10 +671,11 @@
 
         });
 
-        function removeLocation(button) {
+        function removeLocation(button,count) {
             let location_id = button.siblings('.form-control').attr('data-location-id');
             button.closest('.list-building').remove();
         }
+        
 
         function addLocation(data = null) {
             let location_id = ''
