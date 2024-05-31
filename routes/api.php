@@ -110,8 +110,11 @@ Route::group(
                 Route::post('salary/template/detail/create', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'create'])->name('salary.template.detail.create');
                 Route::post('salary/template/detail/get/by/id/template', [\App\Http\Controllers\APIs\SalaryTemplateDetailController::class, 'getByTemplateId'])->name('salary.template.detail.get.by.id.template');
 
-                // //API Check Token
-                // Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
+
+
+
+                //API Check Token
+                Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
 
                 //API emp leave
                 Route::post('emp/leave/list', [\App\Http\Controllers\APIs\EmployeeLeaveController::class, 'getAll'])->name('emp.leave.list');
@@ -154,8 +157,7 @@ Route::group(
 
                 //API Pickup Tools Employee
                 Route::post('pickup/tools/approve', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'approve'])->name('pickup.tools.approve');
-                Route::post('pickup/tools/list/option', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'option'])->name('pickup.tools.option');
-                Route::post('pickup/tools/device/type/create', [\App\Http\Controllers\APIs\PickupToolsDeviceTypeController::class, 'create'])->name('pickup.tools.device.type.create');
+                Route::post('pickup/tools/list/by/id', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.by.id');
 
                 //API Reward Coin
                 Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getAll'])->name('reward.list');
@@ -163,14 +165,6 @@ Route::group(
                 Route::post('reward/update', [\App\Http\Controllers\APIs\RewardCoinController::class, 'update'])->name('reward.update');
                 Route::post('reward/get/by/id', [\App\Http\Controllers\APIs\RewardCoinController::class, 'getById'])->name('reward.get.by.id');
                 Route::post('reward/delete', [\App\Http\Controllers\APIs\RewardCoinController::class, 'delete'])->name('reward.delete');
-
-                //report repair
-                Route::post('report/repair/categories/create', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'create'])->name('report.repair.categories.create');
-                Route::post('report/repair/categories/update', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'update'])->name('report.repair.categories.update');
-                Route::post('report/repair/categories/delete', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'delete'])->name('report.repair.categories.delete');
-                Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getAll'])->name('report.repair.categories.getAll');
-                Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getById'])->name('report.repair.categories.get.by.id');
-
 
                 //api security setting
                 Route::post('security/list', [\App\Http\Controllers\APIs\SecuritySettingController::class, 'securityList'])->name('security.list');
@@ -183,8 +177,7 @@ Route::group(
                 Route::post('/building/location/detail/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingById'])->name('building.location.detail.by.id');
                 Route::post('/building/location/list', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getBuildingLocation'])->name('building.location.list');
                 Route::post('/building/location/create', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'create'])->name('building.location.create');
-                Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'updateLocation'])->name('building.location.update');
-                Route::post('/building/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.update');
+                Route::post('/building/location/update', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'update'])->name('building.location.update');
                 Route::post('/building/location/delete', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'delete'])->name('building.location.delete');
                 Route::post('/building/location/by/id', [\App\Http\Controllers\APIs\BuildingLocationController::class, 'getById'])->name('building.location.by.id');
 
@@ -219,27 +212,7 @@ Route::group(
                 //profile personal information
                 Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
 
-                //////////// contracts categories ////////////
-                Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
-                Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
-                Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
-                Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
-                Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
-                //contracts
-                Route::post('contracts/create', [\App\Http\Controllers\APIs\ContractsController::class, 'create'])->name('contracts.create');
-                Route::post('contracts/update', [\App\Http\Controllers\APIs\ContractsController::class, 'update'])->name('contracts.update');
-                Route::post('contracts/delete', [\App\Http\Controllers\APIs\ContractsController::class, 'delete'])->name('contracts.delete');
-                Route::post('contracts/getAll', [\App\Http\Controllers\APIs\ContractsController::class, 'getAll'])->name('contracts.getAll');
-                Route::post('contracts/get/by/id', [\App\Http\Controllers\APIs\ContractsController::class, 'getById'])->name('contracts.get.by.id');
-                Route::post('contracts/get/emp/id/con', [\App\Http\Controllers\APIs\ContractsController::class, 'getEmpIdCon'])->name('contracts.get.emp.id.con');
-                //contracts change
-                Route::post('contracts/change/create', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'create'])->name('contracts.change.create');
-                Route::post('contracts/change/update', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'update'])->name('contracts.change.update');
-                Route::post('contracts/change/delete', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'delete'])->name('contracts.change.delete');
-                Route::post('contracts/change/getAll', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getConCategory'])->name('contracts.change.getAll');
-                Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
-                Route::post('contracts/change/notify', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'notify'])->name('contracts.change.notify');
-                Route::post('contracts/change/get/emp/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getEmpId'])->name('contracts.change.get.emp.id');
+
 
                 //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
@@ -248,17 +221,15 @@ Route::group(
                 Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
                 Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
 
-                Route::post('comment/categories/create', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'create'])->name('comment.categories.create');
-                Route::post('comment/categories/update', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'update'])->name('comment.categories.update');
-                Route::post('comment/categories/delete', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'delete'])->name('comment.categories.delete');
-                Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
-                Route::post('comment/categories/get/by/id', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getById'])->name('comment.categories.get.by.id');
 
-                Route::post('comment/topic/create', [\App\Http\Controllers\APIs\CommentTopicController::class, 'create'])->name('comment.categories.create');
-                Route::post('comment/topic/update', [\App\Http\Controllers\APIs\CommentTopicController::class, 'update'])->name('comment.topic.update');
-                Route::post('comment/topic/delete', [\App\Http\Controllers\APIs\CommentTopicController::class, 'delete'])->name('comment.topic.delete');
-                Route::post('comment/topic/getAll', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getComTopic'])->name('comment.topic.getAll');
-                Route::post('comment/topic/get/by/id', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getById'])->name('comment.topic.get.by.id');
+
+
+                //comment
+                Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
+                Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
+                Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
+                Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
+                Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
         }
 
 
@@ -290,7 +261,6 @@ Route::group(
                 Route::post('employee/leaveQuotas', [\App\Http\Controllers\APIs\EmployeeLeaveQuotasController::class, 'employeeLeaveQuotas'])->name('employee.leave.quotas');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
 
-
                 //API Reward Coin Employee
                 Route::post('employee/reward/coin/approve', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'approve'])->name('reward.coin.approve');
                 Route::post('employee/reward/coin/by/id', [\App\Http\Controllers\APIs\RewardCoinHistoryController::class, 'rewardCoinById'])->name('reward.coin.byId');
@@ -299,9 +269,6 @@ Route::group(
                 Route::post('salary/request/slip/list', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'getAll'])->name('salary.request.slip.list');
                 Route::post('salary/request/slip/approve', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'approve'])->name('salary.request.slip.approve');
                 Route::post('salary/request/slip/create', [\App\Http\Controllers\APIs\SalaryRequestSlipControlle::class, 'salary_create_request_slip'])->name('salary.create.request.slip');
-
-                //API Check Token
-                Route::post('check-token', [\App\Http\Controllers\APIs\EmployeeController::class, 'checkToken'])->name('check.token');
 
 
                 //API News
@@ -358,28 +325,25 @@ Route::group(
 
 
                 //honor
-                Route::post('honor/standard/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.standard.list');
-                Route::post('honor/special/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonorSpecial'])->name('honor.special.list');
+                Route::post('honor/list', [\App\Http\Controllers\APIs\HonorController::class, 'getHonor'])->name('honor.list');
                 Route::post('honor/create', [\App\Http\Controllers\APIs\HonorController::class, 'create'])->name('honor.create');
                 Route::post('honor/update', [\App\Http\Controllers\APIs\HonorController::class, 'update'])->name('honor.update');
                 Route::post('honor/delete', [\App\Http\Controllers\APIs\HonorController::class, 'delete'])->name('honor.delete');
                 Route::post('honor/by/id', [\App\Http\Controllers\APIs\HonorController::class, 'getById'])->name('honor.by.id');
-                Route::post('honor/approve', [\App\Http\Controllers\APIs\HonorController::class, 'approve'])->name('honor.approve');
 
 
                 //Social Security
                 Route::post('social/security/list', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurity'])->name('social.security.list');
                 Route::post('social/security/type/list', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getAll'])->name('social.security.type.list');
+                Route::post('social/security/type/upload/list', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getUploadName'])->name('social.security.type.upload.list');
                 Route::post('social/security/type/update', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'update'])->name('social.security.type.update');
                 Route::post('social/security/type/by/id', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getById'])->name('social.security.type.by.id');
                 Route::post('social/security/create', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'create'])->name('social.security.create');
-                Route::post('social/security/upload/file', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'createfile'])->name('social.security.upload.file');
                 Route::post('social/security/update', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'update'])->name('social.security.update');
                 Route::post('social/security/delete', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'delete'])->name('social.security.delete');
                 Route::post('social/security/by/id', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getById'])->name('social.security.by.id');
                 Route::post('social/security/filter', [\App\Http\Controllers\APIs\SocialSecurityController::class, 'getSocialSecurityByFilter'])->name('social.security.filter');
                 Route::post('social/security/type/filter', [\App\Http\Controllers\APIs\SocialSecurityTypeController::class, 'getSocialSecurityTypeByFilter'])->name('social.security.type.filter');
-
 
                 //Reserve Fund
                 Route::post('reserve/fund/list', [\App\Http\Controllers\APIs\ReserveFundController::class, 'getReserveFund'])->name('reserve.fund.list');
@@ -407,11 +371,9 @@ Route::group(
                 Route::post('privatecar/delete', [\App\Http\Controllers\APIs\PrivateCarController::class, 'deleteUpdate'])->name('privatecar.delete');
 
                 //Pickup Tools Employee
-                Route::post('pickup/tools/withdraw/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
-                Route::post('pickup/tools/withdraw/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
-                Route::post('pickup/tools/maintain/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'myPickupToolsList'])->name('pickup.tools.maintain.list.employee');
-                Route::post('pickup/tools/maintain/history/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'historyPickupToolsList'])->name('pickup.tools.history.list.employee');
-                Route::post('pickup/tools/type', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsType'])->name('pickup.tools.type');
+                Route::post('pickup/tools/list/employee', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'pickupToolsListEmployee'])->name('pickup.tools.list.employee');
+                Route::post('pickup/tools/employee/create', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'create'])->name('pickup.tools.employee.create');
+                Route::post('pickup/tools/employee/update', [\App\Http\Controllers\APIs\PickupToolsEmployeeController::class, 'update'])->name('pickup.tools.employee.update');
 
                 //API Reward Coin
                 Route::post('reward/list', [\App\Http\Controllers\APIs\RewardCoinController::class, 'reward_list'])->name('reward.list');
@@ -447,31 +409,37 @@ Route::group(
                 Route::post('personal/information/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('personal.information.get.By.Id');
 
                 //////////// contracts categories ////////////
+                Route::post('contracts/categories/create', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'create'])->name('contracts.categories.create');
+                Route::post('contracts/categories/update', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'update'])->name('contracts.categories.update');
+                Route::post('contracts/categories/delete', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'delete'])->name('contracts.categories.delete');
                 Route::post('contracts/categories/getAll', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getConCategory'])->name('contracts.categories.getAll');
                 Route::post('contracts/categories/get/by/id', [\App\Http\Controllers\APIs\ContractsCategoriesController::class, 'getById'])->name('contracts.categories.get.by.id');
-                //contracts
+                //contracts detail
+                Route::post('contracts/create', [\App\Http\Controllers\APIs\ContractsController::class, 'create'])->name('contracts.create');
+                Route::post('contracts/update', [\App\Http\Controllers\APIs\ContractsController::class, 'update'])->name('contracts.update');
+                Route::post('contracts/delete', [\App\Http\Controllers\APIs\ContractsController::class, 'delete'])->name('contracts.delete');
                 Route::post('contracts/getAll', [\App\Http\Controllers\APIs\ContractsController::class, 'getAll'])->name('contracts.getAll');
-                Route::post('contracts/get/emp/id/con', [\App\Http\Controllers\APIs\ContractsController::class, 'getEmpIdCon'])->name('contracts.get.emp.id.con');
+                Route::post('contracts/get/by/id', [\App\Http\Controllers\APIs\ContractsController::class, 'getById'])->name('contracts.get.by.id');
                 //contracts change
                 Route::post('contracts/change/create', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'create'])->name('contracts.change.create');
+                Route::post('contracts/change/update', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'update'])->name('contracts.change.update');
+                Route::post('contracts/change/delete', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'delete'])->name('contracts.change.delete');
                 Route::post('contracts/change/getAll', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getConCategory'])->name('contracts.change.getAll');
+                Route::post('contracts/change/get/by/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getById'])->name('contracts.change.get.by.id');
                 Route::post('contracts/change/notify', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'notify'])->name('contracts.change.notify');
                 Route::post('contracts/change/get/emp/id', [\App\Http\Controllers\APIs\ContractsChangeController::class, 'getEmpId'])->name('contracts.change.get.emp.id');
 
-                //////////// Report Repair ////////////
+                //report repair
+                Route::post('report/repair/categories/create', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'create'])->name('report.repair.categories.create');
+                Route::post('report/repair/categories/update', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'update'])->name('report.repair.categories.update');
+                Route::post('report/repair/categories/delete', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'delete'])->name('report.repair.categories.delete');
                 Route::post('report/repair/categories/getAll', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getAll'])->name('report.repair.categories.getAll');
                 Route::post('report/repair/categories/get/by/id', [\App\Http\Controllers\APIs\ReportRepairCategoriesController::class, 'getById'])->name('report.repair.categories.get.by.id');
+
                 Route::post('report/repair/create', [\App\Http\Controllers\APIs\ReportRepairController::class, 'create'])->name('report.repair.create');
                 Route::post('report/repair/update', [\App\Http\Controllers\APIs\ReportRepairController::class, 'update'])->name('report.repair.update');
                 Route::post('report/repair/delete', [\App\Http\Controllers\APIs\ReportRepairController::class, 'delete'])->name('report.repair.delete');
                 Route::post('report/repair/getAll', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getAll'])->name('report.repair.getAll');
-                Route::post('report/repair/get/emp/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getReportRepairId'])->name('report.repair.get.emp.id');
-
-                //////////// comment ////////////
-                Route::post('comment/categories/get/by/id', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getById'])->name('comment.categories.get.by.id');
-                Route::post('comment/categories/getAll', [\App\Http\Controllers\APIs\CommentCategoriesController::class, 'getComCategory'])->name('comment.categories.getAll');
-                Route::post('comment/get/topic/com', [\App\Http\Controllers\APIs\CommentTopicController::class, 'getTopicCom'])->name('comment.get.topic.com');
-                Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
-                Route::post('comment/get/com/id', [\App\Http\Controllers\APIs\CommentController::class, 'getComId'])->name('comment.get.com.id');
+                Route::post('report/repair/get/by/id', [\App\Http\Controllers\APIs\ReportRepairController::class, 'getById'])->name('report.repair.get.by.id');
         }
 );
