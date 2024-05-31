@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('social_security_file');
             $table->string('social_security_id');
             $table->string('doc_name');
-            $table->string('doc_file');
+            $table->string('doc_file')->nullable();
             $table->timestamps();
         });
     }

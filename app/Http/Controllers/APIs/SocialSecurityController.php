@@ -66,11 +66,8 @@ class SocialSecurityController extends Controller
             }
 
             // Proceed to create SocialSecurityInfos only if it's not a duplicate entry
-            $existingInfo = $this->socialsecurityRepository->findBy([
-                'emp_id' => $data['emp_id'],
-            ]);
 
-            if (!$existingInfo) {
+
                 $emp = Employee::find($data['emp_id']);
                 $socialtype = SocialSecurityType::find($data['social_security_type_id']);
 
@@ -83,33 +80,89 @@ class SocialSecurityController extends Controller
                     'department_id' => $emp->department_id,
                 ];
 
-                // Create the SocialSecurityInfos entry
                 $newSocialSecurityInfo = $this->socialsecurityRepository->create($save_data);
-
-                // Fetch records from SocialSecurityFiles with matching social_security_type_id
                 $socialSecurityFiles = SocialSecurityFile::where('social_type_id', $data['social_security_type_id'])->get();
 
-                // Check if the number of uploaded files matches the number of social security files
-                $files = $request->file('doc_file');
-                if (count($files) != count($socialSecurityFiles)) {
-                    throw new \Exception("The number of uploaded files does not match the required number.");
-                }
+                // if ($request->hasFile('doc_file')) {
+                //     foreach ($request->file('doc_file') as $file) {
+                //         $originalFileName = $file->getClientOriginalName();
+                //         $fileName = 'P' . date('YmdHis') . uniqid() . '.pdf';
+                //         $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                //         $file->move($path_file, $fileName);
 
-                // Upload and save each file
-                foreach ($files as $key => $file) {
+                //         $doc_file = $fileName;
+                //         $original_doc_file_name = $originalFileName;
+
+                //         foreach ($socialSecurityFiles as $socialSecurityFile) {
+                //             $save_file = [
+                //                 'social_security_file' => $socialSecurityFile->id,
+                //                 'social_security_id' => $newSocialSecurityInfo->id,
+                //                 'doc_name' => $original_doc_file_name,
+                //                 'doc_file' => $doc_file
+                //             ];
+
+                //             $this->socialsecurityfileRepository->create($save_file);
+                //         }
+                //     }
+                //     $result['sds'] = 'fdgsfds';
+                // }
+
+
+                // Type 1 //
+                if($request->file('file_type1')){
+                    $file = $request->file('file_type1');
                     $originalFileName = $file->getClientOriginalName();
-                    $fileName = 'P' . date('YmdHis') . uniqid() . '.pdf';
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
                     $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
                     $file->move($path_file, $fileName);
 
                     $doc_file = $fileName;
                     $original_doc_file_name = $originalFileName;
 
-                    // Associate the file with the corresponding social security file entry
-                    $socialSecurityFile = $socialSecurityFiles[$key];
+                    $save_file = [
+                        'social_security_file' => 1,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                if($request->file('file_type2')){
+                    $file = $request->file('file_type2');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
 
                     $save_file = [
-                        'social_security_file' => $socialSecurityFile->id,
+                        'social_security_file' => 2,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                // Type 1 //
+
+
+                // Type 2 //
+                if($request->file('file_type3')){
+                    $file = $request->file('file_type3');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 3,
                         'social_security_id' => $newSocialSecurityInfo->id,
                         'doc_name' => $original_doc_file_name,
                         'doc_file' => $doc_file
@@ -118,15 +171,213 @@ class SocialSecurityController extends Controller
                     $this->socialsecurityfileRepository->create($save_file);
                 }
 
+                if($request->file('file_type4')){
+                    $file = $request->file('file_type4');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 4,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                // Type 2 //
+
+
+                // Type 3 //
+                if($request->file('file_type5')){
+                    $file = $request->file('file_type5');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 5,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }if($request->file('file_type6')){
+                    $file = $request->file('file_type6');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 6,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                if($request->file('file_type7')){
+                    $file = $request->file('file_type7');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 7,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                // Type 3 //
+
+
+                // Type 4 //
+                if($request->file('file_type8')){
+                    $file = $request->file('file_type8');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 8,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                if($request->file('file_type9')){
+                    $file = $request->file('file_type9');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 9,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                if($request->file('file_type10')){
+                    $file = $request->file('file_type10');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 10,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                // Type 4 //
+
+
+                // Type 5 //
+                if($request->file('file_type11')){
+                    $file = $request->file('file_type11');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 11,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                if($request->file('file_type12')){
+                    $file = $request->file('file_type12');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 12,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                if($request->file('file_type13')){
+                    $file = $request->file('file_type13');
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
+                    $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
+                    $file->move($path_file, $fileName);
+
+                    $doc_file = $fileName;
+                    $original_doc_file_name = $originalFileName;
+
+                    $save_file = [
+                        'social_security_file' => 13,
+                        'social_security_id' => $newSocialSecurityInfo->id,
+                        'doc_name' => $original_doc_file_name,
+                        'doc_file' => $doc_file
+                    ];
+
+                    $this->socialsecurityfileRepository->create($save_file);
+                }
+                // Type 5 //
                 $result['status'] = ApiStatus::social_security_success_status;
                 $result['statusCode'] = ApiStatus::social_security_success_statusCode;
-            } else {
-                // Existing info found, handle accordingly
-                $result['status'] = ApiStatus::social_security_error_statusCode;
-                $result['errCode'] = ApiStatus::social_security_error_status;
-                $result['errDesc'] = ApiStatus::social_security_errDesc;
-                $result['message'] = "Duplicate entry found.";
-            }
+
+
+
         } catch (\Exception $e) {
             $result['status'] = ApiStatus::social_security_error_statusCode;
             $result['errCode'] = ApiStatus::social_security_error_status;
@@ -136,6 +387,7 @@ class SocialSecurityController extends Controller
 
         return $result;
     }
+
 
 
 
