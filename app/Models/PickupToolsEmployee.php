@@ -14,15 +14,9 @@ class PickupToolsEmployee extends Model
         'department_id',
         'pickup_tools_id',
         'number_requested',
-        'status_repair',
-        'type_device',
-        'status_approved',
+        'assets_and_supply_id',
+        'status',
         'request_details',
-        'created_at',
-        'edit_at',
-        'approve_at',
-        'cancel_at',
-        'reject_at',
     ];
 
     public function pickupTools(){

@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PickupToolsDeviceType extends Model
+class ActivityCoins extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'device_types_name',
-        'unit',
-        'image',
-        'type_device',
-        'registration_number'
+        'activity_name',
+        'activity_image',
+        'activity_description',
+        'activity_coins_change',
     ];
 }

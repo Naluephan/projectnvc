@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-
 return new class extends Migration
 {
     /**
@@ -15,13 +14,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pickup_tools_device_types', function (Blueprint $table) {
+        Schema::create('history_transaction_rewards', function (Blueprint $table) {
             $table->id();
-            $table->string("device_types_name")->nullable();
-            $table->string("unit")->nullable();
-            $table->string("image")->nullable();
-            $table->tinyInteger('type_device')->comment('1=temporary 2=permanent 3=all')->default(1);
-            $table->string("registration_number")->nullable();
+            $table->integer("emp_id");
+            $table->tinyInteger('type')->comment('1=automatic 2=request')->default(1);
+            $table->tinyInteger("status_transaction")->comment('0=pending 1=edit 2=approved 3=cancel 4=reject 5=success')->default(0);
+            $table->integer("reward_id");
+            $table->integer("activity_id");
+            $table->tinyInteger('day');
+            $table->tinyInteger('month');
+            $table->smallInteger('year');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pickup_tools_device_types');
+        Schema::dropIfExists('history_transaction_rewards');
     }
 };

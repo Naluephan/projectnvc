@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsNoticeSeeder::class);
         $this->call(NewsNoticeEmployeeSeeder::class);
         $this->call(PickupToolsSeeder::class);
-        $this->call(PickupToolsDeviceTypeSeeder::class);
+        $this->call(AssetsAndSupplys::class);
         $this->call(administrativeWorkCategoriesSeeder::class);
         $this->call(PrivateCarSeeder::class);
         $this->call(PositionCleanlineSeeder::class);
@@ -59,6 +59,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialSecuritySeeder::class);
         $this->call(ReportRepairCategoriesSeeder::class);
         $this->call(HonorTypeSeeder::class);
+        $this->call(AssetsAndSupplyCategoriesSeeder::class);
+        $this->call(UnitsSeeder::class);
 
     }
 }

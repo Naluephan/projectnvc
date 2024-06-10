@@ -9,13 +9,17 @@ class PickupTools extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'department_id',
-        'device_types_id',
-        'number_requested',
+        'assets_and_supply_id',
+        'requested_limit',
+        'year_condition',
+        'month_condition',
+        'person_condition',
+        'department_condition',
+        'department_id'
     ];
 
-    public function pickupToolsDeviceType(){
-        return $this->hasOne(PickupToolsDeviceType::class,'id', 'device_types_id');
+    public function assetsAndSupplyCategories(){
+        return $this->hasOne(AssetsAndSupplyCategories::class,'id', 'assets_and_supply_id');
     }
 
     public function department(){
