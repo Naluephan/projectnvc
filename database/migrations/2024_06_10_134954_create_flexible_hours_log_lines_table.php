@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('position_clean_lines', function (Blueprint $table) {
+        Schema::create('flexible_hours_log_lines', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('locations_id');
-            $table->string('time');
-            $table->string('time_start');
-            $table->string('image_location')->nullable();
-            $table->string('qr_code')->nullable();
+            $table->time('am_worktime_start');
+            $table->time('am_worktime_end');
+            $table->time('pm_worktime_start');
+            $table->time('pm_worktime_end');
+            $table->time('start_late_am');
+            $table->time('end_late_pm');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_clean_lines');
+        Schema::dropIfExists('flexible_hours_log_lines');
     }
 };

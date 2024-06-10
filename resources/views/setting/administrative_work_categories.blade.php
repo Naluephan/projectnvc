@@ -139,13 +139,13 @@
                                             <label class="position-main pt-2">${administ_name}</label>
                                         </div>
 
-                                        <button class="btn btn-sm btn-success rounded-pill btn-edit mx-2" 
+                                        <button class="btn btn-sm btn-success rounded-pill btn-edit mx-2"
                                              data-id="${administ_id}"
                                             data-ac="edit" data-bs-toggle="modal" data-bs-target="#administModal">
                                             <em class="fas fa-edit fs-5"></em>
                                         </button>
 
-                                        <button class="btn btn-danger btn-sm rounded-pill btn-delete" 
+                                        <button class="btn btn-danger btn-sm rounded-pill btn-delete"
                                              data-id="${administ_id}">
                                             <em class="fas fa-trash-alt fs-5"></em>
                                         </button>

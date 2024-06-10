@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('position_clean_lines', function (Blueprint $table) {
+        Schema::create('transaction_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('locations_id');
-            $table->string('time');
-            $table->string('time_start');
-            $table->string('image_location')->nullable();
-            $table->string('qr_code')->nullable();
+            $table->string('emp_id');
+            $table->string('module_id');
+            $table->string('module_name');
+            $table->string('detail');
+            $table->string('status_logs_id');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_clean_lines');
+        Schema::dropIfExists('transaction_requests');
     }
 };

@@ -10,10 +10,14 @@ class MaintenanceSetting extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'location',
+        'locations_id',
         'maintenance_patrol',
         'maintenance_time',
         'maintenance_img',
-        'record_status'
+        'record_status',
+        'qr_code'
     ];
+    public function locations(){
+       return $this->belongsTo(Location::class);
+    }
 }

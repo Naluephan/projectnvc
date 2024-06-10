@@ -10,11 +10,14 @@ class PositionCleanLine extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'location',
+        'locations_id',
         'time',
         'time_start',
         'image_location',
         'qr_code',
 
     ];
+    public function locations(){
+       return $this->belongsTo(Location::class);
+    }
 }

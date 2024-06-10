@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('worktimes', function (Blueprint $table) {
+        Schema::create('worktime_persons', function (Blueprint $table) {
             $table->id();
-            $table->string('department_id');
+            $table->string('emp_id');
             $table->string('worktime_day1')->nullable();
             $table->string('worktime_day2')->nullable();
             $table->string('worktime_day3')->nullable();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worktimes');
+        Schema::dropIfExists('worktime_persons');
     }
 };

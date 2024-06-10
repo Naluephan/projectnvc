@@ -17,11 +17,13 @@ class Worktime extends Model
         'worktime_day5',
         'worktime_day6',
         'worktime_day7',
-        'worktime_start',
-        'worktime_end'
+        'flexible_hours_log_lines_id'
     ];
-    public function departments(){
-        return $this->belongsTo(Department::class,'department_id','id');
+    public function departments()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+    public function hoursloglines(){
+        return $this->belongsTo(FlexibleHoursLogLine::class);
     }
 }
-

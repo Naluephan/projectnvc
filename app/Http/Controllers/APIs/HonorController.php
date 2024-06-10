@@ -71,7 +71,7 @@ class HonorController extends Controller
         $data = $request->all();
         try {
             $emp = Employee::find($data['emp_id']);
-    
+
             $save_data = [
                 'emp_id' => $data['emp_id'],
                 'honor_category_id' => $data['honor_category_id'],
@@ -88,7 +88,7 @@ class HonorController extends Controller
             // if ($data['honor_category_id'] == 2) {
             //     $save_data['honor_detail_type_id'] = null;
             // }
-    
+
             $this->honorRepository->create($save_data);
             $result['status'] = ApiStatus::honor_success_status;
             $result['statusCode'] = ApiStatus::honor_success_statusCode;
@@ -100,7 +100,7 @@ class HonorController extends Controller
         }
         return $result;
     }
-      
+
     public function update(Request $request)
     {
         DB::beginTransaction();
@@ -120,14 +120,62 @@ class HonorController extends Controller
     }
     public function getById(Request $request)
     {
-        $id = $request->emp_id;
-        return $this->honorRepository->getHonorById($id);
-    
-    }
+        $data = $request->all();
+        if (empty($data['emp_id'])) {
+            return response()->json([
+                'status' => 'Data empty.',
+                'statusCode' => '03',
+                'message' => 'Data empty. Check the information again.'
+            ]);
+        }
+            try {
+                $whereReport = ['emp_id' => $data['emp_id']];
+                // $withRelationsCateId = ['HonorTypeId'];
+                $getHonorId  = $this->honorRepository->selectCustomData($whereReport, null, null, null, null, null);
+
+
+                if (count($getHonorId) > 0) {
+                    $resultData = [];
+                    foreach ($getHonorId as $reportData) {
+                        $dataApp = [
+                            'emp_id' => $reportData->emp_id,
+                            'honor_detail' => $reportData->honor_detail,
+                            'honor_img' => $reportData->honor_img ? 'https://newhr.organicscosme.com/uploads/images/content/honor/' . $reportData->honor_img : null,
+                            'honor_category_id' => $reportData->honor_category_id,
+                            'approve_status' => $reportData->approve_status,
+                        ];
+                        $resultData[] = $dataApp;
+
+                        // if ($reportImage['images'] > 0) {
+                        //     $reportImage['images'] = 'https://newhr.organicscosme.com/uploads/images/setting/reprotRepair/' . $reportImage['images'];
+                        // }else{
+                        //     $result = [
+                        //         'status' => 'null',
+                        //     ];
+                        // };
+                    };
+                    $result = [
+                        'status' => 'Success',
+                        'statusCode' => '00',
+                        'HonorData' => $resultData,
+                    ];
+                } else {
+                    $result = [
+                        'status' => 'Not Exists',
+                        'statusCode' => '05',
+                    ];
+                }
+            } catch (\Exception $ex) {
+                $result['status'] = "Failed";
+                $result['message'] = $ex->getMessage();
+            }
+
+            return response()->json($result);
+        }
     public function delete(Request $request)
     {
         $id = $request->id;
-       
+
         try {
             $this->honorRepository->delete($id);
             $result['status'] = ApiStatus::honor_success_status;

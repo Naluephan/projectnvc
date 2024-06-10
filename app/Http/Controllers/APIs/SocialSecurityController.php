@@ -157,7 +157,7 @@ class SocialSecurityController extends Controller
                     $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
                     $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
                     $file->move($path_file, $fileName);
-
+  
                     $doc_file = $fileName;
                     $original_doc_file_name = $originalFileName;
 

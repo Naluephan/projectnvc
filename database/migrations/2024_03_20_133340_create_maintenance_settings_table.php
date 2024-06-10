@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('maintenance_settings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('locations_id');
             $table->integer('maintenance_patrol')->default(0);
             $table->time('maintenance_time')->default(0);
             $table->string('maintenance_img');
+            $table->string('qr_code');
             $table->tinyInteger('record_status')->default(1);
             $table->timestamps();
         });

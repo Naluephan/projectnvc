@@ -10,10 +10,13 @@ class SecuritySetting extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'location',
+        'locations_id',
         'security_patrol',
         'security_time',
         'security_img',
         'record_status'
     ];
+    public function locations(){
+       return $this->belongsTo(Location::class);
+    }
 }

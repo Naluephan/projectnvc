@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('security_settings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('locations_id');
             $table->integer('security_patrol')->default(0);
             $table->time('security_time')->default(0);
             $table->string('security_img');
