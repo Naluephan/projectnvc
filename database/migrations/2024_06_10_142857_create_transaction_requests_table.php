@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,12 +16,14 @@ return new class extends Migration
     {
         Schema::create('transaction_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('emp_id');
-            $table->string('module_id');
+            $table->integer('emp_id');
+            $table->integer('module_id');
             $table->string('module_name');
             $table->string('detail');
-            $table->string('status_logs_id');
-            $table->timestamps();
+            $table->integer('status_logs_id');
+
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

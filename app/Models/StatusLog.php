@@ -13,7 +13,7 @@ class StatusLog extends Model
         'status_number',
         'status_color',
         'emp_id',
-        'transaction_requests_id',
+        'module_id',
         'module_name',
     ];
     public function transactions()

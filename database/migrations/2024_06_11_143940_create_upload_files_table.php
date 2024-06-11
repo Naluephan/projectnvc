@@ -14,14 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_logs', function (Blueprint $table) {
+        Schema::create('upload_files', function (Blueprint $table) {
             $table->id();
-            $table->string('status_name');
-            $table->string('status_number');
-            $table->string('status_color');
-            $table->integer('emp_id');
-            $table->integer('module_id');
-            $table->string('module_name');
+            $table->integer('upload_file_heads_id');
+            $table->string('actions_name');
+            $table->string('file_name');
+            $table->string('file_path');
+            $table->string('file_detail');
+            $table->string('language_code');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_logs');
+        Schema::dropIfExists('upload_files');
     }
 };
