@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('flexible_special_hours', function (Blueprint $table) {
+        Schema::create('fund_informations', function (Blueprint $table) {
             $table->id();
-            $table->string('num_time');
-            $table->integer('flexible_hours_log_lines_id');
-            $table->date('action_date_start');
-            $table->date('action_date_end');
+            $table->string('name');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('initialInvestment');
             $table->string('description');
-            $table->string('duration')->comment('1=am , 2=pm');
-            $table->string('work_time_type')->comment('start , end');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('flexible_special_hours');
+        Schema::dropIfExists('fund_informations');
     }
 };

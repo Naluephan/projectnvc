@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('worktime_persons', function (Blueprint $table) {
             $table->id();
-            $table->string('emp_id');
+            $table->integer('emp_id');
             $table->string('worktime_day1')->nullable();
             $table->string('worktime_day2')->nullable();
             $table->string('worktime_day3')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('worktime_day5')->nullable();
             $table->string('worktime_day6')->nullable();
             $table->string('worktime_day7')->nullable();
-            $table->string('flexible_hours_log_lines_id');
+            $table->integer('flexible_hours_log_lines_id');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
 namespace App\Repositories\Impl;
 
 
-use App\Models\SavingMoney;
+use App\Models\SavingTransaction;
 use App\Repositories\SavingMoneyInterface;
 use Illuminate\Support\Collection;
 
@@ -12,7 +12,7 @@ class SavingMoneyRepository extends MasterRepository implements SavingMoneyInter
 {
     protected $model;
 
-    public function __construct(SavingMoney $model)
+    public function __construct(SavingTransaction $model)
     {
         parent::__construct($model);
     }
@@ -40,7 +40,7 @@ class SavingMoneyRepository extends MasterRepository implements SavingMoneyInter
                 if (isset($params['from_date']) && isset($params['to_date'])) {
                     $q->whereRaw("DATE_FORMAT(save_date, '%Y-%m') BETWEEN '{$params['from_date']}' AND '{$params['to_date']}'");
                 }
-                
+
             })
             ->get();
     }
@@ -53,5 +53,5 @@ class SavingMoneyRepository extends MasterRepository implements SavingMoneyInter
             ->select('total_amount')
             ->first();
     }
-    
+
 }
