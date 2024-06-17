@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BuildingLocation extends Model
 {
     use HasFactory;
+    protected $tabel = 'hr_building_locations';
     protected $fillable = [
         'location_name',
         'location_img',

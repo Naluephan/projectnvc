@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PositionCleanLine extends Model
 {
     use HasFactory;
+    protected $table = 'hr_position_clean_lines';
     protected $fillable = [
         'title',
         'locations_id',

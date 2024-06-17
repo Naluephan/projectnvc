@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SecuritySetting extends Model
 {
     use HasFactory;
+    protected $table = 'hr_security_settings';
     protected $fillable = [
         'name',
         'locations_id',

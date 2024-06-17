@@ -15,7 +15,7 @@ class LocationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('locations')->insert([
+        DB::table('hr_locations')->insert([
             [
                 'id' => 1,
                 'building_location_id' => 1,

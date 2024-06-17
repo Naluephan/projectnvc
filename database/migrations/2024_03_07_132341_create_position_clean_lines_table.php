@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('position_clean_lines', function (Blueprint $table) {
+        Schema::create('hr_position_clean_lines', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->integer('locations_id');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_clean_lines');
+        Schema::dropIfExists('hr_position_clean_lines');
     }
 };
