@@ -10,10 +10,8 @@ class TransactionRequest extends Model
     use HasFactory;
     protected $fillable = [
         'emp_id',
-        'module_id',
         'module_name',
         'detail',
-        'status_logs_id',
     ];
     public function statuslogs()
     {
