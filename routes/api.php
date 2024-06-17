@@ -221,15 +221,27 @@ Route::group(
                 Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
                 Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
 
-
-
-
                 //comment
                 Route::post('comment/create', [\App\Http\Controllers\APIs\CommentController::class, 'create'])->name('comment.create');
                 Route::post('comment/update', [\App\Http\Controllers\APIs\CommentController::class, 'update'])->name('comment.update');
                 Route::post('comment/delete', [\App\Http\Controllers\APIs\CommentController::class, 'delete'])->name('comment.delete');
                 Route::post('comment/getAll', [\App\Http\Controllers\APIs\CommentController::class, 'getAll'])->name('comment.getAll');
                 Route::post('comment/get/by/id', [\App\Http\Controllers\APIs\CommentController::class, 'getById'])->name('comment.get.by.id');
+
+                //FlexibleSpecialHours
+                Route::post('flexible/special/hours/create', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'create'])->name('flexible.special.hours.create');
+                Route::post('flexible/special/hours/update', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'update'])->name('flexible.special.hours.update');
+                Route::post('flexible/special/hours/delete', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'delete'])->name('flexible.special.hours.delete');
+                Route::post('flexible/special/hours/getAll', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'getAll'])->name('flexible.special.hours.getAll');
+                //  Route::post('flexible/special/hours/get/by/id', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'getById'])->name('flexible.special.hours.get.by.id');
+                
+                //FlexibleSpecialHours
+                Route::post('flexible/hours/log/line/create', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'create'])->name('flexible.hours.log.line.create');
+                // Route::post('flexible/hours/log/line/update', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'update'])->name('flexible.hours.log.line.update');
+                // Route::post('flexible/hours/log/line/delete', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'delete'])->name('flexible.hours.log.line.delete');
+                // Route::post('flexible/hours/log/line/getAll', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'getAll'])->name('flexible.hours.log.line.getAll');
+                //  Route::post('flexible/hours/log/line/get/by/id', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'getById'])->name('flexible.special.hours.get.by.id');
+
         }
 
 

@@ -7,14 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeePasteCardLog extends Model
 {
     use HasFactory;
+    protected $table = "hr_employee_paste_card_log";
     protected $fillable = [
         'emp_id',
+        'department_id',
         'paste_date',
-        'image_capture',
-        'year',
-        'month',
         'status',
         'days',
+        'month',
+        'year',
+        'image_capture',
     ];
-    
+    public function relatedEmpId()
+    {
+        return $this->belongsTo(Employee::class, 'emp_id', 'id');
+    }
+    public function relatedDepart()
+    {
+        return $this->belongsTo(Employee::class, 'emp_id', 'id');
+    }
 }

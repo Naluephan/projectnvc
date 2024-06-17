@@ -17,11 +17,12 @@ return new class extends Migration
         Schema::create('employee_paste_card_logs', function (Blueprint $table) {
             $table->id();
             $table->string('emp_id',20)->nullable();
+            $table->integer('department_id');
             $table->dateTime('paste_date');
-            $table->string('status');
-            $table->integer('year');
+            $table->tinyInteger('status');
             $table->integer('month');
             $table->integer('days');
+            $table->integer('year');
             $table->string('image_capture')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

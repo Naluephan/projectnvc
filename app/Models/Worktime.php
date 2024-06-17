@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Worktime extends Model
 {
     use HasFactory;
+    protected $table = "hr_worktime";
     protected $fillable = [
         'department_id',
         'worktime_day1',
@@ -23,7 +24,7 @@ class Worktime extends Model
     {
         return $this->belongsTo(Department::class, 'department_id', 'id');
     }
-    public function hoursloglines(){
+    public function relateHoursLogLines(){
         return $this->belongsTo(FlexibleHoursLogLine::class);
     }
 }

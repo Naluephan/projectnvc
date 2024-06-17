@@ -41,6 +41,7 @@ class EmployeePasteCardLogsSeeder extends Seeder
         
             DB::table('employee_paste_card_logs')->insert([
                 'emp_id' => $empId,
+                'department_id' => 0,
                 'paste_date' => $faker->date,
                 'status' => 1,
                 'month' => $randomMonth,
