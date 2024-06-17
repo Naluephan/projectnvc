@@ -48,7 +48,7 @@ class SecuritySettingController extends Controller
         try {
             $save_data = [
                 'name' => $data['name'],
-                'location' => $data['location'],
+                'locations_id' => $data['locations_id'],
                 'security_patrol' => $data['security_patrol'],
                 'security_time' => $data['security_time'],
             ];

@@ -48,9 +48,10 @@ class MaintenanceSettingController extends Controller
         try {
             $save_data = [
                 'name' => $data['name'],
-                'location' => $data['location'],
+                'locations_id' => $data['locations_id'],
                 'maintenance_patrol' => $data['maintenance_patrol'],
                 'maintenance_time' => $data['maintenance_time'],
+                'qr_code' => $data['qr_code'],
             ];
             if ($request->file('maintenance_img')) {
                 $save_data['maintenance_img'] = save_image($request->file('maintenance_img'), 500, '/images/setting/maintenance/');

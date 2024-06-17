@@ -61,6 +61,8 @@ class DatabaseSeeder extends Seeder
         $this->call(HonorTypeSeeder::class);
         $this->call(AssetsAndSupplyCategoriesSeeder::class);
         $this->call(UnitsSeeder::class);
+        $this->call(BuildingLocationSeeder::class);
+        $this->call(LocationSeeder::class);
 
     }
 }

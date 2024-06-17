@@ -27,6 +27,7 @@ class SecuritySettingRepository extends BaseRepository implements SecuritySettin
             ->where('record_status','=',1)
             ->where(function ($q) use ($param) {
             })
+            ->with('locations.buildingLocation')
             ->get();
     }
 }

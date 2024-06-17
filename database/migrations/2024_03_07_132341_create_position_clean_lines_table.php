@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('position_clean_lines', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('locations_id');
-            $table->string('time');
-            $table->string('time_start');
-            $table->string('image_location')->nullable();
+            $table->integer('locations_id');
+            $table->integer('time');
+            $table->time('time_start');
             $table->string('qr_code')->nullable();
             $table->timestamps();
         });

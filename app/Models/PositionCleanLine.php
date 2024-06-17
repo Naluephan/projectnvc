@@ -13,7 +13,6 @@ class PositionCleanLine extends Model
         'locations_id',
         'time',
         'time_start',
-        'image_location',
         'qr_code',
 
     ];

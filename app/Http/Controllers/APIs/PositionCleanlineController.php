@@ -30,9 +30,10 @@ class PositionCleanlineController extends Controller
         try {
             $save_data = [
                 'title' => $data['title'],
-                'location' => $data['location'],
+                'locations_id' => $data['locations_id'],
                 'time' => $data['time'],
                 'time_start' => $data['time_start'],
+                'qr_code' => $data['qr_code'],
             ];
             if ($request->file('image_location')) {
                 $save_data['image_location'] = save_image($request->file('image_location'), 500, '/images/content/cleanness/');
@@ -85,9 +86,26 @@ class PositionCleanlineController extends Controller
         return json_encode($result);
     }
 
+    // public function getById(Request $request)
+    // {
+    //     $id = $request->id;
+    //     return $this->positioncleanlineRepository->find($id);
+    // }
+
     public function getById(Request $request)
     {
-        $id = $request->id;
-        return $this->positioncleanlineRepository->find($id);
+        $postData = $request->all();
+        $result = [];
+
+        try {
+            $maintenanceList = $this->positioncleanlineRepository->find($postData['id']);
+            $result['status'] = "success";
+            $result['data'] = $maintenanceList;
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
+        }
+
+        return $result;
     }
 }

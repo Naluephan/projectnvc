@@ -12,9 +12,9 @@ class Location extends Model
         'building_location_id',
         'floor',
         'place_name',
-     
+
     ];
-    public function location(){
+    public function buildingLocation(){
         return $this->hasOne(BuildingLocation::class,'id','building_location_id');
     }
 }

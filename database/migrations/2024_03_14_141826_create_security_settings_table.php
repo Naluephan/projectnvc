@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('security_settings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('locations_id');
+            $table->integer('locations_id');
             $table->integer('security_patrol')->default(0);
             $table->time('security_time')->default(0);
             $table->string('security_img');
-            $table->tinyInteger('record_status')->default(1);
+            $table->tinyInteger('record_status')->comment('0=not active 1=active 2=complate')->default(1);
             $table->timestamps();
         });
     }

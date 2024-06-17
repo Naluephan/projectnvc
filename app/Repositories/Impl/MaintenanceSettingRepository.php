@@ -27,6 +27,7 @@ class MaintenanceSettingRepository extends BaseRepository implements Maintenance
             ->where('record_status','=',1)
             ->where(function ($q) use ($param) {
             })
+            ->with('locations.buildingLocation')
             ->get();
     }
 }

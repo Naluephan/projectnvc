@@ -9,7 +9,6 @@ class BuildingLocation extends Model
 {
     use HasFactory;
     protected $fillable = [
-        // 'location_id',
         'location_name',
         'location_img',
         'total_floors',

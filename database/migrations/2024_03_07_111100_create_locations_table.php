@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('building_location_id');
+            $table->integer('building_location_id');
             $table->string('place_name');
-            $table->string('floor');
+            $table->integer('floor');
             $table->timestamps();
         });
     }

@@ -16,10 +16,10 @@ class PositionCleanlineRepository extends MasterRepository implements PositionCl
     {
         parent::__construct($model);
     }
-    
+
     public function getAll(){
-        return $this->model->get();
+        return $this->model->with('locations.buildingLocation')->get();
     }
-    
-   
+
+
 }

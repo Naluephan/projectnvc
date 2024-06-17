@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('building_locations', function (Blueprint $table) {
             $table->id();
-            // $table->string('location_id');
             $table->string('location_name');
             $table->string('location_img')->nullable();
-            $table->string('total_floors');
-            $table->string('total_rooms');
-            $table->tinyInteger('record_status')->default(1);
+            $table->integer('total_floors');
+            $table->integer('total_rooms');
+            $table->tinyInteger('record_status')->comment('0=not active 1=active 2=complate')->default(1);
             $table->timestamps();
         });
     }
