@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Honor extends Model
 {
     use HasFactory;
+    protected $table = 'hr_honors';
     protected $fillable = [
         'emp_id',
         'honor_category_id',

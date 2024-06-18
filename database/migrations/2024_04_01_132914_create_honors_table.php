@@ -14,10 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('honors', function (Blueprint $table) {
+        Schema::create('hr_honors', function (Blueprint $table) {
             $table->id();
             $table->integer('emp_id');
-            $table->string('honor_category_id')->default(1);
+            $table->integer('honor_category_id')->default(1);
             $table->integer('company_id');
             $table->integer('position_id');
             $table->integer('department_id');
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('honors');
+        Schema::dropIfExists('hr_honors');
     }
 };

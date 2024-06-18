@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('private_cars', function (Blueprint $table) {
+        Schema::create('hr_private_cars', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id");
             $table->integer("company_id");
@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string("car_brand")->nullable();
             $table->string("car_color")->nullable();
             $table->string("car_image")->default(null);
+            $table->integer('transasction_requests_id');
 
-            $table->tinyInteger('status_approved')->comment('0=pending 1=edit 2=approved 3=cancel 4=reject 5=success')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('private_cars');
+        Schema::dropIfExists('hr_private_cars');
     }
 };

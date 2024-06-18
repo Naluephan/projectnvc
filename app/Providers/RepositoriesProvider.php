@@ -122,16 +122,13 @@ use App\Repositories\OrganicsHeroMissionEmployeeInterface;
 use App\Repositories\SocialSecurityFileInterface;
 use App\Repositories\SocialSecurityTypeInterface;
 use App\Repositories\WithdrawReserveFundInterface;
-<<<<<<< Updated upstream
 use App\Repositories\FlexibleSpecialHoursInterface;
 use App\Repositories\Impl\FlexibleSpecialHoursRepository;
 use App\Repositories\FlexibleHoursLogLineInterface;
 use App\Repositories\Impl\FlexibleHoursLogLineRepository;
 
-=======
 use App\Repositories\Impl\TransactionRequestRepository;
 use App\Repositories\TransactionRequestInterface;
->>>>>>> Stashed changes
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -202,12 +199,9 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(WithdrawReserveFundInterface::class,WithdrawReserveFundRepository::class);
         $this->app->bind(ReportRepairCategoriesInterface::class,ReportRepairCategoriesRepository::class);
         $this->app->bind(SocialSecurityFileInterface::class,SocialSecurityFileRepository::class);
-<<<<<<< Updated upstream
         $this->app->bind(FlexibleSpecialHoursInterface::class,FlexibleSpecialHoursRepository::class);
         $this->app->bind(FlexibleHoursLogLineInterface::class,FlexibleHoursLogLineRepository::class);
-=======
         $this->app->bind(TransactionRequestInterface::class,TransactionRequestRepository::class);
->>>>>>> Stashed changes
 
 
 

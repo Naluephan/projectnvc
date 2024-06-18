@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrivateCar extends Model
 {
     use HasFactory;
+    protected $table = 'hr_private_cars';
 
     protected $fillable = [
         'emp_id',
@@ -18,7 +19,7 @@ class PrivateCar extends Model
         'car_brand',
         'car_color',
         'car_image',
-        'status_approved',
+        'transasction_requests_id',
 
     ];
 
