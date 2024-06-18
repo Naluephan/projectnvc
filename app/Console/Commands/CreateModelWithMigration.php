@@ -7,21 +7,21 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class CreateModelWithMigration extends Command
+class CreateModelWithMigrationSeeder extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:model-with-migration {model}';
+    protected $signature = 'make:model-with-migration-seeder {model}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a model with a migration and move the migration to a subfolder';
+    protected $description = 'Create a model with migration and seeder, and move them to a subfolder';
 
     /**
      * Execute the console command.
@@ -50,15 +50,39 @@ class CreateModelWithMigration extends Command
         }
 
         if ($migrationFile) {
-            // Create subfolder
-            $subfolder = dirname($migrationFile->getFilename(), 2);
-            $subfolderPath = database_path("migrations\HRs");
+            // Ask user to choose a subfolder for migration and seeder
+            $subfolder = $this->choice('Select a subfolder for migration and seeder', ['RDs', 'HRs', 'CRs', 'Cs', 'ACs']);
 
+            // Create subfolder paths
+            $subfolderPath = database_path("migrations/{$subfolder}");
+            $subfolderSeederPath = database_path("seeders/{$subfolder}");
+
+            // Ensure the subfolders exist
             File::ensureDirectoryExists($subfolderPath);
-            // Move migration file
-            File::move($migrationFile->getPathname(), $subfolderPath .'\\'. $migrationFile->getFilename());
+            File::ensureDirectoryExists($subfolderSeederPath);
 
+            // Move migration file
+            File::move($migrationFile->getPathname(), "{$subfolderPath}/{$migrationFile->getFilename()}");
+
+            // Inform user about the migration path
             $this->info("Model and migration created. Migration moved to {$subfolderPath}");
+
+            // Create seeder
+            $seederName = "{$modelClass}Seeder";
+            Artisan::call('make:seeder', ['name' => $seederName]);
+
+            // Move seeder file
+            $seederFile = database_path("seeders/{$seederName}.php");
+            File::move($seederFile, "{$subfolderSeederPath}/{$seederName}.php");
+
+            // Inform user about the seeder creation and path
+            $this->info("Seeder created. Seeder moved to {$subfolderSeederPath}");
+
+            // Run the seeder
+            Artisan::call('db:seed', ['--class' => $seederName]);
+
+            // Inform user about the seeding process
+            $this->info("Database seeded using {$seederName}");
         } else {
             $this->error('Migration file not found');
         }
