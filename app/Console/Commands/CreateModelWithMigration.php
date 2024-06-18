@@ -66,18 +66,20 @@ class CreateModelWithMigrationSeeder extends Command
             // Move migration file
             File::move($migrationFile->getPathname(), "{$subfolderMigrationPath}/{$migrationFile->getFilename()}");
             $this->info("Model and migration created. Migration moved to {$subfolderMigrationPath}");
-        } else {
-            $this->error('Migration file not found');
         }
+        //  else {
+        //     $this->error('Migration file not found');
+        // }
 
         // Move model file
         $modelFile = app_path("Models/{$modelName}.php");
         if (File::exists($modelFile)) {
             File::move($modelFile, "{$subfolderModelPath}/{$modelName}.php");
             $this->info("Model created. Model moved to {$subfolderModelPath}");
-        } else {
-            $this->error('Model file not found');
         }
+        //  else {
+        //     $this->error('Model file not found');
+        // }
 
         // Create seeder
         $seederName = "{$modelClass}Seeder";
@@ -89,12 +91,13 @@ class CreateModelWithMigrationSeeder extends Command
             File::move($seederFile, "{$subfolderSeederPath}/{$seederName}.php");
             $this->info("Seeder created. Seeder moved to {$subfolderSeederPath}");
 
-            // Run the seeder
-            Artisan::call('db:seed', ['--class' => "{$subfolder}\\{$seederName}"]);
-            $this->info("Database seeded using {$seederName}");
-        } else {
-            $this->error('Seeder file not found');
+            // // Run the seeder
+            // Artisan::call('db:seed', ['--class' => "{$subfolder}\\{$seederName}"]);
+            // $this->info("Database seeded using {$seederName}");
         }
+        // else {
+        //     $this->error('Seeder file not found');
+        // }
 
         return 0;
     }
