@@ -14,7 +14,7 @@ class CreateModelWithMigrationSeeder extends Command
      *
      * @var string
      */
-    protected $signature = 'make:model-with-migration-seeder {model}';
+    protected $signature = 'make:all {model}';
 
     /**
      * The console command description.
@@ -32,8 +32,21 @@ class CreateModelWithMigrationSeeder extends Command
     {
         $modelName = $this->argument('model');
 
+        // Ask user to choose a subfolder for model, migration and seeder
+        $subfolder = $this->choice('Select a subfolder for model, migration and seeder', ['RDs', 'HRs', 'CRs', 'Cs', 'ACs']);
+
+        // Create subfolder paths
+        $subfolderModelPath = app_path("Models/{$subfolder}");
+        $subfolderMigrationPath = database_path("migrations/{$subfolder}");
+        $subfolderSeederPath = database_path("seeders/{$subfolder}");
+
+        // Ensure the subfolders exist
+        File::ensureDirectoryExists($subfolderModelPath);
+        File::ensureDirectoryExists($subfolderMigrationPath);
+        File::ensureDirectoryExists($subfolderSeederPath);
+
         // Create model and migration
-        Artisan::call('make:model', ['name' => $modelName, '-m' => true]);
+        Artisan::call('make:model', ['name' => "{$subfolder}/{$modelName}", '-m' => true]);
 
         // Determine migration filename
         $modelClass = class_basename($modelName);
@@ -50,41 +63,37 @@ class CreateModelWithMigrationSeeder extends Command
         }
 
         if ($migrationFile) {
-            // Ask user to choose a subfolder for migration and seeder
-            $subfolder = $this->choice('Select a subfolder for migration and seeder', ['RDs', 'HRs', 'CRs', 'Cs', 'ACs']);
-
-            // Create subfolder paths
-            $subfolderPath = database_path("migrations/{$subfolder}");
-            $subfolderSeederPath = database_path("seeders/{$subfolder}");
-
-            // Ensure the subfolders exist
-            File::ensureDirectoryExists($subfolderPath);
-            File::ensureDirectoryExists($subfolderSeederPath);
-
             // Move migration file
-            File::move($migrationFile->getPathname(), "{$subfolderPath}/{$migrationFile->getFilename()}");
+            File::move($migrationFile->getPathname(), "{$subfolderMigrationPath}/{$migrationFile->getFilename()}");
+            $this->info("Model and migration created. Migration moved to {$subfolderMigrationPath}");
+        } else {
+            $this->error('Migration file not found');
+        }
 
-            // Inform user about the migration path
-            $this->info("Model and migration created. Migration moved to {$subfolderPath}");
+        // Move model file
+        $modelFile = app_path("Models/{$modelName}.php");
+        if (File::exists($modelFile)) {
+            File::move($modelFile, "{$subfolderModelPath}/{$modelName}.php");
+            $this->info("Model created. Model moved to {$subfolderModelPath}");
+        } else {
+            $this->error('Model file not found');
+        }
 
-            // Create seeder
-            $seederName = "{$modelClass}Seeder";
-            Artisan::call('make:seeder', ['name' => $seederName]);
+        // Create seeder
+        $seederName = "{$modelClass}Seeder";
+        Artisan::call('make:seeder', ['name' => $seederName]);
 
-            // Move seeder file
-            $seederFile = database_path("seeders/{$seederName}.php");
+        // Move seeder file
+        $seederFile = database_path("seeders/{$seederName}.php");
+        if (File::exists($seederFile)) {
             File::move($seederFile, "{$subfolderSeederPath}/{$seederName}.php");
-
-            // Inform user about the seeder creation and path
             $this->info("Seeder created. Seeder moved to {$subfolderSeederPath}");
 
             // Run the seeder
-            Artisan::call('db:seed', ['--class' => $seederName]);
-
-            // Inform user about the seeding process
+            Artisan::call('db:seed', ['--class' => "{$subfolder}\\{$seederName}"]);
             $this->info("Database seeded using {$seederName}");
         } else {
-            $this->error('Migration file not found');
+            $this->error('Seeder file not found');
         }
 
         return 0;
