@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hr_social_security_types', function (Blueprint $table) {
+        Schema::create('hr_social_security_group_file_heads', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('detail');
-            $table->string('company_id');
-            $table->string('position_id');
-            $table->string('department_id');
-            // $table->string('record_status')->default(1);
+            $table->integer('social_file_types_id');
+            $table->integer('file_upload_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hr_social_security_types');
+        Schema::dropIfExists('hr_social_security_group_file_heads');
     }
 };

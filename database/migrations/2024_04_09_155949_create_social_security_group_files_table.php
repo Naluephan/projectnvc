@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_security_files', function (Blueprint $table) {
+        Schema::create('hr_social_security_group_files', function (Blueprint $table) {
             $table->id();
-            $table->string('social_file_attach');
-            $table->string('social_type_id');
+            $table->string('social_security_file');
+            $table->string('social_security_types_id');
+            $table->string('doc_name');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_security_files');
+        Schema::dropIfExists('hr_social_security_group_files');
     }
 };

@@ -15,23 +15,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assets_and_supplys', function (Blueprint $table) {
+        Schema::create('hr_asset_and_supplies', function (Blueprint $table) {
             $table->id();
             $table->string("device_name")->nullable();
             $table->integer("units_id");
-            $table->string("file_type")->nullable();
+            // $table->string("file_type")->nullable();
             $table->integer("assets_and_supply_categories_id");
             $table->string("description")->nullable();
-            $table->integer("limit_min");
-            $table->integer("limit_max");
+            $table->integer("minimum alert");
+            $table->integer("maximum_alert");
             $table->integer("status_property");
             $table->integer("cost_price");
             $table->smallInteger('limit_year');
             $table->string("depreciation")->nullable();
-            $table->integer("levels_id");
+            // $table->integer("levels_id");
             $table->tinyInteger('month_inspec');
             $table->tinyInteger('start_inspec');
-            $table->tinyInteger('department_inspec');
+            $table->tinyInteger('inspec_by_department_id');
+            $table->text('asset_code');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -45,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets_and_supplys');
+        Schema::dropIfExists('hr_asset_and_supplies');
     }
 };

@@ -10,6 +10,7 @@ class UploadFileHeads extends Model
     use HasFactory;
     protected $fillable = [
         'emp_id',
+        'user_id',
         'module_note',
     ];
 }

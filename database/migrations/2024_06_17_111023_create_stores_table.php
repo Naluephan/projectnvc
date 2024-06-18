@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_security_infos', function (Blueprint $table) {
+        Schema::create('hr_stores', function (Blueprint $table) {
             $table->id();
-            $table->string('social_security_file');
-            $table->string('social_security_id');
-            $table->string('doc_name');
-            $table->string('doc_file')->nullable();
+            $table->text('name');
+            $table->char('code');
+            $table->integer('company_id');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_security_infos');
+        Schema::dropIfExists('hr_stores');
     }
 };

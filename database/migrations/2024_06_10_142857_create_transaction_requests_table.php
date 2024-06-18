@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('emp_id');
             $table->string('module_name');
             $table->string('detail');
-
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

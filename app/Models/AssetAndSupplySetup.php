@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PickupTools extends Model
+class AssetAndSupplySetup extends Model
 {
     use HasFactory;
+    protected $table = 'hr_asset_and_supply_setups';
     protected $fillable = [
         'assets_and_supply_id',
         'requested_limit',
-        'year_condition',
-        'month_condition',
-        'person_condition',
-        'department_condition',
+        // 'year_condition',
+        'condition',
+        // 'person_condition',
+        'emp_id',
         'department_id'
     ];
 

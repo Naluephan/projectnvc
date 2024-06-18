@@ -15,7 +15,7 @@ class SocialSecurityTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('social_security_types')->insert([
+        DB::table('hr_social_security_types')->insert([
             [
                 'id' => 1,
                 'name' => 'เงินสนับสนุน (สงเคราะห์บุตร)',

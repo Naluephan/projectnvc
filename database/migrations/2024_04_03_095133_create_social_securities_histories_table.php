@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_securities', function (Blueprint $table) {
+        Schema::create('social_securities_histories', function (Blueprint $table) {
             $table->id();
             $table->integer('emp_id');
             $table->string('social_security_type_id');
-            $table->string('social_security_type_name');
-            $table->integer('company_id');
-            $table->integer('position_id');
-            $table->integer('department_id');
-            $table->string('approve_status')->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject, 5=success')->default(0);
-            $table->string('record_status')->default(1);
+            // $table->string('social_security_type_name');
+            // $table->integer('company_id');
+            // $table->integer('position_id');
+            // $table->integer('department_id');
+            // $table->string('approve_status')->comment('0 = pending, 1 = edit, 2 = approved, 3 = cancel, 4 = reject, 5=success')->default(0);
+            // $table->string('record_status')->default(1);
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_securities');
+        Schema::dropIfExists('social_securities_histories');
     }
 };

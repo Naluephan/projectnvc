@@ -14,11 +14,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assets_and_supply_categories', function (Blueprint $table) {
+        Schema::create('hr_asset_and_supply_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('device_code');
+            $table->string('abbreviation');
             $table->integer('type')->comment('1 = equipment, 2 = asset');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets_and_supply_categories');
+        Schema::dropIfExists('hr_asset_and_supply_categories');
     }
 };

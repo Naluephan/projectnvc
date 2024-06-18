@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SocialSecurityInfo extends Model
+class SocialSecurityGroupFile extends Model
 {
     use HasFactory;
+    protected $table = 'hr_social_security_group_files';
     protected $fillable = [
         'social_security_file',
-        'social_security_id',
+        'social_security_types_id',
         'doc_name',
-        'doc_file',
     ];
     public function socialemp(){
         return $this->belongsTo(SocialSecurity::class,'social_security_id','id');
