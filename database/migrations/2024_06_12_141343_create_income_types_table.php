@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('income_types', function (Blueprint $table) {
+        Schema::create('hr_income_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->tinyInteger('add_auto_status');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('income_types');
+        Schema::dropIfExists('hr_income_types');
     }
 };

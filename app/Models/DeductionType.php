@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeductionType extends Model
 {
     use HasFactory;
+    protected $table = 'hr_deduction_types';
     protected $fillable = [
         'name',
         'type',

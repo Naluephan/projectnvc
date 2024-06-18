@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FundParticipant extends Model
 {
     use HasFactory;
+    protected $table = 'hr_fund_participants';
     protected $fillable = [
         'emp_id',
         'fund_conditions_id',

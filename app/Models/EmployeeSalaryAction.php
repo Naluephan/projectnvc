@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IncomeType extends Model
+class EmployeeSalaryAction extends Model
 {
     use HasFactory;
-    protected $table = 'hr_income_types';
+    protected $table = 'hr_emp_salary_actions';
     protected $fillable = [
-        'name',
-        'add_auto_status',
-        'amount_auto',
+        'emp_id',
+        'action_type',
+        'action_id'
     ];
 }

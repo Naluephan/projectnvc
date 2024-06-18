@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hr_fund_conditions', function (Blueprint $table) {
+        Schema::create('hr_emp_salary_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('value')->comment('type=1,type=2');
-            $table->integer('fund_informations_id');
-            $table->string('type');
+            $table->integer('emp_id');
+            $table->char('action_type');
+            $table->integer('action_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hr_fund_conditions');
+        Schema::dropIfExists('hr_emp_salary_actions');
     }
 };

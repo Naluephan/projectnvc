@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FundCondition extends Model
 {
     use HasFactory;
+    protected $table = 'hr_fund_conditions';
     protected $fillable = [
         'value',
         'fund_informations_id',

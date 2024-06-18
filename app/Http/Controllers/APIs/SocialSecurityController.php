@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\SocialSecurity;
 use App\Models\SocialSecurityFile;
+use App\Models\SocialSecurityFileHead;
 use App\Models\SocialSecurityType;
 use Illuminate\Http\Request;
 use App\Repositories\SocialSecurityInterface;
@@ -81,7 +82,6 @@ class SocialSecurityController extends Controller
                 ];
 
                 $newSocialSecurityInfo = $this->socialsecurityRepository->create($save_data);
-                $socialSecurityFiles = SocialSecurityFile::where('social_type_id', $data['social_security_type_id'])->get();
 
                 // if ($request->hasFile('doc_file')) {
                 //     foreach ($request->file('doc_file') as $file) {
@@ -157,7 +157,7 @@ class SocialSecurityController extends Controller
                     $fileName = 'P' . date('YmdHis') . uniqid().'.pdf';
                     $path_file = FileHelper::upload_path() . "/images/content/doc_file/";
                     $file->move($path_file, $fileName);
-  
+
                     $doc_file = $fileName;
                     $original_doc_file_name = $originalFileName;
 

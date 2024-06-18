@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class IncomeTransaction extends Model
 {
     use HasFactory;
+    protected $table = 'hr_income_transactions';
     protected $fillable = [
         'note',
         'income_type_id',

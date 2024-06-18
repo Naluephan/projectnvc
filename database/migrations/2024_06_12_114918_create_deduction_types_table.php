@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('deduction_types', function (Blueprint $table) {
+        Schema::create('hr_deduction_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->tinyInteger('type')->comment('type 1 = หักเปล่า ไม่ได้คืนจากบริษัท, 2 = หักเพื่อออม ได้คืนจากบริษัท , 3 = หักเมื่อครบสัญญาจะได้คืน , 4 = หักเพื่อใช้หนี้');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deduction_types');
+        Schema::dropIfExists('hr_deduction_types');
     }
 };

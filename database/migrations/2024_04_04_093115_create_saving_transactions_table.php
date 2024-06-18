@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('saving_transactions', function (Blueprint $table) {
+        Schema::create('hr_saving_transactions', function (Blueprint $table) {
             $table->id();
             $table->integer("emp_id");
             $table->tinyInteger('status')->comment('1=ฝาก, 2=ถอน')->default(1);
@@ -38,7 +38,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('saving_transactions');
+        Schema::dropIfExists('hr_saving_transactions');
         // Schema::dropIfExists('saving_money');
     }
 };

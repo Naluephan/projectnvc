@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salary_transactions', function (Blueprint $table) {
+        Schema::create('hr_salary_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('dc_code');
             $table->string('pay_month');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salary_transactions');
+        Schema::dropIfExists('hr_salary_transactions');
     }
 };

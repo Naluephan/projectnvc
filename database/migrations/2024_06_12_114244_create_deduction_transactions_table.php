@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('deduction_transactions', function (Blueprint $table) {
+        Schema::create('hr_deduction_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('note');
             $table->integer('deduction_types_id');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deduction_transactions');
+        Schema::dropIfExists('hr_deduction_transactions');
     }
 };
