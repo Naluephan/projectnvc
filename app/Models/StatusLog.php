@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class StatusLog extends Model
 {
     use HasFactory;
+    protected $table = 'c_status_logs';
     protected $fillable = [
-        'status_name',
-        'status_number',
-        'status_color',
-        'emp_id',
+        'note',
+        'status_log',
         'module_id',
         'module_name',
+        'module_code',
+        'emp_id',
     ];
     public function transactions()
     {

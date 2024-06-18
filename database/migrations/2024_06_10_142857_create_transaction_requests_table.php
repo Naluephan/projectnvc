@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_requests', function (Blueprint $table) {
+        Schema::create('hr_transaction_requests', function (Blueprint $table) {
             $table->id();
             $table->integer('emp_id');
             $table->string('module_name');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_requests');
+        Schema::dropIfExists('hr_transaction_requests');
     }
 };

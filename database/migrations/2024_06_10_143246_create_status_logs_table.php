@@ -14,14 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_logs', function (Blueprint $table) {
+        Schema::create('c_status_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('status_name');
-            $table->string('status_number');
-            $table->string('status_color');
-            $table->integer('emp_id');
+            $table->string('note');
+            $table->tinyInteger('status_log')->comment('0=pending 1=approved 2=cancel 3=reject')->default(0);
             $table->integer('module_id');
             $table->string('module_name');
+            $table->string('module_code');
+            $table->integer('emp_id');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_logs');
+        Schema::dropIfExists('c_status_logs');
     }
 };

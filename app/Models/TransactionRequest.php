@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionRequest extends Model
 {
     use HasFactory;
+    protected $table = 'hr_transaction_requests';
     protected $fillable = [
         'emp_id',
         'module_name',
