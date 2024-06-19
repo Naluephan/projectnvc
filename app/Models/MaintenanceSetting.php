@@ -16,7 +16,8 @@ class MaintenanceSetting extends Model
         'maintenance_time',
         'maintenance_img',
         'record_status',
-        'qr_code'
+        'qr_code',
+        'user_id'
     ];
     public function locations(){
        return $this->belongsTo(Location::class);

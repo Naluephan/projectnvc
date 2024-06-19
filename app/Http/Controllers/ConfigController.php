@@ -3,26 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Location;
 use App\Repositories\CompanyInterface;
 use App\Repositories\DepartmentInterface;
 use App\Repositories\PickupToolsDeviceTypeInterface;
+use App\Repositories\LocationInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {
 
-    private $companyRepository, $departmentRepository, $pickupToolsDeviceTypeRepository;
+    private $companyRepository, $departmentRepository, $pickupToolsDeviceTypeRepository, $LocationRepository;
 
     public function __construct(
         CompanyInterface $companyRepository,
         DepartmentInterface $departmentRepository,
-        PickupToolsDeviceTypeInterface $pickupToolsDeviceTypeRepository
+        PickupToolsDeviceTypeInterface $pickupToolsDeviceTypeRepository,
+        LocationInterface $LocationRepository
     )
     {
         $this->companyRepository = $companyRepository;
         $this->departmentRepository = $departmentRepository;
         $this->pickupToolsDeviceTypeRepository = $pickupToolsDeviceTypeRepository;
+        $this->LocationRepository = $LocationRepository;
 
     }
 
@@ -117,7 +121,8 @@ class ConfigController extends Controller
 
     public function configMaintenance()
     {
-        return view('setting.maintenance');
+        $locations = Location::all();
+        return view('setting.maintenance',compact('locations'));
     }
 
     public function configCleanness()

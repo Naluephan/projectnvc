@@ -3,7 +3,7 @@
 
 namespace App\Repositories\Impl;
 
-use App\Models\PickupToolsDeviceType;
+use App\Models\AssetsAndSupplyCategories;
 use App\Repositories\PickupToolsDeviceTypeInterface;
 use Illuminate\Support\Collection;
 
@@ -11,7 +11,7 @@ class PickupToolsDeviceTypeRepository extends BaseRepository implements PickupTo
 {
     protected $model;
 
-    public function __construct(PickupToolsDeviceType $model)
+    public function __construct(AssetsAndSupplyCategories $model)
     {
         parent::__construct($model);
     }

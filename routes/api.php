@@ -234,13 +234,27 @@ Route::group(
                 Route::post('flexible/special/hours/delete', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'delete'])->name('flexible.special.hours.delete');
                 Route::post('flexible/special/hours/getAll', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'getAll'])->name('flexible.special.hours.getAll');
                 //  Route::post('flexible/special/hours/get/by/id', [\App\Http\Controllers\APIs\FlexibleSpecialHoursController::class, 'getById'])->name('flexible.special.hours.get.by.id');
-                
+
                 //FlexibleSpecialHours
                 Route::post('flexible/hours/log/line/create', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'create'])->name('flexible.hours.log.line.create');
                 // Route::post('flexible/hours/log/line/update', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'update'])->name('flexible.hours.log.line.update');
                 // Route::post('flexible/hours/log/line/delete', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'delete'])->name('flexible.hours.log.line.delete');
                 // Route::post('flexible/hours/log/line/getAll', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'getAll'])->name('flexible.hours.log.line.getAll');
                 //  Route::post('flexible/hours/log/line/get/by/id', [\App\Http\Controllers\APIs\FlexibleHoursLogLineController::class, 'getById'])->name('flexible.special.hours.get.by.id');
+
+                //API NewsCategory
+                Route::post('/administrative/work/categories/list', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getAdministList'])->name('administrative.work.categories.list');
+                Route::post('/administrative/work/categories/create', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'create'])->name('administrative.work.categories.create');
+                Route::post('/administrative/work/categories/update', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'update'])->name('administrative.work.categories.update');
+                Route::post('/administrative/work/categories/delete', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'delete'])->name('administrative.work.categories.delete');
+                Route::post('/administrative/work/categories/by/id', [\App\Http\Controllers\APIs\AdministWorkCategoriesController::class, 'getById'])->name('administrative.work.categories.by.id');
+
+                //API NewsCategory
+                Route::post('/news/category/list', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'getNewsCategory'])->name('news.category.list');
+                Route::post('/news/category/create', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'create'])->name('news.category.create');
+                Route::post('/news/category/update', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'update'])->name('news.category.update');
+                Route::post('/news/category/delete', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'delete'])->name('news.category.delete');
+                Route::post('/news/category/by/id', [\App\Http\Controllers\APIs\NewsTopicCategoryController::class, 'getById'])->name('news.category.by.id');
 
         }
 

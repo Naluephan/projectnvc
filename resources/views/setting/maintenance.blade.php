@@ -152,11 +152,21 @@
                             <input type="text" class="form-control input-modal rounded-pill text-color"
                                 id="maintenance_name" name="maintenance_name" required>
                         </div>
-                        <div class="mb-3 pr-3 pl-3">
-                            <label for="maintenance_location" class="col-form-label text-color"><i
+                        {{-- <div class="mb-3 pr-3 pl-3">
+                            <label for="locations_id" class="col-form-label text-color"><i
                                     class="fas fa-building text-sm hr-icon"></i> สถานที่</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color"
-                                id="maintenance_location" name="maintenance_location" required>
+                            <input type="number" class="form-control input-modal rounded-pill text-color"
+                                id="locations_id" name="locations_id" required>
+                        </div> --}}
+                        <div class="mb-3 pr-3 pl-3">
+                            <label for="" class="col-form-label text-color"><i
+                                    class="fas fa-building text-hr-orange"></i> สถานที่</label>
+                            <select class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color"
+                                name="" id="locations_id" name="locations_id" required>
+                                @foreach ($locations as $location)
+                                    <option value="{{ $location->id }}">{{ $location->place_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3 pr-3 pl-3">
                             <div class="row">
@@ -292,6 +302,7 @@
                     type: "post",
                     dataType: "json",
                     success: function(response) {
+                        // console.log(response);
                         $(".maintenance_list").empty();
                         $.each(response.data, function(index, maintenanceInfo) {
                             var id = maintenanceInfo.id;
@@ -313,7 +324,7 @@
                                             </div>
                                             <div class="col-6 ">
                                             <b><h6 class="ml-2 hr-text-green mt-2">${maintenanceInfo.name}</h6></b>
-                                                <p class="ml-2 text-black-50">${maintenanceInfo.location}</p>
+                                                <p class="ml-2 text-black-50">${maintenanceInfo.locations.place_name}</p>
                                                 <p class="ml-2 text-black-50">การตรวจตราทุก ${maintenanceInfo.maintenance_patrol} เดือน เริ่ม ${maintenanceInfo.maintenance_time} น.</p>
                                             </div>
                                             <div class="col-3">
@@ -335,7 +346,7 @@
             $(document).on('click', '.btn-add', function() {
                 $('#maintenanceModal').modal('show');
                 $('#maintenance_name').val('');
-                $('#maintenance_location').val('');
+                $('#locations_id').val('');
                 $('#maintenance_patrol').val('');
                 $('#maintenance_time').val('');
                 $('#import-file').val('');
@@ -352,9 +363,11 @@
                     formData.append('_token', $('#_token').val());
                     formData.append('id', $('#id').val());
                     formData.append('name', $('#maintenance_name').val());
-                    formData.append('location', $('#maintenance_location').val());
+                    formData.append('locations_id', $('#locations_id').val());
                     formData.append('maintenance_patrol', $('#maintenance_patrol').val());
                     formData.append('maintenance_time', $('#maintenance_time').val());
+                    formData.append('user_id', '{{ Auth::user()->id }}');
+                    formData.append('qr_code', 'www.google.co.th');
                     if (document.getElementById("image_file").files.length != 0) {
                         formData.append('maintenance_img', $('#image_file').prop('files')[0]);
                     }
@@ -392,7 +405,7 @@
                                                 timer: 1500
                                             })
                                             $('#maintenance_name').val('');
-                                            $('#maintenance_location').val('');
+                                            $('#locations_id').val('');
                                             $('#maintenance_patrol').val('');
                                             $('#maintenance_time').val('');
                                             $('#import-file').val('');
@@ -447,7 +460,7 @@
                                                 timer: 1500
                                             })
                                             $('#maintenance_name').val('');
-                                            $('#maintenance_location').val('');
+                                            $('#locations_id').val('');
                                             $('#maintenance_patrol').val('');
                                             $('#maintenance_time').val('');
                                             $('#import-file').val('');
@@ -523,7 +536,7 @@
                 $('#detailModal').modal('hide');
                 $('#maintenanceModal').modal('show');
                 $('#maintenance_name').val(name);
-                $('#maintenance_location').val(location);
+                $('#locations_id').val(location);
                 $('#maintenance_patrol').val(maintenance_patrol);
                 $('#maintenance_time').val(maintenance_time);
                 $('#id').val(id);
