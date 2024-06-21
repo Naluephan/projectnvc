@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Location;
 use App\Repositories\MaintenanceSettingInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class MaintenanceSettingController extends Controller
         try {
             $maintenanceList = $this->maintenanceSettingRepository->getAll($postData);
 
-            $result= $maintenanceList;
+            $result = $maintenanceList;
         } catch (\Exception $ex) {
             $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
@@ -88,17 +89,49 @@ class MaintenanceSettingController extends Controller
         $result = [];
         $data = $request->all();
         try {
+            $save_data = [
+                'name' => $data['name'],
+                'locations_id' => $data['locations_id'],
+                'maintenance_patrol' => $data['maintenance_patrol'],
+                'maintenance_time' => $data['maintenance_time'],
+                'qr_code' => $data['qr_code'],
+                'user_id' => $data['user_id'],
+            ];
+
             if ($request->file('maintenance_img')) {
                 $save_data['maintenance_img'] = save_image($request->file('maintenance_img'), 500, '/images/setting/maintenance/');
             } else {
                 $save_data['maintenance_img'] = $data['maintenance_img'];
             }
-            $this->maintenanceSettingRepository->update($data['id'], $data);
+
+            $this->maintenanceSettingRepository->update($data['id'], $save_data);
             $result['status'] = "success";
             DB::commit();
         } catch (\Exception $ex) {
             $result['status'] = "failed";
-            $result['message'] = $ex;
+            $result['message'] = $ex->getMessage();
+            DB::rollBack();
+        }
+        return $result;
+    }
+
+    public function locationList()
+    {
+        return Location::all();
+    }
+
+    public function delete(Request $request)
+    {
+        DB::beginTransaction();
+        $result = [];
+        $data = $request->all();
+        try {
+            $this->maintenanceSettingRepository->delete($data['id']);
+            $result['status'] = "success";
+            DB::commit();
+        } catch (\Exception $ex) {
+            $result['status'] = "failed";
+            $result['message'] = $ex->getMessage();
             DB::rollBack();
         }
         return $result;

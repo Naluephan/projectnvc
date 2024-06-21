@@ -208,6 +208,8 @@ Route::group(
                 Route::post('maintenance/create', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'create'])->name('maintenance.create');
                 Route::post('maintenance/by/id', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'getmaintenanceById'])->name('maintenance.by.id');
                 Route::post('maintenance/update', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'maintenanceUpdate'])->name('maintenance.update');
+                Route::post('maintenance/locationlist', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'locationList'])->name('maintenance.locationlist');
+                Route::post('maintenance/delete', [\App\Http\Controllers\APIs\MaintenanceSettingController::class, 'delete'])->name('maintenance.delete');
 
                 //profile personal information
                 Route::post('profile/personalInfo/get/by/id', [\App\Http\Controllers\APIs\ProfilePersonalInformationController::class, 'getById'])->name('profile.personalInfo.get.by.id');
