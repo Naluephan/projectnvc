@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('locations_id');
             $table->integer('maintenance_patrol')->default(0);
-            $table->time('maintenance_time');
+            $table->date('maintenance_time');
             $table->string('maintenance_img');
             $table->string('qr_code');
             $table->integer('user_id');

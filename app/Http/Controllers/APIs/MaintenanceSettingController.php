@@ -22,21 +22,14 @@ class MaintenanceSettingController extends Controller
     {
         $postData = $request->all();
         $result = [];
-
         try {
-            $param = [];
+            $maintenanceList = $this->maintenanceSettingRepository->getAll($postData);
 
-
-            $maintenanceList = $this->maintenanceSettingRepository->getAll($param);
-
-
-            $result['status'] = "success";
-            $result['data'] = $maintenanceList;
+            $result= $maintenanceList;
         } catch (\Exception $ex) {
             $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
         }
-
         return $result;
     }
 
@@ -56,7 +49,10 @@ class MaintenanceSettingController extends Controller
             ];
             if ($request->file('maintenance_img')) {
                 $save_data['maintenance_img'] = save_image($request->file('maintenance_img'), 500, '/images/setting/maintenance/');
+            } else {
+                $save_data['maintenance_img'] = $data['maintenance_img'];
             }
+
             $this->maintenanceSettingRepository->create($save_data);
 
             $result['status'] = "success";
@@ -69,6 +65,7 @@ class MaintenanceSettingController extends Controller
         return $result;
     }
 
+
     public function getmaintenanceById(Request $request)
     {
         $postData = $request->all();
@@ -76,8 +73,7 @@ class MaintenanceSettingController extends Controller
 
         try {
             $maintenanceList = $this->maintenanceSettingRepository->find($postData['id']);
-            $result['status'] = "success";
-            $result['data'] = $maintenanceList;
+            $result = $maintenanceList;
         } catch (\Exception $ex) {
             $result['status'] = "failed";
             $result['message'] = $ex->getMessage();
@@ -93,9 +89,11 @@ class MaintenanceSettingController extends Controller
         $data = $request->all();
         try {
             if ($request->file('maintenance_img')) {
-                $data['maintenance_img'] = save_image($request->file('maintenance_img'), 500, '/images/setting/maintenance/');
+                $save_data['maintenance_img'] = save_image($request->file('maintenance_img'), 500, '/images/setting/maintenance/');
+            } else {
+                $save_data['maintenance_img'] = $data['maintenance_img'];
             }
-            $update = $this->maintenanceSettingRepository->update($data['id'], $data);
+            $this->maintenanceSettingRepository->update($data['id'], $data);
             $result['status'] = "success";
             DB::commit();
         } catch (\Exception $ex) {
