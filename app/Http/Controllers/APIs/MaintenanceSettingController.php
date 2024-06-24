@@ -120,13 +120,12 @@ class MaintenanceSettingController extends Controller
         return Location::all();
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         DB::beginTransaction();
         $result = [];
-        $data = $request->all();
         try {
-            $this->maintenanceSettingRepository->delete($data['id']);
+            $this->maintenanceSettingRepository->delete($id);
             $result['status'] = "success";
             DB::commit();
         } catch (\Exception $ex) {
