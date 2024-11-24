@@ -126,8 +126,10 @@ use App\Repositories\FlexibleSpecialHoursInterface;
 use App\Repositories\Impl\FlexibleSpecialHoursRepository;
 use App\Repositories\FlexibleHoursLogLineInterface;
 use App\Repositories\Impl\FlexibleHoursLogLineRepository;
-
+use App\Repositories\Impl\RDs\testRepository;
 use App\Repositories\Impl\TransactionRequestRepository;
+use App\Repositories\RDs\testInterface;
+use App\Repositories\testInterface as RepositoriesTestInterface;
 use App\Repositories\TransactionRequestInterface;
 
 class RepositoriesProvider extends ServiceProvider

@@ -72,7 +72,8 @@ class ConfigController extends Controller
     }
     public function configSecurity()
     {
-        return view('setting.security');
+        $locations = Location::all();
+        return view('setting.security',compact('locations'));
 
     }
     public function listHoliday()

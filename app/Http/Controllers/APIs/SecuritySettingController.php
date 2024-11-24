@@ -51,6 +51,7 @@ class SecuritySettingController extends Controller
                 'locations_id' => $data['locations_id'],
                 'security_patrol' => $data['security_patrol'],
                 'security_time' => $data['security_time'],
+                'user_id' => $data['user_id'],
             ];
             if ($request->file('security_img')) {
                 $save_data['security_img'] = save_image($request->file('security_img'), 500, '/images/setting/security/');

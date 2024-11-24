@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('group_insurances', function (Blueprint $table) {
             $table->id();
             $table->string('emp_id');
-            $table->string('group_insurance_img');
-            $table->string('position_id');
             $table->string('company_id');
             $table->string('department_id');
             $table->string('record_status')->default(1);

@@ -142,6 +142,8 @@
                 </div>
                 <div class="modal-body">
                     <form id="securityForm">
+                        <input type="hidden" class="form-control" id="user_id" name="user_id"
+                            value="{{ Auth::user()->id }}">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3 pr-3 pl-3">
                             <label for="security_name" class="col-form-label text-color"><i
@@ -150,10 +152,14 @@
                                 id="security_name" name="security_name" required>
                         </div>
                         <div class="mb-3 pr-3 pl-3">
-                            <label for="security_location" class="col-form-label text-color"><i
-                                    class="fas fa-building text-sm hr-icon"></i> สถานที่</label>
-                            <input type="text" class="form-control input-modal rounded-pill text-color"
-                                id="security_location" name="security_location" required>
+                            <label for="" class="col-form-label text-color"><i
+                                    class="fas fa-building text-hr-orange"></i> สถานที่</label>
+                            <select class="js-example-basic-single form-select input-modal rounded-pill bg-white text-color"
+                                name="" id="locations_id" name="locations_id" required>
+                                @foreach ($locations as $location)
+                                    <option value="{{ $location->id }}">{{ $location->place_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3 pr-3 pl-3">
                             <div class="row">
@@ -241,7 +247,8 @@
                                 QR Code</p>
                         </div>
                         <div class="col-6">
-                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end" id="downloadQR"><i class="fas fa-download"></i>
+                            <p class="hr-icon cursor-pointer print-qr mt-1 text-end" id="downloadQR"><i
+                                    class="fas fa-download"></i>
                                 ดาวน์โหลด</p>
                         </div>
                     </div>
@@ -249,7 +256,8 @@
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <div class="text-center qr-code" id="qrCodeDiv">
-                                <img src="" alt="QR Code" id="detail-security_qr" style=" width: 180px; height: 180px;">
+                                <img src="" alt="QR Code" id="detail-security_qr"
+                                    style=" width: 180px; height: 180px;">
                             </div>
                         </div>
                     </div>
@@ -308,7 +316,7 @@
                                             </div>
                                             <div class="col-5 ">
                                                 <b><h6 class="ml-2 hr-text-green mt-2">${securityInfo.name}</h6></b>
-                                                <p class="ml-2 text-black-50">${securityInfo.location}</p>
+                                                <p class="ml-2 text-black-50">${securityInfo.locations.place_name}</p>
                                                 <p class="ml-2 text-black-50">การตรวจตราทุก ${securityInfo.security_patrol} ชั่วโมง เริ่ม ${securityInfo.security_time} น.</p>
                                             </div>
                                             <div class="col-4">
@@ -330,7 +338,7 @@
             $(document).on('click', '.btn-add', function() {
                 $('#securityModal').modal('show');
                 $('#security_name').val('');
-                $('#security_location').val('');
+                $('#locations_id').val('');
                 $('#security_patrol').val('');
                 $('#security_time').val('');
                 $('#import-file').val('');
@@ -347,12 +355,13 @@
                     formData.append('_token', $('#_token').val());
                     formData.append('id', $('#id').val());
                     formData.append('name', $('#security_name').val());
-                    formData.append('location', $('#security_location').val());
+                    formData.append('locations_id', $('#locations_id').val());
                     formData.append('security_patrol', $('#security_patrol').val());
                     formData.append('security_time', $('#security_time').val());
                     if (document.getElementById("image_file").files.length != 0) {
                         formData.append('security_img', $('#image_file').prop('files')[0]);
                     }
+                    formData.append('user_id', '{{ Auth::user()->id }}');
                     if (!id) {
                         Swal.fire({
                             title: 'ยืนยันการเพิ่มรายการ?',
@@ -387,7 +396,7 @@
                                                 timer: 1500
                                             })
                                             $('#security_name').val('');
-                                            $('#security_location').val('');
+                                            $('#locations_id').val('');
                                             $('#security_patrol').val('');
                                             $('#security_time').val('');
                                             $('#import-file').val('');
@@ -442,7 +451,7 @@
                                                 timer: 1500
                                             })
                                             $('#security_name').val('');
-                                            $('#security_location').val('');
+                                            $('#locations_id').val('');
                                             $('#security_patrol').val('');
                                             $('#security_time').val('');
                                             $('#import-file').val('');
@@ -479,13 +488,15 @@
                     dataType: "json",
                     success: function(response) {
                         var img_url = ''
-                        var qrCodeUrl ="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + response.data.id;
+                        var qrCodeUrl =
+                            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                            response.data.id;
                         if (response.data.security_img != null) {
                             img_url = "{{ asset('uploads/images/setting/security') }}/" +
                                 response.data.security_img;
                         }
                         $('#detail-name').text(response.data.name);
-                        $('#detail-location').text(response.data.location);
+                        $('#detail-location').text(response.data.locations);
                         $('#detail-security_patrol').text(response.data.security_patrol);
                         $('#detail-security_time').text(response.data.security_time);
                         $('#detail-security_img').attr('src', img_url);
@@ -493,7 +504,7 @@
                         $('#security_id').val(response.data.id);
                         $('#security_edit').val(response.data.id);
                         $('#security_edit').data('name', response.data.name);
-                        $('#security_edit').data('location', response.data.location);
+                        $('#security_edit').data('locations', response.data.locations_id);
                         $('#security_edit').data('security_patrol', response.data
                             .security_patrol);
                         $('#security_edit').data('security_time', response.data.security_time);
@@ -515,7 +526,7 @@
                 $('#detailModal').modal('hide');
                 $('#securityModal').modal('show');
                 $('#security_name').val(name);
-                $('#security_location').val(location);
+                $('#locations_id').val(locations);
                 $('#security_patrol').val(security_patrol);
                 $('#security_time').val(security_time);
                 $('#id').val(id);

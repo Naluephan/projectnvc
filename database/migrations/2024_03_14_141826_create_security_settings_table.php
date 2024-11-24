@@ -21,6 +21,7 @@ return new class extends Migration
             $table->time('security_time')->default(0);
             $table->string('security_img');
             $table->tinyInteger('record_status')->comment('0=not active 1=active 2=complate')->default(1);
+            $table->tinyInteger('user_id');
             $table->timestamps();
         });
     }

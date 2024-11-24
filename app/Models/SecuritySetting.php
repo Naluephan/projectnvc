@@ -15,9 +15,13 @@ class SecuritySetting extends Model
         'security_patrol',
         'security_time',
         'security_img',
-        'record_status'
+        'record_status',
+        'user_id'
     ];
     public function locations(){
        return $this->belongsTo(Location::class);
+    }
+    public function users(){
+        return $this->belongsTo(User::class,'id','user_id');
     }
 }
